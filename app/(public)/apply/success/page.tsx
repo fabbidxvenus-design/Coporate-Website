@@ -1,10 +1,12 @@
 import Link from 'next/link'
+import { getDictionary, Locale } from '@/lib/i18n'
 
-export const metadata = {
-  title: 'Ứng tuyển thành công | Fabbi',
-}
+export const dynamic = 'force-dynamic'
 
-export default function ApplySuccessPage() {
+export default async function ApplySuccessPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const dict = getDictionary(locale as Locale)
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-xl mx-auto text-center">
@@ -16,16 +18,16 @@ export default function ApplySuccessPage() {
           </div>
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Đã gửi hồ sơ thành công!
+          {dict.apply.successTitle}
         </h1>
         <p className="text-gray-600 mb-8">
-          Cảm ơn bạn đã ứng tuyển. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.
+          {dict.apply.successMessage}
         </p>
         <Link
-          href="/jobs"
-          className="inline-flex items-center justify-center px-6 py-3 bg-[#008b9c] hover:bg-[#007a89] text-white font-semibold rounded-lg transition-colors"
+          href={`/${locale}/jobs`}
+          className="inline-flex items-center justify-center px-6 py-3 bg-[#006672] hover:bg-[#005560] hover:text-white font-semibold rounded-lg transition-colors"
         >
-          Xem thêm cơ hội khác
+          {dict.apply.viewMoreJobs || (locale === 'vi' ? 'Xem thêm cơ hội khác' : '他の機会を見る')}
         </Link>
       </div>
     </section>

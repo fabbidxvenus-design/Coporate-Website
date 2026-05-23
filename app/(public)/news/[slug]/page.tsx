@@ -6,22 +6,23 @@ import Image from 'next/image'
 import type { Database } from '@/types/database'
 import { sanitizeAndFormatHtml } from '@/lib/sanitize'
 import { formatDateLocal, formatDateShortLocal } from '@/lib/utils'
+import { getDictionary, Locale } from '@/lib/i18n'
 
 export const revalidate = 300
 
 type Article = Database['public']['Tables']['news_articles']['Row']
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string; locale: string }>
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const article = await getArticle(slug)
-  if (!article) return { title: 'Không tìm thấy' }
+  if (!article) return { title: locale === 'vi' ? 'Không tìm thấy' : '見つかりませんでした' }
   return {
-    title: `${article.title} | Fabbi Tin tức`,
-    description: article.excerpt || `${article.title} - Tin tức từ Fabbi`,
+    title: locale === 'vi' ? `${article.title} | Fabbi Tin tức` : `${article.title} | Fabbi ニュース`,
+    description: article.excerpt || article.title,
   }
 }
 
@@ -67,11 +68,11 @@ async function getRelatedArticles(currentId: string, category?: string): Promise
   return (data || []) as Article[]
 }
 
-function calculateReadTime(body: string): string {
+function calculateReadTime(body: string, locale: string): string {
   const wordsPerMinute = 200
   const wordCount = body.split(/\s+/).length
   const minutes = Math.ceil(wordCount / wordsPerMinute)
-  return `${minutes} min read`
+  return locale === 'vi' ? `${minutes} phút đọc` : `${minutes} 分で読めます`
 }
 
 const categoryLabels: Record<string, string> = {
@@ -84,7 +85,8 @@ const categoryLabels: Record<string, string> = {
 }
 
 export default async function NewsDetailPage({ params }: PageProps) {
-  const { slug } = await params
+  const { slug, locale } = await params
+  const dict = getDictionary(locale as Locale)
   const article = await getArticle(slug)
 
   if (!article) {
@@ -93,7 +95,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   const relatedArticles = await getRelatedArticles(article.id, article.category || undefined)
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
-  const readTime = calculateReadTime(article.body)
+  const readTime = calculateReadTime(article.body, locale)
 
   return (
     <div className="flex-grow pb-20">
@@ -101,7 +103,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
       <div className="max-w-[800px] mx-auto px-4 pt-8">
         {/* Breadcrumb */}
         <nav className="flex items-center text-sm text-gray-600 mb-6">
-          <Link className="hover:text-[#008b9c] transition-colors" href="/news">Tin tức</Link>
+          <Link className="hover:text-teal-text transition-colors" href={`/${locale}/news`}>{dict.nav.news}</Link>
           <svg className="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
           </svg>
@@ -116,14 +118,14 @@ export default async function NewsDetailPage({ params }: PageProps) {
         {/* Meta info */}
         <div className="flex items-center mb-10">
           <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden mr-3">
-            <div className="w-full h-full bg-gradient-to-br from-[#008b9c] to-[#007a8d] flex items-center justify-center text-white font-semibold">
+            <div className="w-full h-full bg-gradient-to-br from-[#006672] to-[#007a8d] flex items-center justify-center text-white font-semibold">
               A
             </div>
           </div>
           <div>
             <p className="text-sm font-semibold text-gray-900">Fabbi</p>
             <p className="text-sm text-gray-600">
-              {article.published_at ? formatDateShortLocal(article.published_at) : 'Mới đăng'} <span className="mx-1">•</span> {readTime}
+              {article.published_at ? formatDateShortLocal(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')} <span className="mx-1">•</span> {readTime}
             </p>
           </div>
         </div>
@@ -141,8 +143,8 @@ export default async function NewsDetailPage({ params }: PageProps) {
             sizes="1200px"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#008b9c]/10 to-gray-100 rounded-2xl flex items-center justify-center">
-            <span className="material-symbols-outlined text-8xl text-[#008b9c]/30">newspaper</span>
+          <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 rounded-2xl flex items-center justify-center">
+            <span className="material-symbols-outlined text-8xl text-teal-text/30">newspaper</span>
           </div>
         )}
       </div>
@@ -151,7 +153,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
       <article className="max-w-[800px] mx-auto px-4">
         {/* Excerpt */}
         {article.excerpt && (
-          <p className="text-xl text-gray-600 leading-relaxed mb-8 font-medium border-l-4 border-[#008b9c] pl-6 italic">
+          <p className="text-xl text-gray-600 leading-relaxed mb-8 font-medium border-l-4 border-[#006672] pl-6 italic">
             {article.excerpt}
           </p>
         )}
@@ -180,7 +182,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
         <div className="border-t border-gray-200 mt-8 pt-6">
           <p className="text-sm font-medium text-gray-900">
             <i className="fa-regular fa-eye mr-1"></i>
-            Lượt xem
+            {locale === 'vi' ? 'Lượt xem' : '閲覧数'}
           </p>
         </div>
       </article>
@@ -188,11 +190,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">Bài viết liên quan</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">{locale === 'vi' ? 'Bài viết liên quan' : '関連記事'}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {relatedArticles.map((related) => (
               <article key={related.id} className="group cursor-pointer">
-                <Link href={`/news/${related.slug}`}>
+                <Link href={`/${locale}/news/${related.slug}`}>
                   <div className="overflow-hidden rounded-xl mb-4 bg-gray-100 aspect-[16/10] relative">
                     {related.cover_image_url ? (
                       <Image
@@ -204,15 +206,15 @@ export default async function NewsDetailPage({ params }: PageProps) {
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#008b9c]/10 to-gray-100 flex items-center justify-center">
-                        <span className="material-symbols-outlined text-3xl text-[#008b9c]/30">newspaper</span>
+                      <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center">
+                        <span className="material-symbols-outlined text-3xl text-teal-text/30">newspaper</span>
                       </div>
                     )}
                   </div>
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full mb-2">
                     {categoryLabels[related.category || ''] || related.category || 'News'}
                   </span>
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#008b9c] transition-colors line-clamp-2">
+                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-teal-text transition-colors line-clamp-2">
                     {related.title}
                   </h3>
                 </Link>

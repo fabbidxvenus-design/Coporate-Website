@@ -5,18 +5,25 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import { formatDateAgoEn } from '@/lib/utils'
+import { getDictionary, Locale } from '@/lib/i18n'
 
 type Article = Database['public']['Tables']['news_articles']['Row']
 
 interface PageProps {
+  params: Promise<{ locale: string }>
   searchParams: Promise<{ q?: string; category?: string; page?: string }>
 }
 
 export const revalidate = 60
 
-export const metadata = {
-  title: 'Tin tức | Fabbi',
-  description: 'Cập nhật tin tức mới nhất về Fabbi - Công ty cổ phần nghiên cứu và phát triển công nghệ',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  return {
+    title: locale === 'vi' ? 'Tin tức | Fabbi' : 'ニュース | Fabbi',
+    description: locale === 'vi'
+      ? 'Cập nhật tin tức mới nhất về Fabbi'
+      : 'Fabbiに関する最新ニュースをお届けします',
+  }
 }
 
 function buildSearchParams(params: { q?: string; category?: string; page?: string }, updates: Record<string, string | undefined>) {
@@ -39,14 +46,16 @@ const categoryLabels: Record<string, string> = {
 
 interface ArticleCardProps {
   article: Article
+  locale: string
+  readMore: string
 }
 
-function FeaturedArticle({ article }: ArticleCardProps) {
+function FeaturedArticle({ article, locale, readMore }: ArticleCardProps) {
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
 
   return (
     <article className="mb-16 group cursor-pointer">
-      <Link href={`/news/${article.slug}`}>
+      <Link href={`/${locale}/news/${article.slug}`}>
         <div className="overflow-hidden rounded-2xl mb-6 bg-gray-100 aspect-[16/9] relative">
           {article.cover_image_url ? (
             <Image
@@ -58,31 +67,31 @@ function FeaturedArticle({ article }: ArticleCardProps) {
               sizes="(max-width: 768px) 100vw, 1200px"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#008b9c]/10 to-gray-100 flex items-center justify-center">
-              <span className="material-symbols-outlined text-6xl text-[#008b9c]/30">newspaper</span>
+            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center">
+              <span className="material-symbols-outlined text-6xl text-teal-text/30">newspaper</span>
             </div>
           )}
         </div>
         <div className="flex items-center gap-3 mb-4">
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full">{categoryLabel}</span>
-          <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : 'Mới đăng'}</span>
+          <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <h2 className="text-3xl font-bold text-gray-800 mb-3 group-hover:text-[#008b9c] transition-colors duration-200">{article.title}</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-3 group-hover:text-teal-text transition-colors duration-200">{article.title}</h2>
         <p className="text-gray-500 mb-4 text-lg line-clamp-2">{article.excerpt || ''}</p>
-        <span className="inline-flex items-center text-[#008b9c] font-semibold hover:text-[#007a8d] transition-colors duration-200">
-          Read more <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
+        <span className="inline-flex items-center text-teal-text font-semibold hover:text-teal-text transition-colors duration-200">
+          {readMore} <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
         </span>
       </Link>
     </article>
   )
 }
 
-function ArticleGridCard({ article }: ArticleCardProps) {
+function ArticleGridCard({ article, locale, readMore }: ArticleCardProps) {
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
 
   return (
     <article className="group cursor-pointer">
-      <Link href={`/news/${article.slug}`}>
+      <Link href={`/${locale}/news/${article.slug}`}>
         <div className="overflow-hidden rounded-2xl mb-5 bg-gray-100 aspect-[16/10] relative">
           {article.cover_image_url ? (
             <Image
@@ -94,31 +103,31 @@ function ArticleGridCard({ article }: ArticleCardProps) {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#008b9c]/10 to-gray-100 flex items-center justify-center">
-              <span className="material-symbols-outlined text-4xl text-[#008b9c]/30">newspaper</span>
+            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center">
+              <span className="material-symbols-outlined text-4xl text-teal-text/30">newspaper</span>
             </div>
           )}
         </div>
         <div className="flex items-center gap-3 mb-3">
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full">{categoryLabel}</span>
-          <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : 'Mới đăng'}</span>
+          <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-[#008b9c] transition-colors duration-200 line-clamp-2">{article.title}</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-teal-text transition-colors duration-200 line-clamp-2">{article.title}</h3>
         <p className="text-gray-500 mb-4 text-base line-clamp-2">{article.excerpt || ''}</p>
-        <span className="inline-flex items-center text-[#008b9c] font-semibold text-sm hover:text-[#007a8d] transition-colors duration-200">
-          Read more <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
+        <span className="inline-flex items-center text-teal-text font-semibold text-sm hover:text-teal-text transition-colors duration-200">
+          {readMore} <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
         </span>
       </Link>
     </article>
   )
 }
 
-function HorizontalArticleCard({ article }: ArticleCardProps) {
+function HorizontalArticleCard({ article, locale, readMore }: ArticleCardProps) {
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
 
   return (
     <article className="flex flex-col sm:flex-row gap-6 group cursor-pointer">
-      <Link href={`/news/${article.slug}`} className="w-full sm:w-[240px] flex-shrink-0">
+      <Link href={`/${locale}/news/${article.slug}`} className="w-full sm:w-[240px] flex-shrink-0">
         <div className="overflow-hidden rounded-2xl bg-gray-100 aspect-video sm:aspect-[4/3] relative">
           {article.cover_image_url ? (
             <Image
@@ -130,8 +139,8 @@ function HorizontalArticleCard({ article }: ArticleCardProps) {
               sizes="240px"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#008b9c]/10 to-gray-100 flex items-center justify-center">
-              <span className="material-symbols-outlined text-3xl text-[#008b9c]/30">newspaper</span>
+            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center">
+              <span className="material-symbols-outlined text-3xl text-teal-text/30">newspaper</span>
             </div>
           )}
         </div>
@@ -139,13 +148,13 @@ function HorizontalArticleCard({ article }: ArticleCardProps) {
       <div className="flex flex-col justify-center py-2">
         <div className="flex items-center gap-3 mb-2">
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-[11px] font-semibold rounded-full uppercase tracking-wider">{categoryLabel}</span>
-          <span className="text-xs text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : 'Mới đăng'}</span>
+          <span className="text-xs text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <Link href={`/news/${article.slug}`}>
-          <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#008b9c] transition-colors duration-200 line-clamp-2">{article.title}</h3>
+        <Link href={`/${locale}/news/${article.slug}`}>
+          <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-teal-text transition-colors duration-200 line-clamp-2">{article.title}</h3>
           <p className="text-gray-500 text-sm mb-3 line-clamp-2">{article.excerpt || ''}</p>
-          <span className="inline-flex items-center text-gray-800 font-semibold text-sm hover:text-[#008b9c] transition-colors duration-200 mt-auto">
-            Read more <i className="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+          <span className="inline-flex items-center text-gray-800 font-semibold text-sm hover:text-teal-text transition-colors duration-200 mt-auto">
+            {readMore} <i className="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
           </span>
         </Link>
       </div>
@@ -194,55 +203,68 @@ async function getArticles(searchParams: { q?: string; category?: string; page?:
   return { articles: (data || []) as Article[], total: count || 0, page, limit }
 }
 
-function NewsSearchForm({ params }: { params: { q?: string; category?: string } }) {
+function NewsSearchForm({ params, locale, dict }: { params: { q?: string; category?: string }, locale: string, dict: any }) {
   return (
     <div className="max-w-3xl search-input-wrapper">
-      <form className="w-full h-14 pl-6 pr-4 bg-white border border-gray-200 rounded-full text-base shadow-sm flex items-center">
+      <form className="w-full h-14 pl-6 pr-4 bg-white border border-gray-200 rounded-full text-base shadow-sm flex items-center" action={`/${locale}/news`}>
         <i className="fa-solid fa-search text-gray-400 mr-3"></i>
         <input
           type="text"
           name="q"
           defaultValue={params.q || ''}
           className="flex-grow bg-transparent border-none text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-0"
-          placeholder="Tìm bài viết"
+          placeholder={dict.jobs.searchPlaceholder}
         />
         {params.category && <input type="hidden" name="category" value={params.category} />}
         <button
           type="submit"
-          className="bg-[#008b9c] hover:bg-[#007a8d] text-white rounded-full px-6 flex items-center justify-center font-medium transition-colors duration-200 ml-2"
+          className="bg-[#006672] hover:bg-[#005560] text-white rounded-full px-6 flex items-center justify-center font-bold transition-colors duration-200 ml-2"
         >
-          <i className="fa-solid fa-magnifying-glass mr-2"></i> Tìm kiếm
+          <i className="fa-solid fa-magnifying-glass mr-2"></i> {dict.jobs.searchButton}
         </button>
       </form>
     </div>
   )
 }
 
-const categories = [
-  { key: 'nguoi_fabbi', label: 'Người Fabbi' },
-  { key: 'cac_hoat_dong', label: 'Các hoạt động' },
-  { key: 'giai_thuong', label: 'Giải thưởng' },
-]
-
-export default async function NewsPage({ searchParams }: PageProps) {
-  const params = await searchParams
-  const { articles, total, page, limit } = await getArticles(params)
+export default async function NewsPage({ params, searchParams }: PageProps) {
+  const { locale } = await params
+  const sParams = await searchParams
+  const dict = getDictionary(locale as Locale)
+  const { articles, total, page, limit } = await getArticles(sParams)
   const totalPages = Math.ceil(total / limit)
   const featuredArticle = articles[0]
   const gridArticles = articles.slice(1, 5)
   const horizontalArticles = articles.slice(5)
 
+  const categories = [
+    { key: 'nguoi_fabbi', label: locale === 'vi' ? 'Người Fabbi' : 'Fabbiの人々' },
+    { key: 'cac_hoat_dong', label: locale === 'vi' ? 'Các hoạt động' : 'さまざまな活動' },
+    { key: 'giai_thuong', label: locale === 'vi' ? 'Giải thưởng' : '受賞' },
+  ]
+
+  const readMore = dict.news.readMore
+
+  const sidebarTitle = dict.news.sidebarTitle || (locale === 'vi' ? 'Tin tức Fabbi' : 'Fabbiニュース')
+
+  const notableSectionTitle = locale === 'vi' ? 'Tin tức chú ý' : '注目のニュース'
+  const notableSectionDesc = locale === 'vi' ? 'Những bài viết nổi bật từ Fabbi' : 'Fabbiからの注目記事'
+
   return (
     <div className="flex-grow">
       {/* Title & Search Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-sm text-gray-500 mb-4 font-medium">Tin tức</div>
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 tracking-tight">Tin tức mới nhất về Fabbi</h1>
-        <p className="text-lg text-gray-500 mb-8 max-w-2xl">Khám phá những câu chuyện, cập nhật và thành tựu từ Fabbi</p>
+        <div className="text-sm text-gray-500 mb-4 font-medium">{dict.nav.news}</div>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 tracking-tight">{dict.news.title}</h1>
+        <p className="text-lg text-gray-500 mb-8 max-w-2xl">
+          {locale === 'vi'
+            ? 'Khám phá những câu chuyện, cập nhật và thành tựu từ Fabbi'
+            : 'Fabbiのストーリー、更新、情報をお届けします'}
+        </p>
         <Suspense fallback={
           <div className="w-full max-w-3xl h-14 bg-gray-100 rounded-full animate-pulse"></div>
         }>
-          <NewsSearchForm params={params} />
+          <NewsSearchForm params={sParams} locale={locale} dict={dict} />
         </Suspense>
       </section>
 
@@ -252,14 +274,14 @@ export default async function NewsPage({ searchParams }: PageProps) {
           {/* Sidebar */}
           <aside className="w-full lg:w-64 flex-shrink-0">
             <div className="bg-gray-50 rounded-2xl p-4 sticky top-28">
-              <h3 className="text-lg font-bold text-gray-800 px-4 py-3 mb-2">Tin tức Fabbi</h3>
+              <h3 className="text-lg font-bold text-gray-800 px-4 py-3 mb-2">{sidebarTitle}</h3>
               <ul className="space-y-1">
                 {categories.map((cat) => (
                   <li key={cat.key}>
                     <Link
-                      href={`/news${buildSearchParams(params, { category: cat.key, page: undefined }) ? '?' + buildSearchParams(params, { category: cat.key, page: undefined }) : ''}`}
+                      href={`/${locale}/news${buildSearchParams(sParams, { category: cat.key, page: undefined }) ? '?' + buildSearchParams(sParams, { category: cat.key, page: undefined }) : ''}`}
                       className={`block px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
-                        params.category === cat.key
+                        sParams.category === cat.key
                           ? 'bg-gray-200 text-gray-800 font-semibold'
                           : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                       }`}
@@ -277,18 +299,18 @@ export default async function NewsPage({ searchParams }: PageProps) {
             {articles.length === 0 ? (
               <div className="text-center py-16 text-gray-500">
                 <i className="fa-solid fa-newspaper text-5xl mb-4 text-gray-300"></i>
-                <p className="text-lg">Chưa có bài viết nào</p>
+                <p className="text-lg">{dict.news.emptyState}</p>
               </div>
             ) : (
               <>
                 {/* Featured Article */}
-                {featuredArticle && <FeaturedArticle article={featuredArticle} />}
+                {featuredArticle && <FeaturedArticle article={featuredArticle} locale={locale} readMore={readMore} />}
 
                 {/* Article Grid */}
                 {gridArticles.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mb-16">
                     {gridArticles.map((article) => (
-                      <ArticleGridCard key={article.id} article={article} />
+                      <ArticleGridCard key={article.id} article={article} locale={locale} readMore={readMore} />
                     ))}
                   </div>
                 )}
@@ -300,8 +322,8 @@ export default async function NewsPage({ searchParams }: PageProps) {
               <div className="flex justify-center items-center gap-2 mt-8">
                 {page > 1 ? (
                   <Link
-                    href={`/news?${buildSearchParams(params, { page: String(page - 1) })}`}
-                    className="text-gray-600 hover:text-[#008b9c] text-sm font-medium px-2 transition-colors"
+                    href={`/${locale}/news?${buildSearchParams(sParams, { page: String(page - 1) })}`}
+                    className="text-gray-600 hover:text-teal-text text-sm font-medium px-2 transition-colors"
                   >
                     Prev
                   </Link>
@@ -313,10 +335,10 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   return (
                     <Link
                       key={p}
-                      href={`/news?${buildSearchParams(params, { page: String(p) })}`}
+                      href={`/${locale}/news?${buildSearchParams(sParams, { page: String(p) })}`}
                       className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
                         p === page
-                          ? 'bg-[#008b9c] text-white'
+                          ? 'bg-[#006672] text-white'
                           : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                       }`}
                     >
@@ -327,7 +349,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 {totalPages > 5 && <span className="text-gray-400">...</span>}
                 {totalPages > 5 && (
                   <Link
-                    href={`/news?${buildSearchParams(params, { page: String(totalPages) })}`}
+                    href={`/${locale}/news?${buildSearchParams(sParams, { page: String(totalPages) })}`}
                     className="w-8 h-8 rounded bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-medium flex items-center justify-center transition-colors"
                   >
                     {totalPages}
@@ -335,8 +357,8 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 )}
                 {page < totalPages ? (
                   <Link
-                    href={`/news?${buildSearchParams(params, { page: String(page + 1) })}`}
-                    className="text-gray-600 hover:text-[#008b9c] text-sm font-medium px-2 transition-colors"
+                    href={`/${locale}/news?${buildSearchParams(sParams, { page: String(page + 1) })}`}
+                    className="text-gray-600 hover:text-teal-text text-sm font-medium px-2 transition-colors"
                   >
                     Next
                   </Link>
@@ -355,13 +377,17 @@ export default async function NewsPage({ searchParams }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-end mb-10">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">Tin tức chú ý</h2>
-                <p className="text-gray-500 text-lg">Những bài viết nổi bật từ Fabbi</p>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">
+                  {notableSectionTitle}
+                </h2>
+                <p className="text-gray-500 text-lg">
+                  {notableSectionDesc}
+                </p>
               </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10">
               {horizontalArticles.map((article) => (
-                <HorizontalArticleCard key={article.id} article={article} />
+                <HorizontalArticleCard key={article.id} article={article} locale={locale} readMore={readMore} />
               ))}
             </div>
           </div>
