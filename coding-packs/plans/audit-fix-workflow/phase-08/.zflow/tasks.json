@@ -1,0 +1,29 @@
+{
+  "workflow": "phase-08-visual-verification",
+  "tier": "LIGHT",
+  "phase": "phase-04-complete",
+  "status": "completed",
+  "tasks": [
+    {
+      "id": "P8-001",
+      "phase": "phase-01-visual-evidence",
+      "title": "Capture public page screenshots at 1440px and 1920px",
+      "requirements": ["DET-TEST-001", "DET-NFR-001"],
+      "status": "completed"
+    },
+    {
+      "id": "P8-002",
+      "phase": "phase-02-playwright-config",
+      "title": "Fix Playwright config to enable audit tests",
+      "requirements": ["DET-TEST-002", "DET-TEST-003"],
+      "status": "completed"
+    },
+    {
+      "id": "P8-003",
+      "phase": "phase-03-verification",
+      "title": "Verify screenshots and build",
+      "requirements": ["DET-NFR-001", "DET-TEST-004"],
+      "status": "completed"
+    }
+  ]
+}

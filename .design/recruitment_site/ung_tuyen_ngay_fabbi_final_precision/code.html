@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ứng tuyển Fabbi</title>
+<!-- Font Setup -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom Tailwind Config -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              teal: '#008b9c',
+              dark: '#1e293b',
+              gray: '#64748b',
+              light: '#f1f5f9',
+              border: '#e2e8f0',
+              red: '#ef4444'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles -->
+<style data-purpose="custom-utilities">
+    body {
+      background-color: #e2e8f0; /* Simulate the backdrop overlay */
+    }
+    
+    /* Custom dashed border for upload area */
+    .upload-border {
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23CBD5E1FF' stroke-width='2' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex items-center justify-center p-4">
+<!-- BEGIN: ApplicationModal -->
+<div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden relative flex flex-col max-h-[90vh]" data-purpose="modal-container">
+<!-- Close Button -->
+<button aria-label="Close modal" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors z-10">
+<svg class="text-gray-500" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+<!-- Modal Content (Scrollable) -->
+<div class="p-8 md:p-12 overflow-y-auto">
+<!-- Header -->
+<div class="text-center mb-8">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">Ứng tuyển ngay nào</h2>
+<p class="text-gray-600">Hãy điền thông tin của bạn và gửi cho nhà tuyển dụng</p>
+</div>
+<!-- Application Form -->
+<form action="#" class="space-y-6" method="POST">
+<!-- Position Select -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="position">Vị trí bạn muốn ứng tuyển</label>
+<div class="relative">
+<select class="block w-full pl-4 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-brand-teal focus:border-brand-teal sm:text-sm rounded-lg appearance-none bg-white" id="position" name="position">
+<option selected="" value="pm">Project Manager</option>
+<option value="dev">Developer</option>
+<option value="designer">Designer</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<polyline points="6 9 12 15 18 9"></polyline>
+</svg>
+</div>
+</div>
+</div>
+<!-- Full Name -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="fullName">Họ và tên <span class="text-brand-red">*</span></label>
+<input class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand-teal focus:border-brand-teal sm:text-sm placeholder-gray-400" id="fullName" name="fullName" placeholder="Nhập họ và tên ..." type="text">
+</div>
+<!-- Email -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="email">Email <span class="text-brand-red">*</span></label>
+<input class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand-teal focus:border-brand-teal sm:text-sm placeholder-gray-400" id="email" name="email" placeholder="Nhập email..." type="email">
+</div>
+<!-- Phone Number -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="phone">Số điện thoại</label>
+<input class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand-teal focus:border-brand-teal sm:text-sm placeholder-gray-400" id="phone" name="phone" placeholder="Nhập số điện thoại..." type="tel">
+</div>
+<!-- Message -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="message">Tin nhắn cho chúng tôi</label>
+<textarea class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand-teal focus:border-brand-teal sm:text-sm placeholder-gray-400 resize-none" id="message" name="message" placeholder="Nhập tin nhắn bạn muốn nhắn gửi..." rows="4"></textarea>
+</div>
+<!-- Upload CV -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Upload CV</label>
+<div class="mt-1 flex justify-center px-6 pt-5 pb-6 upload-border cursor-pointer hover:bg-gray-50 transition-colors group">
+<div class="space-y-2 text-center flex items-center justify-center gap-3">
+<svg class="text-gray-400 group-hover:text-brand-teal" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" x2="12" y1="3" y2="15"></line>
+</svg>
+<div class="flex text-sm text-gray-600">
+<label class="relative cursor-pointer rounded-md font-medium text-gray-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-brand-teal hover:text-brand-teal" for="file-upload">
+<span>Upload CV (pdf, docx, doc)</span>
+<input accept=".pdf,.doc,.docx" class="sr-only" id="file-upload" name="file-upload" type="file">
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-4 flex justify-center">
+<button class="w-full sm:w-auto min-w-[240px] flex justify-center py-3.5 px-8 border border-transparent rounded-lg shadow-sm text-base font-semibold text-white bg-brand-teal hover:bg-[#007a89] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-teal transition-colors" type="submit">
+            Ứng Tuyển
+          </button>
+</div>
+<!-- Contact Support -->
+<div class="text-center pt-2">
+<p class="text-sm text-gray-600">Bạn cần hỗ trợ? <a class="font-medium text-gray-900 hover:text-brand-teal transition-colors" href="#">Contact Us</a></p>
+</div>
+</form>
+</div>
+</div>
+<!-- END: ApplicationModal -->
+</body></html>

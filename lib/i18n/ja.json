@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "Fabbiについて",
+    "jobs": "採用情報",
+    "news": "ニュース",
+    "contact": "お問い合わせ"
+  },
+  "cta": {
+    "apply": "応募する",
+    "send": "メッセージを送信"
+  },
+  "contact": {
+    "title": "Fabbiにお問い合わせ",
+    "name": "お名前",
+    "email": "メールアドレス",
+    "phone": "電話番号（任意）",
+    "company": "会社名（任意）",
+    "subject": "件名",
+    "message": "メッセージ内容"
+  }
+}

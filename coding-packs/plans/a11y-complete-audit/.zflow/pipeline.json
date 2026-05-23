@@ -1,0 +1,22 @@
+{
+  "phase": "COMPLETE",
+  "tier": "THOROUGH",
+  "score": 85,
+  "status": "complete",
+  "fixCount": 86,
+  "elapsed": "<3h",
+  "lastEvent": "All 5 rounds complete — 86 A11Y IDs fixed across 5 rounds",
+  "rounds": [
+    {"name": "round-5-focus-motion", "status": "COMPLETE", "fixCount": 14},
+    {"name": "round-6-form-labels", "status": "COMPLETE", "fixCount": 54},
+    {"name": "round-7-modal-focus", "status": "COMPLETE", "fixCount": 8},
+    {"name": "round-8-live-regions", "status": "COMPLETE", "fixCount": 6},
+    {"name": "round-9-rate-limiting", "status": "COMPLETE", "fixCount": 4}
+  ],
+  "verification": {
+    "type-check": "PASS",
+    "build": "PASS (24 routes)",
+    "playwright": "20/20 PASS (20.4s)"
+  },
+  "nextPhase": null
+}

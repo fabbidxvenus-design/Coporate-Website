@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+build/
+
+# production
+*.tsbuildinfo
+
+# env
+.env
+.env*.local
+!.env.example
+
+# test/report artifacts
+coverage/
+playwright-report/
+test-results/
+
+# local claude/state artifacts
+.claude/
+.code-review-graph/
+
+# temporary files
+c.txt
+*.log

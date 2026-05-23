@@ -1,0 +1,43 @@
+{
+  "plan": "bilingual-vi-ja-contact",
+  "tasks": [
+    {
+      "id": "BVC-001",
+      "phase": "phase-01-intake-and-current-state.md",
+      "title": "Inventory current routing, components, Supabase, validation, and test patterns",
+      "status": "pending",
+      "blocks": ["BVC-002", "BVC-003", "BVC-004"]
+    },
+    {
+      "id": "BVC-002",
+      "phase": "phase-02-localization-foundation.md",
+      "title": "Add locale helpers, dictionaries, and language switcher behavior",
+      "status": "pending",
+      "blockedBy": ["BVC-001"],
+      "blocks": ["BVC-005"]
+    },
+    {
+      "id": "BVC-003",
+      "phase": "phase-03-contact-data-contract.md",
+      "title": "Add contact validation, persistence contract, and Supabase schema/policies",
+      "status": "pending",
+      "blockedBy": ["BVC-001"],
+      "blocks": ["BVC-005"]
+    },
+    {
+      "id": "BVC-004",
+      "phase": "phase-04-contact-page-ui.md",
+      "title": "Build localized contact page UI from existing public design patterns",
+      "status": "pending",
+      "blockedBy": ["BVC-001", "BVC-002", "BVC-003"],
+      "blocks": ["BVC-005"]
+    },
+    {
+      "id": "BVC-005",
+      "phase": "phase-05-tests-and-verification.md",
+      "title": "Verify localization, contact submission, accessibility, responsive behavior, and build",
+      "status": "pending",
+      "blockedBy": ["BVC-002", "BVC-003", "BVC-004"]
+    }
+  ]
+}

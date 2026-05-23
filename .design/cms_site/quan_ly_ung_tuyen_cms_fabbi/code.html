@@ -1,0 +1,357 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Applications Management - Fabbi CMS</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "surface-dim": "#dcd9d9",
+                        "surface-bright": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#004e59",
+                        "secondary-fixed-dim": "#bfc8c9",
+                        "background": "#fbf9f8",
+                        "tertiary-fixed": "#ffdcc2",
+                        "tertiary-container": "#af6100",
+                        "on-surface-variant": "#3e494b",
+                        "surface": "#fbf9f8",
+                        "on-secondary-fixed": "#151d1e",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dbe4e5",
+                        "on-secondary-fixed-variant": "#404849",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001f24",
+                        "surface-container-high": "#eae8e7",
+                        "outline-variant": "#bdc9cb",
+                        "primary-container": "#008190",
+                        "on-secondary-container": "#5b6465",
+                        "on-primary-container": "#f8feff",
+                        "on-background": "#1b1c1c",
+                        "surface-variant": "#e4e2e1",
+                        "primary": "#006672",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303030",
+                        "inverse-primary": "#6fd5e7",
+                        "on-tertiary-fixed": "#2e1500",
+                        "secondary": "#576061",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface-tint": "#006875",
+                        "inverse-on-surface": "#f3f0f0",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#6fd5e7",
+                        "surface-container": "#f0eded",
+                        "outline": "#6e797c",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#8b4c00",
+                        "secondary-container": "#d8e1e2",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#9eefff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "section-gap": "64px",
+                        "container-max": "1200px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-lg": "24px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    fontSize: {
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "label-md": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+                        "display-lg": ["48px", { lineHeight: "60px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-surface-container-low dark:bg-on-surface-variant fixed left-0 top-0 h-full w-64 border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg z-40 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined fill">work</span>
+</div>
+<div>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary-fixed">Recruitment CMS</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Admin Portal</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full bg-primary text-on-primary hover:bg-surface-tint transition-colors rounded-lg py-3 flex items-center justify-center gap-2 text-label-md font-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Post New Job
+            </button>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 px-2 space-y-1">
+<!-- Dashboard (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-secondary-fixed-variant transition-all rounded-lg group text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">dashboard</span>
+                Dashboard
+            </a>
+<!-- Jobs Management (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-secondary-fixed-variant transition-all rounded-lg group text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">work</span>
+                Jobs Management
+            </a>
+<!-- News Management (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-secondary-fixed-variant transition-all rounded-lg group text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">newspaper</span>
+                News Management
+            </a>
+<!-- Applications (Active) -->
+<a class="flex items-center gap-3 bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container font-bold rounded-lg mx-2 px-4 py-3 scale-[0.98] duration-200 text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined fill text-[20px]">description</span>
+                Applications
+            </a>
+<!-- Settings (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-secondary-fixed-variant transition-all rounded-lg group text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- Footer -->
+<div class="px-2 mt-auto">
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-secondary-fixed-variant transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-on-background flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-50 border-b border-outline-variant dark:border-on-surface-variant">
+<!-- Mobile Menu Toggle (Visible only on small screens) -->
+<button class="md:hidden text-on-surface-variant p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Product Name -->
+<div class="hidden md:flex text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary items-center gap-2">
+                Fabbi CMS
+            </div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4 ml-auto">
+<!-- Search (Placeholder for "on_left" logic if it were applied, but aligning right for visual balance here) -->
+<div class="hidden lg:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm font-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all w-64" placeholder="Quick search..." type="text">
+</div>
+<!-- Icons -->
+<button class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-secondary-container transition-colors p-2 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-secondary-container transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined">help</span>
+</button>
+<!-- Profile -->
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center border border-outline-variant cursor-pointer ml-2 bg-cover bg-center" data-alt="A professional headshot of a corporate administrator, clear lighting, modern corporate vibe, used as a profile avatar in a light-mode UI." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXm71s6_37us4n_FK_rr45zP5jTPSTyWRnWw6ZUgVZQIBUFu_AL674l_-hV396ZPMLoc18FK6tbd7tUG7iAYQivDrGOPQ8i8hFg24YBRbi3YQ_D9fTaaZVZjfBSIvWUHCny7WZ9Z0qT1rJQRe0WOTthldkt8b7XLPa7jbTGvkF5QnKgIVWYMHW0fTGqq-WQRX43CyiQyPl024lGxGJJuqUnHLXVnR7x_tE6Bgf8B8zxcCUIVNdmT4HvJ-8zFqYXQmMk90f6ZwR88XY')">
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 overflow-y-auto bg-background p-margin-mobile md:p-section-gap">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Page Header & Action Bar -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 bg-surface p-6 rounded-xl border border-outline-variant shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">Applications</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Review and manage candidate submissions.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<!-- Search -->
+<div class="relative w-full lg:w-auto">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full lg:w-64 pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-sm font-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search candidates..." type="text">
+</div>
+<!-- Bulk Actions -->
+<button class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- Status Filters (Segmented Control style) -->
+<div class="flex overflow-x-auto pb-2 hide-scrollbar">
+<div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant inline-flex">
+<button class="px-6 py-2 rounded-md bg-surface text-primary shadow-sm text-label-md font-label-md transition-all whitespace-nowrap">All Applications</button>
+<button class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high text-label-md font-label-md transition-all whitespace-nowrap">New</button>
+<button class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high text-label-md font-label-md transition-all whitespace-nowrap">Interviewing</button>
+<button class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high text-label-md font-label-md transition-all whitespace-nowrap">Hired</button>
+<button class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high text-label-md font-label-md transition-all whitespace-nowrap">Rejected</button>
+</div>
+</div>
+<!-- Data List (High-end Card approach) -->
+<div class="space-y-3">
+<!-- Table Header (Visual Only) -->
+<div class="hidden md:grid grid-cols-12 gap-4 px-6 py-3 border-b border-outline-variant text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<div class="col-span-1 flex items-center justify-center">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+</div>
+<div class="col-span-3">Candidate</div>
+<div class="col-span-3">Applied Position</div>
+<div class="col-span-2">Date</div>
+<div class="col-span-2">Status</div>
+<div class="col-span-1 text-right">Actions</div>
+</div>
+<!-- Item 1 -->
+<div class="bg-surface rounded-xl border border-outline-variant p-4 md:px-6 md:py-4 hover:shadow-md transition-shadow group flex flex-col md:grid md:grid-cols-12 md:gap-4 md:items-center relative overflow-hidden">
+<!-- Selection -->
+<div class="hidden md:flex col-span-1 items-center justify-center">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+</div>
+<!-- Candidate -->
+<div class="md:col-span-3 flex items-center gap-3 mb-3 md:mb-0">
+<div class="w-10 h-10 rounded-full bg-secondary-container bg-cover bg-center flex-shrink-0" data-alt="A portrait of a young female professional smiling softly, well-lit modern office background, used as an applicant avatar in a CMS interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVdVMsYDhdxBGQENk6Yn5t5O1_bMNEA8Fh352uc5XtvcMC5QvN07IdxtNomsOU2lzSQr52QC4xwsVkQw690yPppapyNfqrGATnapz1d8WJJIghq2wrfcbfvAg_Xf5fVe7js-OrhlFgqHqQYdd3nHHAuNkiF_aPHVFZWUnF5UskI1JWdKeojcn8R2g1sH5lG84oc8KuLjMaCsClIZa5ncUckDffmWu4dxgyDqLnvLsyZ9fiaWukgsElmBOXdqC0McYEEBEft0_pXxVS')"></div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface">Sarah Jenkins</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">sarah.j@example.com</p>
+</div>
+</div>
+<!-- Position -->
+<div class="md:col-span-3 mb-2 md:mb-0">
+<span class="md:hidden text-label-sm font-label-sm text-on-surface-variant block mb-1">Position:</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">code</span>
+<span class="text-body-md font-body-md text-on-surface">Senior Frontend Engineer</span>
+</div>
+</div>
+<!-- Date -->
+<div class="md:col-span-2 mb-3 md:mb-0 text-body-sm font-body-sm text-on-surface-variant">
+<span class="md:hidden text-label-sm font-label-sm block mb-1">Applied:</span>
+                            Oct 24, 2023
+                        </div>
+<!-- Status -->
+<div class="md:col-span-2 mb-4 md:mb-0">
+<span class="md:hidden text-label-sm font-label-sm text-on-surface-variant block mb-1">Status:</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                New
+                            </span>
+</div>
+<!-- Actions -->
+<div class="md:col-span-1 flex items-center justify-end gap-2 border-t md:border-t-0 border-outline-variant pt-3 md:pt-0">
+<button class="text-primary hover:bg-surface-container text-label-md font-label-md px-3 py-1.5 rounded-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span class="md:hidden">View CV</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-1.5 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface rounded-xl border border-outline-variant p-4 md:px-6 md:py-4 hover:shadow-md transition-shadow group flex flex-col md:grid md:grid-cols-12 md:gap-4 md:items-center relative overflow-hidden">
+<div class="hidden md:flex col-span-1 items-center justify-center">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
+</div>
+<div class="md:col-span-3 flex items-center gap-3 mb-3 md:mb-0">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-sm flex-shrink-0">
+                                MC
+                            </div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface">Marcus Chen</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">m.chen@example.com</p>
+</div>
+</div>
+<div class="md:col-span-3 mb-2 md:mb-0">
+<span class="md:hidden text-label-sm font-label-sm text-on-surface-variant block mb-1">Position:</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">design_services</span>
+<span class="text-body-md font-body-md text-on-surface">UX/UI Designer</span>
+</div>
+</div>
+<div class="md:col-span-2 mb-3 md:mb-0 text-body-sm font-body-sm text-on-surface-variant">
+<span class="md:hidden text-label-sm font-label-sm block mb-1">Applied:</span>
+                            Oct 22, 2023
+                        </div>
+<div class="md:col-span-2 mb-4 md:mb-0">
+<span class="md:hidden text-label-sm font-label-sm text-on-surface-variant block mb-1">Status:</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container text-on-tertiary-container text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                Interviewing
+                            </span>
+</div>
+<div class="md:col-span-1 flex items-center justify-end gap-2 border-t md:border-t-0 border-outline-variant pt-3 md:pt-0">
+<button class="text-primary hover:bg-surface-container text-label-md font-label-md px-3 py-1.5 rounded-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span class="md:hidden">View CV</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-1.5 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between pt-4">
+<p class="text-body-sm font-body-sm text-on-surface-variant">Showing 1 to 10 of 45 entries</p>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-md bg-primary text-on-primary text-label-md font-label-md flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant text-on-surface hover:bg-surface-container text-label-md font-label-md flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant text-on-surface hover:bg-surface-container text-label-md font-label-md flex items-center justify-center">3</button>
+<button class="p-2 rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

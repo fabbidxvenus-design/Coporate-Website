@@ -1,0 +1,1 @@
+{"phase":"COMPLETE","tier":"THOROUGH","score":50,"status":"complete","fixCount":4,"elapsed":"<1h","lastEvent":"20/20 tests PASS (20.4s)"},"verification":{"type-check":"PASS","build":"PASS (24 routes)","playwright":"20/20 PASS (20.4s)","fixCount":4,"a11yFixed":["A11Y-062","A11Y-063","A11Y-064","A11Y-065"]},"nextRound":null}

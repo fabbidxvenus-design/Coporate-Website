@@ -1,0 +1,206 @@
+{
+  "id": "REQ-01",
+  "title": "Build Corporate Website from Design",
+  "status": "pass_with_open_questions",
+  "sourceRequest": "Build the corporate website from the HTML/CSS design assets in D:\\WORKSPACE\\CODE\\Coporate_Website\\.design with pixel-perfect accuracy.",
+  "clarifications": {
+    "scope": "entire_site",
+    "designSourceOfTruth": "html_css_with_screen_png_references",
+    "verification": "screenshot_comparison_where_feasible_and_manual_visual_qa",
+    "responsivePriority": "desktop_first",
+    "stackConstraint": "keep_existing_nextjs_tailwind_stack"
+  },
+  "designInventory": {
+    "recruitmentSite": [
+      {
+        "name": "Home page",
+        "path": ".design/recruitment_site/trang_chu_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "About page",
+        "path": ".design/recruitment_site/ve_fabbi_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "Job search page",
+        "path": ".design/recruitment_site/tim_kiem_cong_viec_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "Job detail page",
+        "path": ".design/recruitment_site/chi_tiet_cong_viec_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "Apply now page",
+        "path": ".design/recruitment_site/ung_tuyen_ngay_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "Quick application form",
+        "path": ".design/recruitment_site/form_ung_tuyen_nhanh_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "News listing",
+        "path": ".design/recruitment_site/tin_tuc_fabbi_final_precision/code.html"
+      },
+      {
+        "name": "News detail",
+        "path": ".design/recruitment_site/tin_tuc_chi_tiet_fabbi_final_precision/code.html"
+      }
+    ],
+    "cmsSite": [
+      {
+        "name": "Dashboard",
+        "path": ".design/cms_site/bang_dieu_khien_cms_fabbi/code.html"
+      },
+      {
+        "name": "Recruitment name management",
+        "path": ".design/cms_site/quan_ly_ten_tuyen_dung_cms_fabbi/code.html"
+      },
+      {
+        "name": "News management",
+        "path": ".design/cms_site/quan_ly_tin_tuc_cms_fabbi/code.html"
+      },
+      {
+        "name": "Applications management",
+        "path": ".design/cms_site/quan_ly_ung_tuyen_cms_fabbi/code.html"
+      },
+      {
+        "name": "Settings",
+        "path": ".design/cms_site/settings_cms_fabbi/code.html"
+      }
+    ]
+  },
+  "functionalRequirements": [
+    {
+      "id": "FR-01",
+      "name": "Public recruitment site pages",
+      "description": "Implement all public/recruitment pages represented in .design/recruitment_site.",
+      "acceptanceCriteria": [
+        "Each design HTML page has a corresponding Next.js route.",
+        "Page layout, spacing, typography, color tokens, component arrangement, and visible content match the HTML/CSS design and screen.png reference as closely as possible.",
+        "Shared public header/footer/navigation are consistent with the design.",
+        "Primary CTAs and navigation links route to the corresponding implemented pages."
+      ]
+    },
+    {
+      "id": "FR-02",
+      "name": "CMS/admin pages",
+      "description": "Implement all CMS/admin pages represented in .design/cms_site.",
+      "acceptanceCriteria": [
+        "Each CMS design HTML page has a corresponding /admin route or nested admin route.",
+        "Sidebar/header/table/card layouts match the design.",
+        "Visible form controls, buttons, status indicators, and data table structures match the design.",
+        "CMS pages may use static/mock data unless real backend integration is explicitly requested later."
+      ]
+    },
+    {
+      "id": "FR-03",
+      "name": "Design token parity",
+      "description": "Extract and reuse design tokens present in the HTML/CSS source.",
+      "acceptanceCriteria": [
+        "Primary palette, surface palette, typography family, radii, spacing, and container dimensions match the design source.",
+        "Token definitions are centralized in Tailwind/config/global CSS where practical.",
+        "Avoid repeated hardcoded styling when a design token exists."
+      ]
+    },
+    {
+      "id": "FR-04",
+      "name": "Pixel-perfect visual parity",
+      "description": "Prioritize visual parity over code cleanup or redesign.",
+      "acceptanceCriteria": [
+        "Layout structure, item arrangement, component hierarchy, colors, typography, and spacing remain faithful to the design source.",
+        "Do not improve or reinterpret the UI unless required for technical correctness.",
+        "If a design choice conflicts with generic component conventions, the design source wins."
+      ]
+    },
+    {
+      "id": "FR-05",
+      "name": "Desktop-first responsive behavior",
+      "description": "Prioritize desktop pixel-perfect output for the first implementation milestone.",
+      "acceptanceCriteria": [
+        "Desktop viewport matching the design screenshot width is the primary QA target.",
+        "The app must not visibly break on common desktop widths.",
+        "Mobile/tablet responsiveness can be improved later unless already specified in the source HTML/CSS."
+      ]
+    },
+    {
+      "id": "FR-06",
+      "name": "Keep current app stack",
+      "description": "Use the existing project stack.",
+      "acceptanceCriteria": [
+        "Use Next.js, React, TypeScript, and Tailwind already configured in the repository.",
+        "Do not replace the framework or styling foundation.",
+        "Add dependencies only when clearly necessary for matching the design or running verification."
+      ]
+    }
+  ],
+  "nonFunctionalRequirements": [
+    {
+      "id": "NFR-01",
+      "name": "Visual QA",
+      "criteria": [
+        "Run the app locally before marking implementation complete.",
+        "Capture or inspect screenshots against .design/**/screen.png references.",
+        "Report any known visual deviations explicitly."
+      ]
+    },
+    {
+      "id": "NFR-02",
+      "name": "Code quality",
+      "criteria": [
+        "Preserve semantic HTML where possible without compromising visual parity.",
+        "Keep components focused and avoid large files where practical.",
+        "Prefer existing components only when they can match the design accurately."
+      ]
+    },
+    {
+      "id": "NFR-03",
+      "name": "Security and stability",
+      "criteria": [
+        "Do not introduce unsafe HTML injection from design files.",
+        "If porting markup from HTML designs, convert it into React/TSX safely.",
+        "Avoid remote Tailwind CDN usage in the production app; use project Tailwind build instead."
+      ]
+    }
+  ],
+  "outOfScope": [
+    "Real CMS authentication and authorization beyond existing placeholder routing.",
+    "Supabase/database integration unless separately requested.",
+    "Content management CRUD behavior beyond static visual page parity.",
+    "Full mobile pixel-perfect parity unless later clarified.",
+    "Rebranding, redesigning, or modernizing the provided design."
+  ],
+  "openQuestions": [
+    "What exact desktop viewport width should be treated as the golden pixel-perfect target for each screenshot if the screenshots differ in dimensions?",
+    "Should CMS pages be publicly reachable during development, or should they stay behind the existing admin layout/login placeholder?",
+    "Should form submissions be non-functional static UI for now, or should they connect to Supabase/API endpoints in this phase?",
+    "Are all .design pages equally high priority, or should public recruitment pages be completed before CMS pages?"
+  ],
+  "gate1Validation": {
+    "status": "PASS_WITH_OPEN_QUESTIONS",
+    "checks": [
+      {
+        "name": "Stakeholder/source identified",
+        "result": "pass"
+      },
+      {
+        "name": "Scope clarified",
+        "result": "pass"
+      },
+      {
+        "name": "Source of truth clarified",
+        "result": "pass"
+      },
+      {
+        "name": "Verification clarified",
+        "result": "pass"
+      },
+      {
+        "name": "Constraints clarified",
+        "result": "pass"
+      },
+      {
+        "name": "Open questions documented",
+        "result": "pass"
+      }
+    ]
+  }
+}

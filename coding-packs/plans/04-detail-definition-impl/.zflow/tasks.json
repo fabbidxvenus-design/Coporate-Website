@@ -1,0 +1,95 @@
+{
+  "task_type": "fullstack-app",
+  "parallel_capable": true,
+  "tier": "THOROUGH",
+  "shared_files": {
+    "assigned_to": "lead",
+    "files": [
+      "package.json",
+      "tailwind.config.ts",
+      "app/globals.css",
+      "playwright.config.ts",
+      "middleware.ts"
+    ]
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "parallel": true,
+      "tasks": [
+        {
+          "id": "tip-001",
+          "title": "Public design inventory and token baseline",
+          "agent": "frontend implementer",
+          "model": "opus",
+          "file_ownership": [".design/recruitment_site/**", "components/public/**", "app/globals.css", "tailwind.config.ts"],
+          "blocked_by": [],
+          "acceptance_criteria": ["design inventory complete", "route mapping complete", "tokens extracted without Tailwind CDN"]
+        },
+        {
+          "id": "tip-004",
+          "title": "Supabase Auth login and admin protection",
+          "agent": "security-focused fullstack implementer",
+          "model": "opus",
+          "file_ownership": ["app/login/**", "middleware.ts", "app/api/auth/**", "lib/auth.ts", "lib/supabase/**"],
+          "blocked_by": [],
+          "acceptance_criteria": ["admin routes protected", "login failures visible", "public routes unaffected"]
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "parallel": true,
+      "tasks": [
+        {
+          "id": "tip-002",
+          "title": "Public pages visual parity",
+          "agent": "frontend implementer",
+          "model": "opus",
+          "file_ownership": ["app/(public)/**", "components/public/**"],
+          "blocked_by": ["tip-001"],
+          "acceptance_criteria": ["all public pages reachable", "1440/1920 visual evidence", "semantic and keyboard accessible"]
+        },
+        {
+          "id": "tip-005",
+          "title": "CMS pages visual parity and data fallbacks",
+          "agent": "admin frontend implementer",
+          "model": "opus",
+          "file_ownership": ["app/admin/**", "components/cms/**", "components/admin/**", "app/api/news/**", "app/api/settings/**"],
+          "blocked_by": ["tip-004"],
+          "acceptance_criteria": ["CMS pages reachable after login", "CMS layout matches design", "missing data controlled"]
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-003",
+          "title": "Public form submission, validation, and states",
+          "agent": "tdd-guide + fullstack implementer",
+          "model": "opus",
+          "file_ownership": ["components/public/ApplyForm.tsx", "app/(public)/apply/**", "app/api/applications/**"],
+          "blocked_by": ["tip-001", "tip-004"],
+          "acceptance_criteria": ["validation blocks bad input", "success persists", "failure visible"]
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-006",
+          "title": "QA, security, visual evidence, and final report",
+          "agent": "e2e-runner + security-reviewer + a11y-architect + code-reviewer",
+          "model": "opus",
+          "file_ownership": ["tests/**", "plans/04-detail-definition-impl/audit/**"],
+          "blocked_by": ["tip-002", "tip-003", "tip-004", "tip-005"],
+          "acceptance_criteria": ["all DD04 tests/audits covered", "separate verifiers used", "final report PASS/PARTIAL/FAIL for every DET"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "mode": "plan-supervised",
+  "planDir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\plans\\04-detail-definition-impl",
+  "phaseFile": "phase-01-intake-and-baseline.md",
+  "sourceRequirement": ".requirements/04-detail-definition.md",
+  "arguments": {
+    "quality": "max",
+    "effort": "max"
+  },
+  "score": {
+    "technical": 30,
+    "scope": 35,
+    "risk": 25,
+    "total": 90
+  },
+  "tier": "THOROUGH",
+  "focusLock": true,
+  "phase": "SPEC",
+  "notes": [
+    "RRI, SDD, and PROPOSAL skipped per plan-supervised mode.",
+    "Using existing plan directory requested by user: plans/04-detail-definition-impl.",
+    "Visual output requires browser screenshots at 1440px and 1920px before completion."
+  ]
+}

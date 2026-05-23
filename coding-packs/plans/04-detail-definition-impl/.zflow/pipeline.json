@@ -1,0 +1,24 @@
+{
+  "mode": "plan-supervised",
+  "phase": "EXECUTE",
+  "tier": "THOROUGH",
+  "quality": "max",
+  "effort": "max",
+  "focus_lock": true,
+  "plan_dir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\plans\\04-detail-definition-impl",
+  "phase_file": "phase-01-intake-and-baseline.md",
+  "transitions": [
+    { "from": "intake", "to": "SPEC", "reason": "plan-supervised mode skips RRI/SDD/PROPOSAL" },
+    { "from": "SPEC", "to": "DECOMPOSE", "reason": "G/W/T spec artifacts created" },
+    { "from": "DECOMPOSE", "to": "EXECUTE_READY", "reason": "TIP decomposition and coverage matrix created" }
+  ],
+  "quality_gates": {
+    "red_gate": "pending",
+    "green_gate": "not_started",
+    "coverage_gate": "not_started",
+    "visual_gate": "not_started",
+    "separate_verifier": "required"
+  },
+  "fix_count": 0,
+  "interrupt_queue": []
+}

@@ -1,0 +1,546 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Fabbi - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-primary": "#ffffff",
+                "on-primary-fixed-variant": "#004e59",
+                "error-container": "#ffdad6",
+                "surface-variant": "#e4e2e1",
+                "primary": "#006672",
+                "primary-container": "#008190",
+                "on-tertiary-fixed-variant": "#6d3a00",
+                "inverse-primary": "#6fd5e7",
+                "outline": "#6e797c",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-container": "#fffbff",
+                "surface-tint": "#006875",
+                "secondary-fixed": "#dbe4e5",
+                "inverse-on-surface": "#f3f0f0",
+                "on-background": "#1b1c1c",
+                "tertiary-fixed": "#ffdcc2",
+                "inverse-surface": "#303030",
+                "surface-container": "#f0eded",
+                "surface": "#fbf9f8",
+                "tertiary-fixed-dim": "#ffb77a",
+                "surface-container-lowest": "#ffffff",
+                "on-error-container": "#93000a",
+                "on-surface-variant": "#3e494b",
+                "outline-variant": "#bdc9cb",
+                "tertiary-container": "#af6100",
+                "tertiary": "#8b4c00",
+                "background": "#fbf9f8",
+                "secondary-container": "#d8e1e2",
+                "on-tertiary-fixed": "#2e1500",
+                "on-primary-fixed": "#001f24",
+                "surface-container-low": "#f6f3f2",
+                "on-secondary-container": "#5b6465",
+                "on-secondary": "#ffffff",
+                "surface-dim": "#dcd9d9",
+                "on-secondary-fixed": "#151d1e",
+                "secondary": "#576061",
+                "on-surface": "#1b1c1c",
+                "on-primary-container": "#f8feff",
+                "surface-container-high": "#eae8e7",
+                "on-error": "#ffffff",
+                "surface-bright": "#fbf9f8",
+                "secondary-fixed-dim": "#bfc8c9",
+                "surface-container-highest": "#e4e2e1",
+                "primary-fixed": "#9eefff",
+                "primary-fixed-dim": "#6fd5e7",
+                "on-secondary-fixed-variant": "#404849",
+                "error": "#ba1a1a"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "stack-md": "16px",
+                "section-gap": "64px",
+                "margin-mobile": "16px",
+                "stack-sm": "8px",
+                "gutter": "24px",
+                "stack-lg": "24px",
+                "container-max": "1200px"
+        },
+        "fontFamily": {
+                "headline-lg-mobile": [
+                        "Manrope"
+                ],
+                "body-lg": [
+                        "Manrope"
+                ],
+                "headline-sm": [
+                        "Manrope"
+                ],
+                "headline-md": [
+                        "Manrope"
+                ],
+                "display-lg": [
+                        "Manrope"
+                ],
+                "label-md": [
+                        "Manrope"
+                ],
+                "body-sm": [
+                        "Manrope"
+                ],
+                "body-md": [
+                        "Manrope"
+                ],
+                "label-sm": [
+                        "Manrope"
+                ],
+                "headline-lg": [
+                        "Manrope"
+                ]
+        },
+        "fontSize": {
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "36px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "60px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+  body {
+    font-family: 'Manrope', sans-serif;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" class=""></head>
+<body class="bg-background text-on-background antialiased">
+<!-- TopNavBar -->
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5 font-bold text-2xl text-[#008b9c]">
+          <svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="#008b9c"></path>
+            <path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+            <path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+          </svg>
+          Fabbi
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a class="text-gray-900 font-semibold hover:text-[#008b9c] transition-colors" href="#">Home</a>
+        <a class="text-gray-600 font-medium hover:text-[#008b9c] transition-colors" href="#">Tuyển Dụng</a>
+        <a class="text-gray-600 font-medium hover:text-[#008b9c] transition-colors" href="#">Về Fabbi</a>
+        <a class="text-[#008b9c] font-semibold" href="#">Tin tức</a>
+      </nav>
+
+      <!-- Right Actions (Language Switcher) -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 bg-gray-50 p-1 rounded-lg border border-gray-100">
+          <button class="px-3 py-1.5 rounded-md text-sm font-bold bg-white text-[#008b9c] shadow-sm">VN</button>
+          <button class="px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:bg-gray-100 transition-colors">JP</button>
+        </div>
+        <button class="md:hidden p-2 text-gray-600">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full h-[600px] flex items-center justify-center bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Background" class="w-full h-full object-cover opacity-20" data-alt="A vibrant, modern tech office environment with diverse professionals collaborating around sleek glass desks. Soft, natural daylight streams through large windows, creating a bright, optimistic, and highly professional corporate aesthetic with teal color accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc6mNLgC-mAEgcavPCX62WCISamTv4GKHeu4DvkWjpvRwZntEjWTYpCdrnNUaVg3i04W8uebbXyEwQqM88okgXKMk0MmTeJMMZ1oawtomJLbnV4SKVf0VovZx7fSJH3mGsWNbT4ObLHFxtMqUuLxCRy8iXDVBc_SbkdgjRsRYnWtiW39vJCUEYZoiM0oHbB8hvODOoS3Qr73DooEjmpZwBK3yPqTKp-4alAhaA4J_D7aHrG0a29Ku2WU4fAlMl3kxlDgqFgwUksOxX">
+<div class="absolute inset-0 bg-gradient-to-r from-surface/90 to-surface/40"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-gutter flex flex-col items-start justify-center">
+<h1 class="text-display-lg font-display-lg text-on-background max-w-3xl leading-tight mb-6">Tiên phong giải pháp công nghệ &amp; <span class="text-primary">nhân sự hàng đầu</span></h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mb-8">Kết nối nhân tài IT với những cơ hội phát triển đột phá. Cung cấp giải pháp phần mềm toàn diện cho doanh nghiệp của bạn.</p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors shadow-sm">Khám phá cơ hội</button>
+<button class="bg-transparent border border-outline text-primary px-6 py-3 rounded-lg text-label-md font-label-md hover:bg-surface-container transition-colors">Liên hệ ngay</button>
+</div>
+</div>
+</section>
+<!-- Statistics Section -->
+<section class="w-full bg-surface py-12 border-b border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-outline-variant/30">
+<div class="flex flex-col items-center py-4 md:py-0">
+<span class="text-display-lg font-display-lg text-primary mb-2">10+</span>
+<span class="text-body-md font-body-md text-on-surface-variant font-medium uppercase tracking-wider">Năm kinh nghiệm</span>
+</div>
+<div class="flex flex-col items-center py-4 md:py-0">
+<span class="text-display-lg font-display-lg text-primary mb-2">500+</span>
+<span class="text-body-md font-body-md text-on-surface-variant font-medium uppercase tracking-wider">Dự án hoàn thành</span>
+</div>
+<div class="flex flex-col items-center py-4 md:py-0">
+<span class="text-display-lg font-display-lg text-primary mb-2">1000+</span>
+<span class="text-body-md font-body-md text-on-surface-variant font-medium uppercase tracking-wider">Nhân sự tài năng</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Services -->
+<section class="w-full bg-background py-section-gap">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-12">
+<h2 class="text-headline-lg font-headline-lg text-on-background mb-4">Dịch vụ của chúng tôi</h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl mx-auto">Giải pháp toàn diện đáp ứng mọi nhu cầu công nghệ và nhân sự của doanh nghiệp.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Service Card 1 -->
+<div class="bg-surface rounded-xl p-8 border border-outline-variant/50 hover:shadow-lg transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">groups</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-3">Tuyển dụng nhân sự IT</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">Cung ứng nguồn nhân lực IT chất lượng cao, đáp ứng chính xác yêu cầu dự án và văn hóa doanh nghiệp.</p>
+<a class="text-primary text-label-md font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Tìm hiểu thêm <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Service Card 2 -->
+<div class="bg-surface rounded-xl p-8 border border-outline-variant/50 hover:shadow-lg transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">code</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-3">Phát triển phần mềm</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">Xây dựng ứng dụng web, mobile và hệ thống doanh nghiệp theo yêu cầu với quy trình chuẩn Agile.</p>
+<a class="text-primary text-label-md font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Tìm hiểu thêm <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Service Card 3 -->
+<div class="bg-surface rounded-xl p-8 border border-outline-variant/50 hover:shadow-lg transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">lightbulb</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-3">Tư vấn giải pháp</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">Đồng hành chuyển đổi số, tối ưu hóa quy trình nghiệp vụ thông qua việc áp dụng công nghệ tiên tiến.</p>
+<a class="text-primary text-label-md font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Tìm hiểu thêm <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Jobs -->
+<section class="w-full bg-surface-container-lowest py-section-gap border-y border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-background mb-2">Việc làm nổi bật</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Khám phá những cơ hội nghề nghiệp tốt nhất tuần này.</p>
+</div>
+<a class="text-primary text-label-md font-label-md hidden md:flex items-center gap-1 hover:underline" href="#">Xem tất cả <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="flex flex-col gap-4"><!-- Job Card 1 -->
+<div class="bg-white border border-gray-100 rounded-xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:shadow-lg transition-all group">
+  <div class="flex flex-col md:flex-row gap-6 flex-1">
+    <div class="w-16 h-16 rounded-xl bg-gray-50 flex-shrink-0 flex items-center justify-center border border-gray-100">
+      <span class="material-symbols-outlined text-[#008b9c] text-3xl">terminal</span>
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#008b9c] transition-colors">Senior Frontend Developer (ReactJS)</h3>
+        <span class="px-2 py-0.5 rounded bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-wider">Hot</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-y-2 gap-x-4 mb-4 text-sm text-gray-500 font-medium">
+        <span class="flex items-center gap-1.5">Fabbi JSC</span>
+        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+        <span class="flex items-center gap-1.5">Đăng 2 ngày trước</span>
+        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+        <span class="flex items-center gap-1.5 text-[#008b9c] font-bold">Upto $2500</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-600 text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Hà Nội</span>
+        <span class="px-3 py-1 rounded-full bg-[#008b9c]/10 text-[#008b9c] text-xs font-semibold">Full-time</span>
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-500 text-xs font-medium">ReactJS</span>
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-500 text-xs font-medium">TypeScript</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <button class="p-3 border border-gray-200 rounded-xl text-gray-400 hover:text-[#008b9c] hover:border-[#008b9c] transition-colors">
+      <span class="material-symbols-outlined">bookmark</span>
+    </button>
+    <button class="flex-1 lg:flex-none bg-[#008b9c] text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-[#00707d] transition-colors shadow-sm whitespace-nowrap">Ứng tuyển ngay</button>
+  </div>
+</div>
+
+<!-- Job Card 2 -->
+<div class="bg-white border border-gray-100 rounded-xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:shadow-lg transition-all group">
+  <div class="flex flex-col md:flex-row gap-6 flex-1">
+    <div class="w-16 h-16 rounded-xl bg-gray-50 flex-shrink-0 flex items-center justify-center border border-gray-100">
+      <span class="material-symbols-outlined text-[#008b9c] text-3xl">code_blocks</span>
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#008b9c] transition-colors">Bridge System Engineer (BrSE)</h3>
+      </div>
+      <div class="flex flex-wrap items-center gap-y-2 gap-x-4 mb-4 text-sm text-gray-500 font-medium">
+        <span class="flex items-center gap-1.5">Fabbi Japan</span>
+        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+        <span class="flex items-center gap-1.5">Đăng 3 ngày trước</span>
+        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+        <span class="flex items-center gap-1.5 text-[#008b9c] font-bold">Thương lượng</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-600 text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Tokyo, Japan</span>
+        <span class="px-3 py-1 rounded-full bg-[#008b9c]/10 text-[#008b9c] text-xs font-semibold">Full-time</span>
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-500 text-xs font-medium">Japanese N2</span>
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-500 text-xs font-medium">Management</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <button class="p-3 border border-gray-200 rounded-xl text-gray-400 hover:text-[#008b9c] hover:border-[#008b9c] transition-colors">
+      <span class="material-symbols-outlined">bookmark</span>
+    </button>
+    <button class="flex-1 lg:flex-none bg-[#008b9c] text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-[#00707d] transition-colors shadow-sm whitespace-nowrap">Ứng tuyển ngay</button>
+  </div>
+</div>
+
+<!-- Job Card 3 -->
+<div class="bg-white border border-gray-100 rounded-xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:shadow-lg transition-all group">
+  <div class="flex flex-col md:flex-row gap-6 flex-1">
+    <div class="w-16 h-16 rounded-xl bg-gray-50 flex-shrink-0 flex items-center justify-center border border-gray-100">
+      <span class="material-symbols-outlined text-[#008b9c] text-3xl">database</span>
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#008b9c] transition-colors">Backend Developer (NodeJS/AWS)</h3>
+      </div>
+      <div class="flex flex-wrap items-center gap-y-2 gap-x-4 mb-4 text-sm text-gray-500 font-medium">
+        <span class="flex items-center gap-1.5">Fabbi JSC</span>
+        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+        <span class="flex items-center gap-1.5">Đăng 5 ngày trước</span>
+        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+        <span class="flex items-center gap-1.5 text-[#008b9c] font-bold">Upto $2000</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-600 text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Hồ Chí Minh</span>
+        <span class="px-3 py-1 rounded-full bg-[#008b9c]/10 text-[#008b9c] text-xs font-semibold">Full-time</span>
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-500 text-xs font-medium">NodeJS</span>
+        <span class="px-3 py-1 rounded-full bg-gray-50 text-gray-500 text-xs font-medium">AWS</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <button class="p-3 border border-gray-200 rounded-xl text-gray-400 hover:text-[#008b9c] hover:border-[#008b9c] transition-colors">
+      <span class="material-symbols-outlined">bookmark</span>
+    </button>
+    <button class="flex-1 lg:flex-none bg-[#008b9c] text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-[#00707d] transition-colors shadow-sm whitespace-nowrap">Ứng tuyển ngay</button>
+  </div>
+</div></div>
+<div class="mt-6 text-center md:hidden">
+<a class="inline-block bg-surface-container border border-outline-variant px-6 py-2 rounded-lg text-label-md font-label-md text-on-surface-variant" href="#">Xem tất cả việc làm</a>
+</div>
+</div>
+</section>
+<!-- Latest News -->
+<section class="w-full bg-background py-section-gap">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-background mb-2">Tin tức mới nhất</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Cập nhật những hoạt động và sự kiện nổi bật từ Fabbi.</p>
+</div>
+<a class="text-primary text-label-md font-label-md hidden md:flex items-center gap-1 hover:underline" href="#">Tất cả tin tức <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- News Item 1 -->
+<div class="bg-surface rounded-xl overflow-hidden border border-outline-variant/30 flex flex-col group cursor-pointer hover:shadow-md transition-shadow">
+<div class="relative h-48 overflow-hidden">
+<img alt="Team meeting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A diverse team of tech professionals engaging in a dynamic, collaborative meeting in a modern boardroom. Bright, optimistic lighting highlights their teamwork, with subtle teal brand accents in the room decor. High resolution, professional corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYiPxdlau4qfgNxe-uex8SIQYeoDFjbaqfborlzUfhVc-3Ei5Y93he9aG6yhf7fBmhGYJV_D1Lw_IVDjYejh1-0h75PQhNQABqvlyiA5oTfq1wtwvpxgCjk_B8g-EbwAJzSw4vYFZ9l_llq8HTUw_Q9-A8pI9pmsPfrXzldiMu4k4T66jif7o48Fcp5_zOk0wj11lMctjs9ryM2RPXmEdbNAavcoBY2_TtxjBe8XihkauB-nmxvPUH8dRIrq1OLZN5MuJzouvAez0t">
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded text-label-sm font-label-sm font-bold text-primary">Sự kiện</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="text-body-sm font-body-sm text-outline mb-2">15 Tháng 5, 2024</span>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-3 group-hover:text-primary transition-colors line-clamp-2">Lễ tổng kết Quý 1/2024: Bước đà vững chắc cho những mục tiêu mới</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-3 flex-1">Vừa qua, Fabbi đã tổ chức thành công buổi lễ tổng kết Quý 1/2024 với sự tham gia của toàn thể CBNV. Đây là dịp để nhìn lại những thành tựu đã đạt được và vinh danh các cá nhân xuất sắc.</p>
+<span class="text-primary text-label-sm font-label-sm flex items-center gap-1 mt-auto">Đọc tiếp <span class="material-symbols-outlined text-sm">arrow_right_alt</span></span>
+</div>
+</div>
+<!-- News Item 2 -->
+<div class="bg-surface rounded-xl overflow-hidden border border-outline-variant/30 flex flex-col group cursor-pointer hover:shadow-md transition-shadow">
+<div class="relative h-48 overflow-hidden">
+<img alt="Tech workshop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A focused software developer presenting code on a large screen during an internal tech workshop. The setting is a sleek, contemporary office space with warm lighting and a high-tech vibe. The audience is attentive. Professional, clean, tech-hub aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ1HvSpwLN61MEASFYGoOOOMqzi2DrNcmfQrsLHQOQwZ4172VqOr1r-2TRQS2oTt41HmusiKUWoID6PaQI2Rv2vGIvO_ytQcFX7LdLs94P1zrXmrp0RjilHFjZt-xX3Yq_MJ6nkl8GLFaHCdq1UEUdkG_5IvPI4yIVGL4_i2USCPHVbLNiZXi8fqusLwioHHpnCYr6Ht-9f8k5xGeiZDk5nMm9Igkl7Gv7aD9_ywafd7gC7zr6kZXjQOX3Py6WvMIc0yxLhpkgR1d2">
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded text-label-sm font-label-sm font-bold text-primary">Tech Talk</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="text-body-sm font-body-sm text-outline mb-2">10 Tháng 5, 2024</span>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-3 group-hover:text-primary transition-colors line-clamp-2">Chia sẻ kiến thức: Tối ưu hóa hiệu năng ứng dụng React quy mô lớn</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-3 flex-1">Buổi seminar chia sẻ những kỹ thuật tiên tiến để tối ưu hóa render, quản lý state và cải thiện trải nghiệm người dùng trong các dự án React phức tạp.</p>
+<span class="text-primary text-label-sm font-label-sm flex items-center gap-1 mt-auto">Đọc tiếp <span class="material-symbols-outlined text-sm">arrow_right_alt</span></span>
+</div>
+</div>
+<!-- News Item 3 -->
+<div class="bg-surface rounded-xl overflow-hidden border border-outline-variant/30 flex flex-col group cursor-pointer hover:shadow-md transition-shadow">
+<div class="relative h-48 overflow-hidden">
+<img alt="Team building" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cheerful group of colleagues enjoying a team-building activity outdoors in a bright, sunny environment. They are smiling and collaborating enthusiastically. The image conveys a strong, positive corporate culture and high team morale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaFlG7Ut3kQpVWlvaFaKxnxK_R2wdysBEXZ16Ks9UMs5b-0s-c2mNd6Oft_rhmzjqm6veIjUpne9yyjgU9A-k_57uuDD-beFT9Vor3vkwumwLOmRMy9HsqtddDTFNo9mdcXpx7kOB4NXfwbtZ6VLDo998tURjdAyC9cwfBnqmz0kI_4He1iFumgmLg56rZOhvCdhXQXWVkPb6sli4H8zT2rzV9oV_4p2_Na85NMyDwhfR4dqaO6k8mGsasMX30gI_LamJ_U4hxyJm">
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded text-label-sm font-label-sm font-bold text-primary">Đời sống</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="text-body-sm font-body-sm text-outline mb-2">05 Tháng 5, 2024</span>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-3 group-hover:text-primary transition-colors line-clamp-2">Sôi động giải bóng đá giao hữu Fabbi Championship 2024</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-3 flex-1">Giải đấu thường niên nhằm nâng cao tinh thần thể thao, rèn luyện sức khỏe và thắt chặt tình đoàn kết giữa các phòng ban trong công ty đã diễn ra thành công rực rỡ.</p>
+<span class="text-primary text-label-sm font-label-sm flex items-center gap-1 mt-auto">Đọc tiếp <span class="material-symbols-outlined text-sm">arrow_right_alt</span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#008B9C] text-white pt-16 pb-8" style="font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+      <!-- Left Col: Branding & Info -->
+      <div class="md:w-1/2">
+        <div class="flex items-center gap-2 font-bold text-4xl mb-4">
+          <svg fill="none" height="40" viewBox="0 0 32 32" width="40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="white"></path>
+            <path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+            <path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+          </svg>
+          Fabbi
+        </div>
+        <p class="text-sm font-medium mb-8">CÔNG TY CỔ PHẦN NGHIÊN CỨU VÀ PHÁT TRIỂN FABBI</p>
+        <ul class="space-y-3 text-sm text-white/80">
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-[18px] mt-1">home</span>
+            <span class="">Địa chỉ: 107 Nguyễn Phong Sắc - Hai Bà Trưng - Hà Nội</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[18px]">call</span>
+            <span class="">Điện thoại: 0123 456 789</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[18px]">mail</span>
+            <span class="">Email: Hr@fabbi.com.vn</span>
+          </li>
+        </ul>
+      </div>
+      <!-- Right Col: Links & Social -->
+      <div class="md:w-1/2 flex flex-col md:items-end">
+        <div class="mb-8">
+          <h4 class="text-base font-bold mb-4">Follow Us</h4>
+          <div class="flex gap-4">
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+              <i class="fa-brands fa-facebook-f text-sm"></i>
+            </a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+              <i class="fa-brands fa-twitter text-sm"></i>
+            </a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+              <i class="fa-brands fa-instagram text-sm"></i>
+            </a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+              <i class="fa-brands fa-tiktok text-sm"></i>
+            </a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+              <i class="fa-brands fa-youtube text-sm"></i>
+            </a>
+          </div>
+        </div>
+        <div class="w-full max-w-[200px]">
+          <h4 class="text-base font-bold mb-4">Quick link</h4>
+          <ul class="space-y-2 text-sm text-white/80">
+            <li class=""><a class="hover:text-white transition-colors" href="#">Tuyển dụng</a></li>
+            <li class=""><a class="hover:text-white transition-colors" href="#">Về Fabbi</a></li>
+            <li class=""><a class="hover:text-white transition-colors" href="#">Tin tức</a></li>
+            <li class=""><a class="hover:text-white transition-colors" href="#">Ứng tuyển</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-xs text-white/60">
+      <p class="">© 2023 Fabbi. All rights reserved.</p>
+      <button class="mt-4 md:mt-0 flex items-center gap-2 hover:text-white transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <span class="material-symbols-outlined text-[16px]">arrow_upward</span> Back to top
+      </button>
+    </div>
+  </div>
+</footer>
+
+
+</body></html>

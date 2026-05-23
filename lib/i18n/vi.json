@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Về Fabbi",
+    "jobs": "Tuyển dụng",
+    "news": "Tin tức",
+    "contact": "Liên hệ"
+  },
+  "cta": {
+    "apply": "Ứng tuyển",
+    "send": "Gửi tin nhắn"
+  },
+  "contact": {
+    "title": "Liên hệ với Fabbi",
+    "name": "Họ và tên",
+    "email": "Email",
+    "phone": "Số điện thoại (tùy chọn)",
+    "company": "Công ty (tùy chọn)",
+    "subject": "Tiêu đề",
+    "message": "Nội dung tin nhắn"
+  }
+}

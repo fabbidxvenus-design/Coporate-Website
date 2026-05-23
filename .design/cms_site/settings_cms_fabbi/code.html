@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Fabbi CMS - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#6d3a00",
+                    "surface-dim": "#dcd9d9",
+                    "surface-bright": "#fbf9f8",
+                    "on-surface": "#1b1c1c",
+                    "on-primary-fixed-variant": "#004e59",
+                    "secondary-fixed-dim": "#bfc8c9",
+                    "background": "#fbf9f8",
+                    "tertiary-fixed": "#ffdcc2",
+                    "tertiary-container": "#af6100",
+                    "on-surface-variant": "#3e494b",
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed": "#151d1e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#dbe4e5",
+                    "on-secondary-fixed-variant": "#404849",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#001f24",
+                    "surface-container-high": "#eae8e7",
+                    "outline-variant": "#bdc9cb",
+                    "primary-container": "#008190",
+                    "on-secondary-container": "#5b6465",
+                    "on-primary-container": "#f8feff",
+                    "on-background": "#1b1c1c",
+                    "surface-variant": "#e4e2e1",
+                    "primary": "#006672",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#303030",
+                    "inverse-primary": "#6fd5e7",
+                    "on-tertiary-fixed": "#2e1500",
+                    "secondary": "#576061",
+                    "tertiary-fixed-dim": "#ffb77a",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-tint": "#006875",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#6fd5e7",
+                    "surface-container": "#f0eded",
+                    "outline": "#6e797c",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#8b4c00",
+                    "secondary-container": "#d8e1e2",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#9eefff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "section-gap": "64px",
+                    "container-max": "1200px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 border-r border-outline-variant bg-surface-container-low flex flex-col py-stack-lg z-40">
+<!-- Header -->
+<div class="px-6 mb-8 flex flex-col gap-2">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary-container mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspaces</span>
+</div>
+<div>
+<h2 class="text-headline-sm font-headline-sm font-bold text-primary">Recruitment CMS</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Admin Portal</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-surface-tint rounded-lg py-2.5 px-4 transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-label-md font-label-md">Post New Job</span>
+</button>
+</div>
+<!-- Navigation Tabs -->
+<ul class="flex-1 flex flex-col gap-1 px-2 overflow-y-auto">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest px-4 py-3 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest px-4 py-3 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">work</span>
+<span class="text-label-md font-label-md">Jobs Management</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest px-4 py-3 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">newspaper</span>
+<span class="text-label-md font-label-md">News Management</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest px-4 py-3 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="text-label-md font-label-md">Applications</span>
+</a>
+</li>
+<!-- Active Tab -->
+<li>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg mx-2 px-4 py-3 scale-[0.98] duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</li>
+</ul>
+<!-- Footer -->
+<div class="mt-auto px-4 pt-4 border-t border-outline-variant/50">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest px-4 py-3 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-label-md font-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-64 flex flex-col h-full bg-background relative">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-50 bg-surface border-b border-outline-variant shadow-none transition-colors">
+<!-- Search Bar (Left per JSON) -->
+<div class="flex items-center w-full max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-body-sm font-body-sm focus:ring-1 focus:ring-primary text-on-surface placeholder-on-surface-variant" placeholder="Search settings..." type="text">
+</div>
+</div>
+<!-- Brand Logo (Centered typically, but keeping it simple as per spec) / Space filler -->
+<div class="hidden lg:flex flex-1 justify-center">
+<span class="text-headline-md font-headline-md font-bold text-primary">Fabbi CMS</span>
+</div>
+<!-- Trailing Icons & Profile -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">help</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<button class="w-9 h-9 rounded-full overflow-hidden border border-outline-variant hover:ring-2 hover:ring-primary transition-all">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A close-up, professional portrait of an administrator inside a brightly lit modern office setting. The individual appears confident and approachable, wearing smart-casual corporate attire. The lighting is soft and neutral, enhancing a clean, light-mode corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi8zIVgdY7EJWUgq2paEgEP3nXstMBH2EO43-RPz_ws6o4BDrvlP55U8So4RpTESeV2uCqzRx9lbXlzkR3fcozVAmKLJMcEK5s-UsrUXSoz8H6ua528oP8c16ek-hpardSXlbC8bw_V9HRNAsf6be9Z5-gqjdM7HjKjT6iDOS1swddUkSKcJoBKDqGasymBf5zw-Eu48HMi44_HbyapugiMWw67_BEdL7qkFrsb4y9grVmNXWRnQ19l4yC4IcKvLxMNYZeGHnI70XD">
+</button>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-8 lg:p-gutter">
+<div class="max-w-[1000px] mx-auto w-full flex flex-col gap-8 pb-16">
+<!-- Page Header -->
+<div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface mb-2">Settings</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Manage your platform configuration, branding, and preferences.</p>
+</div>
+<!-- Tabs -->
+<div class="border-b border-outline-variant">
+<nav aria-label="Tabs" class="-mb-px flex space-x-8">
+<a aria-current="page" class="border-primary text-primary border-b-2 py-4 px-1 text-label-md font-label-md font-bold whitespace-nowrap" href="#">General</a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline py-4 px-1 border-b-2 text-label-md font-label-md whitespace-nowrap transition-colors" href="#">Profile</a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline py-4 px-1 border-b-2 text-label-md font-label-md whitespace-nowrap transition-colors" href="#">Notifications</a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline py-4 px-1 border-b-2 text-label-md font-label-md whitespace-nowrap transition-colors" href="#">Security</a>
+</nav>
+</div>
+<!-- Forms Area -->
+<div class="flex flex-col gap-6">
+<!-- Card 1: Site Configuration -->
+<section class="bg-surface border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-6 py-5 border-b border-outline-variant bg-surface-bright">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Site Configuration</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Upload your brand's primary visual identifiers.</p>
+</div>
+<div class="p-6 flex flex-col sm:flex-row gap-8">
+<!-- Logo Upload -->
+<div class="flex-1">
+<label class="block text-label-md font-label-md text-on-surface mb-2">Primary Logo</label>
+<div class="mt-2 flex justify-center rounded-lg border border-dashed border-outline-variant px-6 py-8 hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="text-center">
+<div class="mx-auto h-12 w-12 text-on-surface-variant group-hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px]">image</span>
+</div>
+<div class="mt-4 flex text-body-sm font-body-sm text-on-surface-variant leading-6 justify-center">
+<label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-primary hover:text-primary-fixed-dim focus-within:outline-none" for="file-upload">
+<span>Upload a file</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file">
+</label>
+<p class="pl-1">or drag and drop</p>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">PNG, JPG, SVG up to 5MB</p>
+</div>
+</div>
+</div>
+<!-- Favicon Upload -->
+<div class="flex-1">
+<label class="block text-label-md font-label-md text-on-surface mb-2">Favicon</label>
+<div class="mt-2 flex items-center gap-6">
+<div class="h-16 w-16 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline">language</span>
+</div>
+<button class="px-4 py-2 bg-surface text-primary border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors" type="button">
+                                        Change Favicon
+                                    </button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-3">Recommended size: 32x32px (.ico or .png)</p>
+</div>
+</div>
+</section>
+<!-- Card 2: Contact Information -->
+<section class="bg-surface border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-6 py-5 border-b border-outline-variant bg-surface-bright">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Contact Information</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Details displayed in the footer and applicant communications.</p>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-2" for="support-email">Support Email</label>
+<input class="block w-full rounded-lg border-outline-variant py-2.5 px-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant shadow-sm transition-colors" id="support-email" placeholder="e.g. hr@company.com" type="email" value="support@fabbicms.com">
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-2" for="contact-phone">Contact Phone</label>
+<input class="block w-full rounded-lg border-outline-variant py-2.5 px-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant shadow-sm transition-colors" id="contact-phone" type="text" value="+1 (555) 019-2834">
+</div>
+<div class="md:col-span-2">
+<label class="block text-label-md font-label-md text-on-surface mb-2" for="company-address">Corporate Address</label>
+<input class="block w-full rounded-lg border-outline-variant py-2.5 px-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant shadow-sm transition-colors" id="company-address" type="text" value="123 Tech Boulevard, Suite 400, San Francisco, CA 94105">
+</div>
+</div>
+</section>
+</div>
+<!-- Action Footer -->
+<div class="flex items-center justify-end gap-4 pt-4 border-t border-outline-variant">
+<button class="px-6 py-2.5 rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-highest transition-colors" type="button">
+                        Cancel
+                    </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-on-primary text-label-md font-label-md shadow-sm hover:bg-surface-tint hover:shadow-md transition-all active:scale-[0.98]" type="button">
+                        Save Changes
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

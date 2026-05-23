@@ -1,0 +1,476 @@
+{
+  "id": "DETAIL-DEF-04",
+  "title": "Corporate Website Pixel-Perfect Build Detail Definition",
+  "upstream": {
+    "artifact": "03-business-definition.md",
+    "businessIds": ["BP-*", "BR-*", "UC-*"]
+  },
+  "status": "pass",
+  "details": [
+    {
+      "id": "DET-UX-001",
+      "category": "screen_ux",
+      "detail": "Implement the public homepage as a design-faithful page matching the corresponding .design/recruitment_site homepage source and screenshot reference.",
+      "expectedBehavior": [
+        "Page is reachable without login.",
+        "Visible sections, copy, typography, spacing, colors, hierarchy, and CTAs match the supplied design.",
+        "Primary navigation and CTA interactions route to corresponding public pages or form flows.",
+        "Desktop visual approval covers 1440px and 1920px."
+      ],
+      "traceability": ["BP-001", "BP-004", "BR-001", "BR-002", "BR-003", "BR-009", "BR-010", "UC-001"]
+    },
+    {
+      "id": "DET-UX-002",
+      "category": "screen_ux",
+      "detail": "Implement all non-home public recruitment content pages from .design/recruitment_site, including company/about, job search, job detail, apply, quick application, news listing, and news detail pages.",
+      "expectedBehavior": [
+        "Each supplied public design page is reachable.",
+        "Public pages do not require CMS login.",
+        "Visible content density and layout match the design source.",
+        "Navigation between related public pages follows visible design intent."
+      ],
+      "traceability": ["BP-001", "BP-004", "BR-001", "BR-002", "BR-003", "BR-009", "BR-010", "UC-002"]
+    },
+    {
+      "id": "DET-UX-003",
+      "category": "screen_ux",
+      "detail": "Implement public form screens so the form layout remains design-faithful while supporting real submission outcomes.",
+      "expectedBehavior": [
+        "Form fields, labels, helper text, buttons, and spacing match the design source.",
+        "Submitting a form shows a visible in-progress, success, or failure outcome.",
+        "Required submission feedback must not materially alter the approved design layout."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-005", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-UX-004",
+      "category": "screen_ux",
+      "detail": "Implement a login path that gates CMS/admin access through Supabase Auth while preserving any supplied login design already present in the app/design set.",
+      "expectedBehavior": [
+        "Unauthenticated users attempting CMS access are directed to login.",
+        "Authenticated CMS users can enter the CMS/admin surface.",
+        "Login errors are visible and understandable.",
+        "Public recruitment pages remain unaffected by CMS login."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004"]
+    },
+    {
+      "id": "DET-UX-005",
+      "category": "screen_ux",
+      "detail": "Implement all CMS/admin pages from .design/cms_site as login-gated operational screens.",
+      "expectedBehavior": [
+        "Dashboard, recruitment-name management, news management, application management, and settings pages are reachable after login.",
+        "Sidebar/header/table/card/form layouts match the supplied CMS designs.",
+        "CMS navigation allows movement between implemented CMS pages.",
+        "CMS pages receive manual visual approval at 1440px and 1920px."
+      ],
+      "traceability": ["BP-003", "BP-004", "BR-001", "BR-002", "BR-007", "BR-008", "BR-009", "BR-010", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-UX-006",
+      "category": "screen_ux",
+      "detail": "For each implemented page, capture or inspect browser output at required desktop widths and compare it with the design reference before marking the page complete.",
+      "expectedBehavior": [
+        "Evidence exists for 1440px review.",
+        "Evidence exists for 1920px review.",
+        "Manual approval determines final pass/fail.",
+        "Deviations are either corrected or explicitly recorded."
+      ],
+      "traceability": ["BP-004", "BR-001", "BR-002", "BR-009", "BR-010", "UC-005"]
+    },
+    {
+      "id": "DET-API-001",
+      "category": "api_interface",
+      "detail": "Public forms shall submit to application-managed behavior backed by Supabase persistence.",
+      "expectedBehavior": [
+        "User-entered form data is sent through a controlled application submission flow.",
+        "Successful Supabase persistence produces a visible success state.",
+        "Failed submission produces a visible failure state without silent loss.",
+        "The interface should not require CMS login for public candidate submissions."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-005", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-API-002",
+      "category": "api_interface",
+      "detail": "CMS login shall use Supabase Auth as the authentication mechanism for admin access.",
+      "expectedBehavior": [
+        "Login attempts authenticate against Supabase Auth.",
+        "Authenticated state allows CMS/admin access.",
+        "Unauthenticated state prevents direct CMS/admin access.",
+        "Authentication failure shows a user-facing error."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-API-003",
+      "category": "api_interface",
+      "detail": "CMS pages shall have enough data behavior to support the visual and operational flows represented in the CMS designs.",
+      "expectedBehavior": [
+        "CMS pages display data structures equivalent to the design references.",
+        "If live data is not available for a CMS list/table, display design-equivalent seeded or existing data without breaking visual approval.",
+        "CMS data behavior must remain behind authenticated access."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-006"]
+    },
+    {
+      "id": "DET-DATA-001",
+      "category": "data",
+      "detail": "Preserve visible text, labels, headings, navigation labels, button labels, table headings, status labels, and placeholder values from the design source unless replaced with equivalent live data.",
+      "expectedBehavior": [
+        "Design-visible copy is not omitted.",
+        "Replacement data preserves visual density and meaning.",
+        "Any content mismatch that affects visual approval is treated as a defect."
+      ],
+      "traceability": ["BP-001", "BP-004", "BR-001", "BR-010", "UC-001", "UC-002", "UC-006"]
+    },
+    {
+      "id": "DET-DATA-002",
+      "category": "data",
+      "detail": "Preserve design token values for color, typography, radius, spacing, and container sizing from the supplied HTML/CSS design.",
+      "expectedBehavior": [
+        "Token values are carried into the app styling system where practical.",
+        "Hardcoded style values are acceptable only when needed to match a specific design detail.",
+        "Token changes are judged by visual output, with design source taking precedence."
+      ],
+      "traceability": ["BP-004", "BR-001", "BR-010", "UC-005"]
+    },
+    {
+      "id": "DET-DATA-003",
+      "category": "data",
+      "detail": "Capture the data necessary for each designed form submission and persist it through Supabase-backed behavior.",
+      "expectedBehavior": [
+        "Required user-entered values are included in submission.",
+        "Submission records are not silently dropped on success.",
+        "Invalid or failed submissions do not appear as successful to the user."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-005", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-DATA-004",
+      "category": "data",
+      "detail": "Maintain enough authenticated session state to determine whether CMS/admin access should be allowed.",
+      "expectedBehavior": [
+        "Authenticated CMS users can continue to CMS pages during the active session.",
+        "Unauthenticated users cannot bypass login by directly opening CMS routes.",
+        "Logout/session expiry behavior prevents continued CMS access when unauthenticated."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-VAL-001",
+      "category": "validation",
+      "detail": "Validate public form inputs before treating a submission as successful.",
+      "expectedBehavior": [
+        "Required fields must be present before successful submission.",
+        "Invalid email/phone-like fields should not be accepted as successful when the form implies those constraints.",
+        "Validation messages are visible and do not silently fail.",
+        "Validation UI must preserve the design as much as possible."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-VAL-002",
+      "category": "validation",
+      "detail": "Validate CMS login attempts through Supabase Auth and report failed authentication clearly.",
+      "expectedBehavior": [
+        "Empty or invalid login inputs do not grant CMS access.",
+        "Failed Supabase Auth responses are shown as login failure.",
+        "Successful login permits CMS/admin access."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004"]
+    },
+    {
+      "id": "DET-VAL-003",
+      "category": "validation",
+      "detail": "Validate visual fidelity at the business-approved desktop widths using screenshot/browser review and manual approval.",
+      "expectedBehavior": [
+        "1440px view is checked.",
+        "1920px view is checked.",
+        "Manual approval is recorded as the final decision.",
+        "Known deviations are not hidden."
+      ],
+      "traceability": ["BP-004", "BR-001", "BR-002", "BR-009", "BR-010", "UC-005"]
+    },
+    {
+      "id": "DET-STATE-001",
+      "category": "state",
+      "detail": "Public navigation should support the current page context without requiring login state.",
+      "expectedBehavior": [
+        "Active/current page indication follows the design where present.",
+        "Public routes remain accessible regardless of CMS auth state.",
+        "Navigation state does not alter visual design unexpectedly."
+      ],
+      "traceability": ["BP-001", "BR-003", "UC-001", "UC-002"]
+    },
+    {
+      "id": "DET-STATE-002",
+      "category": "state",
+      "detail": "Forms shall represent idle, submitting, success, validation failure, and submission failure states.",
+      "expectedBehavior": [
+        "Submitting state prevents ambiguous duplicate action where practical.",
+        "Success state confirms completion.",
+        "Failure state allows the user to understand the submission did not complete."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-STATE-003",
+      "category": "state",
+      "detail": "CMS/admin pages shall respond to authenticated and unauthenticated states.",
+      "expectedBehavior": [
+        "Authenticated state permits CMS page access.",
+        "Unauthenticated state blocks CMS page access and directs to login behavior.",
+        "Session ending or logout removes CMS access."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-STATE-004",
+      "category": "state",
+      "detail": "CMS navigation shall show and preserve the current admin context according to design intent.",
+      "expectedBehavior": [
+        "CMS navigation is available on CMS/admin pages.",
+        "Current section indication follows the design where present.",
+        "Navigation state does not expose CMS pages to unauthenticated users."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-006"]
+    },
+    {
+      "id": "DET-ERR-001",
+      "category": "error_handling",
+      "detail": "Supabase or validation failures during form submission shall produce visible, user-understandable errors.",
+      "expectedBehavior": [
+        "Failed submission is not shown as success.",
+        "User can correct validation errors and retry.",
+        "System-level failure messaging avoids exposing sensitive internals."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-ERR-002",
+      "category": "error_handling",
+      "detail": "Failed CMS login attempts shall keep the user out of CMS/admin pages and show clear error feedback.",
+      "expectedBehavior": [
+        "Incorrect credentials do not grant access.",
+        "Supabase Auth errors are represented in user-friendly language.",
+        "Reattempt is possible without breaking layout."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004"]
+    },
+    {
+      "id": "DET-ERR-003",
+      "category": "error_handling",
+      "detail": "Missing public/CMS data should not break page rendering or visual review.",
+      "expectedBehavior": [
+        "Public pages retain design-visible content where live data is absent.",
+        "CMS tables/lists retain design-equivalent structure where live data is absent.",
+        "Missing data states are visually controlled and do not leak implementation errors."
+      ],
+      "traceability": ["BP-001", "BP-003", "BR-001", "BR-007", "UC-002", "UC-006"]
+    },
+    {
+      "id": "DET-SEC-001",
+      "category": "security_privacy_access",
+      "detail": "CMS/admin pages must be protected by Supabase Auth-gated access.",
+      "expectedBehavior": [
+        "Unauthenticated users cannot directly use CMS/admin pages.",
+        "Authenticated CMS users can access CMS pages.",
+        "Public pages remain outside the CMS protection boundary."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-SEC-002",
+      "category": "security_privacy_access",
+      "detail": "Design HTML must be used as a reference and converted safely rather than injected wholesale as unsafe HTML.",
+      "expectedBehavior": [
+        "No unsafe HTML injection is used for design reproduction.",
+        "External design references do not become unreviewed runtime script dependencies.",
+        "Form inputs are treated as untrusted user input."
+      ],
+      "traceability": ["BP-004", "BR-001", "BR-010", "UC-005"]
+    },
+    {
+      "id": "DET-SEC-003",
+      "category": "security_privacy_access",
+      "detail": "Candidate form submission data must be handled as user-provided personal data.",
+      "expectedBehavior": [
+        "Submission data is sent only through the intended Supabase-backed flow.",
+        "Error messages do not expose sensitive system details.",
+        "CMS access to submission-related surfaces remains login-gated."
+      ],
+      "traceability": ["BP-002", "BP-003", "BR-005", "BR-006", "BR-007", "BR-008", "UC-003", "UC-006"]
+    },
+    {
+      "id": "DET-A11Y-001",
+      "category": "accessibility",
+      "detail": "Public pages should preserve semantic structure and accessible navigation while maintaining visual fidelity.",
+      "expectedBehavior": [
+        "Main page landmarks and heading hierarchy are usable where practical.",
+        "Links and buttons are keyboard reachable.",
+        "Focus states are visible or design-equivalent."
+      ],
+      "traceability": ["BP-001", "BR-003", "UC-001", "UC-002"]
+    },
+    {
+      "id": "DET-A11Y-002",
+      "category": "accessibility",
+      "detail": "Designed forms should remain usable with labels, focus, validation feedback, and keyboard interaction.",
+      "expectedBehavior": [
+        "Inputs have accessible labels or equivalent accessible names.",
+        "Validation errors are visible and associated with the relevant field where practical.",
+        "Submit controls are keyboard operable."
+      ],
+      "traceability": ["BP-002", "BR-004", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-A11Y-003",
+      "category": "accessibility",
+      "detail": "CMS/admin pages should support keyboard navigation and readable operational controls while preserving visual fidelity.",
+      "expectedBehavior": [
+        "Login form is keyboard operable.",
+        "Admin navigation is keyboard reachable.",
+        "Tables, controls, and statuses have accessible text equivalents where practical."
+      ],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-NFR-001",
+      "category": "non_functional",
+      "detail": "Desktop visual fidelity at 1440px and 1920px is mandatory for completion.",
+      "expectedBehavior": [
+        "Each page is reviewed at both widths.",
+        "Manual approval is the pass/fail mechanism.",
+        "Mobile/tablet parity is not required for this phase but must not be intentionally broken."
+      ],
+      "traceability": ["BP-004", "BR-002", "BR-009", "UC-005"]
+    },
+    {
+      "id": "DET-NFR-002",
+      "category": "non_functional",
+      "detail": "Implementation must preserve the existing Next.js, React, TypeScript, and Tailwind stack.",
+      "expectedBehavior": [
+        "No re-platforming occurs.",
+        "Styling foundation remains Tailwind/project CSS based, not runtime Tailwind CDN.",
+        "Dependencies are added only when requirement-driven."
+      ],
+      "traceability": ["BR-012"]
+    },
+    {
+      "id": "DET-NFR-003",
+      "category": "non_functional",
+      "detail": "Maintainability improvements are allowed only when they do not change approved visual output.",
+      "expectedBehavior": [
+        "Shared tokens/components may be used when they preserve design fidelity.",
+        "Generic UI defaults must not override design-specific appearance.",
+        "Refactors must not create visual drift."
+      ],
+      "traceability": ["BP-004", "BR-001", "BR-010", "UC-005"]
+    },
+    {
+      "id": "DET-EDGE-001",
+      "category": "edge_case",
+      "detail": "A user opening a CMS/admin URL directly while unauthenticated must not gain CMS access.",
+      "expectedBehavior": ["User is blocked from CMS content.", "User is directed to login behavior."],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004"]
+    },
+    {
+      "id": "DET-EDGE-002",
+      "category": "edge_case",
+      "detail": "If Supabase submission fails or is unavailable, the user sees failure feedback and the app does not show false success.",
+      "expectedBehavior": ["Submission failure state is visible.", "User can retry or correct input when appropriate."],
+      "traceability": ["BP-002", "BR-005", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-EDGE-003",
+      "category": "edge_case",
+      "detail": "If CMS auth session expires, CMS access should no longer be granted.",
+      "expectedBehavior": ["User cannot continue accessing protected CMS pages as authenticated.", "User is returned to login behavior or blocked appropriately."],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-006"]
+    },
+    {
+      "id": "DET-EDGE-004",
+      "category": "edge_case",
+      "detail": "If visual QA finds a material mismatch, the page must not be treated as approved unless the deviation is explicitly accepted.",
+      "expectedBehavior": ["Mismatch is fixed or documented.", "Manual approval remains final pass/fail."],
+      "traceability": ["BP-004", "BR-001", "BR-002", "BR-010", "UC-005"]
+    },
+    {
+      "id": "DET-EDGE-005",
+      "category": "edge_case",
+      "detail": "If implementation order must deviate from .design file order due to shared dependencies, the exception must be documented.",
+      "expectedBehavior": ["Deviation is temporary and reasoned.", "Page traceability to the design source is preserved."],
+      "traceability": ["BP-005", "BR-011"]
+    },
+    {
+      "id": "DET-TEST-001",
+      "category": "test",
+      "detail": "Verify all public pages are reachable and visually reviewed at required desktop widths.",
+      "checks": ["Route/page coverage for .design/recruitment_site.", "1440px visual review.", "1920px visual review.", "Public access without login."],
+      "traceability": ["BP-001", "BP-004", "BR-001", "BR-002", "BR-003", "BR-009", "UC-001", "UC-002", "UC-005"]
+    },
+    {
+      "id": "DET-TEST-002",
+      "category": "test",
+      "detail": "Verify public forms validate and submit through Supabase-backed behavior with visible outcomes.",
+      "checks": ["Required validation failure path.", "Successful submission path.", "Supabase failure path.", "Visual layout remains acceptable after state changes."],
+      "traceability": ["BP-002", "BR-004", "BR-005", "BR-006", "UC-003"]
+    },
+    {
+      "id": "DET-TEST-003",
+      "category": "test",
+      "detail": "Verify CMS/admin access is Supabase Auth-gated.",
+      "checks": ["Direct unauthenticated CMS access is blocked.", "Failed login does not grant access.", "Successful login grants CMS access.", "Session expiry/logout removes CMS access."],
+      "traceability": ["BP-003", "BR-007", "BR-008", "UC-004", "UC-006"]
+    },
+    {
+      "id": "DET-TEST-004",
+      "category": "test",
+      "detail": "Verify all CMS pages are reachable after login and visually reviewed at required desktop widths.",
+      "checks": ["Route/page coverage for .design/cms_site.", "CMS navigation between admin pages.", "1440px visual review.", "1920px visual review."],
+      "traceability": ["BP-003", "BP-004", "BR-001", "BR-002", "BR-007", "BR-008", "BR-009", "UC-004", "UC-005", "UC-006"]
+    },
+    {
+      "id": "DET-TEST-005",
+      "category": "test",
+      "detail": "Verify the design is implemented safely and without unsafe HTML injection or runtime design CDN dependencies.",
+      "checks": ["No unsafe wholesale HTML injection from design files.", "No production reliance on Tailwind CDN from design HTML.", "User input is validated before successful submission."],
+      "traceability": ["BP-002", "BP-004", "BR-001", "BR-004", "BR-010", "UC-003", "UC-005"]
+    }
+  ],
+  "naSections": [
+    {
+      "section": "API-only behavior",
+      "reason": "This project is not API-only; it includes public and CMS web surfaces."
+    },
+    {
+      "section": "Document-only delivery",
+      "reason": "Implementation requires interactive web pages, login, and form submission behavior."
+    },
+    {
+      "section": "Native mobile details",
+      "reason": "This requirement targets a web application with desktop-first visual acceptance."
+    }
+  ],
+  "gate4Validation": {
+    "status": "PASS",
+    "checks": [
+      {"name": "Upstream business definition loaded", "result": "pass"},
+      {"name": "Business processes converted to details", "result": "pass"},
+      {"name": "Business rules preserved without contradiction", "result": "pass"},
+      {"name": "Use cases converted to implementation-ready details", "result": "pass"},
+      {"name": "Screen/UX details included", "result": "pass"},
+      {"name": "API/interface details included", "result": "pass"},
+      {"name": "Data details included", "result": "pass"},
+      {"name": "Validation details included", "result": "pass"},
+      {"name": "State and error details included", "result": "pass"},
+      {"name": "Security/privacy/access details included", "result": "pass"},
+      {"name": "Accessibility details included", "result": "pass"},
+      {"name": "Non-functional, edge case, and test details included", "result": "pass"},
+      {"name": "Every detail traces to BP/BR/UC", "result": "pass"},
+      {"name": "N/A sections marked with reason", "result": "pass"}
+    ]
+  },
+  "openQuestions": []
+}

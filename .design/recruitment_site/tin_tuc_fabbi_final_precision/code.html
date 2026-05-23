@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Tin tức mới nhất về Fabbi</title>
+<!-- Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- FontAwesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#008B9C',
+              dark: '#00707D',
+            },
+            secondary: '#F1F5F9',
+            text: {
+              main: '#1E293B',
+              muted: '#64748B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styles">
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c1c1c1; 
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8; 
+    }
+    
+    /* Input Search icon positioning */
+    .search-input-wrapper {
+      position: relative;
+    }
+    .search-input-wrapper input {
+      padding-right: 120px; /* Make room for the button */
+    }
+    .search-input-wrapper .search-btn {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      bottom: 4px;
+    }
+  </style>
+</head>
+<body class="font-sans text-text-main bg-white antialiased">
+<!-- BEGIN: MainHeader -->
+<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo -->
+<div class="flex-shrink-0 flex items-center cursor-pointer">
+<div class="text-primary font-bold text-3xl flex items-center gap-2">
+<svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="#008B9C"></path>
+<path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+<path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+</svg>
+            Fabbi
+          </div>
+</div>
+<!-- Navigation Menu -->
+<nav class="hidden md:flex space-x-8">
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Home</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Tuyển Dụng</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Về Fabbi</a>
+<a class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Tin tức</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Ứng tuyển</a>
+</nav>
+<!-- Language Switcher -->
+<div class="hidden md:flex items-center bg-secondary rounded-full p-1">
+<button class="px-3 py-1 text-xs font-semibold text-text-muted hover:text-text-main rounded-full transition-colors duration-200">JP</button>
+<button class="px-3 py-1 text-xs font-semibold bg-primary text-white shadow-sm rounded-full transition-colors duration-200">VN</button>
+</div>
+<!-- Mobile menu button -->
+<div class="md:hidden flex items-center">
+<button class="text-text-muted hover:text-text-main focus:outline-none">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: Page Content -->
+<main class="w-full">
+<!-- Title & Search Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="text-sm text-text-muted mb-4 font-medium">Tin tức</div>
+<h1 class="text-4xl md:text-5xl font-bold text-text-main mb-4 tracking-tight">Tin tức mới nhất về Fabbi</h1>
+<p class="text-lg text-text-muted mb-8 max-w-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<!-- Search Bar -->
+<div class="max-w-3xl search-input-wrapper">
+<input class="w-full h-14 pl-6 pr-4 bg-white border border-gray-200 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm" placeholder="Tìm bài viết" type="text">
+<button class="search-btn bg-primary hover:bg-primary-dark text-white rounded-full px-6 flex items-center justify-center font-medium transition-colors duration-200">
+<i class="fa-solid fa-magnifying-glass mr-2"></i> Tìm kiếm
+        </button>
+</div>
+</section>
+<!-- Main Layout Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+<div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+<!-- Sidebar -->
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="bg-gray-50 rounded-2xl p-4 sticky top-28">
+<h3 class="text-lg font-bold text-text-main px-4 py-3 mb-2">Tin tức Fabbi</h3>
+<ul class="space-y-1">
+<li>
+<a class="block px-4 py-3 bg-gray-100 rounded-xl text-text-main font-semibold" href="#">Người Fabbi</a>
+</li>
+<li>
+<a class="block px-4 py-3 text-text-muted hover:bg-gray-100 hover:text-text-main rounded-xl font-medium transition-colors duration-200" href="#">Các hoạt động</a>
+</li>
+<li>
+<a class="block px-4 py-3 text-text-muted hover:bg-gray-100 hover:text-text-main rounded-xl font-medium transition-colors duration-200" href="#">Giải thưởng</a>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="flex-1">
+<!-- Featured Article -->
+<article class="mb-16 group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-6 bg-gray-100 aspect-[16/9] relative">
+<img alt="Strong Up Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbDjVEBWKZEpCceZ_bQvOIMwPo9mhRpNAlCrTnMt5RAczxG8qJRzpMOj3CDOlGt2k339qBJ5MLwJ5uSwARVDBqDtCkIAUK5H6jb_TFRot5yTnI4Rw5Up4wsX_P0V6g2ZDy-FAxITw5Do4WuiHVk1zKhxFXa17jUGkGtKXt353VowtXuS746DCAOdGxQJ-ILmqXHSYSrmKprguhSVd-ZHCtv3mZD6_fOfz_NBAnRZUjA78_h9SDp07N5k5fokZEdtBaMmf3fp_BYl4-">
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-xs font-semibold rounded-full">Category</span>
+<span class="text-sm text-text-muted font-medium">5 min ago</span>
+</div>
+<h2 class="text-3xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors duration-200">Blog title heading will go here</h2>
+<p class="text-text-muted mb-4 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+<a class="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors duration-200" href="#">
+              Read more <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+</a>
+</article>
+<!-- Article Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+<!-- Article 1 -->
+<article class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-5 bg-gray-100 aspect-[16/10] relative">
+<img alt="Employees working" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKSoGcoxZdIxcUg7rMMU5Lh2N2EnffTl1k02E27vUBTIsU7Zy8rwI3anWg178Fbg3CRXJhRRU-xu1XkGHVSfoa_-1pX-SglWQOzcvwNwNJngRFaQvTO5n5dY59l52j1ljQHc5Tr1OP8lRFFdibbYLN-wzCoHoV93OXjfSF0roxRbSuZolws0HJM05wc7qogVQvCAtnQfs8YPQPOL7sC-lPuz8M_PYMrEC2P64vGM2IYMd_cgmpsMMG4yMXqiJ0-q5aCVDqbaAKnyag">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-xs font-semibold rounded-full">Category</span>
+<span class="text-sm text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-xl font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted mb-4 text-base line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+<a class="inline-flex items-center text-primary font-semibold text-sm hover:text-primary-dark transition-colors duration-200" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+</a>
+</article>
+<!-- Article 2 -->
+<article class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-5 bg-gray-100 aspect-[16/10] relative">
+<img alt="Employees smiling" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHH2jUyFU7bM3I0a6qWGEBBUS4zfccPrniTIw5tD2FePRCwzbLLlvaSA5v2YFkrAFSMBHKyZyB0SNTpm6pP4IKjrd97cXS0mK0mbSjb93dJ36NDAv0DvSkoXRuElvC1dCPL8XyPxyE8EncdY2eh6ey7EaMUgQtKm0VUKoSz5pZqn1DxKT6mp3B3_ZJdC7zC3dz8hPbJJRDKyEcXtx7_3OD1vFEF28iYdCGgDcTnnIUqnGfTH84_T0_WDMwCnOhsxTenylro3PQTUGi">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-xs font-semibold rounded-full">Category</span>
+<span class="text-sm text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-xl font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted mb-4 text-base line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+<a class="inline-flex items-center text-primary font-semibold text-sm hover:text-primary-dark transition-colors duration-200" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+</a>
+</article>
+<!-- Article 3 -->
+<article class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-5 bg-gray-100 aspect-[16/10] relative">
+<img alt="Employee with gift" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1VlJ8gzv6IKZxAJ_WrFefDlms-XO85nP1UZKJaPJHqo1bKlUQNstJbHcTyr_tseFpL5sabhhA5mT8kFAcVttynDHB_GRu3ey7b19YtQAtN6z1KdntzKnVaCVU2Nr78JLdfLJsIGWVwaSfRmrS4lwxZ7s09oqD1UMEOMS7i-75oqwqwvokQcaE3xExaiTfBaRZ11R5recpHiYL7CgwE_suJ2t7pFiQUyckgG5978qGqKWDaDiyNmcXtEItyeMRdjjW55SA8nMhW_Eo">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-xs font-semibold rounded-full">Category</span>
+<span class="text-sm text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-xl font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted mb-4 text-base line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+<a class="inline-flex items-center text-primary font-semibold text-sm hover:text-primary-dark transition-colors duration-200" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+</a>
+</article>
+<!-- Article 4 -->
+<article class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-5 bg-gray-100 aspect-[16/10] relative">
+<img alt="Event backdrop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9dywpBmzmRp8lUxm8DO2EQ-dVsbJar7N4bq0tk40jmho678ATHr3kXHN_WTviYwOWFA4G1OQpiwwUyXTbfNa0PGoHPw-RudNPrK6INC3Xdo8hCNR2abk8PLNVxaA6K2sCym43h2EmvlHQwxkOtmi2WZ9PX0NU1Wber8ox3LEdcrvk3m1R3vPjdru4uUxs_4iC1vjt18A8KEE6jMymYQzOJw2F9tCbahLJxwgApPZbIWG7GZy0j0jNPwRXtSclxE0-v7Ab2bf3uA9I">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-xs font-semibold rounded-full">Category</span>
+<span class="text-sm text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-xl font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted mb-4 text-base line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+<a class="inline-flex items-center text-primary font-semibold text-sm hover:text-primary-dark transition-colors duration-200" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+</a>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- Notable News Section -->
+<section class="border-t border-gray-100 py-16 lg:py-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-3xl lg:text-4xl font-bold text-text-main mb-3">Tin tức chú ý</h2>
+<p class="text-text-muted text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<button class="hidden sm:inline-flex items-center justify-center px-6 py-2 border border-gray-300 rounded-full text-sm font-semibold text-text-main hover:bg-gray-50 transition-colors duration-200">
+            View all
+          </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10">
+<!-- Horizontal Article 1 -->
+<article class="flex flex-col sm:flex-row gap-6 group cursor-pointer">
+<div class="w-full sm:w-[240px] flex-shrink-0 overflow-hidden rounded-2xl bg-gray-100 aspect-video sm:aspect-[4/3] relative">
+<img alt="Women holding gifts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Qj4O_wzFtL_dDJVDty18b_s-qGjUuQt_q0dc8oOzJkOylNLSKPnIKGCBhZpYkoLSB16ttvNPdTeh2-FnfXsyWxq2io7SvEoPG41CjnVP_DGeOrEblYL6GJvjfw964I497dn-UwV01tRGdEEgiHON2qRZxIg6GpdnkNi1kryjTJUiDxPngnijRVnkPCFxRixogILHv_jOhv-jOxwVIIQfNqD-p6JzgnZWRc1iHXUTKYSJeEVVA6607DHlbi8s75B1HE8lN6iBqZF-">
+</div>
+<div class="flex flex-col justify-center py-2">
+<div class="flex items-center gap-3 mb-2">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-[11px] font-semibold rounded-full uppercase tracking-wider">Category</span>
+<span class="text-xs text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-lg font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted text-sm mb-3 line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim...</p>
+<a class="inline-flex items-center text-text-main font-semibold text-sm hover:text-primary transition-colors duration-200 mt-auto" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+</a>
+</div>
+</article>
+<!-- Horizontal Article 2 -->
+<article class="flex flex-col sm:flex-row gap-6 group cursor-pointer">
+<div class="w-full sm:w-[240px] flex-shrink-0 overflow-hidden rounded-2xl bg-gray-100 aspect-video sm:aspect-[4/3] relative">
+<img alt="Men with gift box" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW24jbVT4rEcFrfCGw1XgcNRTG_0XRSVtCB67d8-kMRud6hOpf2UCPIlTfS8xI6-7ZUGGHW5NxcVAZPkL1N3T79f-ciIICn5mWr1cB3qI5FAwls3UYtsBhiAuN3jkvb_q0OIc7wjJ_kX4R5miBMkKjg6N90RFKrmBSpvXL0fOQxihiTGvaECzS1CjwqlBA-8UeXA9cAKMwrSsgAsweAEl-YbDqf6fLmdQDhEOMXrfGFySVR-yZaQ_Ih0zWqGY2xho-H17sb34k6RsU">
+</div>
+<div class="flex flex-col justify-center py-2">
+<div class="flex items-center gap-3 mb-2">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-[11px] font-semibold rounded-full uppercase tracking-wider">Category</span>
+<span class="text-xs text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-lg font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted text-sm mb-3 line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim...</p>
+<a class="inline-flex items-center text-text-main font-semibold text-sm hover:text-primary transition-colors duration-200 mt-auto" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+</a>
+</div>
+</article>
+<!-- Horizontal Article 3 -->
+<article class="flex flex-col sm:flex-row gap-6 group cursor-pointer">
+<div class="w-full sm:w-[240px] flex-shrink-0 overflow-hidden rounded-2xl bg-gray-100 aspect-video sm:aspect-[4/3] relative">
+<img alt="Event setup" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsbJ_XKVRPZsuWGK1q6UEz7MiG4f9NB8m47J-EPubwe3rxCnoylp58O4kUKaI-MZQZHGC1dF7szVAkbqGwJk1QiocSlm2MKDm82TKowewT0YEPz8W4wqmbfLSdoI_M2RuT7AtYvVXSDe1yrJWvoEycu9JtFGK_WtmDPIyjQm4PcnOiTwDnbfKWp0dUrsRZ6XC-pUjCwm53s-UZ7jQJ-AXEmQ007Mb0KossHIfsGObVqxm3h9mbOH0yPnXW2Tane-NaFSAqdD2J8gOt">
+</div>
+<div class="flex flex-col justify-center py-2">
+<div class="flex items-center gap-3 mb-2">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-[11px] font-semibold rounded-full uppercase tracking-wider">Category</span>
+<span class="text-xs text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-lg font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted text-sm mb-3 line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim...</p>
+<a class="inline-flex items-center text-text-main font-semibold text-sm hover:text-primary transition-colors duration-200 mt-auto" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+</a>
+</div>
+</article>
+<!-- Horizontal Article 4 -->
+<article class="flex flex-col sm:flex-row gap-6 group cursor-pointer">
+<div class="w-full sm:w-[240px] flex-shrink-0 overflow-hidden rounded-2xl bg-gray-100 aspect-video sm:aspect-[4/3] relative">
+<img alt="Strong up event graphic" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgGTrzg9qtt2vvKT67ROZ-5ZeN3iTZrU6R-OAQh9Uilq6OQHhMml_tNNVuRC9YkxNJtfVFFiX9h1Hg5mSBzKLq1EFtu_MbIkrGzjfGg2VcMMMOpPgx10Ubku5OLLgIL8hJ7TZypmL5A9FNj-JEGy61Mg1mPphl8SzH7soNYfXct95MBvLoNEL3bFe0dOG3xMeFnHXIjiq0UIqwJNQrK2RbI4QADi_QfGQTrQQedjIfZajCrN4JE3QlHSH0ibJA9tvZA_0UOkoDcj4c">
+</div>
+<div class="flex flex-col justify-center py-2">
+<div class="flex items-center gap-3 mb-2">
+<span class="inline-block px-3 py-1 bg-gray-100 text-text-main text-[11px] font-semibold rounded-full uppercase tracking-wider">Category</span>
+<span class="text-xs text-text-muted font-medium">5 min ago</span>
+</div>
+<h3 class="text-lg font-bold text-text-main mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">Blog title heading will go here</h3>
+<p class="text-text-muted text-sm mb-3 line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim...</p>
+<a class="inline-flex items-center text-text-main font-semibold text-sm hover:text-primary transition-colors duration-200 mt-auto" href="#">
+                Read more <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+</a>
+</div>
+</article>
+</div>
+<div class="mt-8 text-center sm:hidden">
+<button class="w-full inline-flex items-center justify-center px-6 py-3 border border-gray-300 rounded-full text-base font-semibold text-text-main hover:bg-gray-50 transition-colors duration-200">
+            View all
+          </button>
+</div>
+</div>
+</section>
+</main>
+<!-- END: Page Content -->
+<!-- BEGIN: MainFooter -->
+<footer class="bg-primary text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+<!-- Left Col: Branding & Info -->
+<div class="md:w-1/2">
+<div class="flex items-center gap-2 font-bold text-4xl mb-4">
+<svg fill="none" height="40" viewBox="0 0 32 32" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="white"></path>
+<path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+<path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+</svg>
+            Fabbi
+          </div>
+<p class="text-sm font-medium mb-8">CÔNG TY CỔ PHẦN NGHIÊN CỨU VÀ PHÁT TRIỂN FABBI</p>
+<ul class="space-y-3 text-sm text-white/80">
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-house mt-1"></i>
+<span>Địa chỉ: 107 Nguyễn Phong Sắc - Hai Bà Trưng - Hà Nội</span>
+</li>
+<li class="flex items-center gap-3">
+<i class="fa-solid fa-phone"></i>
+<span>Điện thoại: 123 456 789</span>
+</li>
+<li class="flex items-center gap-3">
+<i class="fa-regular fa-envelope"></i>
+<span>Email: Hr@fabbi.com.vn</span>
+</li>
+</ul>
+</div>
+<!-- Right Col: Links & Social -->
+<div class="md:w-1/2 flex flex-col md:items-end">
+<div class="mb-8">
+<h4 class="text-base font-bold mb-4">Follow Us</h4>
+<div class="flex gap-4">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-facebook-f text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-twitter text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-instagram text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-tiktok text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-youtube text-sm"></i>
+</a>
+</div>
+</div>
+<div class="w-full max-w-[200px]">
+<h4 class="text-base font-bold mb-4">Quick link</h4>
+<ul class="space-y-2 text-sm text-white/80">
+<li><a class="hover:text-white transition-colors" href="#">Tuyển dụng</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Về Fabbi</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Tin tức</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Ứng tuyển</a></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-xs text-white/60">
+<p>© 2023 Fabbi. All rights reserved.</p>
+<button class="mt-4 md:mt-0 flex items-center gap-2 hover:text-white transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<i class="fa-solid fa-arrow-up"></i> Back to top
+        </button>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

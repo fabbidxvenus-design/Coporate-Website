@@ -1,0 +1,539 @@
+<!DOCTYPE html><html lang="vi"><head><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Fabbi Careers - Tuyển Dụng</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            teal: {
+              DEFAULT: '#008b9c',
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            },
+            primary: '#008b9c',
+            dark: '#1e293b',
+            gray: {
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              800: '#1e293b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styles">body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #334155
+    }
+.gradient-text {
+    background: linear-gradient(90deg, #008b9c 0%, #14b8a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+    }
+.hero-bg {
+    background-color: #E6F7FA;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC7wQy0pvL3l450Ue5ausCEMcD9ObKYu-XuoyY4ODl7m0WNoZipT9yOwLSNGjJSzpojo6R1JA0KJxDmSxrGIwxlY4dUVLj8r6fQrSlvPowxP8jvNKDdh_dRMTnuo7_j8e41BtwxUfej0mUJCzRS4ys7Xk6Skwv1RV_bs_eebktDwID3C9IPeHYEabba6Z-LwFoWgjB1l95UoNan-w2n0iPL9Rwk3rKhIOMLJoQbo6zDVs4YxJhTabqXpfVM8p7Y09zQYxixAzNmkuwl);
+    background-size: cover;
+    background-position: center
+    }
+.job-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border-color: #008b9c
+    }
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px
+    }
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1
+    }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px
+    }
+.checkbox-custom {
+    accent-color: #008b9c
+    }</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- BEGIN: Header -->
+<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo -->
+<div class="flex-shrink-0 flex items-center cursor-pointer">
+<div class="text-primary font-bold text-3xl flex items-center gap-2">
+<svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="#008B9C"></path>
+<path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+<path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+</svg>
+            Fabbi
+          </div>
+</div>
+<!-- Navigation Menu -->
+<nav class="hidden md:flex space-x-8">
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Home</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Tuyển Dụng</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Về Fabbi</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Tin tức</a>
+<a class="text-text-main hover:text-primary px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Ứng tuyển</a>
+</nav>
+<!-- Language Switcher -->
+<div class="hidden md:flex items-center bg-gray-100 rounded-full p-1">
+<button class="px-3 py-1 text-xs font-semibold text-gray-500 hover:text-gray-900 rounded-full transition-colors duration-200">JP</button>
+<button class="px-3 py-1 text-xs font-semibold bg-primary text-white shadow-sm rounded-full transition-colors duration-200">VN</button>
+</div>
+<!-- Mobile menu button -->
+<div class="md:hidden flex items-center">
+<button class="text-gray-500 hover:text-gray-900 focus:outline-none">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Main Content -->
+<main>
+<!-- BEGIN: Hero Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+<div class="hero-bg rounded-3xl overflow-hidden relative flex flex-col items-center py-16 px-4 md:px-8">
+<!-- Background illustrations (placeholders) -->
+<div class="absolute left-8 bottom-0 hidden lg:block opacity-80">
+<img alt="Illustration" class="h-48 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqgJKnNaeEIbfGcg5OpUhbbaUSXLMsLvtrNlM0NxdP0quYSKhjPZnyeLyjqS8PQ-TIp3WVUyzjxlWwdWD8B_MnLjBh0P65uWIhftciv3v-VPOCCEw51lBHZ0vdqGTaDDI5FWeefXmC5qyNzHR4GEazHUdVeyElEj-x-VkrvGTfwgjLvePyBclOLg3tfx4F0XpUsWjzDU3e3H6XuSxrjH62JVSLeZhO6NI2NGIaz6eeu4U1pGHp-HFWLTGzswvsaLg3Of95Xf_D4qAQ">
+</div>
+<div class="absolute right-8 bottom-0 hidden lg:block opacity-80">
+<img alt="Illustration" class="h-40 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdWVmr_UKPdaGMaw0-AOXy8-JQekQKEI6VRQMJsGilafe_yJTok1BCljKowz1ywmrgM4mXQAZJhKDOJkPe5YRpAgD-94EjD39oeYQWRp_UUDGYQNq0Pz2Be56F9x2Kl5LowQM-8AcNE8Et5pzxW8Kej9VaWvtC4mn_UZ6S9PZK-hoJeUf4FMKYwgbewd9X-YjmLCk4UzgSjB9N4-Y8X5gI5cwumJ0EZ0TsxCZXE7wp1-jGXZItbFVEDVoW7BqQLAy_utd_G-VWPgnd">
+</div>
+<div class="text-center max-w-2xl relative z-10 mb-8">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+<span class="text-primary">100 Jobs</span> đang open
+          </h1>
+<p class="text-gray-600 text-sm md:text-base">
+            Describe exactly what the company does and what a customer can expect when working with the company. Avoid using verbose words or phrases.
+          </p>
+</div>
+<!-- Search Bar -->
+<div class="w-full max-w-3xl bg-white rounded-full shadow-lg p-2 flex flex-col md:flex-row items-center gap-2 relative z-10 border border-gray-100">
+<div class="flex items-center px-4 w-full md:w-48 border-b md:border-b-0 md:border-r border-gray-200 py-2 md:py-0">
+<i class="fa-solid fa-location-dot text-gray-400 mr-2"></i>
+<select class="w-full bg-transparent border-none text-gray-600 text-sm focus:ring-0 focus:outline-none appearance-none cursor-pointer">
+<option value="HN">Hà Nội</option>
+<option value="DN">Đà Nẵng</option>
+<option value="HCM">Hồ Chí Minh</option>
+<option value="JP">Japan</option>
+</select>
+<i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-auto"></i>
+</div>
+<div class="flex-grow flex items-center px-4 w-full py-2 md:py-0">
+<input class="w-full bg-transparent border-none text-sm text-gray-700 placeholder-gray-400 focus:ring-0 focus:outline-none" placeholder="Nhập tên công việc tìm kiếm ..." type="text">
+</div>
+<button class="bg-primary hover:bg-teal-600 text-white rounded-full px-6 py-2.5 text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center">
+<i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm
+          </button>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Job Listings & Sidebar -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Job Listings -->
+<div class="lg:col-span-2 space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+<h2 class="text-2xl font-bold text-gray-800">Danh sách tuyển dụng</h2>
+<!-- Filters -->
+<div class="flex flex-wrap gap-4 text-sm text-gray-600">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checkbox-custom" type="checkbox">
+<span class="font-medium text-gray-700">Freelancer</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checkbox-custom" type="checkbox">
+<span class="">Internship</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checkbox-custom" type="checkbox">
+<span class="font-medium text-gray-700">Full Time</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checkbox-custom" type="checkbox">
+<span class="">Part Time</span>
+</label>
+</div>
+</div>
+<!-- Job Cards List -->
+<div class="space-y-4"><!-- Job Card 1 -->
+<div class="bg-white border border-gray-100 rounded-xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] hover:shadow-md transition-shadow">
+  <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-4">
+    <div class="flex gap-4 items-center">
+      <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
+        <img alt="PM Icon" class="w-10 h-10 object-contain rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbB_ufdeP2asKCwgEmAWWvqF6R8osWE3nItxhaHYmTFfDK6D_nWgbFHTxckuKQymOvhbZ0EO566x_5ypLX35TU2AJU_ZZhtr5758e8peHvFzbjlS5enxglkZULCuRkmGh5ffNAPovAQ1fWVk2znwY6VBKR9B-N9f88N959eNO6EQw5o7AiEYSJyTohsXowGl9DsN941lDCfialD13cd8OH9jcIJB6cHHuqK36_RD8RDtKAs0KRgws-UoLBXy_9uiCrxZXB5E2dNcdY">
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-gray-900 hover:text-primary transition-colors cursor-pointer">Project Manager</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-gray-500">
+          <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 2 ngày trước</span>
+          <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Ngày hết hạn: 20/04/2023</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-dollar-sign"></i> Upto 40 Triệu</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
+      <button class="text-gray-400 hover:text-primary p-2"><i class="fa-regular fa-bookmark text-xl"></i></button>
+      <button class="bg-primary hover:bg-teal-600 text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto">Xem chi tiết</button>
+    </div>
+  </div>
+  <div class="flex items-center gap-1.5 text-sm text-gray-500 mb-4">
+    <i class="fa-solid fa-map-pin"></i> Cầu Giấy, HN
+  </div>
+  <div class="flex flex-wrap gap-2 mb-4">
+    <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Full time</span>
+    <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">Internship</span>
+  </div>
+  <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+    <i class="fa-solid fa-tag"></i> Tag: 
+    <a class="hover:text-primary" href="#">developer</a>
+    <a class="hover:text-primary" href="#">manager</a>
+    <a class="hover:text-primary" href="#">senior</a>
+    <a class="hover:text-primary" href="#">IT company</a>
+  </div>
+</div>
+
+<!-- Job Card 2 -->
+<div class="bg-white border border-gray-100 rounded-xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] hover:shadow-md transition-shadow">
+  <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-4">
+    <div class="flex gap-4 items-center">
+      <div class="w-16 h-16 bg-purple-50 rounded-xl flex items-center justify-center shrink-0">
+        <img alt="PHP Icon" class="w-10 h-10 object-contain rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcRwYFEDuN1lXvQ1xw-KtE1IdHGD2mI53GniW7Wvxh4WvYsIfX8nhbB4hw-duKdgRC9Pm919RZRhwxCMsufwXoxy8o5_lH10KX4FZ25zhSeDANvxDMq016qjtNoZ3vkMpRFtZABLmREsw0eUfeUvA4_XnWwscvoSi_aoFaEs29Y3DtnrabGF-SFhNm5zrz7YO0zdMYEqHwIHSj6WIR-TFluwcUji2kMvydmSGBcPO8cqptOKBvcb440wu5o7yo0zCK3ZuVEAvaAFlI">
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-gray-900 hover:text-primary transition-colors cursor-pointer">Thực tập sinh PHP</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-gray-500">
+          <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 2 ngày trước</span>
+          <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Ngày hết hạn: 20/04/2023</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-dollar-sign"></i> Thương lượng</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
+      <button class="text-gray-400 hover:text-primary p-2"><i class="fa-regular fa-bookmark text-xl"></i></button>
+      <button class="bg-primary hover:bg-teal-600 text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto">Xem chi tiết</button>
+    </div>
+  </div>
+  <div class="flex items-center gap-1.5 text-sm text-gray-500 mb-4">
+    <i class="fa-solid fa-map-pin"></i> 107 Nguyễn Phong Sắc, Cầu Giấy, HN
+  </div>
+  <div class="flex flex-wrap gap-2 mb-4">
+    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Part time</span>
+    <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium">Freelancer</span>
+  </div>
+  <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+    <i class="fa-solid fa-tag"></i> Tag: 
+    <a class="hover:text-primary" href="#">developer</a>
+    <a class="hover:text-primary" href="#">manager</a>
+    <a class="hover:text-primary" href="#">senior</a>
+    <a class="hover:text-primary" href="#">IT company</a>
+  </div>
+</div>
+
+<!-- Repeat for other cards with same structure -->
+<div class="bg-white border border-gray-100 rounded-xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] hover:shadow-md transition-shadow">
+  <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-4">
+    <div class="flex gap-4 items-center">
+      <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
+        <img alt="PM Icon" class="w-10 h-10 object-contain rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV2XaBovtAr-NdIS4kfv8xECXiXwimJ8F2Ma8P2rD8XK7EqQhUA0c0a6B9Q1QX2gVjSqKlDCyQnJy1BntYqfoxf8lraaGCbV4rRqF8OlmPpAFKeuhLrzcdQGq-WFSSEa9Po8w7uVYHv0pwWrwdpaM6m95xfpQ5PK8XOOMwXtBlBqqi23hlYCpXolnWzhUFYDFm3wub6cL7B6tySTcmC9-QGOtpdsTWjnpQJ0-JiPS80hYhHc1jhIVeGFfh2fLvv9QVxFTUGebymIBU">
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-gray-900 hover:text-primary transition-colors cursor-pointer">Project Manager</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-gray-500">
+          <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 2 ngày trước</span>
+          <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Ngày hết hạn: 20/04/2023</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-dollar-sign"></i> Upto 40 Triệu</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
+      <button class="text-gray-400 hover:text-primary p-2"><i class="fa-regular fa-bookmark text-xl"></i></button>
+      <button class="bg-primary hover:bg-teal-600 text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto">Xem chi tiết</button>
+    </div>
+  </div>
+  <div class="flex items-center gap-1.5 text-sm text-gray-500 mb-4">
+    <i class="fa-solid fa-map-pin"></i> Cầu Giấy, HN
+  </div>
+  <div class="flex flex-wrap gap-2 mb-4">
+    <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Full time</span>
+    <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">Internship</span>
+  </div>
+  <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+    <i class="fa-solid fa-tag"></i> Tag: 
+    <a class="hover:text-primary" href="#">developer</a>
+    <a class="hover:text-primary" href="#">manager</a>
+    <a class="hover:text-primary" href="#">senior</a>
+    <a class="hover:text-primary" href="#">IT company</a>
+  </div>
+</div></div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 mt-8">
+<button class="text-gray-400 text-sm font-medium cursor-not-allowed px-2">Prev</button>
+<button class="w-8 h-8 rounded bg-primary text-white text-sm font-medium flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-medium flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-medium flex items-center justify-center transition-colors">3</button>
+<span class="text-gray-400">...</span>
+<button class="w-8 h-8 rounded bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-medium flex items-center justify-center transition-colors">10</button>
+<button class="text-gray-600 hover:text-primary text-sm font-medium px-2 transition-colors">Next</button>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<aside class="space-y-8">
+<div>
+<h2 class="text-2xl font-bold text-gray-800 mb-2">Liên kết</h2>
+<p class="text-gray-500 text-sm mb-4">Lorem ipsum dolor sit amet consectetur. Sed duis elit dictumst convallis elit. Risus consequat dolor...</p>
+<!-- Facebook Widget Placeholder -->
+<div class="bg-gray-900 rounded-xl overflow-hidden relative shadow-md mb-6">
+<img alt="Facebook Cover" class="w-full h-32 object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAN9dC-wn9qjRznU2QKp9O2nXOE6RcqpRU4HnhImQ-u9x0UfiumrYcSFIY7n8NQ-Ay0v1nVK-hvgt0Wf1dLPTPWmzG5BwhTdvzGbhXdDacbHqRuQyRq1qF5x-LE93HgK8HzqgRqBC7Aj-M2c8yOmkstMLB728aslhoWBC6eE9l63SqufRNp_Of2OPYRGpNGNHSz4jgumuyWenbK0_RKrB07B2S_PkRza7-bc3XOLGB9a8o67icmfuoL9q-TSoyf010UVZJ4zXxEBs9">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-3">
+<img alt="Fabbi Logo" class="w-12 h-12 rounded bg-white p-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClL6jbCDR0y4liRFa7b5W7i8RV_i1D13hOG84B6OiPxJb8dM5aiv-6gIZMxTWb3WFvYYM7YKZPadwj_Jg91GRdYvxbo7L9lSb4yBmUXPC24Vb82e1s129R_W5tWDXClr8VhU2C3lXieLR5oMvbdG_DaVDGE4JA3vdoGthVnQYDI07pGyyFq9Y8mogzgr5Dd4qD19Makl2Rh2aeJgvv6d1JKoW9aePUi2cvfE9hGPOOQrS1yCICEpXy1_E7EMthTK0D5vvEZhrJCefE">
+<div>
+<h3 class="text-white font-bold">Fabbi JSC</h3>
+<div class="flex items-center gap-2 mt-1">
+<button class="bg-blue-600 text-white text-xs px-2 py-1 rounded flex items-center gap-1 hover:bg-blue-700"><i class="fa-brands fa-facebook"></i> Like Page</button>
+<span class="text-gray-300 text-xs">100K Likes</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Social Feed Widget -->
+<div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+<!-- Feed Post 1 -->
+<div class="p-4 border-b border-gray-100">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="Fabbi Universe" class="w-10 h-10 rounded-full border border-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYMPEbcKgge4wXdJzMNs8hiy-KqzVRV0qw_CbSqnM8OErepesSHZBNMsD0ilYG3wzbeUydpn57NfTD-U9eHDq_828-k-yT11-9mciuFFZsPooPpPwhei4YE2O9nrkn6phujuLZwgUOCO5da_SX6HFcgVg9NVJH0hlSf9H0GBqF6-9soawZfLWbA9wiKaR97BL0yHAgJG_J6b9O838ov40YPT1BSscKeUti6aJm9yj-wBCi2oJo8wUWo3OIUFExxFnopMO4aIZ7cflh">
+<div>
+<h4 class="font-bold text-gray-800 text-sm leading-tight">Fabbi Universe</h4>
+<span class="text-xs text-gray-500">8 tháng 3 lúc 20:00</span>
+</div>
+</div>
+<i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
+</div>
+<p class="text-sm text-gray-700 mb-3 line-clamp-3">
+                  LOVELY MOMENT | FABBI GIRLS, YOU ARE MY SWEET HEART... <br><br>
+                  "Mùng 8 tháng 3<br>
+                  Đi ra thăm vườn<br>
+                  Chọn một bông hoa...
+                </p>
+<a class="text-primary text-sm hover:underline mb-3 block" href="#">Xem thêm</a>
+<div class="grid grid-cols-2 gap-1 rounded-lg overflow-hidden relative">
+<img alt="Post Image 1" class="w-full h-32 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABCreC34otRtBBeyQ5Sw2lngMi61_sc4XmZHHvzQlG43zqt0AY1CmnESxCvmcLPgE66vlNlqGL1HuItadUnVRABQqcMO8OOKlqLRDn9EJ3j_N_Mn73AfaJW8GwjAIn18GlELA6obNIRKHeiVRMJ2qSDvqfiDvKFCyt02FQM1u-cdHc2x2PscwQ-v8Zig0uKgoi6Xznht27yt3em7dx2saaQOZKEJeBm9L5O3rfv-sSV75TRb-HyzZnm_Os9YwMmj5KC3LRaE5bhr_a">
+<img alt="Post Image 2" class="w-full h-32 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIzFjvdmNXHQ8CgFYMHZSzGbmFlP_di4YH8hk-uaO2xNGLy_6xbjvs2BdNrtfmfC8OndkHV3rZ3b7k0dPCIFtkwUWRs5UYqvnIcMPUxQSRb55-svM0zNKxoJZTmqk8lK_SLlt4d3bUZ3wxhsDSiHR6RY1ARLR7228LAG-3Hle2PqzPjsN3NTUNjRl5lUWuqxiYjt-D2TXPB9j8Go1LHsjwD7SgamiPATFSZXTff3hitiboO4tkjStv9amP9yuzyz7m7-AqW5rypYFp">
+<img alt="Post Image 3" class="w-full h-32 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASx-lamZ_UwoyQRSbBsfaf3ORO6Pj0keDE5kzNPOToxlWyWp1-h8d1qoCRC3ZmIgOiMz1BEBHMQRnvTpGL9vPkIdw6fKkhxKsgyFCJTQs32TEWryvxcFuCYGPhPqIHHx54xG1op2_GUCGfap90c_dH46Pj83ZHapT3DXn1uZIM-gfWPjJjX_9nafXeQ3BdmHXjGiTPyYEOZjsGKt1NKVZTac0jp_wbdIoZowbd-sri_jU7-nj9F3ve1NZujATKKBx4TluptBOEuS_e">
+<div class="relative w-full h-32">
+<img alt="Post Image 4" class="w-full h-32 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsvA2-pduuwG2DHfpF8pyNcoPk9cZ8AT7Ccgun0HnRpT6kBMUUYHNqPyZg15ceSQn7r5p_Zh6erONAuPdwJE09Gc1iy0Xy0csMBvGM_bU1GAhI0i_BlCtqObiHmJLTbHhjoZJdBVpgeKwx0r6F5vz_ISDobTRlWsO7JnBFygJbHpOsUBjBqvPCrxQW_rzinwReWN2pe2SJujiJfb4CPEG3w_NqPE-YoUxiEtVaOts3WcZrSn5Jut39JZkHNgww8XVJS3CuvlH1eACh">
+<div class="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-bold text-xl">+5</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 pt-3 border-t border-gray-50 text-gray-500 text-xs">
+<button class="flex items-center gap-1 hover:text-blue-600"><i class="fa-solid fa-thumbs-up"></i> 200</button>
+<button class="flex items-center gap-1 hover:text-gray-800"><i class="fa-solid fa-comment"></i> 12</button>
+<button class="flex items-center gap-1 hover:text-gray-800"><i class="fa-solid fa-share"></i> 10</button>
+</div>
+</div>
+<!-- Feed Post 2 (Shorter version) -->
+<div class="p-4 bg-gray-50/50">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="Fabbi Universe" class="w-10 h-10 rounded-full border border-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJtRMOANva949hoNvj7ExBSXntdUKvOnB9kW8TZmyuTZc1eSB-leqrSGRZnQEGWvAeh49xEYa5UulCGaeEJcvu1w52blZOGtVCJE61pgWPxF46KBwNilM5nenmqhl06y8NwPfi3BGE0G_rP0DDIC3l3JuoxEUArZEKAEFPaZLMHukY0b4zB65yVZUgNrXkkTUXlPRxqSdTUz_bxx_zdNxha5c01Y9yjk8jicFIBttn1OYAyRxMDatbqULfwLguvuYwoKvp7sFWmdCo">
+<div>
+<h4 class="font-bold text-gray-800 text-sm leading-tight">Fabbi Universe</h4>
+<span class="text-xs text-gray-500">8 tháng 3 lúc 20:00</span>
+</div>
+</div>
+<i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
+</div>
+<p class="text-sm text-gray-700 mb-3 line-clamp-2">
+                  LOVELY MOMENT | FABBI GIRLS, YOU ARE MY SWEET HEART... <br>
+                  "Mùng 8 tháng 3...
+                </p>
+<div class="grid grid-cols-2 gap-1 rounded-lg overflow-hidden h-24">
+<img alt="Post Image 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJTy25_PAfKl86SQL8hgp2GKYjbKGfO4zi_xhMnsrhH-jtUmI5owcqymqskCQtzhZp8rlhjgrM3KzbcAkPh55HqEI_N6uPPeG_Dai-FzhdThT060H2BjVi5DPFi8g_aUFqqrLlNpZVsYh3khU9On8i9yAv8323XyFQVnMRkSc-FcVBN0tTUbl17dYJ-jXAe8pDiDah7WlgDSoQx8ZqrmTMC2W_7ABXcb13PdvO59c7zEyz6zolzz9IAqU9BQTEiU937N0Rrd0nSavz">
+<img alt="Post Image 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9uCh2PjxQ2heHwx-0zMO8kiTdAosBdX_EuJygTY-jUYcCclHPIoDUC1dMlLSk260v_k8TbwzSpL4usCTZI3Gbt41gXkloSU1BK38nT2Y_BD6sz2TrePX4Lgcj0oz5dY5Rtm2mkU_V2hMwHAq1EF5ZKD2SGMH1M1RfHsP0I-RKQs-wRh69vXDt_FuVBya6q0jf80VCTQSMqGAmteAPm9xI1KzSPAAEDoYx6jHPPeroQliSU_g5c6L48xhOiRqVy6xzZ-hdP09DRiaZ">
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</section>
+<!-- END: Job Listings & Sidebar -->
+<!-- BEGIN: Photo Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-100">
+<div class="text-center mb-8">
+<h2 class="text-3xl font-bold text-gray-800 mb-2">Chuyên mục ảnh</h2>
+<p class="text-gray-500 max-w-2xl mx-auto">Lorem ipsum dolor sit amet consectetur. Morbi sed faucibus at egestas. Cras.</p>
+</div>
+<div class="relative overflow-hidden rounded-2xl group">
+<!-- Main Image Carousel Placeholder -->
+<div class="flex gap-4 overflow-x-auto snap-x snap-mandatory custom-scrollbar pb-4">
+<div class="snap-center shrink-0 w-[85%] md:w-[70%]">
+<img alt="Happy New Year 2023" class="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9LXAf_VjiWjNM2m07XUmA2QiFhZFYPkXZ3-0kcj5wOuLaqJG8mrcROd3rxMf1NOha8bcxAlyAfAfmjZ8q-V0mfNby5pTmrsn1pAwszpagDOQSHguBRcw7BuHTexnQpou4MIYlRStsVPaqHVuUCvBqt-4ew99x67-8f8HL0O_sb2vq4oy4XwUE5omfki0Xk6annwBytI3CVCgJaoX-rVxij1nrvyhYhVL5w1rI8ktf5awPAOsXF0FzWcjufj8jui5Udn-dlUS5Uqvk">
+</div>
+<div class="snap-center shrink-0 w-[85%] md:w-[70%] opacity-50 transition-opacity hover:opacity-100">
+<img alt="Company Event" class="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZgniEfh3FkEa4saCgHozO5-6CGMz1PYSE-4T9ustPi2XI-sM-QRtddPChCaT93KMYDx9afO48V46kD1m3KYVHPadBPNiATRIMXD95EGNlPDCbIEStsOnGEwTpHzk7pW58byTDxh1olQuIPvFAvaKMW53MDSUrZ_j2prrKjo91SiH-PZFLCqzKht6KdVuH9xUfGkObZ6jUfRFkHJ2zY1ZwipAPuHvBYqiRp7OtIM07t56yt4STiEkHAI4teJ0E7P5zqvmx-tZX0Brz">
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex justify-between items-center mt-6 max-w-[70%] mx-auto">
+<!-- Dots -->
+<div class="flex space-x-2">
+<button class="w-8 h-2 rounded-full bg-primary"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+</div>
+<!-- Arrows -->
+<div class="flex space-x-3">
+<button class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-primary flex items-center justify-center transition-colors"><i class="fa-solid fa-chevron-left"></i></button>
+<button class="w-10 h-10 rounded-full bg-blue-50 text-primary hover:bg-blue-100 flex items-center justify-center transition-colors"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Photo Section -->
+<!-- BEGIN: Location Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="text-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800 mb-2">Tìm kiếm công việc theo Location</h2>
+<p class="text-gray-500">Tại Fabbi có 2 văn phòng tại Việt Nam và Japan, Bạn muốn làm việc tại đâu?</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Hanoi Location Card -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-lg transition-shadow duration-300 p-3">
+<div class="rounded-xl overflow-hidden relative mb-4">
+<img alt="Hà Nội" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAoAiHiN0heWQVEB5LY3CsWG5HVWOlavAI0RkGu45wziE6HtRMweNhfVEIxtxHzUSE8xWX2LattFRs-v1tfSPVhCMtddMzXN98lhv97FBXA1yzwFb1w_yKJG9nMqRyYhy79k0GyFGE7K_AiGbxOOe_PZCzTDHDLafLBMY7RR4KQE9xAhGW82sdxAHNk_KYWNR95qVZai964fjfv7ZS1XogaI0X3LeJe0shRjcPJKXDmhJV__dPwcf0UWoor6ojM1Mcu6stx1wuipuy">
+</div>
+<div class="px-2 pb-2">
+<h3 class="text-xl font-bold text-gray-800">Hà Nội</h3>
+<p class="text-gray-500">30 công việc open</p>
+</div>
+</div>
+<!-- Japan Location Card -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-lg transition-shadow duration-300 p-3">
+<div class="rounded-xl overflow-hidden relative mb-4">
+<img alt="Japan" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2vsKh9tDq526kxr6nHDqOjI_DUT2hUgFZDAVndjgfnuYHazgJBOPUNp9QJTwJyugSsKt_sdOEu6F1sjG7ilWQ64Q-wxOIaYrkrnFh-fSB7aHKgi6p0i4j1TguFGMZ4lCePs2hrGNSknl43rvJj0osV7fXrAqn10qO9FBdByyWgTKDn-eu_dOYDpSCa2jl2r28juozbY-qkJ0FDDfW_F_-qO93IfwlsMc-DYt1UBMi9Jldb-Fd9VoVHJbyr0tWE-khUs8BFU-eUd6E">
+</div>
+<div class="px-2 pb-2">
+<h3 class="text-xl font-bold text-gray-800">Japan</h3>
+<p class="text-gray-500">12 công việc open</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Location Section -->
+</main>
+<!-- END: Main Content -->
+<!-- BEGIN: Footer -->
+<footer class="bg-primary text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+<!-- Left Col: Branding & Info -->
+<div class="md:w-1/2">
+<div class="flex items-center gap-2 font-bold text-4xl mb-4">
+<svg fill="none" height="40" viewBox="0 0 32 32" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="white"></path>
+<path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+<path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+</svg>
+            Fabbi
+          </div>
+<p class="text-sm font-medium mb-8">CÔNG TY CỔ PHẦN NGHIÊN CỨU VÀ PHÁT TRIỂN FABBI</p>
+<ul class="space-y-3 text-sm text-white/80">
+<li class="flex items-start gap-3">
+<i class="fa-solid fa-house mt-1"></i>
+<span class="">Địa chỉ: 107 Nguyễn Phong Sắc - Hai Bà Trưng - Hà Nội</span>
+</li>
+<li class="flex items-center gap-3">
+<i class="fa-solid fa-phone"></i>
+<span class="">Điện thoại: 123 456 789</span>
+</li>
+<li class="flex items-center gap-3">
+<i class="fa-regular fa-envelope"></i>
+<span class="">Email: Hr@fabbi.com.vn</span>
+</li>
+</ul>
+</div>
+<!-- Right Col: Links & Social -->
+<div class="md:w-1/2 flex flex-col md:items-end">
+<div class="mb-8">
+<h4 class="text-base font-bold mb-4">Follow Us</h4>
+<div class="flex gap-4">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-facebook-f text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-twitter text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-instagram text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-tiktok text-sm"></i>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<i class="fa-brands fa-youtube text-sm"></i>
+</a>
+</div>
+</div>
+<div class="w-full max-w-[200px]">
+<h4 class="text-base font-bold mb-4">Quick link</h4>
+<ul class="space-y-2 text-sm text-white/80">
+<li class=""><a class="hover:text-white transition-colors" href="#">Tuyển dụng</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Về Fabbi</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Tin tức</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Ứng tuyển</a></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-xs text-white/60">
+<p class="">© 2023 Fabbi. All rights reserved.</p>
+<button class="mt-4 md:mt-0 flex items-center gap-2 hover:text-white transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<i class="fa-solid fa-arrow-up"></i> Back to top
+        </button>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+<!-- Floating Bell Icon Placeholder -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-orange-100 rounded-full shadow-lg flex items-center justify-center text-orange-500 text-2xl hover:bg-orange-200 transition-colors z-50">
+<i class="fa-solid fa-bell"></i>
+</button>
+
+
+
+
+
+
+</body></html>

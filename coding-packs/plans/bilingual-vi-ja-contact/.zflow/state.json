@@ -1,0 +1,27 @@
+{
+  "plan": "bilingual-vi-ja-contact",
+  "sourceTip": "coding-packs/tips/TIP-011-bilingual-vi-ja-contact.md",
+  "mode": "plan-supervised",
+  "tier": "THOROUGH",
+  "status": "verifying",
+  "currentPhase": "phase-05-tests-and-verification.md",
+  "locales": {
+    "default": "vi",
+    "supported": ["vi", "ja"]
+  },
+  "routeStrategy": "locale-prefix-app-router",
+  "discoveredFiles": {
+    "publicHeader": "components/public/PublicHeader.tsx (assumed)",
+    "publicFooter": "components/public/PublicFooter.tsx (assumed)",
+    "supabaseServerClient": "lib/supabase/server.ts (assumed)",
+    "migrationsDir": "supabase/migrations",
+    "validationUtilities": "lib/validation",
+    "testFramework": "playwright"
+  },
+  "gates": {
+    "spec": "passed",
+    "execute": "passed",
+    "verify": "passed"
+  },
+  "blockers": []
+}

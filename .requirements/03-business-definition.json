@@ -1,0 +1,445 @@
+{
+  "id": "BUS-DEF-03",
+  "title": "Corporate Website Pixel-Perfect Build Business Definition",
+  "upstream": {
+    "artifact": "02-requirement-definition.md",
+    "requirementSet": ["REQ-FUNC-*", "REQ-NFR-*", "REQ-DATA-*", "REQ-INT-*", "REQ-CON-*"]
+  },
+  "status": "pass",
+  "resolvedBlockers": {
+    "formPersistence": "Supabase",
+    "cmsLogin": "Supabase Auth",
+    "visualQaTolerance": "manual approval"
+  },
+  "businessObjectives": [
+    {
+      "id": "BO-001",
+      "objective": "Deliver the corporate recruitment website so that stakeholders can use the supplied design as the production-facing experience without visual reinterpretation.",
+      "businessValue": "Preserves brand intent, reduces design-to-build rework, and enables the site to represent FABBI recruitment consistently.",
+      "successMeasures": [
+        "All supplied public recruitment pages are implemented.",
+        "Manual visual approval is achieved for desktop 1440px and 1920px.",
+        "Stakeholders do not identify material deviations from the provided design."
+      ],
+      "traceability": ["REQ-FUNC-001", "REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003", "REQ-CON-002", "REQ-CON-004"]
+    },
+    {
+      "id": "BO-002",
+      "objective": "Deliver the CMS/admin surface from the design so authorized users can access recruitment administration pages through login.",
+      "businessValue": "Establishes a controlled operational surface for managing recruitment-related content and submissions.",
+      "successMeasures": [
+        "All supplied CMS/admin pages are implemented.",
+        "CMS access requires login.",
+        "Login-to-admin journey is accepted in QA."
+      ],
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "BO-003",
+      "objective": "Ensure designed forms support real submission behavior backed by Supabase.",
+      "businessValue": "Turns the website from a static brochure into a usable recruitment channel.",
+      "successMeasures": [
+        "Designed forms submit successfully to Supabase-backed behavior.",
+        "Failed submissions show an understandable outcome.",
+        "Submission behavior does not degrade visual parity."
+      ],
+      "traceability": ["REQ-FUNC-004", "REQ-INT-001", "REQ-DATA-001"]
+    },
+    {
+      "id": "BO-004",
+      "objective": "Deliver the website using the existing Next.js, React, TypeScript, and Tailwind foundation.",
+      "businessValue": "Reduces delivery risk and avoids re-platforming work unrelated to business goals.",
+      "successMeasures": [
+        "Existing stack remains in place.",
+        "The implementation remains compatible with the project setup.",
+        "New technology choices are limited to requirement-driven needs."
+      ],
+      "traceability": ["REQ-CON-001", "REQ-NFR-005"]
+    }
+  ],
+  "kpis": [
+    {
+      "id": "KPI-001",
+      "name": "Public design page coverage",
+      "target": "100% of supplied public pages",
+      "evidence": "Route/page inventory matched to .design/recruitment_site",
+      "traceability": ["REQ-FUNC-001"]
+    },
+    {
+      "id": "KPI-002",
+      "name": "CMS design page coverage",
+      "target": "100% of supplied CMS pages",
+      "evidence": "Route/page inventory matched to .design/cms_site",
+      "traceability": ["REQ-FUNC-002"]
+    },
+    {
+      "id": "KPI-003",
+      "name": "Desktop visual approval",
+      "target": "Approved at 1440px and 1920px",
+      "evidence": "Manual QA record supported by screenshots",
+      "traceability": ["REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003"]
+    },
+    {
+      "id": "KPI-004",
+      "name": "Form submission usability",
+      "target": "100% of designed forms have accepted submit behavior",
+      "evidence": "QA confirms Supabase-backed submit success/failure behavior",
+      "traceability": ["REQ-FUNC-004", "REQ-INT-001"]
+    },
+    {
+      "id": "KPI-005",
+      "name": "CMS access control journey",
+      "target": "100% of CMS/admin surfaces require login",
+      "evidence": "QA confirms unauthenticated users do not directly enter CMS",
+      "traceability": ["REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "KPI-006",
+      "name": "Design source fidelity",
+      "target": "No unapproved material deviations",
+      "evidence": "Stakeholder/manual approval",
+      "traceability": ["REQ-NFR-001", "REQ-CON-002"]
+    }
+  ],
+  "stakeholders": [
+    {
+      "id": "STK-001",
+      "name": "Business owner",
+      "interest": "Site represents company and recruitment brand correctly",
+      "decisionRights": "Final business acceptance",
+      "traceability": ["REQ-NFR-001", "REQ-CON-002"]
+    },
+    {
+      "id": "STK-002",
+      "name": "Recruitment team",
+      "interest": "Candidates can browse jobs and submit applications",
+      "decisionRights": "Accepts recruitment user journeys",
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-004", "REQ-INT-001"]
+    },
+    {
+      "id": "STK-003",
+      "name": "CMS/admin users",
+      "interest": "Can access and use admin pages after login",
+      "decisionRights": "Accepts CMS operational flow",
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "STK-004",
+      "name": "Design owner",
+      "interest": "Implementation matches supplied design",
+      "decisionRights": "Visual approval authority",
+      "traceability": ["REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003"]
+    },
+    {
+      "id": "STK-005",
+      "name": "Engineering owner",
+      "interest": "Site is maintainable and aligned to current stack",
+      "decisionRights": "Technical delivery acceptance",
+      "traceability": ["REQ-CON-001", "REQ-NFR-004", "REQ-NFR-005"]
+    }
+  ],
+  "roles": [
+    {
+      "id": "ROLE-001",
+      "name": "Public visitor",
+      "permissions": ["View public recruitment pages", "Submit public forms"],
+      "restrictions": ["Cannot access CMS/admin pages without login"],
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-003", "REQ-FUNC-004"]
+    },
+    {
+      "id": "ROLE-002",
+      "name": "Candidate",
+      "permissions": ["Browse recruitment content", "Submit application-related forms"],
+      "restrictions": ["Cannot access CMS/admin pages without authorized login"],
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-004", "REQ-INT-001"]
+    },
+    {
+      "id": "ROLE-003",
+      "name": "CMS user",
+      "permissions": ["Access CMS/admin pages after Supabase Auth login"],
+      "restrictions": ["Access is limited to authenticated admin surface"],
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "ROLE-004",
+      "name": "Visual approver",
+      "permissions": ["Review screenshots/browser output", "Approve or reject visual fidelity"],
+      "restrictions": ["Does not define implementation internals"],
+      "traceability": ["REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003"]
+    }
+  ],
+  "businessProcesses": [
+    {
+      "id": "BP-001",
+      "name": "Public recruitment browsing process",
+      "description": "A public visitor browses recruitment pages, reads company/job/news content, and follows design-provided navigation or CTAs.",
+      "trigger": "Visitor lands on a public recruitment page.",
+      "outcome": "Visitor can reach relevant public pages and understand available recruitment content.",
+      "businessRules": ["BR-001", "BR-002", "BR-003"],
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-005", "REQ-DATA-001"]
+    },
+    {
+      "id": "BP-002",
+      "name": "Candidate form submission process",
+      "description": "A candidate fills out a designed form and submits it through Supabase-backed behavior.",
+      "trigger": "Candidate submits a public recruitment form.",
+      "outcome": "Submission succeeds or fails with a visible user outcome.",
+      "businessRules": ["BR-004", "BR-005", "BR-006"],
+      "traceability": ["REQ-FUNC-004", "REQ-INT-001", "REQ-DATA-001"]
+    },
+    {
+      "id": "BP-003",
+      "name": "CMS access process",
+      "description": "A CMS user logs in with Supabase Auth before accessing CMS/admin pages.",
+      "trigger": "User attempts to access CMS/admin functionality.",
+      "outcome": "Authenticated CMS users can access admin pages; unauthenticated users cannot directly enter the CMS surface.",
+      "businessRules": ["BR-007", "BR-008"],
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "BP-004",
+      "name": "Visual approval process",
+      "description": "Implemented pages are reviewed against the supplied design at desktop widths and approved manually.",
+      "trigger": "A page or surface is ready for QA.",
+      "outcome": "Page is either approved or returned for correction with visual deviations noted.",
+      "businessRules": ["BR-001", "BR-002", "BR-009", "BR-010"],
+      "traceability": ["REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003", "REQ-CON-002", "REQ-CON-004"]
+    },
+    {
+      "id": "BP-005",
+      "name": "Design-order delivery process",
+      "description": "Work proceeds according to the order of files in .design, unless dependency order requires a documented exception.",
+      "trigger": "Implementation planning or page delivery sequencing begins.",
+      "outcome": "Delivery remains aligned to the selected business priority order.",
+      "businessRules": ["BR-011"],
+      "traceability": ["REQ-CON-003"]
+    }
+  ],
+  "businessRules": [
+    {
+      "id": "BR-001",
+      "rule": "The supplied HTML/CSS design and screenshot references define the intended business appearance of the site.",
+      "rationale": "Pixel-perfect fidelity is the primary business requirement.",
+      "traceability": ["REQ-NFR-001", "REQ-CON-002", "REQ-DATA-002"]
+    },
+    {
+      "id": "BR-002",
+      "rule": "Screenshot comparison may support review, but final visual pass/fail is determined by manual approval.",
+      "rationale": "The blocker decision selected manual approval over strict numeric tolerance.",
+      "traceability": ["REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003"]
+    },
+    {
+      "id": "BR-003",
+      "rule": "Public recruitment pages must be accessible without CMS/admin login.",
+      "rationale": "Public visitors and candidates need direct access to recruitment content.",
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-003"]
+    },
+    {
+      "id": "BR-004",
+      "rule": "Forms represented in the design must not remain static-only if they imply submission.",
+      "rationale": "The business selected API-connected forms.",
+      "traceability": ["REQ-FUNC-004", "REQ-INT-001"]
+    },
+    {
+      "id": "BR-005",
+      "rule": "Form persistence and CMS authentication should use Supabase for this phase.",
+      "rationale": "The blocker decision selected Supabase and Supabase Auth.",
+      "traceability": ["REQ-INT-001", "REQ-INT-002"]
+    },
+    {
+      "id": "BR-006",
+      "rule": "A user submitting a form must receive a visible success or failure outcome.",
+      "rationale": "Submissions need business-operable feedback and cannot fail silently.",
+      "traceability": ["REQ-FUNC-004", "REQ-INT-001"]
+    },
+    {
+      "id": "BR-007",
+      "rule": "CMS/admin pages must be treated as protected operational surfaces rather than public pages.",
+      "rationale": "CMS surfaces are for authorized operational users.",
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "BR-008",
+      "rule": "CMS users must authenticate through Supabase Auth before CMS/admin access is granted.",
+      "rationale": "The blocker decision selected Supabase Auth for CMS login QA and access behavior.",
+      "traceability": ["REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "BR-009",
+      "rule": "Desktop visual acceptance must include both 1440px and 1920px viewport widths.",
+      "rationale": "These are the agreed desktop QA targets.",
+      "traceability": ["REQ-NFR-002", "REQ-CON-004"]
+    },
+    {
+      "id": "BR-010",
+      "rule": "Subjective improvements, rebranding, or modernization cannot replace the supplied design without explicit approval.",
+      "rationale": "The business objective is to reproduce the provided design.",
+      "traceability": ["REQ-NFR-001", "REQ-CON-002"]
+    },
+    {
+      "id": "BR-011",
+      "rule": "Implementation should follow the observed order of .design files unless an exception is documented.",
+      "rationale": "The blocker decision selected design-file order as the delivery sequence.",
+      "traceability": ["REQ-CON-003"]
+    },
+    {
+      "id": "BR-012",
+      "rule": "Re-platforming is not part of this business requirement.",
+      "rationale": "Keeping the current stack limits delivery risk and scope expansion.",
+      "traceability": ["REQ-CON-001"]
+    }
+  ],
+  "useCases": [
+    {
+      "id": "UC-001",
+      "name": "Visitor views public recruitment homepage",
+      "primaryActor": "Public visitor",
+      "goal": "View the public recruitment homepage matching the supplied design.",
+      "preconditions": ["Public site is available."],
+      "mainSuccessOutcome": "Visitor sees the design-faithful homepage and can use visible navigation/CTAs.",
+      "acceptanceCriteria": [
+        "Homepage is reachable without login.",
+        "Visual appearance receives manual approval at required desktop widths.",
+        "Primary navigation and CTAs are available."
+      ],
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-005", "REQ-NFR-001", "REQ-NFR-002"]
+    },
+    {
+      "id": "UC-002",
+      "name": "Visitor browses public content pages",
+      "primaryActor": "Public visitor",
+      "goal": "Navigate between recruitment, company, job, and news content represented in the design.",
+      "preconditions": ["Public pages are implemented."],
+      "mainSuccessOutcome": "Visitor reaches public content pages and sees content matching the design references.",
+      "acceptanceCriteria": [
+        "Public pages represented in .design/recruitment_site are reachable.",
+        "Visible content and layout match design references.",
+        "Public browsing does not require CMS login."
+      ],
+      "traceability": ["REQ-FUNC-001", "REQ-FUNC-005", "REQ-DATA-001"]
+    },
+    {
+      "id": "UC-003",
+      "name": "Candidate submits a recruitment form",
+      "primaryActor": "Candidate",
+      "goal": "Submit a designed recruitment/application form.",
+      "preconditions": ["Candidate is on a page with a designed form."],
+      "mainSuccessOutcome": "Candidate submits the form and receives a visible success or failure outcome.",
+      "acceptanceCriteria": [
+        "The form submits through Supabase-backed behavior.",
+        "The user sees the submission outcome.",
+        "The form remains visually faithful to the design."
+      ],
+      "traceability": ["REQ-FUNC-004", "REQ-INT-001", "REQ-DATA-001", "REQ-NFR-001"]
+    },
+    {
+      "id": "UC-004",
+      "name": "CMS user logs in and views dashboard",
+      "primaryActor": "CMS user",
+      "goal": "Access CMS/admin pages after login.",
+      "preconditions": ["CMS user has valid Supabase Auth access for QA/use."],
+      "mainSuccessOutcome": "CMS user authenticates and reaches the CMS dashboard/admin surface.",
+      "acceptanceCriteria": [
+        "CMS/admin pages require login.",
+        "Authenticated CMS user can reach the dashboard/admin surface.",
+        "CMS pages match supplied design references."
+      ],
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002", "REQ-NFR-001"]
+    },
+    {
+      "id": "UC-005",
+      "name": "Visual approver reviews a completed page",
+      "primaryActor": "Visual approver",
+      "goal": "Approve or reject visual fidelity for a completed page.",
+      "preconditions": ["Page is implemented and available in a running app."],
+      "mainSuccessOutcome": "Page is manually approved or returned with deviations to fix.",
+      "acceptanceCriteria": [
+        "Page is reviewed at 1440px and 1920px.",
+        "Screenshot comparison or browser inspection evidence is available.",
+        "Final decision is manual approval or rejection."
+      ],
+      "traceability": ["REQ-NFR-001", "REQ-NFR-002", "REQ-NFR-003"]
+    },
+    {
+      "id": "UC-006",
+      "name": "CMS user reviews operational CMS pages",
+      "primaryActor": "CMS user",
+      "goal": "Navigate through implemented CMS/admin pages after login.",
+      "preconditions": ["CMS user is authenticated."],
+      "mainSuccessOutcome": "CMS user can reach CMS pages represented in the design.",
+      "acceptanceCriteria": [
+        "CMS pages from .design/cms_site are reachable after login.",
+        "CMS navigation between admin pages is available.",
+        "CMS content structure matches the design source."
+      ],
+      "traceability": ["REQ-FUNC-002", "REQ-FUNC-003", "REQ-INT-002", "REQ-DATA-001"]
+    }
+  ],
+  "businessAcceptanceCriteria": [
+    "All public recruitment design pages are implemented and reachable.",
+    "All CMS/admin design pages are implemented and reachable only after login.",
+    "Designed forms submit through Supabase-backed behavior and show visible outcomes.",
+    "Desktop visual QA at 1440px and 1920px receives manual approval.",
+    "The provided design is not reinterpreted, rebranded, or replaced by generic UI.",
+    "The existing Next.js/React/TypeScript/Tailwind stack remains the implementation foundation."
+  ],
+  "risks": [
+    {
+      "id": "RISK-001",
+      "risk": "Pixel-perfect expectations are subjective without numeric tolerance",
+      "impact": "Rework during visual approval",
+      "mitigation": "Use screenshot comparison as evidence and final manual approval as the business decision",
+      "traceability": ["REQ-NFR-001", "REQ-NFR-003"]
+    },
+    {
+      "id": "RISK-002",
+      "risk": "Design HTML may not map cleanly to production app behavior",
+      "impact": "Visual or interaction gaps",
+      "mitigation": "Treat design as source of truth while implementing safely and documenting deviations",
+      "traceability": ["REQ-NFR-004", "REQ-CON-002"]
+    },
+    {
+      "id": "RISK-003",
+      "risk": "Supabase setup may be unavailable or incomplete",
+      "impact": "Forms/login cannot complete business QA",
+      "mitigation": "Confirm Supabase project credentials before integration work begins",
+      "traceability": ["REQ-INT-001", "REQ-INT-002"]
+    },
+    {
+      "id": "RISK-004",
+      "risk": "CMS auth expectations may expand beyond login gating",
+      "impact": "Scope creep",
+      "mitigation": "Keep this phase limited to Supabase Auth-gated access unless new requirements are approved",
+      "traceability": ["REQ-FUNC-003", "REQ-INT-002"]
+    },
+    {
+      "id": "RISK-005",
+      "risk": "Full mobile parity may be assumed later",
+      "impact": "Scope mismatch",
+      "mitigation": "State desktop-first acceptance and handle mobile/tablet parity as a later requirement if needed",
+      "traceability": ["REQ-CON-004"]
+    },
+    {
+      "id": "RISK-006",
+      "risk": "Design-order delivery may conflict with shared layout dependencies",
+      "impact": "Inefficient sequencing",
+      "mitigation": "Allow documented dependency-driven exceptions without changing business priority order",
+      "traceability": ["REQ-CON-003"]
+    }
+  ],
+  "gate3Validation": {
+    "status": "PASS",
+    "checks": [
+      {"name": "Business objectives defined", "result": "pass"},
+      {"name": "KPIs defined and traceable", "result": "pass"},
+      {"name": "Stakeholders and decision rights identified", "result": "pass"},
+      {"name": "Roles and permissions defined", "result": "pass"},
+      {"name": "Business processes trace to requirements", "result": "pass"},
+      {"name": "Business rules trace to requirements", "result": "pass"},
+      {"name": "Use cases trace to requirements", "result": "pass"},
+      {"name": "Acceptance criteria and risks documented", "result": "pass"},
+      {"name": "No code-level or schema-level design", "result": "pass"}
+    ]
+  },
+  "openQuestions": []
+}

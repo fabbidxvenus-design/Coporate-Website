@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>News Management - Fabbi CMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "surface-dim": "#dcd9d9",
+                        "surface-bright": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#004e59",
+                        "secondary-fixed-dim": "#bfc8c9",
+                        "background": "#fbf9f8",
+                        "tertiary-fixed": "#ffdcc2",
+                        "tertiary-container": "#af6100",
+                        "on-surface-variant": "#3e494b",
+                        "surface": "#fbf9f8",
+                        "on-secondary-fixed": "#151d1e",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dbe4e5",
+                        "on-secondary-fixed-variant": "#404849",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001f24",
+                        "surface-container-high": "#eae8e7",
+                        "outline-variant": "#bdc9cb",
+                        "primary-container": "#008190",
+                        "on-secondary-container": "#5b6465",
+                        "on-primary-container": "#f8feff",
+                        "on-background": "#1b1c1c",
+                        "surface-variant": "#e4e2e1",
+                        "primary": "#006672",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303030",
+                        "inverse-primary": "#6fd5e7",
+                        "on-tertiary-fixed": "#2e1500",
+                        "secondary": "#576061",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface-tint": "#006875",
+                        "inverse-on-surface": "#f3f0f0",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#6fd5e7",
+                        "surface-container": "#f0eded",
+                        "outline": "#6e797c",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#8b4c00",
+                        "secondary-container": "#d8e1e2",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#9eefff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "section-gap": "64px",
+                        "container-max": "1200px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- SideNavBar Component (Based on Shared Components JSON) -->
+<aside class="hidden md:flex flex-col h-full py-stack-lg fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant z-50">
+<!-- Header -->
+<div class="px-gutter mb-section-gap flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary">Recruitment CMS</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Admin Portal</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<!-- Dashboard (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Jobs Management (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">work</span>
+                Jobs Management
+            </a>
+<!-- News Management (Active) -->
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg px-4 py-3 mx-2 scale-[0.98] duration-200 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+                News Management
+            </a>
+<!-- Applications (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">description</span>
+                Applications
+            </a>
+<!-- Settings (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- CTA & Footer -->
+<div class="px-gutter mt-auto flex flex-col gap-stack-md">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-label-md text-label-md hover:bg-surface-tint transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                Post New Job
+            </button>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto md:ml-64 relative bg-surface-bright">
+<!-- Top App Bar (Mobile Only - simplified for context) -->
+<header class="md:hidden flex items-center justify-between px-margin-mobile h-16 bg-surface border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">newspaper</span>
+<span class="font-headline-sm text-headline-sm">News</span>
+</div>
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="max-w-[1200px] w-full mx-auto px-margin-mobile md:px-gutter py-stack-lg md:py-section-gap flex-1 flex flex-col gap-stack-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">News Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage, create, and publish news articles and updates.</p>
+</div>
+<button class="bg-primary text-on-primary hover:bg-surface-tint transition-colors rounded-lg px-6 py-3 flex items-center gap-2 font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined">edit_square</span>
+                    Create New Article
+                </button>
+</div>
+<!-- Toolbar: Search & Filters -->
+<div class="bg-surface rounded-xl border border-outline-variant p-4 flex flex-col lg:flex-row gap-4 items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+<!-- Search -->
+<div class="relative w-full lg:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow placeholder:text-outline" placeholder="Search articles by title..." type="text">
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+<div class="relative min-w-[160px]">
+<select class="w-full appearance-none pl-4 pr-10 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
+<option value="">All Categories</option>
+<option value="company_events">Company Events</option>
+<option value="awards">Awards &amp; Recognition</option>
+<option value="tech_updates">Tech Updates</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative min-w-[140px]">
+<select class="w-full appearance-none pl-4 pr-10 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary cursor-pointer">
+<option value="">All Status</option>
+<option value="published">Published</option>
+<option value="draft">Draft</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<button class="p-2.5 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors rounded-lg flex items-center border border-transparent hover:border-outline-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Data Table (Modern Card List Layout) -->
+<div class="flex flex-col gap-3">
+<!-- Table Header (Visible on Desktop) -->
+<div class="hidden md:grid grid-cols-12 gap-4 px-6 py-2 border-b border-outline-variant text-label-sm font-label-sm text-outline uppercase tracking-wider">
+<div class="col-span-5">Article Detail</div>
+<div class="col-span-2">Category</div>
+<div class="col-span-2">Publish Date</div>
+<div class="col-span-2">Status</div>
+<div class="col-span-1 text-right">Actions</div>
+</div>
+<!-- List Items -->
+<!-- Item 1 -->
+<div class="group bg-surface border border-outline-variant rounded-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:border-outline hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200">
+<!-- Article Detail -->
+<div class="col-span-1 md:col-span-5 flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 border border-outline-variant/50">
+<img alt="" class="w-full h-full object-cover" data-alt="A modern, high-key photograph of a professional corporate event in a spacious, well-lit conference hall. Speakers are on a sleek stage under bright white lights, surrounded by modern geometric decor. The scene feels optimistic and forward-thinking, embodying a clean, teal-accented corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv-aVipFwzjrgKyDELgILNEI8diPCBsCpT-NZPBVh8ZkJtEQPVs2Ypqi-xZGoq5elhRBR0X3QlMUBCHpIOl4856HT_svl-nmkRAWzqXY9Bu5n95mGJtZeXOHno58Ebq50GZU4Wl4mTV4wAdz42WIik8E-w6-AV5wfW3v8QA-vducn6k8M84Dsj48v5mLZD-6-R_X4STDgRYi92u0LsZ26cAW1Wc7Ak7ggALqC7uPaiyoEr4OSHBH8jB61L4mbUpblE_HBcsXipv7UR">
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">Annual Tech Summit 2024: Innovating the Future of Recruitment</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">person</span>
+                                By Sarah Jenkins
+                            </span>
+</div>
+</div>
+<!-- Category -->
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+                            Company Events
+                        </span>
+</div>
+<!-- Publish Date -->
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">calendar_today</span>
+                            Oct 24, 2024
+                        </span>
+</div>
+<!-- Status -->
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm border border-primary-container/50">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            Published
+                        </span>
+</div>
+<!-- Actions -->
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" title="Edit Article">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-lg transition-colors" title="Delete Article">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group bg-surface border border-outline-variant rounded-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:border-outline hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200">
+<div class="col-span-1 md:col-span-5 flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 border border-outline-variant/50">
+<img alt="" class="w-full h-full object-cover" data-alt="A clean, minimalist workspace scene featuring a diverse team collaborating around a white table. Soft, natural light fills the room, highlighting subtle teal accents in the environment. The atmosphere is collaborative, modern, and aligned with a high-end tech company culture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmSd2I5mIkWFGtDUxJdA71o-ehtVw3PrBSSohoy0DZj2X2_6HU4n4jHXqrsHtKe-XhPzpjNcWARPpq_zoRSR8-xaf6VmNxxlD1KO_qxnLlXMLbxb4UWMsb9Qn7BU9JuQfPz-slV5itSXCZGqk7CYYv2FBOpXI4q0rj_XhFvWOBqlvxg5DdXxjvZaTMaJAmPmAjrZ6ZOPTRkJ8a6nP7KX1iNhkksqvMdaFCJEmtz73vQD_uaueVTazfYVtuJB4T-hUvCU1RpVX8cuS1">
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">New Employee Benefit Program: Wellness Fridays Introduced</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">person</span>
+                                By HR Department
+                            </span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm border border-outline-variant/50">
+                            Updates
+                        </span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">schedule</span>
+                            Pending...
+                        </span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                            Draft
+                        </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" title="Edit Article">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-lg transition-colors" title="Delete Article">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group bg-surface border border-outline-variant rounded-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:border-outline hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-200">
+<div class="col-span-1 md:col-span-5 flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 border border-outline-variant/50 flex items-center justify-center bg-gradient-to-br from-primary-container to-surface">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">Fabbi Recognized as 'Best Tech Workplace' 2024</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">person</span>
+                                By Marcus Lee
+                            </span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-tertiary-fixed/30 text-on-tertiary-fixed font-label-sm text-label-sm border border-tertiary-fixed">
+                            Awards
+                        </span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">calendar_today</span>
+                            Sep 15, 2024
+                        </span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm border border-primary-container/50">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            Published
+                        </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex items-center justify-end gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" title="Edit Article">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-lg transition-colors" title="Delete Article">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between mt-auto pt-stack-md border-t border-outline-variant">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 3 of 24 entries</span>
+<div class="flex items-center gap-1">
+<button class="p-2 text-outline hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm flex items-center justify-center transition-colors">3</button>
+<span class="px-1 text-outline">...</span>
+<button class="p-2 text-outline hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

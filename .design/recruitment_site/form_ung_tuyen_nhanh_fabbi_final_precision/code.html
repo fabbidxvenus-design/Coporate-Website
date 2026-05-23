@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quick Application Form Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            teal: {
+              DEFAULT: '#008b9c',
+            },
+            gray: {
+              300: '#D1D5DB',
+              400: '#9CA3AF',
+              500: '#6B7280',
+              700: '#374151',
+              900: '#111827',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styles">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      /* Simulating the background for context, modal will be centered */
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvIfash658N3Aj4gz9pZtCYSKoQV256Yoz4-Q3BvBKq0M_A_c7mFpLAq8KcLD6yYTaC6BIDSQpRk7crqLIUnu0OAsQFQx2f62J4QzQbeUGpo3zqP9rC-axwxDyrf1q4k2il3EJ9nw663OOuuYm7i03rFIAJkn-g_34QGGhC7OxvZIjoSzxJcZd-U7ebRtSmZygGx5sibJ9q21Rnql0xp_FkWYg3e2T_RfO9Ipucejb_TbbKYQK80kQih1TiTdZOGc6YCfEYADqHbhg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    .modal-overlay {
+      background-color: rgba(0, 0, 0, 0.4); /* Darkened background to emphasize modal */
+    }
+
+    .form-input-custom {
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #374151;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    
+    .form-input-custom:focus {
+      outline: none;
+      border-color: #008b9c;
+      box-shadow: 0 0 0 1px #008b9c;
+    }
+
+    .form-input-custom::placeholder {
+      color: #9CA3AF;
+    }
+
+    .upload-area {
+      border: 1px dashed #D1D5DB;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .upload-area:hover {
+      border-color: #008b9c;
+      background-color: #F3F4F6;
+    }
+
+    .btn-submit {
+      background-color: #008b9c;
+      color: white;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: #007685;
+    }
+    
+    .close-btn {
+      background-color: #E5E7EB;
+      color: #4B5563;
+      border-radius: 4px;
+      padding: 4px;
+      transition: background-color 0.2s;
+    }
+    .close-btn:hover {
+      background-color: #D1D5DB;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center modal-overlay relative">
+<!-- BEGIN: Modal Container -->
+<div class="bg-white rounded-2xl shadow-xl w-full max-w-[600px] overflow-hidden relative m-4 z-10" data-purpose="application-modal">
+<!-- Close Button -->
+<div class="absolute top-4 right-4">
+<button aria-label="Close modal" class="close-btn focus:outline-none focus:ring-2 focus:ring-gray-400">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="px-8 py-10 md:px-12 md:py-12">
+<!-- Modal Header -->
+<div class="text-center mb-8">
+<h2 class="text-3xl font-bold text-gray-900 mb-2">Ứng tuyển job này</h2>
+<p class="text-gray-500 text-sm">Hãy điền thông tin của bạn và gửi cho nhà tuyển dụng</p>
+</div>
+<!-- Application Form -->
+<form class="space-y-5">
+<!-- Name Field -->
+<div>
+<label class="block text-sm font-medium text-gray-900 mb-1" for="fullName">
+            Họ và tên <span class="text-red-500">*</span>
+</label>
+<input class="form-input-custom" id="fullName" placeholder="Nhập họ và tên ..." required="" type="text">
+</div>
+<!-- Email Field -->
+<div>
+<label class="block text-sm font-medium text-gray-900 mb-1" for="email">
+            Email <span class="text-red-500">*</span>
+</label>
+<input class="form-input-custom" id="email" placeholder="Nhập email..." required="" type="email">
+</div>
+<!-- Phone Field -->
+<div>
+<label class="block text-sm font-medium text-gray-900 mb-1" for="phone">Số điện thoại</label>
+<input class="form-input-custom" id="phone" placeholder="Nhập số điện thoại..." type="tel">
+</div>
+<!-- Message Field -->
+<div>
+<label class="block text-sm font-medium text-gray-900 mb-1" for="message">Tin nhắn cho chúng tôi</label>
+<textarea class="form-input-custom resize-none" id="message" placeholder="Nhập tin nhắn bạn muốn nhắn gửi..." rows="4"></textarea>
+</div>
+<!-- File Upload Area -->
+<div>
+<label class="block text-sm font-medium text-gray-900 mb-1">Upload CV</label>
+<div class="upload-area flex flex-col items-center justify-center">
+<svg class="h-6 w-6 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm text-gray-500">Upload CV (pdf, docx, doc)</span>
+<input accept=".pdf,.doc,.docx" class="hidden" type="file">
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-4 flex justify-center">
+<button class="btn-submit w-full sm:w-[280px]" type="submit">
+            Ứng Tuyển
+          </button>
+</div>
+<!-- Contact Link -->
+<div class="text-center mt-4">
+<p class="text-sm text-gray-500">
+            Bạn cần hỗ trợ? <a class="text-gray-900 font-medium hover:underline" href="#">Contact Us</a>
+</p>
+</div>
+</form>
+</div>
+</div>
+<!-- END: Modal Container -->
+</body></html>

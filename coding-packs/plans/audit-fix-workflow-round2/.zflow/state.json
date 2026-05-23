@@ -1,0 +1,14 @@
+{
+  "workflow": "audit-fix-workflow-round2",
+  "tier": "STANDARD",
+  "phase": "intake",
+  "status": "in_progress",
+  "startedAt": "2026-05-23T00:00:00.000Z",
+  "args": "--effort=max --quality=max",
+  "parent": "audit-fix-workflow (COMPLETE) + comprehensive-audit (COMPLETE)",
+  "dimensions": ["performance", "security", "code-quality", "accessibility"],
+  "prior_completion": {
+    "audit_fix_workflow": "8/8 tasks complete",
+    "comprehensive_audit": "3/3 waves complete, ~142/272 findings fixed"
+  }
+}

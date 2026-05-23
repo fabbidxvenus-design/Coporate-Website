@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en"><head><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Về Fabbi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              teal: '#008b9c',
+              dark: '#1a1a1a',
+              light: '#f8f9fa',
+              accent: '#e6f4f5'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styles">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #333;
+    }
+    .stats-card {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .accordion-content {
+      display: none;
+    }
+    .accordion-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-white">
+<!-- BEGIN: Header -->
+<header class="fixed w-full bg-white z-50 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo -->
+<div class="flex-shrink-0 flex items-center cursor-pointer">
+<div class="text-primary font-bold text-3xl flex items-center gap-2" style="color: #008B9C;">
+<svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="#008B9C"></path>
+<path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+<path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+</svg>
+            Fabbi
+          </div>
+</div>
+<!-- Navigation Menu -->
+<nav class="hidden md:flex space-x-8">
+<a class="text-[#1E293B] hover:text-[#008B9C] px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Home</a>
+<a class="text-[#1E293B] hover:text-[#008B9C] px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Tuyển Dụng</a>
+<a class="text-[#008B9C] border-b-2 border-[#008B9C] px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Về Fabbi</a>
+<a class="text-[#1E293B] hover:text-[#008B9C] px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Tin tức</a>
+<a class="text-[#1E293B] hover:text-[#008B9C] px-3 py-2 text-sm font-semibold transition-colors duration-200" href="#">Ứng tuyển</a>
+</nav>
+<!-- Language Switcher -->
+<div class="hidden md:flex items-center bg-[#F1F5F9] rounded-full p-1">
+<button class="px-3 py-1 text-xs font-semibold text-[#64748B] hover:text-[#1E293B] rounded-full transition-colors duration-200">JP</button>
+<button class="px-3 py-1 text-xs font-semibold bg-[#008B9C] text-white shadow-sm rounded-full transition-colors duration-200">VN</button>
+</div>
+<!-- Mobile menu button -->
+<div class="md:hidden flex items-center">
+<button class="text-[#64748B] hover:text-[#1E293B] focus:outline-none">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Main Content -->
+<main class="pt-20">
+<!-- Hero Video Section -->
+<section class="relative h-[600px] w-full bg-gray-200 overflow-hidden">
+<img alt="Football Team" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaY89IXB3CJdJMrS8by97dGBwfrPspRDACdswNgNlggTcPd1akPzFFdnGYBapxZGdbG1pXkMO1MU9K1j73S7hn7GvrU5NIBCxadfgFsUFVtL_ejt80hvFmV7Pe5lRHVeV1m7dRQjaJmBXS35LtgbR0_TLRHL5HD0nOvbu5iocTGBp8FFKW2r8WRaFp-IIPBjdqXY_3gujCt1KpB4LyZurbC-uhMzbBrnIPrUKlmOlUTonv_4AUDnAAa1RKP1kw7jtO3UYW6PBJ640W">
+<div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+<button class="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:bg-opacity-100 transition shadow-lg">
+<svg class="w-8 h-8 text-brand-teal ml-1" fill="currentColor" viewBox="0 0 20 20">
+<path d="M4 4l12 6-12 6z"></path>
+</svg>
+</button>
+</div>
+</section>
+<!-- Statistics Section -->
+<section class="container mx-auto px-6 lg:px-20 -mt-20 relative z-10">
+<div class="bg-white rounded-xl stats-card py-10 px-8 flex flex-wrap justify-between items-center text-center">
+<div class="w-1/2 md:w-1/4 mb-6 md:mb-0 border-r border-gray-100 last:border-0">
+<h3 class="text-4xl font-bold text-brand-teal mb-2">2018</h3>
+<p class="text-gray-500 font-medium">Thành lập</p>
+</div>
+<div class="w-1/2 md:w-1/4 mb-6 md:mb-0 border-r border-gray-100 last:border-0">
+<h3 class="text-4xl font-bold text-brand-teal mb-2">5</h3>
+<p class="text-gray-500 font-medium">Chi nhánh</p>
+</div>
+<div class="w-1/2 md:w-1/4 mb-6 md:mb-0 border-r border-gray-100 last:border-0">
+<h3 class="text-4xl font-bold text-brand-teal mb-2">300+</h3>
+<p class="text-gray-500 font-medium">Dự án</p>
+</div>
+<div class="w-1/2 md:w-1/4 border-r border-gray-100 last:border-0">
+<h3 class="text-4xl font-bold text-brand-teal mb-2">200+</h3>
+<p class="text-gray-500 font-medium">Nhân viên</p>
+</div>
+</div>
+</section>
+<!-- About Our Company Section -->
+<section class="py-24 container mx-auto px-6 lg:px-20">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-4xl font-bold mb-4">About Our Company</h2>
+<p class="text-gray-600 leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur. Semper etiam lacus consectetur nisl aliquam massa. Laoreet habitant phasellus volutpat sodales quisque. Congue sit laoreet commodo turpis pellentesque arcu sit. Dictumst elementum quam nunc ut
+        </p>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="w-full md:w-1/2">
+<img alt="Company Event" class="rounded-2xl w-full object-cover h-[500px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU0QOHDwy1Pl_Q4UsnI7jSegILSjit683xSwlnlJwzXBtiY3M4_FTlURSfTLB9EmrBJo_V8B70-EDBthIIcempbPcKojTv36WjIg2c1JZNLPgc9jDw2-yK1jqJNFIRlmUCCmN3eHmpQ2edNnFZ-vw_oySosLzHH0kpzsnR8JAlvJOyQEY9plFM6JzcwVoku9Qsc5ThTQjlJVdQ3uW770bwpxZ-0c0OlhI29y7Ankvy-8BauP_CzJQGKnpd0by64ZP6o8qRkCacySEi">
+</div>
+<div class="w-full md:w-1/2">
+<h3 class="text-3xl font-bold mb-6">Về chúng tôi</h3>
+<div class="space-y-4 text-gray-600">
+<p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+<p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+<p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+<p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+</div>
+<button class="mt-8 border border-brand-teal text-brand-teal font-medium py-2 px-8 rounded-full hover:bg-brand-teal hover:text-white transition">
+            Xem Thêm
+          </button>
+</div>
+</div>
+</section>
+<!-- Highlights Section -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-6 lg:px-20">
+<div class="mb-12">
+<h2 class="text-3xl font-bold mb-4">Các hoạt động nổi bật</h2>
+<p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Sidebar Tabs -->
+<div class="w-full lg:w-1/4 bg-brand-accent rounded-xl p-4 flex flex-col space-y-2">
+<button class="flex items-center space-x-3 w-full p-4 bg-white rounded-lg text-brand-teal font-medium shadow-sm text-left">
+<span class="w-6 h-6 bg-brand-teal rounded text-white flex items-center justify-center text-xs">🌍</span>
+<span class="">Du lịch</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">💖</span>
+<span class="">Women's day</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">👔</span>
+<span class="">Men's day</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">🎉</span>
+<span class="">Year end party</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">🩺</span>
+<span class="">Khám sức khỏe</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">📻</span>
+<span class="">Radio nội bộ</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">⚽</span>
+<span class="">Thể thao</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">☕</span>
+<span class="">Góc Mise</span>
+</button>
+<button class="flex items-center space-x-3 w-full p-4 rounded-lg text-gray-600 hover:bg-white/50 text-left transition">
+<span class="w-6 h-6 text-gray-400 flex items-center justify-center">🍻</span>
+<span class="">Happy hour</span>
+</button>
+</div>
+<!-- Content Area -->
+<div class="w-full lg:w-3/4 bg-white rounded-xl border border-gray-100 p-8 shadow-sm">
+<h3 class="text-2xl font-bold text-brand-teal mb-4">Du lịch</h3>
+<p class="text-gray-600 mb-6 text-sm leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur. Mattis neque odio natoque at vulputate magna auctor. Scelerisque nisi est interdum pretium dolor. Duis lobortis tempor amet dui elementum orci amet. Ac vitae.<br>
+              Duis lobortis tempor amet dui elementum orci amet. Ac vitae.
+            </p>
+<div class="relative">
+<img alt="Beach Trip" class="w-full rounded-xl object-cover h-[350px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ORuU7aoJ25cQXUvGdOw8JRqpqaunrjaZ0JhrYpZfhHJDTpPzpZaqop8B8ef8P8gLSlkFLaQahc2NLjA2kksEGtzBl4Xeetgnxsucsi3Nn0zEr72I_XMBCKr2UsR8BCasFCIevrCLKju2BeCno5RWvkJwJ1p74Ld2n-o43h7D36XGjsDAoCkAf9tEZJKegVUzd_HbLNUEsNx6FHWVKJPSMrw6lLr0UPdKpta8bYJvthxQ-ziN1pdob1FS0HfAtdXC59fYkGuzxwZg">
+</div>
+<div class="flex justify-between items-center mt-6">
+<div class="flex space-x-2">
+<span class="w-8 h-2 bg-brand-teal rounded-full"></span>
+<span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+<span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+<span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+</div>
+<div class="flex space-x-2">
+<button class="w-8 h-8 rounded-full bg-brand-accent text-brand-teal flex items-center justify-center hover:bg-brand-teal hover:text-white transition">
+                  ←
+                </button>
+<button class="w-8 h-8 rounded-full bg-brand-accent text-brand-teal flex items-center justify-center hover:bg-brand-teal hover:text-white transition">
+                  →
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Fabbi Section -->
+<section class="py-24 bg-brand-accent/30 relative overflow-hidden">
+<!-- Decorative background pattern (placeholder) -->
+<div class="absolute left-0 bottom-0 opacity-10 pointer-events-none">
+<svg fill="none" height="400" viewBox="0 0 400 400" width="400" xmlns="http://www.w3.org/2000/svg">
+<circle cx="200" cy="200" r="199" stroke="#008b9c" stroke-dasharray="8 8" stroke-width="2"></circle>
+</svg>
+</div>
+<div class="container mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2 relative">
+<img alt="Employee" class="w-full max-w-md mx-auto relative z-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCG_E58MNvoPWwJvy7CWKWn52z1GRJDAQNWj-D5n9t1ha7qn4ae4-i0wp6RP-xWan1TGSmmLCGDg6P-mkUPsIQ6-vX3vu1yjA_XpEKewe2bIcE84Tur6rdOKIS7h3qc4WVIVNDziv6ZL_lx6JHS7hgw-Rckg808OG_4fQ9IOmw-KOxCPTTAsXWMbqGxYiDj5Ol7CoFl1Vx7EkLX7D4ILY5cDRW7_1f9dXFm6K6zIaQApslU6Is-o4F4FI27d0Xei-IgMmI2o4Is9Ni">
+<!-- Chat Bubbles -->
+<div class="absolute top-10 right-0 bg-white p-4 rounded-xl shadow-md text-sm text-gray-600 max-w-[200px] z-20">
+            I'm looking for a New Job Opportunity...
+          </div>
+<div class="absolute top-32 right-10 bg-brand-teal p-4 rounded-xl shadow-md text-sm text-white max-w-[180px] z-20">
+            Hi ...! Please send us your CV
+          </div>
+</div>
+<div class="w-full md:w-1/2">
+<h2 class="text-3xl font-bold mb-4">Vì sao nên chọn Fabbi</h2>
+<p class="text-gray-600 mb-8">
+            Lorem ipsum dolor sit amet consectetur. Semper etiam lacus consectetur nisl aliquam massa. Laoreet habitant phasellus
+          </p>
+<div class="space-y-4">
+<!-- Accordion Item 1 (Active) -->
+<div class="border border-gray-200 rounded-lg bg-white overflow-hidden shadow-sm">
+<button class="w-full flex justify-between items-center p-4 bg-brand-teal text-white font-medium text-left">
+<span class="">Thu nhập cạnh tranh</span>
+<svg class="w-5 h-5 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="p-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 bg-white">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.
+              </div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="border border-gray-200 rounded-lg bg-white">
+<button class="w-full flex justify-between items-center p-4 text-gray-700 font-medium text-left hover:bg-gray-50 transition">
+<span class="">Môi trường làm việc</span>
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Accordion Item 3 -->
+<div class="border border-gray-200 rounded-lg bg-white">
+<button class="w-full flex justify-between items-center p-4 text-gray-700 font-medium text-left hover:bg-gray-50 transition">
+<span class="">Công nghệ đa dạng và bắt kịp xu thế</span>
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Accordion Item 4 -->
+<div class="border border-gray-200 rounded-lg bg-white">
+<button class="w-full flex justify-between items-center p-4 text-gray-700 font-medium text-left hover:bg-gray-50 transition">
+<span class="">BLD quan tâm tới con người</span>
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Accordion Item 5 -->
+<div class="border border-gray-200 rounded-lg bg-white">
+<button class="w-full flex justify-between items-center p-4 text-gray-700 font-medium text-left hover:bg-gray-50 transition">
+<span class="">Chú trọng Đào tạo và phát triển con người</span>
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- END: Main Content -->
+<!-- BEGIN: Footer -->
+<footer class="bg-primary text-white pt-16 pb-8" style="background-color: rgb(0, 139, 156);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+      <div class="md:w-1/2">
+        <div class="flex items-center gap-2 font-bold text-4xl mb-4">
+          <svg fill="none" height="40" viewBox="0 0 32 32" width="40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="white"></path>
+            <path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"></path>
+            <path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"></path>
+          </svg>
+          Fabbi
+        </div>
+        <p class="text-sm font-medium mb-8">CNG TY CỔ PHẦN NGHIN CỨU V PHT TRIỂN FABBI</p>
+        <ul class="space-y-3 text-sm text-white/80">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-house mt-1"></i>
+            <span class="">Địachỉ: 107 Nguyễn Phong Sắc - Hai B Trưng - H Nội</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-phone"></i>
+            <span class="">Điệnthoại: 123 456 789</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="">Email: Hr@fabbi.com.vn</span>
+          </li>
+        </ul>
+      </div>
+      <div class="md:w-1/2 flex flex-col md:items-end">
+        <div class="mb-8">
+          <h4 class="text-base font-bold mb-4">Follow Us</h4>
+          <div class="flex gap-4">
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#"><i class="fa-brands fa-twitter text-sm"></i></a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#"><i class="fa-brands fa-tiktok text-sm"></i></a>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#"><i class="fa-brands fa-youtube text-sm"></i></a>
+          </div>
+        </div>
+        <div class="w-full max-w-[200px]">
+          <h4 class="text-base font-bold mb-4">Quick link</h4>
+          <ul class="space-y-2 text-sm text-white/80">
+            <li class=""><a class="hover:text-white transition-colors" href="#">Tuyểndụng</a></li>
+            <li class=""><a class="hover:text-white transition-colors" href="#">Về Fabbi</a></li>
+            <li class=""><a class="hover:text-white transition-colors" href="#">Tin tức</a></li>
+            <li class=""><a class="hover:text-white transition-colors" href="#">Ụng tuyển</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-xs text-white/60">
+      <p class="">© 2023 Fabbi. All rights reserved.</p>
+      <button class="mt-4 md:mt-0 flex items-center gap-2 hover:text-white transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i> Back to top
+      </button>
+    </div>
+  </div>
+</footer>
+<!-- END: Footer -->
+
+
+
+
+</body></html>

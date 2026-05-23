@@ -1,0 +1,36 @@
+{
+  "workflow": "phase-07-ts-security-findings",
+  "tier": "STANDARD",
+  "phase": "phase-04-complete",
+  "status": "completed",
+  "tasks": [
+    {
+      "id": "P7-001",
+      "phase": "phase-01-high-fixes",
+      "title": "Fix HT-1: Missing ?? null in admin/page.tsx mock jobs join",
+      "requirements": ["HT-1"],
+      "status": "completed"
+    },
+    {
+      "id": "P7-002",
+      "phase": "phase-01-high-fixes",
+      "title": "Fix HT-2: employment_type capitalization in admin/jobs/page.tsx",
+      "requirements": ["HT-2"],
+      "status": "completed"
+    },
+    {
+      "id": "P7-003",
+      "phase": "phase-02-medium-improvements",
+      "title": "Add explicit return types to getStats() functions",
+      "requirements": ["MM-1"],
+      "status": "completed"
+    },
+    {
+      "id": "P7-004",
+      "phase": "phase-03-verification",
+      "title": "Verify build, type-check, and reviewer findings",
+      "requirements": ["HT-1", "HT-2", "MM-1"],
+      "status": "completed"
+    }
+  ]
+}

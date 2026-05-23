@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dashboard - Fabbi CMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#6d3a00",
+                    "surface-dim": "#dcd9d9",
+                    "surface-bright": "#fbf9f8",
+                    "on-surface": "#1b1c1c",
+                    "on-primary-fixed-variant": "#004e59",
+                    "secondary-fixed-dim": "#bfc8c9",
+                    "background": "#fbf9f8",
+                    "tertiary-fixed": "#ffdcc2",
+                    "tertiary-container": "#af6100",
+                    "on-surface-variant": "#3e494b",
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed": "#151d1e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#dbe4e5",
+                    "on-secondary-fixed-variant": "#404849",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#001f24",
+                    "surface-container-high": "#eae8e7",
+                    "outline-variant": "#bdc9cb",
+                    "primary-container": "#008190",
+                    "on-secondary-container": "#5b6465",
+                    "on-primary-container": "#f8feff",
+                    "on-background": "#1b1c1c",
+                    "surface-variant": "#e4e2e1",
+                    "primary": "#006672",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#303030",
+                    "inverse-primary": "#6fd5e7",
+                    "on-tertiary-fixed": "#2e1500",
+                    "secondary": "#576061",
+                    "tertiary-fixed-dim": "#ffb77a",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-tint": "#006875",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#6fd5e7",
+                    "surface-container": "#f0eded",
+                    "outline": "#6e797c",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#8b4c00",
+                    "secondary-container": "#d8e1e2",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#9eefff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "section-gap": "64px",
+                    "container-max": "1200px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #fbf9f8; color: #1b1c1c; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-bar { transition: height 0.3s ease; }
+        .chart-bar:hover { opacity: 0.8; }
+    </style>
+</head>
+<body class="bg-background text-on-background flex h-screen overflow-hidden">
+<!-- SideNavBar (Hidden on mobile) -->
+<aside class="hidden md:flex flex-col h-full py-stack-lg fixed left-0 top-0 h-full w-64 bg-surface-container-low dark:bg-on-surface-variant border-r border-outline-variant dark:border-outline z-40">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h2 class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary-fixed">Recruitment CMS</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Admin Portal</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto space-y-2 px-2">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container font-bold rounded-lg mx-2 px-4 py-3 hover:bg-surface-container-highest transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="text-label-md font-label-md">Jobs Management</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="text-label-md font-label-md">News Management</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-md font-label-md">Applications</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 px-4 font-label-md text-label-md hover:bg-surface-tint transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">add</span> Post New Job
+            </button>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-dim hover:text-on-surface px-4 py-3 hover:bg-surface-container-highest transition-all duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-label-md font-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col h-screen relative">
+<!-- TopNavBar (Web) -->
+<header class="hidden md:flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-30 bg-surface border-b border-outline-variant flat no shadows">
+<div class="flex items-center">
+<!-- Search could go here -->
+<div class="relative hidden lg:block text-on-surface-variant">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-sm focus:ring-1 focus:ring-primary w-64 outline-none" placeholder="Search..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:opacity-80 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:opacity-80 duration-150">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden border border-outline-variant ml-2">
+<img alt="Administrator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJeGRjVrWaioIUy8hZkAY7Kjig-ycmNAX33UPk6_Ehrex2bHgsedDhXdtJPBqePnY6A0kAUGG3nHLdb5D9x6kvFWmlbvuBkUH_cZDFySxAFkVBD_XxS-r-3elQyuEDz_uG-LE80CD_IIFitzeF1ZfniVkTEd4tSJnFLTmg57WuZnw69ZlCSGpxthGOruc2SZLFuaSh6JnBqjGDBTeJkVuOxPt6XYclmRn_4gdo7GHZO_mjF1qfUjoE3yPhvlpDgIzKdn3nHxh9Cc7-">
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-gutter pb-24 md:pb-8">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface">Overview</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Here's what's happening today.</p>
+</div>
+<!-- Date Picker Placeholder -->
+<div class="flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-body-sm font-body-sm cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined mr-2 text-outline">calendar_today</span>
+<span>Last 30 Days</span>
+<span class="material-symbols-outlined ml-2 text-outline">arrow_drop_down</span>
+</div>
+</div>
+<!-- Stats Grid (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md md:gap-stack-lg">
+<!-- Stat Card 1 -->
+<div class="bg-surface rounded-xl p-6 border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">description</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Total Applications</h3>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-display-lg font-display-lg text-on-surface">1,248</span>
+<span class="text-label-sm font-label-sm text-primary mb-2">+12% vs last month</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface rounded-xl p-6 border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-tertiary-container">visibility</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Monthly Views</h3>
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">trending_flat</span>
+</div>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-display-lg font-display-lg text-on-surface">45.2K</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-2">Steady</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface rounded-xl p-6 border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">work</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Active Jobs</h3>
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">add</span>
+</div>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-display-lg font-display-lg text-on-surface">32</span>
+<span class="text-label-sm font-label-sm text-primary mb-2">5 closing soon</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,75 @@
+{
+  "workflow": "audit-fix-workflow",
+  "tier": "THOROUGH",
+  "phase": "COMPLETE",
+  "status": "completed",
+  "completedAt": "2026-05-23T00:00:00.000Z",
+  "tasks": [
+    {
+      "id": "AF-001",
+      "phase": "phase-01-baseline-and-red-tests",
+      "title": "Create red-gate tests for audit findings",
+      "requirements": ["DET-TEST-002", "DET-TEST-003", "DET-TEST-004", "DET-TEST-005"],
+      "status": "completed"
+    },
+    {
+      "id": "AF-002",
+      "phase": "phase-02-auth-source-of-truth",
+      "title": "Remove unsafe mock admin bypass or gate it dev-only with consistent server auth",
+      "requirements": ["DET-API-002", "DET-SEC-001", "DET-DATA-004", "DET-VAL-002"],
+      "status": "completed"
+    },
+    {
+      "id": "AF-003",
+      "phase": "phase-03-cms-data-compliance",
+      "title": "Provide design-equivalent CMS data fallback",
+      "requirements": ["DET-API-003", "DET-ERR-003", "DET-UX-005"],
+      "status": "completed"
+    },
+    {
+      "id": "AF-004",
+      "phase": "phase-04-application-api-hardening",
+      "title": "Harden public application submission and visible failure states",
+      "requirements": ["DET-API-001", "DET-SEC-003", "DET-EDGE-002"],
+      "status": "completed"
+    },
+    {
+      "id": "AF-005",
+      "phase": "phase-05-silent-failure-and-config",
+      "title": "Make Supabase config and auth failures explicit and safe",
+      "requirements": ["DET-ERR-001", "DET-ERR-002", "DET-ERR-003"],
+      "status": "completed"
+    },
+    {
+      "id": "AF-006",
+      "phase": "phase-06-verification-and-visual-regression",
+      "title": "Verify build, tests, reviewer findings, and visual evidence",
+      "requirements": ["DET-UX-006", "DET-NFR-001", "DET-TEST-001", "DET-TEST-004"],
+      "status": "completed"
+    },
+    {
+      "id": "AF-007",
+      "phase": "phase-07-type-and-security-high",
+      "title": "Fix HIGH severity type and security findings",
+      "requirements": ["HT-1", "HT-2", "MM-1", "MM-2"],
+      "status": "completed",
+      "files": ["app/admin/page.tsx", "app/admin/jobs/page.tsx", "app/admin/news/page.tsx"],
+      "result": "Null coalescing fix, lowercase employment type keys, explicit return types on getStats(). Build passes."
+    },
+    {
+      "id": "AF-008",
+      "phase": "phase-08-visual-verification",
+      "title": "Capture visual evidence at 1440px/1920px, verify Playwright config",
+      "requirements": ["DET-TEST-001", "DET-TEST-004"],
+      "status": "completed",
+      "files": ["evidence/"],
+      "result": "16 screenshots captured (8 pages x 2 resolutions). Build passes."
+    }
+  ],
+  "summary": {
+    "total_tasks": 8,
+    "completed": 8,
+    "build": "pass",
+    "visual_evidence": "16 screenshots"
+  }
+}

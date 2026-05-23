@@ -1,0 +1,15 @@
+{
+  "phase": "COMPLETE",
+  "tier": "THOROUGH",
+  "score": 95,
+  "status": "complete",
+  "fixCount": 0,
+  "elapsed": "<5m",
+  "lastEvent": "20/20 regression tests PASS (24.2s)",
+  "verification": {
+    "type-check": "PASS",
+    "build": "PASS (24 routes)",
+    "playwright": "20/20 PASS (24.2s)"
+  },
+  "nextPhase": null
+}

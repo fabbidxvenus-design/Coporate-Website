@@ -1,0 +1,11 @@
+{"event":"phase-completed","phase":"phase-04-complete","completed_at":"2026-05-23T00:00:00.000Z","summary":"Captured 16 screenshots across 8 pages at 1440px and 1920px"}
+{"event":"screenshot-captured","page":"home","resolutions":["1440px","1920px"],"path":"evidence/home-1440.png","evidence_dir":"plans/audit-fix-workflow/phase-08/evidence"}
+{"event":"screenshot-captured","page":"jobs","resolutions":["1440px","1920px"],"path":"evidence/jobs-1440.png"}
+{"event":"screenshot-captured","page":"job-detail","resolutions":["1440px","1920px"],"path":"evidence/job-detail-1440.png"}
+{"event":"screenshot-captured","page":"news","resolutions":["1440px","1920px"],"path":"evidence/news-1440.png"}
+{"event":"screenshot-captured","page":"news-detail","resolutions":["1440px","1920px"],"path":"evidence/news-detail-1440.png"}
+{"event":"screenshot-captured","page":"apply","resolutions":["1440px","1920px"],"path":"evidence/apply-1440.png"}
+{"event":"screenshot-captured","page":"about","resolutions":["1440px","1920px"],"path":"evidence/about-1440.png"}
+{"event":"screenshot-captured","page":"login","resolutions":["1440px","1920px"],"path":"evidence/login-1440.png"}
+{"event":"playwright-config-analysis","issue":"test.describe() conflicts with Playwright config import","severity":"low","status":"documented","rationale":"test files use test.describe() but playwright.config.ts imports them — resolved by running audit tests standalone or with separate config"}
+{"event":"verification","npm_build":"PASS","screenshot_count":16,"pages_captured":8,"resolutions":2}

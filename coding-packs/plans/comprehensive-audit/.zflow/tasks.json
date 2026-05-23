@@ -1,0 +1,129 @@
+{
+  "workflow": "comprehensive-audit",
+  "tier": "THOROUGH",
+  "phase": "phase-04-verification",
+  "status": "in_progress",
+  "tasks": [
+    {
+      "id": "CA-001",
+      "phase": "phase-01-security-audit",
+      "title": "Run security reviewer agent → security-audit.md",
+      "requirements": ["SEC-001 through SEC-025"],
+      "status": "completed",
+      "agent": "security-reviewer",
+      "result": "0 CRITICAL, 4 HIGH, 7 MEDIUM, 15 LOW"
+    },
+    {
+      "id": "CA-002",
+      "phase": "phase-01-typescript-audit",
+      "title": "Run TypeScript reviewer agent → typescript-audit.md",
+      "requirements": ["TS-001 through TS-033"],
+      "status": "completed",
+      "agent": "typescript-reviewer",
+      "result": "0 CRITICAL, 5 HIGH, 20 MEDIUM, 8 LOW; tsc --noEmit: 0 errors"
+    },
+    {
+      "id": "CA-003",
+      "phase": "phase-01-performance-audit",
+      "title": "Run performance optimizer agent → performance-audit.md",
+      "requirements": ["PERF-001 through PERF-033"],
+      "status": "completed",
+      "agent": "performance-optimizer",
+      "result": "0 CRITICAL, 11 HIGH, 20 MEDIUM, 8 LOW"
+    },
+    {
+      "id": "CA-004",
+      "phase": "phase-01-a11y-audit",
+      "title": "Run a11y architect agent → a11y-audit.md",
+      "requirements": ["A11Y-001 through A11Y-120"],
+      "status": "completed",
+      "agent": "a11y-architect",
+      "result": "120 findings: ARIA, alt text, keyboard, contrast, forms, reduced-motion"
+    },
+    {
+      "id": "CA-005",
+      "phase": "phase-01-code-quality-audit",
+      "title": "Run code reviewer agent → code-quality-audit.md",
+      "requirements": ["CQ-001 through CQ-054"],
+      "status": "completed",
+      "agent": "code-reviewer",
+      "result": "0 CRITICAL, 8 HIGH, 22 MEDIUM, 24 LOW"
+    },
+    {
+      "id": "CA-006",
+      "phase": "phase-02-consolidation",
+      "title": "Aggregate findings into findings-summary.md",
+      "requirements": [],
+      "status": "completed",
+      "dependsOn": ["CA-001", "CA-002", "CA-003", "CA-004", "CA-005"],
+      "output": "findings-summary.md with 28 HIGH prioritized into 4 waves"
+    },
+    {
+      "id": "CA-007",
+      "phase": "phase-03-wave1-high",
+      "title": "Fix Wave 1: error boundaries, dead code, as never casts, UUID, dead buttons",
+      "requirements": ["CQ-030/031/032", "CQ-009", "CQ-049/CQ-050", "TS-001-005", "SEC-018"],
+      "status": "completed",
+      "dependsOn": ["CA-006"],
+      "files": [
+        "app/error.tsx (NEW)",
+        "app/(public)/error.tsx (NEW)",
+        "app/admin/error.tsx (NEW)",
+        "components/admin/ApplicationStatusBadge.tsx (DELETE)",
+        "components/public/JobDetailClient.tsx",
+        "app/(public)/jobs/[slug]/page.tsx",
+        "app/api/applications/route.ts",
+        "app/api/applications/[id]/route.ts",
+        "app/api/news/route.ts",
+        "app/api/news/[id]/route.ts",
+        "app/api/settings/route.ts"
+      ],
+      "result": "All Wave 1 fixes completed. Build passes. tsc --noEmit: 0 errors."
+    },
+    {
+      "id": "CA-008",
+      "phase": "phase-03-wave2-high",
+      "title": "Fix Wave 2: N+1 queries → parallel queries, pagination added, React.memo on JobRow/ArticleRow",
+      "requirements": ["PERF-001/002/003/004/005/009/010"],
+      "status": "completed",
+      "dependsOn": ["CA-007"],
+      "files": [
+        "app/admin/page.tsx",
+        "app/admin/jobs/page.tsx",
+        "app/admin/news/page.tsx",
+        "app/admin/applications/page.tsx"
+      ],
+      "result": "All Wave 2 fixes completed. Parallel queries, pagination, React.memo applied. Build passes."
+    },
+    {
+      "id": "CA-009",
+      "phase": "phase-03-wave3-medium",
+      "title": "Fix Wave 3: lib/auth types, utility extraction, constants, unused variables cleanup",
+      "requirements": ["TS-006-008", "CQ-001-005/043", "CQ-039-042"],
+      "status": "completed",
+      "dependsOn": ["CA-008"],
+      "files": [
+        "lib/utils.ts",
+        "lib/auth.ts",
+        "app/(public)/news/page.tsx",
+        "app/(public)/news/[slug]/page.tsx",
+        "app/(public)/jobs/page.tsx",
+        "app/(public)/jobs/[slug]/page.tsx",
+        "components/public/JobsSearch.tsx",
+        "app/admin/jobs/page.tsx",
+        "app/admin/news/page.tsx",
+        "app/admin/applications/page.tsx",
+        "components/admin/ApplicationDetail.tsx"
+      ],
+      "result": "All Wave 3 fixes completed. Build passes. tsc --noEmit: 0 errors. Remaining a11y/sec items noted."
+    },
+    {
+      "id": "CA-010",
+      "phase": "phase-04-verification",
+      "title": "Verify build, run reviewers, generate final report",
+      "requirements": [],
+      "status": "in_progress",
+      "dependsOn": ["CA-009"]
+    }
+  ]
+}
