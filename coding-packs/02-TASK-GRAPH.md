@@ -126,8 +126,13 @@ If multiple builders are available:
 - Implement `/contact` with localized copy, validated form submission, and Supabase persistence.
 - Acceptance: public navigation/contact content switches between Vietnamese and Japanese; valid contact submissions persist; invalid submissions show localized errors.
 
+### TIP-012 — Public footer
+- Convert the `.design` recruitment footer into a reusable public footer component.
+- Mount it once through the shared public layout/shell so all public pages render it exactly once.
+- Acceptance: footer matches the `.design` layout/colors/content, internal links navigate to real routes, and responsive widths have no overflow.
+
 ### TIP-009 — QA
-- Add unit/integration/E2E tests for validation, auth protection, public visibility, application submission, localization, and contact submission.
+- Add unit/integration/E2E tests for validation, auth protection, public visibility, application submission, localization, contact submission, and shared public footer presence.
 - Run responsive and accessibility checks on public and CMS key screens.
 - Acceptance: tests/build pass; critical visual/responsive issues fixed.
 
@@ -138,7 +143,7 @@ If multiple builders are available:
 
 ## QUALITY GATE: SELF-REVIEW
 
-- Completeness: 11/11 task graph requirements covered.
-- Cross-reference: TIPs map to RRI P0/P1 requirements, Vision MVP scope, and the promoted public Vietnamese/Japanese localization + contact requirement.
-- Gaps: Japanese marketing copy quality depends on owner-provided or reviewed translations. All 11 TIP files have been generated in `coding-packs/tips/`.
-- Action needed: Start implementation with `coding-packs/tips/TIP-001-project-foundation.md` or schedule `coding-packs/tips/TIP-011-bilingual-vi-ja-contact.md` after its dependencies.
+- Completeness: 12/12 task graph requirements covered.
+- Cross-reference: TIPs map to RRI P0/P1 requirements, Vision MVP scope, the promoted public Vietnamese/Japanese localization + contact requirement, and the added public footer visual-parity requirement.
+- Gaps: Japanese marketing copy quality depends on owner-provided or reviewed translations. Real social media footer URLs are not specified yet. All 12 TIP files have been generated in `coding-packs/tips/`.
+- Action needed: Start implementation with `coding-packs/tips/TIP-001-project-foundation.md` or schedule `coding-packs/tips/TIP-012-public-footer-all-pages.md` after its dependencies.
