@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -18,20 +19,27 @@ module.exports = {
           'container-high': '#eae8e7',
           'container-highest': '#e4e2e1',
         },
-        // Professional Tech Hub — Primary (Teal) — matches brand teal
+        // Professional Tech Hub — Primary (Teal)
         primary: {
-          DEFAULT: '#008B9C',
+          DEFAULT: '#006672',
           50: '#f0f9fa',
           100: '#d9f0f3',
           200: '#b3e1e7',
           300: '#8dd2db',
           400: '#67c3cf',
           500: '#41b4c3',
-          600: '#008B9C',
+          600: '#006672',
           700: '#00707e',
           800: '#005560',
           900: '#003a42',
           950: '#001f24',
+        },
+        // Pink Brand Extension
+        pink: {
+          DEFAULT: '#E91E63',
+          600: '#E91E63',
+          700: '#C2185B',
+          800: '#AD1457',
         },
         'on-primary': '#ffffff',
         'primary-container': '#006672',
@@ -113,13 +121,15 @@ module.exports = {
         'on-tertiary-fixed-variant': '#6d3a00',
         // Brand aliases
         teal: {
-          DEFAULT: '#008B9C',
-          dark: '#00707e',
+          DEFAULT: '#006672',
+          dark: '#005560',
           light: '#F0F9FA',
+          text: '#006672',
         },
+        'teal-text': '#006672',
         brand: {
-          teal: '#008B9C',
-          darkTeal: '#00707e',
+          teal: '#006672',
+          darkTeal: '#005560',
           accent: '#F47F35',
         },
         background: '#fbf9f8',
@@ -169,3 +179,5 @@ module.exports = {
   },
   plugins: [],
 };
+
+export default config;

@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 
 const navItems = [
   {
@@ -44,10 +43,9 @@ interface CmsSidebarProps {
 export function CmsSidebar({ userEmail }: CmsSidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
-  const supabase = createClient()
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
+    await fetch('/api/auth/signout', { method: 'POST' })
     router.push('/login')
     router.refresh()
   }
@@ -66,7 +64,7 @@ export function CmsSidebar({ userEmail }: CmsSidebarProps) {
           >
             <path
               d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z"
-              fill="#008b9c"
+              fill="#006672"
             />
             <path
               d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z"
@@ -77,7 +75,7 @@ export function CmsSidebar({ userEmail }: CmsSidebarProps) {
               fill="#F47F35"
             />
           </svg>
-          <span className="text-xl font-bold text-[#008b9c]">Fabbi CMS</span>
+          <span className="text-xl font-bold text-teal-text">Fabbi CMS</span>
         </Link>
       </div>
 
@@ -95,7 +93,7 @@ export function CmsSidebar({ userEmail }: CmsSidebarProps) {
                   href={item.href}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-[#008b9c] text-white'
+                      ? 'bg-primary text-white'
                       : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -113,7 +111,7 @@ export function CmsSidebar({ userEmail }: CmsSidebarProps) {
       {/* User Info & Logout */}
       <div className="p-4 border-t border-gray-100">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-[#008b9c] flex items-center justify-center text-white font-semibold">
+          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold">
             A
           </div>
           <div className="flex-1 min-w-0">

@@ -3,12 +3,10 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import type { Database } from '@/types/database'
-
-type Article = Database['public']['Tables']['news_articles']['Row']
+import type { NewsArticle } from '@/lib/db/types'
 
 interface ArticleFormProps {
-  article?: Article
+  article?: NewsArticle
   isEdit?: boolean
 }
 
@@ -37,8 +35,8 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
     title: article?.title || '',
     slug: article?.slug || '',
     excerpt: article?.excerpt || '',
-    body: article?.body || '',
-    cover_image_url: article?.cover_image_url || '',
+    body: article?.content || '',
+    cover_image_url: article?.thumbnail_url || '',
     category: article?.category || '',
     tags: article?.tags?.join(', ') || '',
     status: article?.status || 'draft',
@@ -123,7 +121,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           value={formData.title}
           onChange={handleTitleChange}
           required
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
           placeholder="Nhập tiêu đề bài viết"
         />
       </div>
@@ -138,7 +136,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           value={formData.slug}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
           placeholder="duong-dan-bai-viet"
         />
         <p id="article-slug-help" className="text-xs text-gray-500 mt-1">URL thân thiện cho bài viết</p>
@@ -153,7 +151,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           value={formData.excerpt}
           onChange={handleChange}
           rows={3}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors resize-none"
+          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors resize-none"
           placeholder="Mô tả ngắn gọn về bài viết"
         />
       </div>
@@ -167,7 +165,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           name="cover_image_url"
           value={formData.cover_image_url}
           onChange={handleChange}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
           placeholder="https://example.com/image.jpg"
         />
         {formData.cover_image_url && (
@@ -187,7 +185,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full pl-4 pr-10 py-2.5 border border-gray-200 rounded-lg text-sm appearance-none focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+              className="w-full pl-4 pr-10 py-2.5 border border-gray-200 rounded-lg text-sm appearance-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
             >
               <option value="">Chọn danh mục</option>
               {categories.map(cat => (
@@ -206,7 +204,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full pl-4 pr-10 py-2.5 border border-gray-200 rounded-lg text-sm appearance-none focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+              className="w-full pl-4 pr-10 py-2.5 border border-gray-200 rounded-lg text-sm appearance-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
             >
               {statusOptions.map(opt => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -226,7 +224,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           name="tags"
           value={formData.tags}
           onChange={handleChange}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
           placeholder="fabbi, recruitment, culture"
           aria-describedby="article-tags-help"
         />
@@ -243,7 +241,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           onChange={handleChange}
           required
           rows={15}
-          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors resize-y font-mono"
+          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors resize-y font-mono"
           placeholder="Nhập nội dung bài viết..."
         />
         <p id="article-body-help" className="text-xs text-gray-500 mt-1">Hỗ trợ HTML cơ bản: &lt;p&gt;, &lt;br&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;li&gt;</p>
@@ -269,7 +267,7 @@ export default function ArticleForm({ article, isEdit = false }: ArticleFormProp
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 py-2 bg-[#008b9c] text-white rounded-lg text-sm font-medium hover:bg-[#007a8d] transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#008b9c]"
+            className="px-6 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-800 transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {isSubmitting ? 'Đang lưu...' : isEdit ? 'Cập nhật' : 'Tạo bài viết'}
           </button>

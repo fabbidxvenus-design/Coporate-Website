@@ -1,7 +1,6 @@
-import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import type { Database } from '@/types/database'
+import { authRepository } from './db/repositories/admin-auth'
 
 interface AuthUser {
   id: string
@@ -17,42 +16,22 @@ interface AuthUser {
 export async function getCurrentUser(): Promise<AuthUser | null> {
   try {
     const cookieStore = await cookies()
-    const supabase = createServerClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-        },
-      }
-    )
+    const sessionToken = cookieStore.get('admin_session')?.value
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
+    if (!sessionToken) {
       return null
     }
 
-    // Get profile to check role
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', user.id)
-      .single<{ role: string; display_name: string | null }>()
-
-    if (!profile) {
+    const session = await authRepository.getSession(sessionToken)
+    if (!session) {
       return null
     }
 
     return {
-      id: user.id,
-      email: user.email!,
-      role: profile.role,
-      displayName: profile.display_name,
+      id: session.user_id,
+      email: 'admin@fabbi.com',
+      role: 'admin',
+      displayName: 'Administrator',
     }
   } catch (error) {
     console.error('[Auth] getCurrentUser failed:', error)
@@ -86,32 +65,15 @@ export async function isAdmin(): Promise<boolean> {
 }
 
 /**
- * Get session for client components
+ * Get session for compatibility
  */
-export async function getSession(): Promise<import('@supabase/supabase-js').Session | null> {
-  try {
-    const cookieStore = await cookies()
-    const supabase = createServerClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-        },
-      }
-    )
+export async function getSession() {
+  const cookieStore = await cookies()
+  const sessionToken = cookieStore.get('admin_session')?.value
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
+  if (!sessionToken) return null
 
-    return session
-  } catch (error) {
-    console.error('[Auth] getSession failed:', error)
-    return null
-  }
+  return authRepository.getSession(sessionToken)
 }
 
 export type CurrentUser = NonNullable<Awaited<ReturnType<typeof getCurrentUser>>>

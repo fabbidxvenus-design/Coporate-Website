@@ -86,13 +86,13 @@ export function formatFileSize(bytes: number): string {
 
 export function getEmploymentTypeStyle(type: string): string {
   const styles: Record<string, string> = {
-    'Full-time': 'bg-blue-50 text-blue-700',
-    'Part-time': 'bg-green-50 text-green-700',
-    'Freelancer': 'bg-purple-50 text-purple-700',
-    'Internship': 'bg-orange-50 text-orange-700',
-    'Contract': 'bg-teal-50 text-teal-700',
+    'Full-time': 'bg-blue-50 text-blue-800',
+    'Part-time': 'bg-green-50 text-green-800',
+    'Freelancer': 'bg-purple-50 text-purple-800',
+    'Internship': 'bg-orange-50 text-orange-800',
+    'Contract': 'bg-teal-50 text-teal-800',
   }
-  return styles[type] || 'bg-gray-50 text-gray-700'
+  return styles[type] || 'bg-gray-50 text-gray-800'
 }
 
 // Constants

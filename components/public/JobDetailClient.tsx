@@ -2,9 +2,7 @@
 
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import type { Database } from '@/types/database'
-
-type Job = Database['public']['Tables']['jobs']['Row']
+import { Job } from '@/lib/db/types'
 
 interface JobDetailClientProps {
   job: Job

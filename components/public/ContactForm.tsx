@@ -84,7 +84,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} noValidate className="space-y-6">
       {status === 'error' && (
         <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg">
           Đã xảy ra lỗi. Vui lòng thử lại sau.
@@ -102,7 +102,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           required
           value={formData.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008b9c] ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
             errors.name ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -120,7 +120,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           required
           value={formData.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008b9c] ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
             errors.email ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -137,7 +137,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           type="tel"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008b9c]"
+          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
 
@@ -151,7 +151,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           type="text"
           value={formData.company}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008b9c]"
+          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
 
@@ -166,7 +166,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           required
           value={formData.subject}
           onChange={handleChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008b9c] ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
             errors.subject ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -184,7 +184,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           rows={5}
           value={formData.message}
           onChange={handleChange}
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008b9c] resize-none ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none ${
             errors.message ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -194,7 +194,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="w-full bg-[#008b9c] hover:bg-[#006672] text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-pink hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {status === 'submitting' ? 'Đang gửi...' : dict.send}
       </button>

@@ -5,6 +5,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
     ],
+    // Cho phép load ảnh local
+    dangerouslyAllowSVG: true,
+    unoptimized: true,
   },
 };
 

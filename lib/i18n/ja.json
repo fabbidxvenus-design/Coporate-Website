@@ -11,12 +11,85 @@
     "send": "メッセージを送信"
   },
   "contact": {
-    "title": "Fabbiにお問い合わせ",
-    "name": "お名前",
+    "title": "Fabbiへのお問い合わせ",
+    "name": "氏名",
     "email": "メールアドレス",
     "phone": "電話番号（任意）",
     "company": "会社名（任意）",
     "subject": "件名",
     "message": "メッセージ内容"
+  },
+  "footer": {
+    "companyName": "Fabbi Research and Development Co., Ltd.",
+    "address": "住所：107 Nguyen Phong Sắc - Hai Bà Trưng - Hà Nội",
+    "phone": "電話：0123 456 789",
+    "email": "Email: Hr@fabbi.com.vn",
+    "followUs": "Follow Us",
+    "quickLinks": "クイックリンク",
+    "backToTop": "Back to top",
+    "copyright": "© {year} Fabbi. All rights reserved."
+  },
+  "home": {
+    "heroTitle": "Fabbi - 大手IT人材採用",
+    "heroSubtitle": "Fabbiのチームに参加して、一緒に素晴らしいテクノロジー製品を作りましょう。",
+    "exploreJobs": "今すぐ探す",
+    "benefitsTitle": "なぜFabbiを選ぶのか？",
+    "latestJobs": "最新の採用情報",
+    "viewAllJobs": "すべての職種を見る",
+    "viewAllOpportunities": "すべての機会を見る",
+    "latestNews": "ニュース & イベント",
+    "viewAllNews": "すべてのニュースを見る"
+  },
+  "about": {
+    "title": "Fabbiについて",
+    "visionTitle": "ビジョン",
+    "visionText": "世界中の企业にとって最も信頼されるテクノロジーパートナーになること。",
+    "missionTitle": "ミッション",
+    "missionText": "高品質なテクノロジーソリューションを提供し、顧客のプロセス最適化と持続的成長を支援します。"
+  },
+  "jobs": {
+    "title": "キャリア機会",
+    "searchPlaceholder": "職種を検索",
+    "searchButton": "検索",
+    "filterCategory": "分野",
+    "filterLocation": "勤務地",
+    "allCategories": "すべての分野",
+    "allLocations": "すべての勤務地",
+    "emptyState": "該当する職種が見つかりませんでした。別のキーワードで再試行してください。",
+    "viewDetail": "詳細を見る",
+    "applyNow": "今すぐ応募",
+    "sidebarTitle": "職種情報",
+    "relatedJobs": "類似の職種"
+  },
+  "news": {
+    "title": "ニュース & イベント",
+    "emptyState": "現在、ニュースはありません。",
+    "readMore": "続きを読む",
+    "relatedNews": "関連ニュース",
+    "sidebarTitle": "Fabbiニュース"
+  },
+  "apply": {
+    "title": "応募",
+    "submit": "応募する",
+    "submitting": "送信中...",
+    "successTitle": "応募が完了しました！",
+    "successMessage": "ご関心をお寄せいただきありがとうございます。追って担当者よりご連絡いたします。",
+    "backHome": "ホームへ戻る",
+    "viewMoreJobs": "他の機会を見る",
+    "form": {
+      "title": "今すぐ応募",
+      "subtitle": "あなたの情報を入力して採用担当者に送信してください",
+      "fullName": "氏名",
+      "email": "メールアドレス",
+      "phone": "電話番号",
+      "position": "応募職種",
+      "cv": "履歴書 (PDF)",
+      "message": "メッセージ (任意)",
+      "upload": "履歴書をアップロード"
+    }
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました。後でもう一度お試しください。"
   }
 }

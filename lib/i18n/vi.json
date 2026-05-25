@@ -18,5 +18,78 @@
     "company": "Công ty (tùy chọn)",
     "subject": "Tiêu đề",
     "message": "Nội dung tin nhắn"
+  },
+  "footer": {
+    "companyName": "CÔNG TY CỔ PHẦN NGHIÊN CỨU VÀ PHÁT TRIỂN FABBI",
+    "address": "Địa chỉ: 107 Nguyễn Phong Sắc - Hai Bà Trưng - Hà Nội",
+    "phone": "Điện thoại: 0123 456 789",
+    "email": "Email: Hr@fabbi.com.vn",
+    "followUs": "Follow Us",
+    "quickLinks": "Quick link",
+    "backToTop": "Back to top",
+    "copyright": "© {year} Fabbi. All rights reserved."
+  },
+  "home": {
+    "heroTitle": "Fabbi - Tuyển dụng nhân sự IT hàng đầu",
+    "heroSubtitle": "Gia nhập đội ngũ Fabbi để cùng nhau xây dựng những sản phẩm công nghệ tuyệt vời.",
+    "exploreJobs": "Khám phá ngay",
+    "benefitsTitle": "Tại sao chọn Fabbi?",
+    "latestJobs": "Tin tuyển dụng mới nhất",
+    "viewAllJobs": "Xem tất cả vị trí",
+    "viewAllOpportunities": "Xem tất cả cơ hội",
+    "latestNews": "Tin tức & Sự kiện",
+    "viewAllNews": "Xem tất cả tin tức"
+  },
+  "about": {
+    "title": "Về Fabbi",
+    "visionTitle": "Tầm nhìn",
+    "visionText": "Trở thành đối tác công nghệ đáng tin cậy nhất cho các doanh nghiệp trên toàn thế giới.",
+    "missionTitle": "Sứ mệnh",
+    "missionText": "Cung cấp các giải pháp công nghệ chất lượng cao, giúp khách hàng tối ưu hóa quy trình và tăng trưởng bền vững."
+  },
+  "jobs": {
+    "title": "Cơ hội nghề nghiệp",
+    "searchPlaceholder": "Tìm kiếm vị trí...",
+    "searchButton": "Tìm kiếm",
+    "filterCategory": "Lĩnh vực",
+    "filterLocation": "Địa điểm",
+    "allCategories": "Tất cả lĩnh vực",
+    "allLocations": "Tất cả địa điểm",
+    "emptyState": "Không tìm thấy vị trí phù hợp. Vui lòng thử lại với từ khóa khác.",
+    "viewDetail": "Xem chi tiết",
+    "applyNow": "Ứng tuyển ngay",
+    "sidebarTitle": "Thông tin vị trí",
+    "relatedJobs": "Vị trí tương tự"
+  },
+  "news": {
+    "title": "Tin tức & Sự kiện",
+    "emptyState": "Hiện tại chưa có tin tức nào.",
+    "readMore": "Đọc tiếp",
+    "relatedNews": "Tin tức liên quan",
+    "sidebarTitle": "Tin tức Fabbi"
+  },
+  "apply": {
+    "title": "Ứng tuyển",
+    "submit": "Gửi hồ sơ",
+    "submitting": "Đang gửi...",
+    "successTitle": "Ứng tuyển thành công!",
+    "successMessage": "Cảm ơn bạn đã quan tâm. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
+    "backHome": "Về trang chủ",
+    "viewMoreJobs": "Xem thêm cơ hội khác",
+    "form": {
+      "title": "Ứng tuyển ngay nào",
+      "subtitle": "Hãy điền thông tin của bạn và gửi cho nhà tuyển dụng",
+      "fullName": "Họ và tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "position": "Vị trí ứng tuyển",
+      "cv": "CV (PDF)",
+      "message": "Lời nhắn (tùy chọn)",
+      "upload": "Tải lên CV"
+    }
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã có lỗi xảy ra. Vui lòng thử lại sau."
   }
 }

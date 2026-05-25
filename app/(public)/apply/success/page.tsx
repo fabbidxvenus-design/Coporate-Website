@@ -25,7 +25,7 @@ export default async function ApplySuccessPage({ params }: { params: Promise<{ l
         </p>
         <Link
           href={`/${locale}/jobs`}
-          className="inline-flex items-center justify-center px-6 py-3 bg-[#006672] hover:bg-[#005560] hover:text-white font-semibold rounded-lg transition-colors"
+          className="inline-flex items-center justify-center px-6 py-3 bg-pink-600 hover:bg-pink-700 hover:text-white font-semibold rounded-lg transition-colors"
         >
           {dict.apply.viewMoreJobs || (locale === 'vi' ? 'Xem thêm cơ hội khác' : '他の機会を見る')}
         </Link>

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient, USE_MOCK_DATA } from '@/lib/supabase/server'
 import { requireAdmin } from '@/lib/auth'
-import type { Database } from '@/types/database'
-
-type Application = Database['public']['Tables']['applications']['Row']
+import { applicationsRepository } from '@/lib/db/repositories/applications'
+import { jobsRepository } from '@/lib/db/repositories/jobs'
+import path from 'path'
+import fs from 'fs'
 
 interface RouteParams {
   params: Promise<{ id: string }>
@@ -11,48 +11,24 @@ interface RouteParams {
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    if (USE_MOCK_DATA) {
-      return NextResponse.json(
-        { error: 'API not available in mock data mode' },
-        { status: 503 }
-      )
-    }
-
     await requireAdmin()
     const { id } = await params
-    const supabase = await createClient()
 
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database not configured' },
-        { status: 503 }
-      )
-    }
+    const application = await applicationsRepository.findById(id)
 
-    const { data, error } = await supabase
-      .from('applications')
-      .select('*, jobs(id, title, slug)')
-      .eq('id', id)
-      .single()
-
-    if (error || !data) {
+    if (!application) {
       return NextResponse.json(
         { error: 'Application not found' },
         { status: 404 }
       )
     }
 
-    const appData = data as Application
-    let cvUrl: string | null = null
-    if (appData.cv_file_path) {
-      const urlResult = await supabase.storage
-        .from('candidate-cvs')
-        .createSignedUrl(appData.cv_file_path, 3600)
+    // In local SQLite mode, we don't have "signed URLs".
+    // We'll create a simple internal route or just return a path.
+    // For now, we point to an API that will serve the file.
+    const cvUrl = application.cv_path ? `/api/applications/${id}/cv` : null
 
-      cvUrl = urlResult.data?.signedUrl || null
-    }
-
-    return NextResponse.json({ data: appData, cvUrl })
+    return NextResponse.json({ data: application, cvUrl })
   } catch (error) {
     console.error('Error in GET /api/applications/[id]:', error)
     return NextResponse.json(
@@ -64,13 +40,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
 export async function PUT(request: NextRequest, { params }: RouteParams) {
   try {
-    if (USE_MOCK_DATA) {
-      return NextResponse.json(
-        { error: 'API not available in mock data mode' },
-        { status: 503 }
-      )
-    }
-
     await requireAdmin()
     const { id } = await params
 
@@ -84,42 +53,17 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       )
     }
 
-    const validStatuses = ['new', 'reviewing', 'shortlisted', 'rejected', 'hired']
-    if (!validStatuses.includes(status)) {
+    const result = await applicationsRepository.updateStatus(id, status)
+
+    if (!result) {
       return NextResponse.json(
-        { error: 'Invalid status value' },
-        { status: 400 }
+        { error: 'Failed to update application or not found' },
+        { status: 404 }
       )
     }
 
-    const supabase = await createClient()
-
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database not configured' },
-        { status: 503 }
-      )
-    }
-
-    const { data, error } = await supabase
-      .from('applications')
-      .update({
-        status,
-        updated_at: new Date().toISOString(),
-      } as never)
-      .eq('id', id)
-      .select()
-      .single()
-
-    if (error) {
-      console.error('Error updating application:', error)
-      return NextResponse.json(
-        { error: 'Failed to update application' },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json({ data: data as Application | null })
+    const updated = await applicationsRepository.findById(id)
+    return NextResponse.json({ data: updated })
   } catch (error) {
     console.error('Error in PUT /api/applications/[id]:', error)
     return NextResponse.json(

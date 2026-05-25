@@ -3,11 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import type { Database } from '@/types/database'
+import type { Application, Job } from '@/lib/db/types'
 import { formatDateWithTime, formatFileSize } from '@/lib/utils'
-
-type Application = Database['public']['Tables']['applications']['Row']
-type Job = Database['public']['Tables']['jobs']['Row']
 
 type ApplicationWithJob = Application & { jobs: Job | null }
 
@@ -89,7 +86,7 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#008b9c]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     )
   }
@@ -98,7 +95,7 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
     return (
       <div className="text-center py-12">
         <p className="text-red-500">{error || 'Application not found'}</p>
-        <Link href="/admin/applications" className="text-[#008b9c] hover:underline mt-4 inline-block">
+        <Link href="/admin/applications" className="text-teal-text hover:underline mt-4 inline-block">
           Quay lại danh sách
         </Link>
       </div>
@@ -110,7 +107,7 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
       {/* Back Link */}
       <Link
         href="/admin/applications"
-        className="inline-flex items-center gap-2 text-gray-600 hover:text-[#008b9c] mb-6"
+        className="inline-flex items-center gap-2 text-gray-600 hover:text-teal-text mb-6"
       >
         <span className="material-symbols-outlined text-base">arrow_back</span>
         Quay lại danh sách
@@ -151,7 +148,7 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
         {application.jobs && (
           <div>
             <label className="block text-sm font-medium text-gray-500 mb-1">Vị trí ứng tuyển</label>
-            <Link href={`/jobs/${application.jobs.slug}`} className="text-[#008b9c] hover:underline font-medium">
+            <Link href={`/jobs/${application.jobs.slug}`} className="text-teal-text hover:underline font-medium">
               {application.jobs.title}
             </Link>
           </div>
@@ -161,7 +158,7 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
         {application.portfolio_url && (
           <div>
             <label className="block text-sm font-medium text-gray-500 mb-1">Portfolio</label>
-            <a href={application.portfolio_url} target="_blank" rel="noopener noreferrer" className="text-[#008b9c] hover:underline">
+            <a href={application.portfolio_url} target="_blank" rel="noopener noreferrer" className="text-teal-text hover:underline">
               {application.portfolio_url}
             </a>
           </div>
@@ -181,15 +178,15 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
             <span className="material-symbols-outlined text-4xl text-gray-400" aria-hidden="true">description</span>
             <div className="flex-1">
-              <p className="font-medium text-gray-900">{application.cv_file_name}</p>
-              <p className="text-sm text-gray-500">{formatFileSize(application.cv_file_size)}</p>
+              <p className="font-medium text-gray-900">{application.cv_filename}</p>
+              <p className="text-sm text-gray-500">{formatFileSize(application.cv_size || 0)}</p>
             </div>
             {cvUrl && (
               <a
                 href={cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-[#008b9c] text-white rounded-lg text-sm font-medium hover:bg-[#007a89] flex items-center gap-2"
+                className="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-800 flex items-center gap-2"
               >
                 <span className="material-symbols-outlined text-base" aria-hidden="true">download</span>
                 Tải CV
@@ -202,7 +199,7 @@ export default function ApplicationDetail({ id }: ApplicationDetailProps) {
         <div className="grid grid-cols-2 gap-6 pt-4 border-t border-gray-200">
           <div>
             <label className="block text-sm font-medium text-gray-500 mb-1">Ngày nộp</label>
-            <p className="text-gray-900">{formatDateWithTime(application.submitted_at)}</p>
+            <p className="text-gray-900">{formatDateWithTime(application.created_at)}</p>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-500 mb-1">Cập nhật cuối</label>

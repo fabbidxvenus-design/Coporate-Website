@@ -1,39 +1,19 @@
-import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { NextResponse } from 'next/server'
-import type { CookieOptions } from '@supabase/ssr'
-import type { Database } from '@/types/database'
+import { authRepository } from '@/lib/db/repositories/admin-auth'
 
 export async function POST() {
   const cookieStore = await cookies()
+  const sessionToken = cookieStore.get('admin_session')?.value
 
   try {
-    const supabase = createServerClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-          setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
-            try {
-              cookiesToSet.forEach(({ name, value, options }) =>
-                cookieStore.set(name, value, options)
-              )
-            } catch {
-              // Server Component context
-            }
-          },
-        },
-      }
-    )
-
-    await supabase.auth.signOut()
+    if (sessionToken) {
+      await authRepository.deleteSession(sessionToken)
+    }
   } catch (error) {
     console.error('[Auth] Signout failed:', error)
   }
 
+  cookieStore.delete('admin_session')
   redirect('/login')
 }

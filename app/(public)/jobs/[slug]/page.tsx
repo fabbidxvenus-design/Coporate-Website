@@ -1,25 +1,24 @@
-import { createClient, USE_MOCK_DATA } from '@/lib/supabase/server'
-import { mockJobs } from '@/lib/mock-data'
+import { jobsRepository } from '@/lib/db/repositories/jobs'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import type { Database } from '@/types/database'
 import { sanitizeAndFormatHtml } from '@/lib/sanitize'
 import { formatDateAgo, formatDateLocal } from '@/lib/utils'
 import { JobSidebar } from '@/components/public/JobSidebar'
 import { RelatedJobs } from '@/components/public/RelatedJobs'
 import { getDictionary, Locale } from '@/lib/i18n'
 
-export const revalidate = 300
-
-type Job = Database['public']['Tables']['jobs']['Row']
-
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>
 }
 
+export const revalidate = 300
+
 export async function generateMetadata({ params }: PageProps) {
   const { slug, locale } = await params
-  const job = await getJob(slug)
+  // Use repository instead of Supabase client
+  const jobs = await jobsRepository.findAllPublished()
+  const job = jobs.find(j => j.slug === slug)
+
   if (!job) return { title: locale === 'vi' ? 'Không tìm thấy' : '見つかりませんでした' }
   return {
     title: locale === 'vi' ? `${job.title} | Fabbi Tuyển dụng` : `${job.title} | Fabbi 採用`,
@@ -27,58 +26,22 @@ export async function generateMetadata({ params }: PageProps) {
   }
 }
 
-async function getJob(slug: string): Promise<Job | null> {
-  const supabase = await createClient()
-
-  if (USE_MOCK_DATA || !supabase) {
-    return (mockJobs as Job[]).find(job => job.slug === slug) || null
-  }
-
-  const { data } = await supabase
-    .from('jobs')
-    .select('*')
-    .eq('slug', slug)
-    .eq('status', 'published')
-    .single()
-  return data as Job | null
-}
-
-async function getRelatedJobs(currentId: string, location?: string): Promise<Job[]> {
-  const supabase = await createClient()
-
-  if (USE_MOCK_DATA || !supabase) {
-    let related = (mockJobs as Job[]).filter(job => job.id !== currentId)
-    if (location) {
-      related = related.filter(job => job.location === location)
-    }
-    return related.slice(0, 4)
-  }
-
-  let query = supabase
-    .from('jobs')
-    .select('*')
-    .eq('status', 'published')
-    .neq('id', currentId)
-    .limit(4)
-
-  if (location) {
-    query = query.eq('location', location)
-  }
-
-  const { data } = await query
-  return (data || []) as Job[]
-}
-
 export default async function JobDetailPage({ params }: PageProps) {
   const { slug, locale } = await params
   const dict = getDictionary(locale as Locale)
-  const job = await getJob(slug)
+
+  // Use repository
+  const jobs = await jobsRepository.findAllPublished()
+  const job = jobs.find(j => j.slug === slug)
 
   if (!job) {
     notFound()
   }
 
-  const relatedJobs = await getRelatedJobs(job.id, job.location || undefined)
+  // Filter related jobs based on simple matching
+  const relatedJobs = jobs
+    .filter(j => j.id !== job.id && (job.location ? j.location === job.location : true))
+    .slice(0, 4)
 
   return (
     <div className="flex-grow pb-20">
@@ -99,17 +62,11 @@ export default async function JobDetailPage({ params }: PageProps) {
               <i className="fa-regular fa-calendar w-4 h-4"></i>
               {locale === 'vi' ? 'Ngày đăng' : '投稿日'}: {job.published_at ? formatDateAgo(job.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}
             </span>
-            {job.closed_at && (
-              <span className="flex items-center gap-1.5">
-                <i className="fa-regular fa-clock w-4 h-4"></i>
-                {locale === 'vi' ? 'Ngày hết hạn ứng tuyển' : '応募期限'}: {formatDateLocal(job.closed_at)}
-              </span>
-            )}
           </div>
         </div>
         <Link
           href={`/${locale}/apply?job=${job.slug}`}
-          className="bg-[#006672] hover:bg-[#005560] hover:text-white font-medium py-3 px-8 rounded-lg flex items-center gap-2 transition-colors shrink-0"
+          className="bg-pink-600 hover:bg-pink-700 hover:text-white font-medium py-3 px-8 rounded-lg flex items-center gap-2 transition-colors shrink-0"
         >
           <i className="fa-solid fa-check-circle w-5 h-5"></i>
           {locale === 'vi' ? 'NỘP HỒ SƠ' : '応募する'}

@@ -1,4 +1,5 @@
 import { PublicHeader } from '@/components/public/PublicHeader';
+import { PublicFooter } from '@/components/public/PublicFooter';
 
 export default async function LocaleLayout({
   children,
@@ -9,9 +10,10 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   return (
-    <div lang={locale}>
+    <div lang={locale} className="min-h-screen flex flex-col bg-background">
       <PublicHeader />
-      {children}
+      <main id="main-content" className="flex-1">{children}</main>
+      <PublicFooter />
     </div>
   );
 }

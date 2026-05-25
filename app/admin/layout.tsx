@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation'
 import { requireAdmin } from '@/lib/auth'
 import { CmsSidebar } from '@/components/cms/CmsSidebar'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminLayout({
   children,
 }: {

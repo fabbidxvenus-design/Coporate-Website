@@ -1,13 +1,10 @@
-import { createClient, USE_MOCK_DATA } from '@/lib/supabase/server'
-import { mockNews } from '@/lib/mock-data'
-import type { Database } from '@/types/database'
+import { newsRepository } from '@/lib/db/repositories/news'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import { formatDateAgoEn } from '@/lib/utils'
 import { getDictionary, Locale } from '@/lib/i18n'
-
-type Article = Database['public']['Tables']['news_articles']['Row']
+import { normalizeLocalImage } from '@/lib/utils/images'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -45,25 +42,26 @@ const categoryLabels: Record<string, string> = {
 }
 
 interface ArticleCardProps {
-  article: Article
+  article: any
   locale: string
   readMore: string
 }
 
 function FeaturedArticle({ article, locale, readMore }: ArticleCardProps) {
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
+  const imageUrl = normalizeLocalImage(article.thumbnail_url)
 
   return (
     <article className="mb-16 group cursor-pointer">
       <Link href={`/${locale}/news/${article.slug}`}>
         <div className="overflow-hidden rounded-2xl mb-6 bg-gray-100 aspect-[16/9] relative">
-          {article.cover_image_url ? (
+          {imageUrl ? (
             <Image
               alt={article.title}
               fill
               priority
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              src={article.cover_image_url}
+              src={imageUrl}
               sizes="(max-width: 768px) 100vw, 1200px"
             />
           ) : (
@@ -76,9 +74,9 @@ function FeaturedArticle({ article, locale, readMore }: ArticleCardProps) {
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full">{categoryLabel}</span>
           <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <h2 className="text-3xl font-bold text-gray-800 mb-3 group-hover:text-teal-text transition-colors duration-200">{article.title}</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-3 group-hover:text-pink transition-colors duration-200">{article.title}</h2>
         <p className="text-gray-500 mb-4 text-lg line-clamp-2">{article.excerpt || ''}</p>
-        <span className="inline-flex items-center text-teal-text font-semibold hover:text-teal-text transition-colors duration-200">
+        <span className="inline-flex items-center text-teal-text font-semibold hover:text-pink transition-colors duration-200">
           {readMore} <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
         </span>
       </Link>
@@ -88,18 +86,19 @@ function FeaturedArticle({ article, locale, readMore }: ArticleCardProps) {
 
 function ArticleGridCard({ article, locale, readMore }: ArticleCardProps) {
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
+  const imageUrl = normalizeLocalImage(article.thumbnail_url)
 
   return (
     <article className="group cursor-pointer">
       <Link href={`/${locale}/news/${article.slug}`}>
         <div className="overflow-hidden rounded-2xl mb-5 bg-gray-100 aspect-[16/10] relative">
-          {article.cover_image_url ? (
+          {imageUrl ? (
             <Image
               alt={article.title}
               fill
               loading="lazy"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              src={article.cover_image_url}
+              src={imageUrl}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           ) : (
@@ -112,9 +111,9 @@ function ArticleGridCard({ article, locale, readMore }: ArticleCardProps) {
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full">{categoryLabel}</span>
           <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-teal-text transition-colors duration-200 line-clamp-2">{article.title}</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-pink transition-colors duration-200 line-clamp-2">{article.title}</h3>
         <p className="text-gray-500 mb-4 text-base line-clamp-2">{article.excerpt || ''}</p>
-        <span className="inline-flex items-center text-teal-text font-semibold text-sm hover:text-teal-text transition-colors duration-200">
+        <span className="inline-flex items-center text-teal-text font-semibold text-sm hover:text-pink transition-colors duration-200">
           {readMore} <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
         </span>
       </Link>
@@ -124,18 +123,19 @@ function ArticleGridCard({ article, locale, readMore }: ArticleCardProps) {
 
 function HorizontalArticleCard({ article, locale, readMore }: ArticleCardProps) {
   const categoryLabel = categoryLabels[article.category || ''] || article.category || 'Category'
+  const imageUrl = normalizeLocalImage(article.thumbnail_url)
 
   return (
     <article className="flex flex-col sm:flex-row gap-6 group cursor-pointer">
       <Link href={`/${locale}/news/${article.slug}`} className="w-full sm:w-[240px] flex-shrink-0">
         <div className="overflow-hidden rounded-2xl bg-gray-100 aspect-video sm:aspect-[4/3] relative">
-          {article.cover_image_url ? (
+          {imageUrl ? (
             <Image
               alt={article.title}
               fill
               loading="lazy"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              src={article.cover_image_url}
+              src={imageUrl}
               sizes="240px"
             />
           ) : (
@@ -151,9 +151,9 @@ function HorizontalArticleCard({ article, locale, readMore }: ArticleCardProps) 
           <span className="text-xs text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
         <Link href={`/${locale}/news/${article.slug}`}>
-          <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-teal-text transition-colors duration-200 line-clamp-2">{article.title}</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-pink transition-colors duration-200 line-clamp-2">{article.title}</h3>
           <p className="text-gray-500 text-sm mb-3 line-clamp-2">{article.excerpt || ''}</p>
-          <span className="inline-flex items-center text-gray-800 font-semibold text-sm hover:text-teal-text transition-colors duration-200 mt-auto">
+          <span className="inline-flex items-center text-gray-800 font-semibold text-sm hover:text-pink transition-colors duration-200 mt-auto">
             {readMore} <i className="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
           </span>
         </Link>
@@ -162,65 +162,29 @@ function HorizontalArticleCard({ article, locale, readMore }: ArticleCardProps) 
   )
 }
 
-async function getArticles(searchParams: { q?: string; category?: string; page?: string }) {
-  const supabase = await createClient()
-  const page = parseInt(searchParams.page || '1')
-  const limit = 8
-
-  if (USE_MOCK_DATA || !supabase) {
-    let filteredArticles = (mockNews as unknown as Article[]).filter(a => a.status === 'published')
-    if (searchParams.q) {
-      filteredArticles = filteredArticles.filter(a =>
-        a.title.toLowerCase().includes(searchParams.q!.toLowerCase())
-      )
-    }
-    if (searchParams.category) {
-      filteredArticles = filteredArticles.filter(a => a.category === searchParams.category)
-    }
-    const total = filteredArticles.length
-    const offset = (page - 1) * limit
-    return { articles: filteredArticles.slice(offset, offset + limit), total, page, limit }
-  }
-
-  const offset = (page - 1) * limit
-
-  let query = supabase
-    .from('news_articles')
-    .select('*', { count: 'exact' })
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
-    .range(offset, offset + limit - 1)
-
-  if (searchParams.q) {
-    query = query.ilike('title', `%${searchParams.q}%`)
-  }
-  if (searchParams.category) {
-    query = query.eq('category', searchParams.category)
-  }
-
-  const { data, count } = await query
-
-  return { articles: (data || []) as Article[], total: count || 0, page, limit }
-}
-
 function NewsSearchForm({ params, locale, dict }: { params: { q?: string; category?: string }, locale: string, dict: any }) {
   return (
     <div className="max-w-3xl search-input-wrapper">
-      <form className="w-full h-14 pl-6 pr-4 bg-white border border-gray-200 rounded-full text-base shadow-sm flex items-center" action={`/${locale}/news`}>
-        <i className="fa-solid fa-search text-gray-400 mr-3"></i>
-        <input
-          type="text"
-          name="q"
-          defaultValue={params.q || ''}
-          className="flex-grow bg-transparent border-none text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-0"
-          placeholder={dict.jobs.searchPlaceholder}
-        />
+      <form
+        className="w-full bg-white rounded-full shadow-lg p-2 flex flex-col md:flex-row items-center gap-2 border border-gray-100"
+        action={`/${locale}/news`}
+      >
+        <div className="flex-grow flex items-center px-4 w-full py-3 md:py-0">
+          <i className="fa-solid fa-search text-gray-400 mr-3"></i>
+          <input
+            type="text"
+            name="q"
+            defaultValue={params.q || ''}
+            className="w-full bg-transparent border-none text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-0"
+            placeholder={dict.jobs.searchPlaceholder}
+          />
+        </div>
         {params.category && <input type="hidden" name="category" value={params.category} />}
         <button
           type="submit"
-          className="bg-[#006672] hover:bg-[#005560] text-white rounded-full px-6 flex items-center justify-center font-bold transition-colors duration-200 ml-2"
+          className="bg-pink hover:bg-pink-700 text-white rounded-full px-8 py-3 text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center"
         >
-          <i className="fa-solid fa-magnifying-glass mr-2"></i> {dict.jobs.searchButton}
+          <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i> {dict.jobs.searchButton}
         </button>
       </form>
     </div>
@@ -231,11 +195,30 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
   const { locale } = await params
   const sParams = await searchParams
   const dict = getDictionary(locale as Locale)
-  const { articles, total, page, limit } = await getArticles(sParams)
+
+  // Use repository
+  const allArticles = await newsRepository.findAllPublished()
+
+  // Apply filtering
+  let filteredArticles = allArticles
+  if (sParams.q) {
+    filteredArticles = filteredArticles.filter(a =>
+      a.title.toLowerCase().includes(sParams.q!.toLowerCase())
+    )
+  }
+  if (sParams.category) {
+    filteredArticles = filteredArticles.filter(a => a.category === sParams.category)
+  }
+
+  const total = filteredArticles.length
+  const limit = 8
+  const page = parseInt(sParams.page || '1')
   const totalPages = Math.ceil(total / limit)
-  const featuredArticle = articles[0]
-  const gridArticles = articles.slice(1, 5)
-  const horizontalArticles = articles.slice(5)
+  const paginatedArticles = filteredArticles.slice((page - 1) * limit, page * limit)
+
+  const featuredArticle = paginatedArticles[0]
+  const gridArticles = paginatedArticles.slice(1, 5)
+  const horizontalArticles = paginatedArticles.slice(5)
 
   const categories = [
     { key: 'nguoi_fabbi', label: locale === 'vi' ? 'Người Fabbi' : 'Fabbiの人々' },
@@ -244,9 +227,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
   ]
 
   const readMore = dict.news.readMore
-
   const sidebarTitle = dict.news.sidebarTitle || (locale === 'vi' ? 'Tin tức Fabbi' : 'Fabbiニュース')
-
   const notableSectionTitle = locale === 'vi' ? 'Tin tức chú ý' : '注目のニュース'
   const notableSectionDesc = locale === 'vi' ? 'Những bài viết nổi bật từ Fabbi' : 'Fabbiからの注目記事'
 
@@ -272,9 +253,18 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Sidebar */}
-          <aside className="w-full lg:w-64 flex-shrink-0">
+          <div className="w-full lg:w-64 flex-shrink-0" aria-label="Sidebar">
             <div className="bg-gray-50 rounded-2xl p-4 sticky top-28">
-              <h3 className="text-lg font-bold text-gray-800 px-4 py-3 mb-2">{sidebarTitle}</h3>
+              <Link
+                href={`/${locale}/news`}
+                className={`block px-4 py-3 rounded-xl text-lg transition-colors duration-200 mb-2 ${
+                  !sParams.category
+                    ? 'bg-pink text-white'
+                    : 'text-gray-800 hover:bg-pink/10 hover:text-pink'
+                }`}
+              >
+                {sidebarTitle}
+              </Link>
               <ul className="space-y-1">
                 {categories.map((cat) => (
                   <li key={cat.key}>
@@ -282,8 +272,8 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                       href={`/${locale}/news${buildSearchParams(sParams, { category: cat.key, page: undefined }) ? '?' + buildSearchParams(sParams, { category: cat.key, page: undefined }) : ''}`}
                       className={`block px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
                         sParams.category === cat.key
-                          ? 'bg-gray-200 text-gray-800 font-semibold'
-                          : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
+                          ? 'bg-pink text-white'
+                          : 'text-gray-500 hover:bg-pink/10 hover:text-pink'
                       }`}
                     >
                       {cat.label}
@@ -292,11 +282,11 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 ))}
               </ul>
             </div>
-          </aside>
+          </div>
 
           {/* Content Area */}
           <div className="flex-1">
-            {articles.length === 0 ? (
+            {paginatedArticles.length === 0 ? (
               <div className="text-center py-16 text-gray-500">
                 <i className="fa-solid fa-newspaper text-5xl mb-4 text-gray-300"></i>
                 <p className="text-lg">{dict.news.emptyState}</p>
@@ -323,7 +313,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 {page > 1 ? (
                   <Link
                     href={`/${locale}/news?${buildSearchParams(sParams, { page: String(page - 1) })}`}
-                    className="text-gray-600 hover:text-teal-text text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
                   >
                     Prev
                   </Link>
@@ -338,7 +328,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                       href={`/${locale}/news?${buildSearchParams(sParams, { page: String(p) })}`}
                       className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
                         p === page
-                          ? 'bg-[#006672] text-white'
+                          ? 'bg-pink text-white'
                           : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                       }`}
                     >
@@ -358,7 +348,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 {page < totalPages ? (
                   <Link
                     href={`/${locale}/news?${buildSearchParams(sParams, { page: String(page + 1) })}`}
-                    className="text-gray-600 hover:text-teal-text text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
                   >
                     Next
                   </Link>

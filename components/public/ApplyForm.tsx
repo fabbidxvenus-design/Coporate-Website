@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import type { Database } from '@/types/database'
+import { Job } from '@/lib/db/types'
 import { getDictionary, Locale } from '@/lib/i18n'
-
-type Job = Database['public']['Tables']['jobs']['Row']
 
 interface ApplyFormProps {
   jobs: Job[]
@@ -116,13 +114,11 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
     <div className="flex-1 flex flex-col h-full overflow-hidden">
       <div className="flex-1 overflow-y-auto p-6 bg-[#fbf9f8]">
         <div className="max-w-[600px] mx-auto space-y-6">
-          {/* Page Header */}
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{dict.apply.form.title || (locale === 'vi' ? 'Ứng tuyển ngay nào' : '今すぐ応募')}</h1>
             <p className="text-gray-500 mt-1">{dict.apply.form.subtitle || (locale === 'vi' ? 'Hãy điền thông tin của bạn và gửi cho nhà tuyển dụng' : 'あなたの情報を入力して採用担当者に送信してください')}</p>
           </div>
 
-          {/* Form */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8">
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               {error && (
@@ -131,7 +127,6 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                 </div>
               )}
 
-              {/* Position Select */}
               <div>
                 <label htmlFor="job_id" className="block text-sm font-medium text-gray-700 mb-2">
                   {dict.apply.form.position}
@@ -142,7 +137,7 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                     name="job_id"
                     value={formData.job_id}
                     onChange={handleChange}
-                    className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg text-base focus-visible:border-[#006672] focus-visible:ring-1 focus-visible:ring-[#006672] sm:text-sm appearance-none bg-white"
+                    className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg text-base focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary sm:text-sm appearance-none bg-white"
                   >
                     <option value="">{locale === 'vi' ? 'Chọn vị trí' : '職種を選択'}</option>
                     {jobs.map(job => (
@@ -153,7 +148,6 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                 </div>
               </div>
 
-              {/* Full Name */}
               <div>
                 <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-2">
                   {dict.apply.form.fullName} <span className="text-red-500">*</span>
@@ -167,13 +161,12 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                   required
                   aria-invalid={!!formErrors.full_name}
                   aria-describedby={formErrors.full_name ? 'full_name-error' : undefined}
-                  className={`w-full px-4 py-3 border rounded-lg text-base sm:text-sm placeholder-gray-400 focus-visible:border-[#006672] focus-visible:ring-1 focus-visible:ring-[#006672] ${formErrors.full_name ? 'border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400' : 'border-gray-300'}`}
+                  className={`w-full px-4 py-3 border rounded-lg text-base sm:text-sm placeholder-gray-400 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary ${formErrors.full_name ? 'border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400' : 'border-gray-300'}`}
                   placeholder={locale === 'vi' ? 'Nhập họ và tên ...' : '氏名を入力してください ...'}
                 />
                 {formErrors.full_name && <p id="full_name-error" className="mt-1 text-sm text-red-600">{formErrors.full_name}</p>}
               </div>
 
-              {/* Email */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   {dict.apply.form.email} <span className="text-red-500">*</span>
@@ -187,13 +180,12 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                   required
                   aria-invalid={!!formErrors.email}
                   aria-describedby={formErrors.email ? 'email-error' : undefined}
-                  className={`w-full px-4 py-3 border rounded-lg text-base sm:text-sm placeholder-gray-400 focus-visible:border-[#006672] focus-visible:ring-1 focus-visible:ring-[#006672] ${formErrors.email ? 'border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400' : 'border-gray-300'}`}
+                  className={`w-full px-4 py-3 border rounded-lg text-base sm:text-sm placeholder-gray-400 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary ${formErrors.email ? 'border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400' : 'border-gray-300'}`}
                   placeholder={locale === 'vi' ? 'Nhập email...' : 'メールアドレスを入力してください...'}
                 />
                 {formErrors.email && <p id="email-error" className="mt-1 text-sm text-red-600">{formErrors.email}</p>}
               </div>
 
-              {/* Phone */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                   {dict.apply.form.phone} <span className="text-red-500">*</span>
@@ -207,13 +199,12 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                   required
                   aria-invalid={!!formErrors.phone}
                   aria-describedby={formErrors.phone ? 'phone-error' : undefined}
-                  className={`w-full px-4 py-3 border rounded-lg text-base sm:text-sm placeholder-gray-400 focus-visible:border-[#006672] focus-visible:ring-1 focus-visible:ring-[#006672] ${formErrors.phone ? 'border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400' : 'border-gray-300'}`}
+                  className={`w-full px-4 py-3 border rounded-lg text-base sm:text-sm placeholder-gray-400 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary ${formErrors.phone ? 'border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400' : 'border-gray-300'}`}
                   placeholder={locale === 'vi' ? 'Nhập số điện thoại...' : '電話番号を入力してください...'}
                 />
                 {formErrors.phone && <p id="phone-error" className="mt-1 text-sm text-red-600">{formErrors.phone}</p>}
               </div>
 
-              {/* Message */}
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   {dict.apply.form.message}
@@ -224,12 +215,11 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus-visible:border-[#006672] focus-visible:ring-1 focus-visible:ring-[#006672] sm:text-sm placeholder-gray-400 resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary sm:text-sm placeholder-gray-400 resize-none"
                   placeholder={locale === 'vi' ? 'Nhập tin nhắn bạn muốn nhắn gửi...' : 'メッセージを入力してください...'}
                 />
               </div>
 
-              {/* Upload CV */}
               <div>
                 <span id="cv_file-label" className="block text-sm font-medium text-gray-700 mb-2">
                   {dict.apply.form.upload} <span className="text-red-500">*</span>
@@ -268,12 +258,11 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                 <p id="cv_file-hint" className="text-xs text-gray-500 mt-1">{locale === 'vi' ? 'PDF, DOC, DOCX - Tối đa 5MB' : 'PDF, DOC, DOCX - 最大5MB'}</p>
               </div>
 
-              {/* Submit Button */}
               <div className="pt-4 flex justify-center">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto min-w-[240px] flex justify-center items-center gap-2 py-3.5 px-8 border border-transparent rounded-lg shadow-sm text-base font-semibold text-white bg-[#006672] hover:bg-[#005560] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006672] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full sm:w-auto min-w-[240px] flex justify-center items-center gap-2 py-3.5 px-8 border border-transparent rounded-lg shadow-sm text-base font-semibold text-white bg-primary hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting && (
                     <svg aria-hidden="true" className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -285,7 +274,6 @@ export default function ApplyForm({ jobs, defaultJobId, locale }: ApplyFormProps
                 </button>
               </div>
 
-              {/* Contact Support */}
               <div className="text-center pt-2">
                 <p className="text-sm text-gray-600">
                   {locale === 'vi' ? 'Bạn cần hỗ trợ?' : 'サポートが必要ですか？'} <a className="font-medium text-gray-900 hover:text-teal-text transition-colors" href="mailto:recruitment@fabbi.vn">Contact Us</a>

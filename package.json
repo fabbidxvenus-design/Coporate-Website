@@ -7,30 +7,42 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "db:migrate": "node -e \"process.env.USE_MOCK_DATA='false'; require('tsx/register'); require('./lib/db/migrate').runMigrations().then(() => console.log('Migrations complete')).catch(e => { console.error(e); process.exit(1); })\"",
+    "db:seed": "node -e \"process.env.USE_MOCK_DATA='false'; require('tsx/register'); require('./lib/db/seed').seedCrawledData().then(() => console.log('Seeding complete')).catch(e => { console.error(e); process.exit(1); })\"",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:audit": "playwright test tests/audit"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.5.0",
-    "@supabase/supabase-js": "^2.45.0",
+    "@types/sanitize-html": "^2.16.1",
     "clsx": "^2.1.1",
     "dompurify": "^3.4.5",
+    "isomorphic-dompurify": "^3.14.0",
     "next": "^15.0.0",
+    "postgres": "^3.4.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sanitize-html": "^2.17.4",
     "tailwind-merge": "^2.5.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.60.0",
     "@types/dompurify": "^3.0.5",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "@vitest/ui": "^4.1.7",
     "autoprefixer": "^10.4.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.0",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "vite": "^8.0.14",
+    "vitest": "^4.1.7"
   }
 }

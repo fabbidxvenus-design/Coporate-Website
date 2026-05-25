@@ -1,19 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient, USE_MOCK_DATA } from '@/lib/supabase/server'
 import { requireAdmin } from '@/lib/auth'
-import type { Database } from '@/types/database'
-
-type Article = Database['public']['Tables']['news_articles']['Row']
+import { newsRepository } from '@/lib/db/repositories/news'
 
 export async function POST(request: NextRequest) {
   try {
-    if (USE_MOCK_DATA) {
-      return NextResponse.json(
-        { error: 'API not available in mock data mode' },
-        { status: 503 }
-      )
-    }
-
     await requireAdmin()
 
     const body = await request.json()
@@ -26,21 +16,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const supabase = await createClient()
-
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database not configured' },
-        { status: 503 }
-      )
-    }
-
-    const { data: existing } = await supabase
-      .from('news_articles')
-      .select('id')
-      .eq('slug', slug)
-      .single()
-
+    const existing = await newsRepository.findBySlug(slug)
     if (existing) {
       return NextResponse.json(
         { error: 'Slug already exists. Please use a different slug.' },
@@ -48,34 +24,21 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const now = new Date().toISOString()
-    const { data, error } = await supabase
-      .from('news_articles')
-      .insert({
-        title,
-        slug,
-        excerpt: excerpt || null,
-        body: articleBody,
-        cover_image_url: cover_image_url || null,
-        category: category || null,
-        tags: tags || [],
-        status: status || 'draft',
-        published_at: status === 'published' ? now : null,
-        created_at: now,
-        updated_at: now,
-      } as never)
-      .select()
-      .single()
+    const article = await newsRepository.create({
+      title,
+      slug,
+      content: articleBody,
+      excerpt: excerpt || '',
+      thumbnail_url: cover_image_url,
+      author_name: 'Admin',
+      author_role: null,
+      tags: tags || [],
+      status: status || 'draft',
+      views: 0,
+      published_at: null,
+    })
 
-    if (error) {
-      console.error('Error creating article:', error)
-      return NextResponse.json(
-        { error: 'Failed to create article' },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json({ data: data as Article | null }, { status: 201 })
+    return NextResponse.json({ data: article }, { status: 201 })
   } catch (error) {
     console.error('Error in POST /api/news:', error)
     return NextResponse.json(
@@ -87,54 +50,46 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    if (USE_MOCK_DATA) {
-      return NextResponse.json(
-        { error: 'API not available in mock data mode' },
-        { status: 503 }
-      )
-    }
-
-    const supabase = await createClient()
-
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database not configured' },
-        { status: 503 }
-      )
-    }
-
     const searchParams = request.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')
-    const category = searchParams.get('category')
     const status = searchParams.get('status')
 
-    let query = supabase
-      .from('news_articles')
-      .select('*', { count: 'exact' })
-      .order('created_at', { ascending: false })
-      .range((page - 1) * limit, page * limit - 1)
-
-    if (category) {
-      query = query.eq('category', category)
-    }
-    if (status) {
-      query = query.eq('status', status)
-    }
-
-    const { data, count, error } = await query
-
-    if (error) {
-      console.error('Error fetching articles:', error)
+    const { isSqliteDataMode } = await import('@/lib/config/data-source')
+    if (!isSqliteDataMode()) {
       return NextResponse.json(
-        { error: 'Failed to fetch articles' },
-        { status: 500 }
+        { error: 'Admin listing requires USE_MOCK_DATA=false (SQLite mode)' },
+        { status: 403 }
       )
     }
+    const { getDb } = await import('@/lib/db/connection')
+    const db = getDb()
+    const offset = (page - 1) * limit
+
+    let sql = 'SELECT * FROM news_articles'
+    const values: any[] = []
+
+    if (status) {
+      sql += ' WHERE status = ?'
+      values.push(status)
+    }
+
+    sql += ' ORDER BY created_at DESC LIMIT ? OFFSET ?'
+    values.push(limit, offset)
+
+    const rows = db.prepare(sql).all(...values) as any[]
+
+    // Get total count
+    let countSql = 'SELECT COUNT(*) as count FROM news_articles'
+    if (status) {
+      countSql += ' WHERE status = ?'
+    }
+    const countResult = db.prepare(countSql).get(...(status ? [status] : [])) as any
+    const total = countResult?.count || 0
 
     return NextResponse.json({
-      data,
-      total: count || 0,
+      data: rows,
+      total,
       page,
       limit,
     })

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-const auditRoot = path.join(process.cwd(), 'plans', '04-detail-definition-impl', 'audit');
+const auditRoot = path.join(process.cwd(), 'coding-packs', 'plans', '04-detail-definition-impl', 'audit');
 const requiredAuditArtifacts = [
   'final-report.md',
   'visual-audit.md',

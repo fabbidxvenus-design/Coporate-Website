@@ -1,13 +1,9 @@
-import { createClient, USE_MOCK_DATA } from '@/lib/supabase/server'
-import { mockJobs } from '@/lib/mock-data'
-import type { Database } from '@/types/database'
+import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { newsRepository } from '@/lib/db/repositories/news'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { formatDateAgo, formatSalary, getEmploymentTypeStyle, LOCATION_LABELS, EMPLOYMENT_TYPE_LABELS, formatDateLocal } from '@/lib/utils'
 import { getDictionary, Locale } from '@/lib/i18n'
 import { JobCard } from '@/components/public/JobCard'
-
-type Job = Database['public']['Tables']['jobs']['Row']
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -34,55 +30,6 @@ function buildSearchParams(params: { q?: string; location?: string; type?: strin
   if (merged.type) searchParams.set('type', merged.type)
   if (merged.page && merged.page !== '1') searchParams.set('page', merged.page)
   return searchParams.toString()
-}
-
-
-async function getJobs(searchParams: { q?: string; location?: string; type?: string; page?: string }) {
-  const supabase = await createClient()
-  const page = parseInt(searchParams.page || '1')
-  const limit = 10
-
-  // Use mock data if Supabase is not configured
-  if (USE_MOCK_DATA || !supabase) {
-    let filteredJobs = mockJobs as Job[]
-
-    // Apply filters
-    if (searchParams.q) {
-      filteredJobs = filteredJobs.filter(job =>
-        job.title.toLowerCase().includes(searchParams.q!.toLowerCase())
-      )
-    }
-    if (searchParams.location) {
-      filteredJobs = filteredJobs.filter(job => job.location === searchParams.location)
-    }
-    if (searchParams.type) {
-      filteredJobs = filteredJobs.filter(job => job.employment_type === searchParams.type)
-    }
-
-    return { jobs: filteredJobs, total: filteredJobs.length, page, limit }
-  }
-
-  const offset = (page - 1) * limit
-  let query = supabase
-    .from('jobs')
-    .select('*', { count: 'exact' })
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
-    .range(offset, offset + limit - 1)
-
-  if (searchParams.q) {
-    query = query.ilike('title', `%${searchParams.q}%`)
-  }
-  if (searchParams.location) {
-    query = query.eq('location', searchParams.location)
-  }
-  if (searchParams.type) {
-    query = query.eq('employment_type', searchParams.type)
-  }
-
-  const { data, count } = await query
-
-  return { jobs: (data || []) as Job[], total: count || 0, page, limit }
 }
 
 function JobsSearchForm({ params, locale, dict }: { params: { q?: string; location?: string }, locale: string, dict: any }) {
@@ -115,10 +62,10 @@ function JobsSearchForm({ params, locale, dict }: { params: { q?: string; locati
           {params.location && <input type="hidden" name="location" value={params.location} />}
         </form>
       </div>
-      <button
+        <button
         type="submit"
         formAction={`/${locale}/jobs`}
-        className="bg-[#006672] text-white hover:bg-[#005560] rounded-full px-6 py-2.5 text-sm font-bold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center"
+        className="bg-pink text-white hover:bg-pink-700 rounded-full px-6 py-2.5 text-sm font-bold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center"
       >
         <i className="fa-solid fa-magnifying-glass"></i> {dict.jobs.searchButton}
       </button>
@@ -130,27 +77,44 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
   const { locale } = await params
   const sParams = await searchParams
   const dict = getDictionary(locale as Locale)
-  const { jobs, total, page, limit } = await getJobs(sParams)
+
+  // Directly use repository
+  const jobs = await jobsRepository.findAllPublished()
+  // Basic filtering for this migration stage
+  let filteredJobs = jobs
+  if (sParams.q) {
+    filteredJobs = filteredJobs.filter(j => j.title.toLowerCase().includes(sParams.q!.toLowerCase()))
+  }
+  if (sParams.location) {
+    filteredJobs = filteredJobs.filter(j => j.location === sParams.location)
+  }
+  if (sParams.type) {
+    filteredJobs = filteredJobs.filter(j => j.employment_type === sParams.type)
+  }
+
+  const total = filteredJobs.length
+  const limit = 10
+  const page = parseInt(sParams.page || '1')
   const totalPages = Math.ceil(total / limit)
+  const paginatedJobs = filteredJobs.slice((page - 1) * limit, page * limit)
 
   return (
     <>
       {/* Hero Section with Search */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div
-          className="rounded-3xl overflow-hidden relative flex flex-col items-center py-16 px-4 md:px-8"
+          className="rounded-3xl overflow-hidden relative flex flex-col items-center py-20 px-4 md:px-8"
           style={{
-            backgroundColor: '#E6F7FA',
-            backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7wQy0pvL3l450Ue5ausCEMcD9ObKYu-XuoyY4ODl7m0WNoZipT9yOwLSNGjJSzpojo6R1JA0KJxDmSxrGIwxlY4dUVLj8r6fQrSlvPowxP8jvNKDdh_dRMTnuo7_j8e41BtwxUfej0mUJCzRS4ys7Xk6Skwv1RV_bs_eebktDwID3C9IPeHYEabba6Z-LwFoWgjB1l95UoNan-w2n0iPL9Rwk3rKhIOMLJoQbo6zDVs4YxJhTabqXpfVM8p7Y09zQYxixAzNmkuwl")',
+            backgroundImage: 'url("/images/412191366_846458190817751_1761241903598864399_n.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           <div className="text-center max-w-2xl relative z-10 mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              <span className="text-teal-text">{total} Jobs</span> {locale === 'vi' ? 'đang open' : '募集中'}
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <span className="text-pink">{total} Jobs</span> {locale === 'vi' ? 'đang open' : '募集中'}
             </h1>
-            <p className="text-gray-600 text-sm md:text-base">
+            <p className="text-white text-sm md:text-base opacity-90">
               {locale === 'vi'
                 ? 'Khám phá cơ hội nghề nghiệp tại Fabbi - Nơi công nghệ gặp gỡ đổi mới'
                 : 'Fabbiでのキャリア機会を探る - テクノロジーがイノベーションと出会う場所'}
@@ -177,31 +141,31 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
               <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                 <Link
                   href={`/${locale}/jobs${buildSearchParams(sParams, { type: undefined, page: undefined }) ? '?' + buildSearchParams(sParams, { type: undefined, page: undefined }) : ''}`}
-                  className={`flex items-center gap-2 ${!sParams.type ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-teal-text'}`}
+                  className={`flex items-center gap-2 ${!sParams.type ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
                 >
                   {dict.jobs.allCategories}
                 </Link>
                 <Link
                   href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Full-time', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Full-time' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-teal-text'}`}
+                  className={`flex items-center gap-2 ${sParams.type === 'Full-time' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
                 >
                   Full Time
                 </Link>
                 <Link
                   href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Part-time', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Part-time' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-teal-text'}`}
+                  className={`flex items-center gap-2 ${sParams.type === 'Part-time' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
                 >
                   Part Time
                 </Link>
                 <Link
                   href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Freelancer', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Freelancer' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-teal-text'}`}
+                  className={`flex items-center gap-2 ${sParams.type === 'Freelancer' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
                 >
                   Freelancer
                 </Link>
                 <Link
                   href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Internship', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Internship' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-teal-text'}`}
+                  className={`flex items-center gap-2 ${sParams.type === 'Internship' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
                 >
                   Internship
                 </Link>
@@ -210,16 +174,17 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
 
             {/* Job Cards List */}
             <div className="space-y-4">
-              {jobs.length === 0 ? (
+              {paginatedJobs.length === 0 ? (
                 <div className="text-center py-12 text-gray-500 bg-white rounded-xl">
                   <i className="fa-solid fa-search text-4xl mb-4"></i>
                   <p>{dict.jobs.emptyState}</p>
                 </div>
               ) : (
-                jobs.map((job) => (
+                paginatedJobs.map((job) => (
                   <JobCard
                     key={job.id}
                     id={job.id}
+                    slug={job.slug}
                     title={job.title}
                     company="Fabbi"
                     location={job.location || 'HN'}
@@ -239,7 +204,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 {page > 1 ? (
                   <Link
                     href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(page - 1) })}`}
-                    className="text-gray-600 hover:text-teal-text text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
                   >
                     Prev
                   </Link>
@@ -254,7 +219,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                       href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(p) })}`}
                       className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
                         p === page
-                          ? 'bg-[#006672] text-white'
+                          ? 'bg-pink text-white'
                           : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                       }`}
                     >
@@ -274,7 +239,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 {page < totalPages ? (
                   <Link
                     href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(page + 1) })}`}
-                    className="text-gray-600 hover:text-teal-text text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
                   >
                     Next
                   </Link>
@@ -286,7 +251,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
           </div>
 
           {/* Right Column: Sidebar */}
-          <aside className="space-y-8">
+          <div className="space-y-8" aria-label="Sidebar">
             <div>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">{dict.footer.followUs}</h2>
               <p className="text-gray-500 text-sm mb-4">
@@ -303,12 +268,8 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                  <div className="w-12 h-12 rounded bg-white p-1">
-                    <svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z" fill="#006672"/>
-                      <path d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z" fill="#F47F35"/>
-                      <path d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z" fill="#F47F35"/>
-                    </svg>
+                  <div className="w-12 h-12 rounded bg-white p-1 flex items-center justify-center">
+                    <img src="/images/fabbi-light-v2.svg" alt="Fabbi Logo" className="w-8 h-8 object-contain" />
                   </div>
                   <div>
                     <h3 className="text-white font-bold">Fabbi JSC</h3>
@@ -327,13 +288,13 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
             <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
               <h3 className="font-bold text-gray-800 mb-4">{dict.footer.quickLinks}</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href={`/${locale}`} className="text-gray-600 hover:text-teal-text transition-colors">{dict.nav.home}</Link></li>
-                <li><Link href={`/${locale}/about`} className="text-gray-600 hover:text-teal-text transition-colors">{dict.nav.about}</Link></li>
-                <li><Link href={`/${locale}/news`} className="text-gray-600 hover:text-teal-text transition-colors">{dict.nav.news}</Link></li>
-                <li><Link href={`/${locale}/apply`} className="text-gray-600 hover:text-teal-text transition-colors">{dict.apply.title}</Link></li>
+                <li><Link href={`/${locale}`} className="text-gray-600 hover:text-pink transition-colors">{dict.nav.home}</Link></li>
+                <li><Link href={`/${locale}/about`} className="text-gray-600 hover:text-pink transition-colors">{dict.nav.about}</Link></li>
+                <li><Link href={`/${locale}/news`} className="text-gray-600 hover:text-pink transition-colors">{dict.nav.news}</Link></li>
+                <li><Link href={`/${locale}/apply`} className="text-gray-600 hover:text-pink transition-colors">{dict.apply.title}</Link></li>
               </ul>
             </div>
-          </aside>
+          </div>
         </div>
       </section>
     </>

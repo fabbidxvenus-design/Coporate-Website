@@ -22,7 +22,7 @@ export function CmsTopbar({ title, breadcrumbs, actions }: CmsTopbarProps) {
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
-                    className="text-gray-500 hover:text-[#008b9c]"
+                    className="text-gray-500 hover:text-teal-text"
                   >
                     {crumb.label}
                   </Link>

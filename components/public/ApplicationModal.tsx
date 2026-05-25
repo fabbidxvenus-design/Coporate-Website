@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef, type KeyboardEvent } from 'react'
-import { createClient } from '@/lib/supabase/client'
 
 interface ApplicationModalProps {
   isOpen: boolean
@@ -138,7 +137,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
               <p className="text-gray-600">Cảm ơn bạn đã quan tâm. Chúng tôi sẽ sớm liên hệ lại.</p>
               <button
                 onClick={onClose}
-                className="mt-6 bg-[#008b9c] text-white px-6 py-2 rounded-lg font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#008b9c]"
+                className="mt-6 bg-primary text-white px-6 py-2 rounded-lg font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 Đóng
               </button>
@@ -155,7 +154,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                     Họ và tên <span className="text-red-500">*</span>
                   </label>
                   <input
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008b9c] focus-visible:ring-offset-2"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     id="modal-fullName"
                     placeholder="Nhập họ và tên ..."
                     required
@@ -167,7 +166,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                     Email <span className="text-red-500">*</span>
                   </label>
                   <input
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008b9c] focus-visible:ring-offset-2"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     id="modal-email"
                     placeholder="Nhập email..."
                     required
@@ -177,7 +176,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-1" htmlFor="modal-phone">Số điện thoại</label>
                   <input
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008b9c] focus-visible:ring-offset-2"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     id="modal-phone"
                     placeholder="Nhập số điện thoại..."
                     type="tel"
@@ -186,7 +185,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-1" htmlFor="modal-message">Tin nhắn cho chúng tôi</label>
                   <textarea
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008b9c] focus-visible:ring-offset-2 resize-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 resize-none"
                     id="modal-message"
                     placeholder="Nhập tin nhắn bạn muốn nhắn gửi..."
                     rows={4}
@@ -194,8 +193,8 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                 </div>
                 <div>
                   <label htmlFor="modal-cv" className="block text-sm font-medium text-gray-900 mb-1">Upload CV <span className="text-red-500">*</span></label>
-                  <div className="border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-[#008b9c] hover:bg-gray-50 transition-colors group">
-                    <span className="text-sm text-gray-500 group-hover:text-[#008b9c]">Upload CV (pdf, docx, doc)</span>
+                  <div className="border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors group">
+                    <span className="text-sm text-gray-500 group-hover:text-teal-text">Upload CV (pdf, docx, doc)</span>
                     <input
                       accept=".pdf,.doc,.docx"
                       className="sr-only"
@@ -208,7 +207,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                 </div>
                 <div className="pt-4">
                   <button
-                    className="w-full bg-[#008b9c] text-white py-3 rounded-lg font-semibold hover:bg-[#007685] transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#008b9c]"
+                    className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     type="submit"
                     disabled={loading}
                   >

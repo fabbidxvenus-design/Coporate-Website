@@ -76,7 +76,7 @@ export default function SettingsForm({ initialData = {} }: SettingsFormProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#008b9c]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     )
   }
@@ -113,7 +113,7 @@ export default function SettingsForm({ initialData = {} }: SettingsFormProps) {
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   onBlur={(e) => handleSave(field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
                 />
               </div>
             ))}
@@ -135,7 +135,7 @@ export default function SettingsForm({ initialData = {} }: SettingsFormProps) {
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   onBlur={(e) => handleSave(field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
                 />
               </div>
             ))}
@@ -157,7 +157,7 @@ export default function SettingsForm({ initialData = {} }: SettingsFormProps) {
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   onBlur={(e) => handleSave(field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-[#008b9c] focus-visible:ring-1 focus-visible:ring-[#008b9c] transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary transition-colors"
                 />
               </div>
             ))}

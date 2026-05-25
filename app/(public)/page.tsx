@@ -1,130 +1,109 @@
+import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { newsRepository } from '@/lib/db/repositories/news'
 import Link from 'next/link'
 import { JobCard } from '@/components/public/JobCard'
 import { NewsCard } from '@/components/public/NewsCard'
+import { getDictionary, Locale } from '@/lib/i18n'
 
-// Sample data for development - will be replaced with Supabase queries
-const featuredJobs = [
-  {
-    id: '1',
-    title: 'Senior Frontend Developer (ReactJS)',
-    company: 'Fabbi JSC',
-    location: 'Hà Nội',
-    salary: 'Upto $2500',
-    employmentType: 'Full-time',
-    skills: ['ReactJS', 'TypeScript'],
-    postedDays: 2,
-    isHot: true,
-  },
-  {
-    id: '2',
-    title: 'Bridge System Engineer (BrSE)',
-    company: 'Fabbi Japan',
-    location: 'Tokyo, Japan',
-    salary: 'Thương lượng',
-    employmentType: 'Full-time',
-    skills: ['Japanese N2', 'Management'],
-    postedDays: 3,
-    isHot: false,
-  },
-  {
-    id: '3',
-    title: 'Backend Developer (NodeJS/AWS)',
-    company: 'Fabbi JSC',
-    location: 'Hồ Chí Minh',
-    salary: 'Upto $2000',
-    employmentType: 'Full-time',
-    skills: ['NodeJS', 'AWS'],
-    postedDays: 5,
-    isHot: false,
-  },
-]
+export const dynamic = 'force-dynamic'
 
-const latestNews = [
-  {
-    id: '1',
-    title: 'Lễ tổng kết Quý 1/2024: Bước đà vững chắc cho những mục tiêu mới',
-    excerpt:
-      'Vừa qua, Fabbi đã tổ chức thành công buổi lễ tổng kết Quý 1/2024 với sự tham gia của toàn thể CBNV.',
-    category: 'Sự kiện',
-    date: '15 Tháng 5, 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800',
-  },
-  {
-    id: '2',
-    title: 'Chia sẻ kiến thức: Tối ưu hóa hiệu năng ứng dụng React quy mô lớn',
-    excerpt:
-      'Buổi seminar chia sẻ những kỹ thuật tiên tiến để tối ưu hóa render, quản lý state và cải thiện trải nghiệm người dùng.',
-    category: 'Tech Talk',
-    date: '10 Tháng 5, 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800',
-  },
-  {
-    id: '3',
-    title: 'Sôi động giải bóng đá giao hữu Fabbi Championship 2024',
-    excerpt:
-      'Giải đấu thường niên nhằm nâng cao tinh thần thể thao, rèn luyện sức khỏe và thắt chặt tình đoàn kết.',
-    category: 'Đời sống',
-    date: '05 Tháng 5, 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1521898284481-a5ec348cb555?w=800',
-  },
-]
+export default async function HomePage({ params }: { params?: Promise<{ locale?: string }> }) {
+  const resolvedParams = await params
+  const locale = ((resolvedParams?.locale as string) || 'vi') as Locale
+  const dict = getDictionary(locale === undefined ? 'vi' : locale)
 
-const services = [
-  {
-    icon: 'groups',
-    title: 'Tuyển dụng nhân sự IT',
-    description:
-      'Cung ứng nguồn nhân lực IT chất lượng cao, đáp ứng chính xác yêu cầu dự án và văn hóa doanh nghiệp.',
-  },
-  {
-    icon: 'code',
-    title: 'Phát triển phần mềm',
-    description:
-      'Xây dựng ứng dụng web, mobile và hệ thống doanh nghiệp theo yêu cầu với quy trình chuẩn Agile.',
-  },
-  {
-    icon: 'lightbulb',
-    title: 'Tư vấn giải pháp',
-    description:
-      'Đồng hành chuyển đổi số, tối ưu hóa quy trình nghiệp vụ thông qua việc áp dụng công nghệ tiên tiến.',
-  },
-]
+  // Get dynamic jobs and news
+  const allJobs = await jobsRepository.findAllPublished()
+  const featuredJobs = allJobs.slice(0, 3)
 
-export default function HomePage() {
+  const allNews = await newsRepository.findAllPublished()
+  const latestNews = allNews
+    .filter(n => n.id.startsWith(locale === 'ja' ? 'ja-' : 'vi-'))
+    .slice(0, 3)
+
+  const heroTitle = dict?.home?.heroTitle || 'Fabbi - Công nghệ cho tương lai'
+  const heroParts = heroTitle.includes(' - ') ? heroTitle.split(' - ') : [heroTitle, '']
+
+  const services = [
+    {
+      icon: 'groups',
+      title: locale === 'vi' ? 'Tuyển dụng nhân sự IT' : 'IT人材採用',
+      description:
+        locale === 'vi'
+          ? 'Cung ứng nguồn nhân lực IT chất lượng cao, đáp ứng chính xác yêu cầu dự án và văn hóa doanh nghiệp.'
+          : 'プロジェクトの要件や企业文化に正確に対応する、高品質なIT人材を提供します。',
+      link: `/${locale}/it-recruitment`,
+    },
+    {
+      icon: 'code',
+      title: locale === 'vi' ? 'Phát triển phần mềm' : 'ソフトウェア開発',
+      description:
+        locale === 'vi'
+          ? 'Xây dựng ứng dụng web, mobile và hệ thống doanh nghiệp theo yêu cầu với quy trình chuẩn Agile.'
+          : 'アジャイルプロセスに基づき、Web、モバイル、および企业向けシステムを開発します。',
+      link: `/${locale}/business-application-development-vn`,
+    },
+    {
+      icon: 'lightbulb',
+      title: locale === 'vi' ? 'Tư vấn giải pháp AI' : 'AIソリューションコンサルティング',
+      description:
+        locale === 'vi'
+          ? 'Đồng hành chuyển đổi số, tối ưu hóa quy trình nghiệp vụ thông qua việc áp dụng công nghệ AI tiên tiến.'
+          : '最先端 của AI 技術を活用し、デジタルトランスフォーメーションとビジネスプロセスの最適化を支援します。',
+      link: `/${locale}/service-ai-system-development-vn`,
+    },
+    {
+      icon: 'dataset',
+      title: locale === 'vi' ? 'Dịch vụ CRM' : 'CRMサービス',
+      description:
+        locale === 'vi'
+          ? 'Triển khai giải pháp CRM tùy chỉnh, giúp doanh nghiệp quản lý khách hàng và tăng trưởng doanh thu hiệu quả.'
+          : '企业が顧客を管理し、収益を効率的に成長させるためのカスタムCRMソリューションを導入します。',
+      link: `/${locale}/service-crm-solutions-vn`,
+    },
+    {
+      icon: 'currency_exchange',
+      title: locale === 'vi' ? 'Blockchain' : 'ブロックチェーン',
+      description:
+        locale === 'vi'
+          ? 'Phát triển các ứng dụng dựa trên công nghệ Blockchain, đảm bảo tính bảo mật và minh bạch cao.'
+          : '高いセキュリティと透明性を保証する、ブロックチェーン技術に基づいたアプリケーションを開発します。',
+      link: `/${locale}/service-blockchain-development-vn`,
+    },
+  ]
+
   return (
-    <main className="w-full">
+    <div className="w-full">
       {/* Hero Section */}
-      <section aria-labelledby="hero-heading" className="relative w-full h-[600px] flex items-center justify-center bg-surface-container-low overflow-hidden">
+      <section aria-labelledby="hero-heading" className="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-20"
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600"
+            className="w-full h-full object-cover"
+            src="/images/409187962_843743124422591_5358432708356068022_n.jpg"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 to-surface/40"></div>
         </div>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 flex flex-col items-start justify-center">
-          <h1 id="hero-heading" className="text-5xl font-bold text-on-background max-w-3xl leading-tight mb-6">
-            Tiên phong giải pháp công nghệ &amp;{' '}
-            <span className="text-primary">nhân sự hàng đầu</span>
+            <h1 id="hero-heading" className="text-5xl font-bold text-white max-w-3xl leading-tight mb-6">
+            {heroParts[0]} -{' '}
+            <span className="text-teal-text hover:text-pink transition-colors cursor-default">{heroParts[1]}</span>
           </h1>
-          <p className="text-lg text-on-surface-variant max-w-2xl mb-8">
-            Kết nối nhân tài IT với những cơ hội phát triển đột phá. Cung cấp
-            giải pháp phần mềm toàn diện cho doanh nghiệp của bạn.
+          <p className="text-lg text-white max-w-2xl mb-8">
+            {dict?.home?.heroSubtitle || ''}
           </p>
           <div className="flex gap-4">
             <Link
-              href="/jobs"
-              className="bg-primary text-on-primary px-6 py-3 rounded-lg text-sm font-semibold hover:bg-[#008190] transition-colors shadow-sm"
+              href={`/${locale}/jobs`}
+              className="bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-pink-700 transition-colors shadow-sm"
             >
-              Khám phá cơ hội
+              {dict?.home?.exploreJobs || (locale === 'vi' ? 'Khám phá việc làm' : '求人を見る')}
             </Link>
             <Link
-              href="/contact"
-              className="bg-transparent border border-outline text-primary px-6 py-3 rounded-lg text-sm font-semibold hover:bg-surface-container transition-colors"
+              href={`/${locale}/contact`}
+              className="bg-transparent border border-teal-text text-teal-text px-6 py-3 rounded-lg text-sm font-semibold hover:border-pink hover:text-pink hover:bg-pink-50 transition-colors"
             >
-              Liên hệ ngay
+              {dict?.nav?.contact || 'Liên hệ'}
             </Link>
           </div>
         </div>
@@ -135,68 +114,23 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-outline-variant/30">
             <div className="flex flex-col items-center py-4 md:py-0">
-              <span className="text-5xl font-bold text-primary mb-2">10+</span>
+              <span className="text-5xl font-bold text-teal-text mb-2">10+</span>
               <span className="text-base text-on-surface-variant font-medium uppercase tracking-wider">
-                Năm kinh nghiệm
+                {locale === 'vi' ? 'Năm kinh nghiệm' : '年の経験'}
               </span>
             </div>
             <div className="flex flex-col items-center py-4 md:py-0">
-              <span className="text-5xl font-bold text-primary mb-2">500+</span>
+              <span className="text-5xl font-bold text-teal-text mb-2">500+</span>
               <span className="text-base text-on-surface-variant font-medium uppercase tracking-wider">
-                Dự án hoàn thành
+                {locale === 'vi' ? 'Dự án hoàn thành' : '完了したプロジェクト'}
               </span>
             </div>
             <div className="flex flex-col items-center py-4 md:py-0">
-              <span className="text-5xl font-bold text-primary mb-2">1000+</span>
+              <span className="text-5xl font-bold text-teal-text mb-2">1000+</span>
               <span className="text-base text-on-surface-variant font-medium uppercase tracking-wider">
-                Nhân sự tài năng
+                {locale === 'vi' ? 'Nhân sự tài năng' : '優秀な人材'}
               </span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Services */}
-      <section aria-labelledby="services-heading" className="w-full py-16">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 id="services-heading" className="text-3xl font-bold text-on-background mb-4">
-              Dịch vụ của chúng tôi
-            </h2>
-            <p className="text-base text-on-surface-variant max-w-2xl mx-auto">
-              Giải pháp toàn diện đáp ứng mọi nhu cầu công nghệ và nhân sự của
-              doanh nghiệp.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="bg-surface rounded-xl p-8 border border-outline-variant/50 hover:shadow-lg transition-all hover:-translate-y-1 group"
-              >
-                <div className="w-14 h-14 rounded-lg bg-[#008190]/10 flex items-center justify-center mb-6 group-hover:bg-[#008190]/20 transition-colors">
-                  <span className="material-symbols-outlined text-primary text-3xl" aria-hidden="true">
-                    {service.icon}
-                  </span>
-                </div>
-                <h3 className="text-xl font-semibold text-on-background mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-on-surface-variant mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                <Link
-                  href="#"
-                  aria-label={`Tìm hiểu thêm về ${service.title}`}
-                  className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"
-                >
-                  Tìm hiểu thêm{' '}
-                  <span className="material-symbols-outlined text-sm" aria-hidden="true">
-                    arrow_forward
-                  </span>
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -207,32 +141,44 @@ export default function HomePage() {
           <div className="flex justify-between items-end mb-8">
             <div>
               <h2 id="featured-jobs-heading" className="text-3xl font-bold text-on-background mb-2">
-                Việc làm nổi bật
+                {dict?.home?.latestJobs || (locale === 'vi' ? 'Việc làm nổi bật' : '注目の求人')}
               </h2>
               <p className="text-base text-on-surface-variant">
-                Khám phá những cơ hội nghề nghiệp tốt nhất tuần này.
+                {locale === 'vi' ? 'Khám phá những cơ hội nghề nghiệp tốt nhất tuần này.' : '今週の最高のキャリア機会をご覧ください。'}
               </p>
             </div>
             <Link
-              href="/jobs"
+              href={`/${locale}/jobs`}
               aria-label="Xem tất cả việc làm nổi bật"
-              className="text-primary text-sm font-semibold hidden md:flex items-center gap-1 hover:underline"
+              className="text-teal-text hover:text-pink text-sm font-semibold hidden md:flex items-center gap-1 hover:underline transition-colors"
             >
-              Xem tất cả{' '}
+              {dict?.home?.viewAllJobs || (locale === 'vi' ? 'Xem tất cả' : 'すべて見る')}{' '}
               <span className="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
             </Link>
           </div>
           <div className="flex flex-col gap-4">
             {featuredJobs.map((job) => (
-              <JobCard key={job.id} {...job} />
+              <JobCard
+                key={job.id}
+                id={job.id}
+                slug={job.slug}
+                title={job.title}
+                company="Fabbi"
+                location={job.location || 'HN'}
+                salary={job.salary_min && job.salary_max ? `${job.salary_min.toLocaleString()} - ${job.salary_max.toLocaleString()} ${job.currency || '$'}` : undefined}
+                employmentType={job.employment_type || ''}
+                skills={job.skills || []}
+                postedDays={Math.floor((Date.now() - new Date(job.published_at || job.created_at).getTime()) / (1000 * 60 * 60 * 24))}
+                locale={locale}
+              />
             ))}
           </div>
           <div className="mt-6 text-center md:hidden">
             <Link
-              href="/jobs"
+              href={`/${locale}/jobs`}
               className="inline-block bg-surface-container border border-outline-variant px-6 py-2 rounded-lg text-sm font-semibold text-on-surface-variant"
             >
-              Xem tất cả việc làm
+              {dict?.home?.viewAllJobs || (locale === 'vi' ? 'Xem tất cả' : 'すべて見る')}
             </Link>
           </div>
         </div>
@@ -244,28 +190,39 @@ export default function HomePage() {
           <div className="flex justify-between items-end mb-8">
             <div>
               <h2 id="latest-news-heading" className="text-3xl font-bold text-on-background mb-2">
-                Tin tức mới nhất
+                {dict?.home?.latestNews || (locale === 'vi' ? 'Tin tức mới' : '最新ニュース')}
               </h2>
               <p className="text-base text-on-surface-variant">
-                Cập nhật những hoạt động và sự kiện nổi bật từ Fabbi.
+                {locale === 'vi' ? 'Cập nhật những hoạt động và sự kiện nổi bật từ Fabbi.' : 'Fabbiの主な活動やイベントの最新情報をお届けします。'}
               </p>
             </div>
             <Link
-              href="/news"
+              href={`/${locale}/news`}
               aria-label="Xem tất cả tin tức"
-              className="text-primary text-sm font-semibold hidden md:flex items-center gap-1 hover:underline"
+              className="text-teal-text hover:text-pink text-sm font-semibold hidden md:flex items-center gap-1 hover:underline transition-colors"
             >
-              Tất cả tin tức{' '}
+              {dict?.home?.viewAllNews || (locale === 'vi' ? 'Xem tất cả' : 'すべて見る')}{' '}
               <span className="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {latestNews.map((news) => (
-              <NewsCard key={news.id} {...news} />
+              <NewsCard
+                key={news.id}
+                id={news.id}
+                slug={news.slug}
+                title={news.title}
+                excerpt={news.excerpt}
+                imageUrl={news.thumbnail_url || 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800'}
+                category={news.category || 'News'}
+                date={news.published_at ? new Date(news.published_at).toLocaleDateString(locale === 'vi' ? 'vi-VN' : 'ja-JP', { day: 'numeric', month: 'long', year: 'numeric' }) : ''}
+                locale={locale}
+                readMore={dict?.news?.readMore || (locale === 'vi' ? 'Đọc thêm' : '続きを読む')}
+              />
             ))}
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

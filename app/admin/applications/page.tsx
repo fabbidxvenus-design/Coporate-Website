@@ -1,47 +1,25 @@
 import { requireAdmin } from '@/lib/auth'
-import { createClient, USE_MOCK_DATA } from '@/lib/supabase/server'
-import { mockApplications, mockJobs } from '@/lib/mock-data'
-import type { Database } from '@/types/database'
+import { applicationsRepository } from '@/lib/db/repositories/applications'
+import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { Application, Job, ApplicationStatus } from '@/lib/db/types'
 import Link from 'next/link'
 import { ApplicationStatusBadge } from '@/components/admin/ApplicationDetail'
 import { formatDateWithTime, formatFileSize } from '@/lib/utils'
-
-type Application = Database['public']['Tables']['applications']['Row']
-type Job = Database['public']['Tables']['jobs']['Row']
-
-type ApplicationWithJob = Application & { jobs: Job | null }
 
 export const metadata = {
   title: 'Quản lý ứng tuyển | Fabbi CMS',
 }
 
-async function getApplications(page: number = 1, limit: number = 20): Promise<{ applications: ApplicationWithJob[]; total: number }> {
-  const supabase = await createClient()
-  const offset = (page - 1) * limit
-
-  if (USE_MOCK_DATA || !supabase) {
-    const sorted = mockApplications
-      .sort((a, b) => new Date(b.submitted_at).getTime() - new Date(a.submitted_at).getTime())
-    return {
-      applications: sorted.slice(offset, offset + limit).map(app => ({
-        ...app,
-        jobs: mockJobs.find(j => j.id === app.job_id) ?? null,
-      })),
-      total: sorted.length,
-    }
-  }
-
-  const [{ data, count }] = await Promise.all([
-    supabase
-      .from('applications')
-      .select('id, full_name, email, phone, job_id, status, cv_file_name, cv_file_size, submitted_at, jobs(id, title, slug)', { count: 'exact' })
-      .order('submitted_at', { ascending: false })
-      .range(offset, offset + limit - 1),
-  ])
+async function getApplications() {
+  const applications = await applicationsRepository.findAll()
+  const jobs = await jobsRepository.findAllPublished()
 
   return {
-    applications: (data || []) as ApplicationWithJob[],
-    total: count || 0,
+    applications: applications.map(app => ({
+      ...app,
+      jobs: jobs.find(j => j.id === app.job_id) || null
+    })),
+    total: applications.length,
   }
 }
 
@@ -58,7 +36,6 @@ export default async function AdminApplicationsPage() {
     <div className="flex-1 flex flex-col h-full overflow-hidden">
       <div className="flex-1 overflow-y-auto p-6 bg-[#fbf9f8]">
         <div className="max-w-[1200px] mx-auto space-y-6">
-          {/* Page Header */}
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Quản lý ứng tuyển</h1>
@@ -66,7 +43,6 @@ export default async function AdminApplicationsPage() {
             </div>
           </div>
 
-          {/* Stats Cards */}
           <div className="grid grid-cols-5 gap-4">
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">Tổng số</p>
@@ -74,15 +50,15 @@ export default async function AdminApplicationsPage() {
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">Mới</p>
-              <p className="text-2xl font-bold text-blue-600">{statusCounts['new'] || 0}</p>
+              <p className="text-2xl font-bold text-blue-600">{statusCounts['pending'] || 0}</p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">Đang xem</p>
               <p className="text-2xl font-bold text-yellow-600">{statusCounts['reviewing'] || 0}</p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-4">
-              <p className="text-sm text-gray-500">Trúng tuyển</p>
-              <p className="text-2xl font-bold text-green-600">{statusCounts['shortlisted'] || 0}</p>
+              <p className="text-sm text-gray-500">Phỏng vấn</p>
+              <p className="text-2xl font-bold text-green-600">{statusCounts['interview'] || 0}</p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <p className="text-sm text-gray-500">Từ chối</p>
@@ -90,7 +66,6 @@ export default async function AdminApplicationsPage() {
             </div>
           </div>
 
-          {/* Applications Table */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -128,7 +103,7 @@ export default async function AdminApplicationsPage() {
                         </td>
                         <td className="px-6 py-4">
                           {app.jobs ? (
-                            <Link href={`/jobs/${app.jobs.slug}`} className="text-[#008b9c] hover:underline">
+                            <Link href={`/jobs/${app.jobs.slug}`} className="text-teal-text hover:underline">
                               {app.jobs.title}
                             </Link>
                           ) : (
@@ -141,18 +116,18 @@ export default async function AdminApplicationsPage() {
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2 text-sm text-gray-500">
                             <span className="material-symbols-outlined text-base">description</span>
-                            <span>{app.cv_file_name}</span>
-                            <span className="text-gray-400">({formatFileSize(app.cv_file_size)})</span>
+                            <span>{app.cv_filename}</span>
+                            <span className="text-gray-400">({formatFileSize(app.cv_size || 0)})</span>
                           </div>
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500">
-                          {formatDateWithTime(app.submitted_at)}
+                          {formatDateWithTime(app.created_at)}
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <Link
                               href={`/admin/applications/${app.id}`}
-                              className="text-[#008b9c] hover:text-[#007a89] font-medium text-sm flex items-center gap-1"
+                              className="text-teal-text hover:text-[#007a89] font-medium text-sm flex items-center gap-1"
                             >
                               <span className="material-symbols-outlined text-base">visibility</span>
                               Xem
