@@ -1,5 +1,6 @@
-import Page from '../../(public)/contact/page'
+import { redirect } from 'next/navigation'
 
-export default function LocaleContactPage({ params }: { params: Promise<{ locale: string }> }) {
-  return <Page params={params} />
+export default async function LocaleContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  redirect(`/${locale}?contact=1`)
 }

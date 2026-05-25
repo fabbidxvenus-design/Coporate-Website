@@ -16,15 +16,15 @@ export function WhyChooseAccordion({ highlights }: { highlights: Highlight[] }) 
         <div
           key={item.title}
           className={`border rounded-lg overflow-hidden transition-all duration-300 ${
-            activeIndex === index ? 'bg-white shadow-md border-pink/30' : 'bg-white border-gray-100'
+            activeIndex === index ? 'bg-white shadow-sm border-teal-text' : 'bg-white border-gray-100'
           }`}
         >
           <button
             onClick={() => setActiveIndex(index)}
             className={`w-full flex justify-between items-center p-4 font-medium text-left transition-colors duration-200 ${
               activeIndex === index
-                ? 'bg-pink text-white'
-                : 'text-gray-700 hover:bg-gray-50 hover:text-pink'
+                ? 'bg-teal-text text-white'
+                : 'text-gray-700 hover:bg-gray-50 hover:text-teal-text'
             }`}
           >
             <span>{item.title}</span>

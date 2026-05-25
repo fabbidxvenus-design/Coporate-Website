@@ -18,11 +18,11 @@ export function PublicFooter() {
   ];
 
   const socialLinks = [
-    { label: 'Facebook', abbr: 'FB' },
-    { label: 'Twitter', abbr: 'TW' },
-    { label: 'Instagram', abbr: 'IG' },
-    { label: 'TikTok', abbr: 'TT' },
-    { label: 'YouTube', abbr: 'YT' },
+    { label: 'Facebook', icon: 'fa-brands fa-facebook-f' },
+    { label: 'Twitter', icon: 'fa-brands fa-twitter' },
+    { label: 'Instagram', icon: 'fa-brands fa-instagram' },
+    { label: 'TikTok', icon: 'fa-brands fa-tiktok' },
+    { label: 'YouTube', icon: 'fa-brands fa-youtube' },
   ];
 
   return (
@@ -91,9 +91,9 @@ export function PublicFooter() {
                     <button
                       type="button"
                       aria-label={social.label}
-                      className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white text-xs font-bold"
+                      className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-[#008B9C] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white text-sm"
                     >
-                      {social.abbr}
+                      <i className={social.icon} aria-hidden="true"></i>
                     </button>
                   </li>
                 ))}
@@ -106,7 +106,7 @@ export function PublicFooter() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="hover:text-pink transition-colors text-white"
+                      className="hover:text-white/80 transition-colors text-white"
                     >
                       {link.label}
                     </Link>
@@ -125,7 +125,7 @@ export function PublicFooter() {
             onClick={() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="mt-4 md:mt-0 flex items-center gap-2 hover:text-pink transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 text-white"
+            className="mt-4 md:mt-0 flex items-center gap-2 hover:text-white/80 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 text-white"
             aria-label={dict.footer.backToTop}
           >
             <span aria-hidden="true" className="material-symbols-outlined text-[16px]">

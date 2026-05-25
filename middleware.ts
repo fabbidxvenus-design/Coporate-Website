@@ -34,7 +34,6 @@ export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request: { headers: request.headers } })
 
   const pathWithoutLocale = pathname.replace(new RegExp(`^/(${locales.join('|')})`), '') || '/'
-  const isAdminPath = adminPaths.some((p) => pathWithoutLocale.startsWith(p)) || pathWithoutLocale.startsWith('/admin/')
   const isAuthPath = authPaths.includes(pathWithoutLocale)
   const isPublicPath = publicPaths.some((p) => pathWithoutLocale === p || pathWithoutLocale === `${p}/`)
 

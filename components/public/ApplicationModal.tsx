@@ -122,7 +122,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
             ref={closeButtonRef}
             onClick={onClose}
             className="min-w-11 min-h-11 flex items-center justify-center rounded bg-gray-200 hover:bg-gray-300 text-gray-600 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
-            aria-label="Đóng cửa sổ"
+            aria-label="Close modal"
           >
             <svg className="h-5 w-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -145,10 +145,10 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
           ) : (
             <>
               <div className="text-center mb-8">
-                <h2 id="modal-title" className="text-3xl font-bold text-gray-900 mb-2">Ứng tuyển {jobTitle}</h2>
+                <h2 id="modal-title" className="text-3xl font-bold text-gray-900 mb-2">Ứng tuyển job này</h2>
                 <p className="text-gray-500 text-sm">Hãy điền thông tin của bạn và gửi cho nhà tuyển dụng</p>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-5" aria-label={`Ứng tuyển ${jobTitle}`} noValidate>
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-1" htmlFor="modal-fullName">
                     Họ và tên <span className="text-red-500">*</span>
@@ -192,27 +192,34 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                   />
                 </div>
                 <div>
-                  <label htmlFor="modal-cv" className="block text-sm font-medium text-gray-900 mb-1">Upload CV <span className="text-red-500">*</span></label>
-                  <div className="border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary hover:bg-gray-50 transition-colors group">
-                    <span className="text-sm text-gray-500 group-hover:text-teal-text">Upload CV (pdf, docx, doc)</span>
+                  <label htmlFor="modal-cv" className="block text-sm font-medium text-gray-900 mb-1">Upload CV</label>
+                  <label htmlFor="modal-cv" className="flex flex-col items-center justify-center border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary hover:bg-gray-100 transition-colors group">
+                    <svg className="h-6 w-6 text-gray-400 mb-2 group-hover:text-primary" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+                    </svg>
+                    <span className="text-sm text-gray-500">Upload CV (pdf, docx, doc)</span>
                     <input
                       accept=".pdf,.doc,.docx"
                       className="sr-only"
                       id="modal-cv"
                       name="cv_file"
-                      required
                       type="file"
                     />
-                  </div>
+                  </label>
                 </div>
-                <div className="pt-4">
+                <div className="pt-4 flex justify-center">
                   <button
-                    className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="w-full sm:w-[280px] bg-primary text-white px-6 py-3 rounded-[8px] font-semibold hover:bg-primary-800 transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     type="submit"
                     disabled={loading}
                   >
                     {loading ? 'Đang gửi...' : 'Ứng Tuyển'}
                   </button>
+                </div>
+                <div className="text-center mt-4">
+                  <p className="text-sm text-gray-500">
+                    Bạn cần hỗ trợ? <a className="text-gray-900 font-medium hover:underline" href="mailto:recruitment@fabbi.vn">Contact Us</a>
+                  </p>
                 </div>
               </form>
             </>

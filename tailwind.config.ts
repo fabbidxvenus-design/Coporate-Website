@@ -21,14 +21,14 @@ const config: Config = {
         },
         // Professional Tech Hub — Primary (Teal)
         primary: {
-          DEFAULT: '#006672',
+          DEFAULT: '#008b9c',
           50: '#f0f9fa',
           100: '#d9f0f3',
           200: '#b3e1e7',
           300: '#8dd2db',
           400: '#67c3cf',
           500: '#41b4c3',
-          600: '#006672',
+          600: '#008b9c',
           700: '#00707e',
           800: '#005560',
           900: '#003a42',
@@ -119,16 +119,16 @@ const config: Config = {
         'tertiary-fixed-dim': '#ffb77a',
         'on-tertiary-fixed': '#2e1500',
         'on-tertiary-fixed-variant': '#6d3a00',
-        // Brand aliases
+                // Brand aliases
         teal: {
-          DEFAULT: '#006672',
+          DEFAULT: '#008b9c',
           dark: '#005560',
           light: '#F0F9FA',
-          text: '#006672',
+          text: '#008b9c',
         },
-        'teal-text': '#006672',
+        'teal-text': '#008b9c',
         brand: {
-          teal: '#006672',
+          teal: '#008b9c',
           darkTeal: '#005560',
           accent: '#F47F35',
         },
@@ -137,7 +137,7 @@ const config: Config = {
         'surface-variant': '#e4e2e1',
       },
       fontFamily: {
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'display-lg': ['48px', { lineHeight: '60px', fontWeight: '700' }],

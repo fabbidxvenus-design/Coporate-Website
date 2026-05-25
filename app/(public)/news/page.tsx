@@ -74,9 +74,9 @@ function FeaturedArticle({ article, locale, readMore }: ArticleCardProps) {
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full">{categoryLabel}</span>
           <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <h2 className="text-3xl font-bold text-gray-800 mb-3 group-hover:text-pink transition-colors duration-200">{article.title}</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-3 group-hover:text-[#008B9C] transition-colors duration-200">{article.title}</h2>
         <p className="text-gray-500 mb-4 text-lg line-clamp-2">{article.excerpt || ''}</p>
-        <span className="inline-flex items-center text-teal-text font-semibold hover:text-pink transition-colors duration-200">
+        <span className="inline-flex items-center text-[#008B9C] font-semibold hover:text-[#00707D] transition-colors duration-200">
           {readMore} <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
         </span>
       </Link>
@@ -111,9 +111,9 @@ function ArticleGridCard({ article, locale, readMore }: ArticleCardProps) {
           <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full">{categoryLabel}</span>
           <span className="text-sm text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-pink transition-colors duration-200 line-clamp-2">{article.title}</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-[#008B9C] transition-colors duration-200 line-clamp-2">{article.title}</h3>
         <p className="text-gray-500 mb-4 text-base line-clamp-2">{article.excerpt || ''}</p>
-        <span className="inline-flex items-center text-teal-text font-semibold text-sm hover:text-pink transition-colors duration-200">
+        <span className="inline-flex items-center text-[#008B9C] font-semibold text-sm hover:text-[#00707D] transition-colors duration-200">
           {readMore} <i className="fa-solid fa-chevron-right ml-1 text-xs"></i>
         </span>
       </Link>
@@ -151,9 +151,9 @@ function HorizontalArticleCard({ article, locale, readMore }: ArticleCardProps) 
           <span className="text-xs text-gray-500 font-medium">{article.published_at ? formatDateAgoEn(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')}</span>
         </div>
         <Link href={`/${locale}/news/${article.slug}`}>
-          <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-pink transition-colors duration-200 line-clamp-2">{article.title}</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#008B9C] transition-colors duration-200 line-clamp-2">{article.title}</h3>
           <p className="text-gray-500 text-sm mb-3 line-clamp-2">{article.excerpt || ''}</p>
-          <span className="inline-flex items-center text-gray-800 font-semibold text-sm hover:text-pink transition-colors duration-200 mt-auto">
+          <span className="inline-flex items-center text-gray-800 font-semibold text-sm hover:text-[#008B9C] transition-colors duration-200 mt-auto">
             {readMore} <i className="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
           </span>
         </Link>
@@ -164,27 +164,21 @@ function HorizontalArticleCard({ article, locale, readMore }: ArticleCardProps) 
 
 function NewsSearchForm({ params, locale, dict }: { params: { q?: string; category?: string }, locale: string, dict: any }) {
   return (
-    <div className="max-w-3xl search-input-wrapper">
-      <form
-        className="w-full bg-white rounded-full shadow-lg p-2 flex flex-col md:flex-row items-center gap-2 border border-gray-100"
-        action={`/${locale}/news`}
-      >
-        <div className="flex-grow flex items-center px-4 w-full py-3 md:py-0">
-          <i className="fa-solid fa-search text-gray-400 mr-3"></i>
-          <input
-            type="text"
-            name="q"
-            defaultValue={params.q || ''}
-            className="w-full bg-transparent border-none text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-0"
-            placeholder={dict.jobs.searchPlaceholder}
-          />
-        </div>
+    <div className="max-w-3xl search-input-wrapper relative">
+      <input
+        type="text"
+        name="q"
+        defaultValue={params.q || ''}
+        className="w-full h-14 pl-6 pr-32 bg-white border border-gray-200 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-[#008B9C] focus:border-transparent shadow-sm"
+        placeholder={dict.jobs.searchPlaceholder || "Tìm kiếm..."}
+      />
+      <form action={`/${locale}/news`} className="absolute right-1 top-1 bottom-1">
         {params.category && <input type="hidden" name="category" value={params.category} />}
         <button
           type="submit"
-          className="bg-pink hover:bg-pink-700 text-white rounded-full px-8 py-3 text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center"
+          className="h-full bg-[#008B9C] hover:bg-[#00707D] text-white rounded-full px-6 text-sm font-semibold transition-colors flex items-center gap-2"
         >
-          <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i> {dict.jobs.searchButton}
+          <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Tìm kiếm
         </button>
       </form>
     </div>
@@ -253,27 +247,18 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Sidebar */}
-          <div className="w-full lg:w-64 flex-shrink-0" aria-label="Sidebar">
+          <aside className="w-full lg:w-64 flex-shrink-0">
             <div className="bg-gray-50 rounded-2xl p-4 sticky top-28">
-              <Link
-                href={`/${locale}/news`}
-                className={`block px-4 py-3 rounded-xl text-lg transition-colors duration-200 mb-2 ${
-                  !sParams.category
-                    ? 'bg-pink text-white'
-                    : 'text-gray-800 hover:bg-pink/10 hover:text-pink'
-                }`}
-              >
-                {sidebarTitle}
-              </Link>
+              <h3 className="text-lg font-bold text-gray-800 px-4 py-3 mb-2">{sidebarTitle}</h3>
               <ul className="space-y-1">
-                {categories.map((cat) => (
-                  <li key={cat.key}>
+                {[{ key: undefined, label: sidebarTitle }, ...categories].map((cat) => (
+                  <li key={cat.key || 'all'}>
                     <Link
-                      href={`/${locale}/news${buildSearchParams(sParams, { category: cat.key, page: undefined }) ? '?' + buildSearchParams(sParams, { category: cat.key, page: undefined }) : ''}`}
+                      href={`/${locale}/news${cat.key ? '?' + buildSearchParams(sParams, { category: cat.key, page: undefined }) : ''}`}
                       className={`block px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
                         sParams.category === cat.key
-                          ? 'bg-pink text-white'
-                          : 'text-gray-500 hover:bg-pink/10 hover:text-pink'
+                          ? 'bg-gray-200 text-gray-800'
+                          : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                       }`}
                     >
                       {cat.label}
@@ -282,7 +267,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 ))}
               </ul>
             </div>
-          </div>
+          </aside>
 
           {/* Content Area */}
           <div className="flex-1">
@@ -328,7 +313,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                       href={`/${locale}/news?${buildSearchParams(sParams, { page: String(p) })}`}
                       className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
                         p === page
-                          ? 'bg-pink text-white'
+                          ? 'bg-[#008B9C] text-white'
                           : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                       }`}
                     >

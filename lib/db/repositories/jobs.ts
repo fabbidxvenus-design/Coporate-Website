@@ -9,6 +9,7 @@ export const jobsRepository = {
     if (isMockDataMode()) {
       return (mockData.jobs as any[]).filter((j: any) => j.status === 'published').map((j: any) => ({
         ...j,
+        image: j.image || null,
         department: j.department || null,
         skills: j.skills || [],
         tags: j.tags || [],

@@ -13,20 +13,22 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative h-[400px] w-full overflow-hidden">
+      <section className="relative h-[600px] w-full overflow-hidden">
         <img
           alt="Team"
           className="w-full h-full object-cover"
           src={content.heroImage}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-          <h1 className="text-5xl font-bold text-white">{content.title}</h1>
+        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <button className="play-overlay w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z" /></svg>
+          </button>
         </div>
       </section>
 
       {/* Statistics Cards */}
-      <section className="container mx-auto px-6 lg:px-20 -mt-20 relative z-10">
-        <div className="bg-white rounded-xl shadow-lg py-10 px-8 flex flex-wrap justify-between items-center text-center">
+      <section className="container mx-auto px-6 lg:px-20 -mt-20 relative z-10 mb-24">
+        <div className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] py-10 px-8 flex flex-wrap justify-between items-center text-center">
           {content.stats.map((stat, idx) => (
             <div
               key={stat.label}
@@ -34,9 +36,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 idx < content.stats.length - 1 ? 'border-r border-gray-100' : ''
               }`}
             >
-              <h3 className="text-4xl font-bold text-teal-text hover:text-pink transition-colors cursor-default mb-2">
+              <span className="text-4xl font-bold text-teal-text hover:text-pink transition-colors cursor-default mb-2 block">
                 {stat.value}
-              </h3>
+              </span>
               <p className="text-gray-500 font-medium">{stat.label}</p>
             </div>
           ))}
@@ -69,7 +71,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </div>
               <Link
                 href={`/${locale}/jobs`}
-                className="mt-8 border-2 border-teal-text text-teal-text font-medium py-2 px-8 rounded-full hover:border-pink hover:bg-pink hover:text-white transition-colors inline-block"
+                className="mt-8 border border-teal-text text-teal-text font-medium py-2 px-8 rounded-full hover:border-pink hover:bg-pink hover:text-white transition-colors inline-block"
               >
                 {content.cta.buttonLabel}
               </Link>
@@ -93,7 +95,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* Why Choose Fabbi Section */}
       <section className="py-24 bg-[#e6f4f5]/30 relative overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center gap-12">
+        {/* Decorative dashed circle */}
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 opacity-20 pointer-events-none" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="90" fill="none" stroke="#008b9c" strokeWidth="2" strokeDasharray="8 6"/>
+          </svg>
+        </div>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center gap-12 relative z-10">
           <div className="w-full md:w-1/2 relative">
             <img
               alt="Employee"

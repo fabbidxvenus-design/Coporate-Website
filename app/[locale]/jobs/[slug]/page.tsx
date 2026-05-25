@@ -1,8 +1,8 @@
 import { jobsRepository } from '@/lib/db/repositories/jobs'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { sanitizeAndFormatHtml } from '@/lib/sanitize'
 import { formatDateAgo } from '@/lib/utils'
+import { JobApplyButton } from '@/components/public/JobApplyButton'
 import { JobSidebar } from '@/components/public/JobSidebar'
 import { RelatedJobs } from '@/components/public/RelatedJobs'
 import { getDictionary, Locale } from '@/lib/i18n'
@@ -61,13 +61,7 @@ export default async function JobDetailPage({ params }: PageProps) {
             </span>
           </div>
         </div>
-        <Link
-          href={`/${locale}/apply?job=${job.slug}`}
-          className="bg-pink-600 hover:bg-pink-700 hover:text-white font-medium py-3 px-8 rounded-lg flex items-center gap-2 transition-colors shrink-0"
-        >
-          <i className="fa-solid fa-check-circle w-5 h-5"></i>
-          {locale === 'vi' ? 'NỘP HỒ SƠ' : '応募する'}
-        </Link>
+        <JobApplyButton jobTitle={job.title} locale={locale} />
       </div>
 
       {/* Main Grid Layout */}
@@ -115,11 +109,14 @@ export default async function JobDetailPage({ params }: PageProps) {
             </button>
             <div className="flex items-center gap-4 text-sm text-gray-500">
               <span className="">Share this job:</span>
-              <button className="text-blue-600 hover:opacity-80 transition-opacity">
+              <button aria-label="Share on Facebook" className="text-blue-600 hover:opacity-80 transition-opacity">
                 <i className="fa-brands fa-facebook w-5 h-5"></i>
               </button>
-              <button className="text-blue-400 hover:opacity-80 transition-opacity">
+              <button aria-label="Share on Twitter" className="text-blue-400 hover:opacity-80 transition-opacity">
                 <i className="fa-brands fa-twitter w-5 h-5"></i>
+              </button>
+              <button aria-label="Share via Email" className="text-gray-600 hover:opacity-80 transition-opacity">
+                <i className="fa-solid fa-envelope w-5 h-5"></i>
               </button>
             </div>
           </div>

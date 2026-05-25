@@ -61,80 +61,81 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   return (
     <div className="flex-grow pb-20">
-      <div className="max-w-[800px] mx-auto px-4 pt-8">
-        <nav className="flex items-center text-sm text-gray-600 mb-6">
-          <Link className="hover:text-pink transition-colors" href={`/${locale}/news`}>{dict.nav.news}</Link>
-          <svg className="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
-          </svg>
-          <span className="font-medium text-gray-900">{categoryLabel}</span>
-        </nav>
+      <main className="max-w-[1440px] mx-auto pt-8 pb-20">
+        <div className="px-[256px]">
+          <nav className="flex items-center text-sm text-gray-600 mb-6">
+            <Link className="hover:text-[#008B9C] transition-colors" href={`/${locale}/news`}>{dict.nav.news}</Link>
+            <svg className="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+            </svg>
+            <span className="font-medium text-gray-900">{categoryLabel}</span>
+          </nav>
 
-        <h1 className="text-[40px] leading-[48px] font-bold text-gray-900 mb-6">{article.title}</h1>
+          <h1 className="text-[40px] leading-[48px] font-bold text-gray-900 mb-6">{article.title}</h1>
 
-        <div className="flex items-center mb-10">
-          <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden mr-3">
-            <div className="w-full h-full bg-gradient-to-br from-[#006672] to-[#007a8d] flex items-center justify-center text-white font-semibold">
-              {article.author_name ? article.author_name[0] : 'F'}
+          <div className="flex items-center mb-10">
+            <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden mr-3">
+              <div className="w-full h-full bg-gradient-to-br from-[#006672] to-[#007a8d] flex items-center justify-center text-white font-semibold">
+                {article.author_name ? article.author_name[0] : 'F'}
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-900">{article.author_name || 'Fabbi'}</p>
+              <p className="text-sm text-gray-600">
+                {article.published_at ? formatDateShortLocal(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')} <span className="mx-1">•</span> {readTime}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-sm font-semibold text-gray-900">{article.author_name || 'Fabbi'}</p>
-            <p className="text-sm text-gray-600">
-              {article.published_at ? formatDateShortLocal(article.published_at) : (locale === 'vi' ? 'Mới đăng' : '新規投稿')} <span className="mx-1">•</span> {readTime}
-            </p>
-          </div>
         </div>
-      </div>
 
-      <div className="w-full max-w-[1200px] mx-auto px-4 mb-12">
-        <div className="relative w-full aspect-video">
+        <div className="w-full h-[520px] mb-12">
           {imageUrl ? (
             <Image
               alt={article.title}
               fill
               priority
-              className="object-cover rounded-2xl"
+              className="object-cover"
               src={imageUrl}
-              sizes="(max-width: 1200px) 100vw, 1200px"
+              sizes="1440px"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 rounded-2xl flex items-center justify-center">
-              <span className="material-symbols-outlined text-8xl text-teal-text/30">newspaper</span>
+            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center">
+              <span className="material-symbols-outlined text-8xl text-[#008B9C]/30">newspaper</span>
             </div>
           )}
         </div>
-      </div>
 
-      <article className="max-w-[800px] mx-auto px-4">
-        {article.excerpt && (
-          <p className="text-xl text-gray-600 leading-relaxed mb-8 font-medium border-l-4 border-[#006672] pl-6 italic">
-            {article.excerpt}
-          </p>
-        )}
+        <article className="px-[256px]">
+          {article.excerpt && (
+            <p className="text-xl text-gray-600 leading-[30px] mb-8 font-medium border-l-4 border-[#FECACA] pl-6 italic bg-[#FDFAF8] py-2">
+              {article.excerpt}
+            </p>
+          )}
 
-        <div
-          className="prose prose-lg max-w-none text-gray-600 leading-[26px]"
-          dangerouslySetInnerHTML={{ __html: sanitizeAndFormatHtml(article.content) }}
-        />
+          <div
+            className="prose prose-lg max-w-none text-gray-600 leading-[26px] [&>h2]:text-[32px] [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mb-6 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mb-4 [&>p]:text-base [&>p]:leading-[26px] [&>p]:text-gray-600 [&>p]:mb-4"
+            dangerouslySetInnerHTML={{ __html: sanitizeAndFormatHtml(article.content) }}
+          />
 
-        {article.tags && article.tags.length > 0 && (
-          <div className="mt-8 pt-8 border-t border-gray-200 flex flex-wrap gap-2">
-            {article.tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
-                #{tag}
-              </span>
-            ))}
+          {article.tags && article.tags.length > 0 && (
+            <div className="mt-8 pt-8 border-t border-gray-200 flex flex-wrap gap-2">
+              {article.tags.map((tag) => (
+                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="border-t border-gray-200 mt-8 pt-6">
+            <p className="text-sm font-medium text-gray-900">
+              <i className="fa-regular fa-eye mr-1"></i>
+              {locale === 'vi' ? 'Lượt xem' : '閲覧数'}: {article.views || 0}
+            </p>
           </div>
-        )}
+        </article>
+      </main>
 
-        <div className="border-t border-gray-200 mt-8 pt-6">
-          <p className="text-sm font-medium text-gray-900">
-            <i className="fa-regular fa-eye mr-1"></i>
-            {locale === 'vi' ? 'Lượt xem' : '閲覧数'}: {article.views || 0}
-          </p>
-        </div>
-      </article>
 
       {relatedArticles.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">

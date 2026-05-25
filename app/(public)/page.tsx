@@ -3,6 +3,7 @@ import { newsRepository } from '@/lib/db/repositories/news'
 import Link from 'next/link'
 import { JobCard } from '@/components/public/JobCard'
 import { NewsCard } from '@/components/public/NewsCard'
+import { ContactModalController } from '@/components/public/ContactModalController'
 import { getDictionary, Locale } from '@/lib/i18n'
 
 export const dynamic = 'force-dynamic'
@@ -74,6 +75,19 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
 
   return (
     <div className="w-full">
+      <ContactModalController
+        locale={locale}
+        dict={{
+          title: dict.contact.title,
+          name: dict.contact.name,
+          email: dict.contact.email,
+          phone: dict.contact.phone,
+          company: dict.contact.company,
+          subject: dict.contact.subject,
+          message: dict.contact.message,
+          send: dict.cta.send,
+        }}
+      />
       {/* Hero Section */}
       <section aria-labelledby="hero-heading" className="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -100,7 +114,7 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
               {dict?.home?.exploreJobs || (locale === 'vi' ? 'Khám phá việc làm' : '求人を見る')}
             </Link>
             <Link
-              href={`/${locale}/contact`}
+              href={`/${locale}?contact=1`}
               className="bg-transparent border border-teal-text text-teal-text px-6 py-3 rounded-lg text-sm font-semibold hover:border-pink hover:text-pink hover:bg-pink-50 transition-colors"
             >
               {dict?.nav?.contact || 'Liên hệ'}

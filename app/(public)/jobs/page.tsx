@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { getDictionary, Locale } from '@/lib/i18n'
 import { JobCard } from '@/components/public/JobCard'
+import { JobsFilter } from '@/components/public/JobsFilter'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -65,7 +66,7 @@ function JobsSearchForm({ params, locale, dict }: { params: { q?: string; locati
         <button
         type="submit"
         formAction={`/${locale}/jobs`}
-        className="bg-pink text-white hover:bg-pink-700 rounded-full px-6 py-2.5 text-sm font-bold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center"
+        className="bg-[#008B9C] hover:bg-[#00707e] text-white rounded-full px-6 py-2.5 text-sm font-bold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center"
       >
         <i className="fa-solid fa-magnifying-glass"></i> {dict.jobs.searchButton}
       </button>
@@ -112,7 +113,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
         >
           <div className="text-center max-w-2xl relative z-10 mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              <span className="text-pink">{total} Jobs</span> {locale === 'vi' ? 'đang open' : '募集中'}
+              <span className="text-[#008B9C]">{total} Jobs</span> {locale === 'vi' ? 'đang open' : '募集中'}
             </h1>
             <p className="text-white text-sm md:text-base opacity-90">
               {locale === 'vi'
@@ -138,38 +139,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
               <h2 className="text-2xl font-bold text-gray-800">{dict.jobs.title}</h2>
               {/* Filters */}
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                <Link
-                  href={`/${locale}/jobs${buildSearchParams(sParams, { type: undefined, page: undefined }) ? '?' + buildSearchParams(sParams, { type: undefined, page: undefined }) : ''}`}
-                  className={`flex items-center gap-2 ${!sParams.type ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
-                >
-                  {dict.jobs.allCategories}
-                </Link>
-                <Link
-                  href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Full-time', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Full-time' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
-                >
-                  Full Time
-                </Link>
-                <Link
-                  href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Part-time', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Part-time' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
-                >
-                  Part Time
-                </Link>
-                <Link
-                  href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Freelancer', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Freelancer' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
-                >
-                  Freelancer
-                </Link>
-                <Link
-                  href={`/${locale}/jobs?${buildSearchParams(sParams, { type: 'Internship', page: undefined })}`}
-                  className={`flex items-center gap-2 ${sParams.type === 'Internship' ? 'font-medium text-gray-700' : 'text-gray-600 hover:text-pink'}`}
-                >
-                  Internship
-                </Link>
-              </div>
+              <JobsFilter currentType={sParams.type} locale={locale} />
             </div>
 
             {/* Job Cards List */}
@@ -219,7 +189,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                       href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(p) })}`}
                       className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
                         p === page
-                          ? 'bg-pink text-white'
+                          ? 'bg-[#008B9C] text-white'
                           : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                       }`}
                     >
@@ -239,7 +209,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 {page < totalPages ? (
                   <Link
                     href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(page + 1) })}`}
-                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-[#008B9C] text-sm font-medium px-2 transition-colors"
                   >
                     Next
                   </Link>
@@ -282,6 +252,16 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                   </div>
                 </div>
               </div>
+
+              {/* Facebook Feed Posts */}
+              <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="p-4 border-b border-gray-100">
+                  <h3 className="font-bold text-gray-800 text-sm">Fabbi Universe</h3>
+                  <p className="text-xs text-gray-500 mb-2">8 tháng 3 lúc 20:00</p>
+                  <p className="text-sm text-gray-700 line-clamp-3">LOVELY MOMENT | FABBI GIRLS, YOU ARE MY SWEET HEART...</p>
+                  <a href="#" className="text-primary text-sm hover:underline">Xem thêm</a>
+                </div>
+              </div>
             </div>
 
             {/* Quick Links */}
@@ -297,6 +277,52 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Photo Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-100">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">{locale === 'vi' ? 'Chuyên mục ảnh' : 'フォトセクション'}</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Work culture" className="w-full h-full object-cover" />
+          </div>
+          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team meeting" className="w-full h-full object-cover" />
+          </div>
+          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Office space" className="w-full h-full object-cover" />
+          </div>
+          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team activity" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      </section>
+
+      {/* Location Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">{locale === 'vi' ? 'Tìm kiếm công việc theo Location' : 'ロケーションで仕事を探す'}</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+             <div className="h-64 bg-gray-100 rounded-xl mb-4"></div>
+             <h3 className="text-xl font-bold text-gray-800">Hà Nội</h3>
+          </div>
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+             <div className="h-64 bg-gray-100 rounded-xl mb-4"></div>
+             <h3 className="text-xl font-bold text-gray-800">Japan</h3>
+          </div>
+        </div>
+      </section>
+
+      {/* Floating Bell */}
+      <button
+        className="fixed bottom-8 right-8 w-14 h-14 bg-orange-100 rounded-full shadow-lg flex items-center justify-center text-orange-500 text-2xl hover:bg-orange-200 transition-colors z-50"
+        aria-label="Notifications"
+      >
+        <i className="fa-solid fa-bell"></i>
+      </button>
     </>
   )
 }
