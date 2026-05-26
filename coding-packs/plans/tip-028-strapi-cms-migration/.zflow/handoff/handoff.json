@@ -1,0 +1,15 @@
+{
+  "plan_dir": "coding-packs/plans/tip-028-strapi-cms-migration",
+  "source_tip": "coding-packs/tips/TIP-028-strapi-cms-migration.md",
+  "status": "planned_not_started",
+  "next_phase": "phase-01-intake-and-baseline.md",
+  "resume_command": "zflow: --plan coding-packs/plans/tip-028-strapi-cms-migration --resume",
+  "critical_guardrails": [
+    "Mock mode must never call Strapi.",
+    "Production Strapi mode must never silently fall back to mock data.",
+    "Strapi secrets must be server-only environment variables.",
+    "CV/private media must remain private.",
+    "Visual layout must not be redesigned.",
+    "Route migration cannot start before schema mapping/data parity artifacts exist."
+  ]
+}

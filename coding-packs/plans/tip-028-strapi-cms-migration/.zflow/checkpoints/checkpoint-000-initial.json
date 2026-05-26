@@ -1,0 +1,19 @@
+{
+  "checkpoint": "checkpoint-000-initial",
+  "created_at": "2026-05-26",
+  "phase": "planned",
+  "status": "plan_artifacts_created",
+  "artifacts": [
+    "README.md",
+    "phase-01-intake-and-baseline.md",
+    "phase-02-strapi-contract-and-docs.md",
+    "phase-03-schema-mapping-and-data-parity.md",
+    "phase-04-strapi-client-and-transformers.md",
+    "phase-05-repository-and-route-migration.md",
+    "phase-06-admin-applications-and-cv-privacy.md",
+    "phase-07-tests-verification-regression.md",
+    "specs/",
+    "tips/",
+    ".zflow/"
+  ]
+}

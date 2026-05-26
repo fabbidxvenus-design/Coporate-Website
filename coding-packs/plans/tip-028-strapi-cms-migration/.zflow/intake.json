@@ -1,0 +1,26 @@
+{
+  "task": "Implement TIP-028 Strapi CMS Migration",
+  "source_tip": "coding-packs/tips/TIP-028-strapi-cms-migration.md",
+  "plan_dir": "coding-packs/plans/tip-028-strapi-cms-migration",
+  "mode": "plan-supervised",
+  "score": 100,
+  "tier": "THOROUGH",
+  "focus_lock": true,
+  "phase": "intake",
+  "signals": {
+    "architecture_migration": true,
+    "risk_security_database_auth_privacy": true,
+    "cross_file_scope": true,
+    "system_wide_impact": true,
+    "difficult_reversibility": true,
+    "test_requirements": true
+  },
+  "skip_phases": ["rri", "sdd", "proposal"],
+  "required_phases": ["spec", "decompose", "execute", "verify", "fix", "deslop", "regress", "evolve"],
+  "quality_warnings": [
+    "Preserve visual parity; do not redesign public or admin pages.",
+    "Mock mode must not initialize or call Strapi.",
+    "Production Strapi failures must not silently fall back to mock data.",
+    "Strapi tokens and private CV credentials must never reach browser/client output."
+  ]
+}

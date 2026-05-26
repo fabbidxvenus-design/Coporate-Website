@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { jobsRepository } from '@/lib/repositories'
 import { requireAdmin } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {

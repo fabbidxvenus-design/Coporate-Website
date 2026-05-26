@@ -1,0 +1,38 @@
+{
+  "coverage_target": {
+    "tier": "THOROUGH",
+    "line_coverage_changed_modules": "80% where measurable",
+    "fail_open_if_unmeasurable": true,
+    "hard_block_if_measured_below_target": true
+  },
+  "acceptance_criteria": [
+    { "id": "AC-01", "spec": "spec-strapi-data-source.md", "covered_by": ["tip-004", "tip-007"], "evidence": ["data-source boundary tests"] },
+    { "id": "AC-02", "spec": "spec-strapi-data-source.md", "covered_by": ["tip-002", "tip-004"], "evidence": ["config tests", "repository tests"] },
+    { "id": "AC-03", "spec": "spec-strapi-data-source.md", "covered_by": ["tip-002", "tip-003"], "evidence": ["transformer tests"] },
+    { "id": "AC-04", "spec": "spec-strapi-data-source.md", "covered_by": ["tip-002", "tip-004", "tip-005"], "evidence": ["failure-mode tests"] },
+    { "id": "AC-05", "spec": "spec-public-content.md", "covered_by": ["tip-003", "tip-005"], "evidence": ["jobs route tests", "visual smoke"] },
+    { "id": "AC-06", "spec": "spec-public-content.md", "covered_by": ["tip-003", "tip-005"], "evidence": ["locale filter tests"] },
+    { "id": "AC-07", "spec": "spec-public-content.md", "covered_by": ["tip-002", "tip-005"], "evidence": ["article transformer tests", "news detail smoke"] },
+    { "id": "AC-08", "spec": "spec-public-content.md", "covered_by": ["tip-005"], "evidence": ["notFound route tests"] },
+    { "id": "AC-09", "spec": "spec-public-content.md", "covered_by": ["tip-003", "tip-005"], "evidence": ["about transformer tests", "about smoke"] },
+    { "id": "AC-10", "spec": "spec-admin-applications-security.md", "covered_by": ["tip-006"], "evidence": ["admin protection test", "manual smoke"] },
+    { "id": "AC-11", "spec": "spec-admin-applications-security.md", "covered_by": ["tip-006"], "evidence": ["admin workflow smoke"] },
+    { "id": "AC-12", "spec": "spec-admin-applications-security.md", "covered_by": ["tip-006", "tip-009"], "evidence": ["safe error tests"] },
+    { "id": "AC-13", "spec": "spec-admin-applications-security.md", "covered_by": ["tip-003", "tip-006"], "evidence": ["application submission tests"] },
+    { "id": "AC-14", "spec": "spec-admin-applications-security.md", "covered_by": ["tip-006", "tip-009"], "evidence": ["CV privacy tests", "security review"] },
+    { "id": "AC-15", "spec": "spec-admin-applications-security.md", "covered_by": ["tip-001", "tip-006", "tip-009"], "evidence": ["env docs review"] },
+    { "id": "AC-16", "spec": "spec-schema-parity-and-cache.md", "covered_by": ["tip-008"], "evidence": ["schema-map exists"] },
+    { "id": "AC-17", "spec": "spec-schema-parity-and-cache.md", "covered_by": ["tip-008"], "evidence": ["data parity checklist/script"] },
+    { "id": "AC-18", "spec": "spec-schema-parity-and-cache.md", "covered_by": ["tip-005", "tip-008"], "evidence": ["route cutover checklist"] },
+    { "id": "AC-19", "spec": "spec-schema-parity-and-cache.md", "covered_by": ["tip-008"], "evidence": ["revalidation tests"] },
+    { "id": "AC-20", "spec": "spec-schema-parity-and-cache.md", "covered_by": ["tip-008", "tip-009"], "evidence": ["invalid webhook tests"] },
+    { "id": "AC-21", "spec": "spec-schema-parity-and-cache.md", "covered_by": ["tip-007"], "evidence": ["performance smoke notes"] },
+    { "id": "AC-22", "spec": "spec-security-boundaries.md", "covered_by": ["tip-002", "tip-009"], "evidence": ["server-only config tests", "security review"] },
+    { "id": "AC-23", "spec": "spec-security-boundaries.md", "covered_by": ["tip-001", "tip-009"], "evidence": ["Strapi admin protection docs"] },
+    { "id": "AC-24", "spec": "spec-security-boundaries.md", "covered_by": ["tip-001", "tip-009"], "evidence": ["CORS docs"] },
+    { "id": "AC-25", "spec": "spec-security-boundaries.md", "covered_by": ["tip-006", "tip-009"], "evidence": ["upload validation tests"] },
+    { "id": "AC-26", "spec": "spec-security-boundaries.md", "covered_by": ["tip-002", "tip-009"], "evidence": ["sanitization tests/review"] },
+    { "id": "AC-27", "spec": "spec-security-boundaries.md", "covered_by": ["tip-009"], "evidence": ["audit logging review"] }
+  ],
+  "orphan_requirements": []
+}

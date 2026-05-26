@@ -1,0 +1,18 @@
+{
+  "checkpoint": "checkpoint-001-fanout-merged",
+  "created_at": "2026-05-26",
+  "phase": "decompose/spec-readiness",
+  "status": "fanout_outputs_merged",
+  "completed_items": [
+    "Strapi contract docs created under coding-packs/strapi/",
+    "Red Gate test plan captured in .zflow/red-gate-test-plan.md",
+    "Implementation map captured in .zflow/implementation-map.md",
+    "Security implementation map captured in .zflow/security-implementation-map.md",
+    "Strapi setup and permissions docs strengthened with CORS/admin/token/CV/sanitization/audit constraints"
+  ],
+  "next_items": [
+    "Create Red Gate tests from .zflow/red-gate-test-plan.md",
+    "Run test compile and confirm failing assertions",
+    "Start tip-008 schema parity/cache artifacts before route migration"
+  ]
+}

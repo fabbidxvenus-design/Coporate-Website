@@ -1,0 +1,140 @@
+{
+  "task_type": "migration",
+  "tier": "THOROUGH",
+  "parallel_capable": true,
+  "shared_files": {
+    "assigned_to": "lead",
+    "files": [".env.example", "package.json", "tsconfig.json", "next.config.*", "coding-packs/strapi/**"]
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "parallel": true,
+      "tasks": [
+        {
+          "id": "tip-001",
+          "title": "Strapi Contract Docs",
+          "agent": "technical-writer / backend architect",
+          "model": "opus",
+          "file_ownership": ["coding-packs/strapi/setup.md", "coding-packs/strapi/content-types.md", "coding-packs/strapi/permissions.md"],
+          "blocked_by": [],
+          "acceptance_criteria": ["Strapi setup/content/permission docs exist", "No real secrets in docs"]
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-008",
+          "title": "Schema Parity and Cache Invalidation",
+          "agent": "backend architect",
+          "model": "opus",
+          "file_ownership": ["coding-packs/strapi/schema-map.md", "coding-packs/strapi/data-parity-checklist.md", "scripts/*strapi*parity*", "app/api/revalidate/**"],
+          "blocked_by": ["tip-001"],
+          "acceptance_criteria": ["Critical field mapping is explicit", "Data parity gate is defined", "Webhook/cache invalidation is authenticated"]
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "parallel": true,
+      "tasks": [
+        {
+          "id": "tip-002",
+          "title": "Strapi Core Client",
+          "agent": "backend engineer",
+          "model": "sonnet",
+          "file_ownership": ["lib/strapi/config.ts", "lib/strapi/client.ts", "lib/strapi/types.ts", "lib/strapi/transformers.ts", "lib/strapi/__tests__/**"],
+          "blocked_by": ["tip-001", "tip-008"],
+          "acceptance_criteria": ["Server-only env validation", "Safe Strapi errors", "Domain transformers tested"]
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "parallel": true,
+      "tasks": [
+        {
+          "id": "tip-003",
+          "title": "Strapi Repositories",
+          "agent": "backend engineer",
+          "model": "sonnet",
+          "file_ownership": ["lib/strapi/repositories/**"],
+          "blocked_by": ["tip-002"],
+          "acceptance_criteria": ["Repositories match current domain contracts", "Repository tests mock Strapi responses"]
+        },
+        {
+          "id": "tip-009",
+          "title": "Strapi Security Hardening",
+          "agent": "security engineer",
+          "model": "opus",
+          "file_ownership": ["coding-packs/strapi/**", "app/api/applications/**", "app/api/revalidate/**", ".env.example"],
+          "blocked_by": ["tip-001", "tip-002"],
+          "acceptance_criteria": ["Secrets are env-only/server-only", "CORS/admin protections documented", "Upload validation and sanitization covered"]
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-004",
+          "title": "Data Source Switch",
+          "agent": "backend integration engineer",
+          "model": "sonnet",
+          "file_ownership": ["lib/config/data-source.ts", "lib/cms/data-source.ts", "repository factory/barrel files"],
+          "blocked_by": ["tip-003"],
+          "acceptance_criteria": ["Mock mode never calls Strapi", "Strapi mode never falls back to mock"]
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-005",
+          "title": "API and Public Route Migration",
+          "agent": "fullstack engineer",
+          "model": "sonnet",
+          "file_ownership": ["app/api/jobs/**", "app/api/news/**", "app/api/settings/**", "app/[locale]/jobs/**", "app/[locale]/news/**", "app/[locale]/about/**"],
+          "blocked_by": ["tip-004", "tip-008"],
+          "acceptance_criteria": ["Routes cut over incrementally", "Published localized Strapi content renders", "No visual redesign"]
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-006",
+          "title": "Admin, Applications, and CV Privacy",
+          "agent": "security-minded fullstack engineer",
+          "model": "opus",
+          "file_ownership": ["app/admin/**", "components/admin/**", "app/api/applications/**", ".env.example"],
+          "blocked_by": ["tip-004", "tip-005", "tip-009"],
+          "acceptance_criteria": ["Admin workflow explicit", "Application production record created", "CV access remains private"]
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-007",
+          "title": "Verification and Regression",
+          "agent": "QA/verifier coordinator",
+          "model": "opus",
+          "file_ownership": [".zflow/verify/**", ".zflow/final/**", ".zflow/evolve/**"],
+          "blocked_by": ["tip-001", "tip-002", "tip-003", "tip-004", "tip-005", "tip-006", "tip-008", "tip-009"],
+          "acceptance_criteria": ["Red Gate documented", "Green Gate documented", "Separate verifier and security review recorded", "Final report maps AC to evidence"]
+        }
+      ]
+    }
+  ]
+}

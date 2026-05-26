@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
-import { newsRepository } from '@/lib/db/repositories/news'
+import { newsRepository } from '@/lib/repositories'
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,5 +1,4 @@
-import { jobsRepository } from '@/lib/db/repositories/jobs'
-import { newsRepository } from '@/lib/db/repositories/news'
+import { jobsRepository } from '@/lib/repositories'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { getDictionary, Locale } from '@/lib/i18n'
