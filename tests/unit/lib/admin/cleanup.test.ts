@@ -98,6 +98,10 @@ describe('SPEC: Old CMS UI Cleanup', () => {
   describe('AC-06: Remaining admin files use lib/repositories barrel, not direct db/strapi imports', () => {
     test('remaining app/admin/* files do not import lib/db/repositories for CMS content', () => {
       const adminDir = resolve(ROOT, 'app/admin');
+      if (!existsSync(adminDir)) {
+        // app/admin no longer exists — all custom admin pages have been removed
+        return;
+      }
       const adminFiles = findTsFiles(adminDir);
 
       const violations: string[] = [];

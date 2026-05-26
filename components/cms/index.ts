@@ -1,2 +1,1 @@
-export { CmsSidebar } from './CmsSidebar'
-export { CmsTopbar } from './CmsTopbar'
+// CmsSidebar and CmsTopbar removed — replaced by Payload admin at /admin
