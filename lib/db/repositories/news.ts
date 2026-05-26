@@ -123,6 +123,19 @@ export const newsRepository = {
     return result.count > 0;
   },
 
+  findAll: async (): Promise<NewsArticle[]> => {
+    if (isMockDataMode()) {
+      return newsArticles.map(a => adapters.toDbNewsArticle(a, 'vi') as NewsArticle);
+    }
+
+    const rows = await sql`SELECT * FROM news_articles ORDER BY created_at DESC`;
+    return rows.map(row => ({
+      ...(row as any),
+      tags: parseJson<string[]>(row.tags as string, []),
+      content_images: parseJson<string[]>(row.content_images as string, [])
+    } as NewsArticle));
+  },
+
   incrementViews: async (id: string): Promise<void> => {
     await sql`UPDATE news_articles SET views = views + 1 WHERE id = ${id}`;
   }
