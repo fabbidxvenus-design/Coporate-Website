@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { Pagination } from './ui/Pagination'
 import { useRouter } from 'next/navigation'
 
 interface AdminJobsClientProps {
@@ -158,7 +159,11 @@ export function AdminJobsClient({ initialJobs, total, locale }: AdminJobsClientP
                           job.status === 'review' ? 'bg-yellow-500' :
                           'bg-red-500'
                         }`}></div>
-                        <span className="text-sm text-gray-600">{job.status}</span>
+                        <span className="text-sm text-gray-600">
+                          {job.status === 'published' ? 'Đã đăng' :
+                           job.status === 'draft' ? 'Nháp' :
+                           job.status === 'review' ? 'Đang xem xét' : 'Đã đóng'}
+                        </span>
                       </div>
                     </td>
                     <td className="py-4 px-4 text-right">
@@ -198,49 +203,11 @@ export function AdminJobsClient({ initialJobs, total, locale }: AdminJobsClientP
 
         {/* Pagination */}
         {filteredJobs.length > 0 && (
-          <div className="py-3 px-4 border-t border-gray-200 bg-gray-50 flex items-center justify-between">
-            <span className="text-xs text-gray-500">Hiển thị {startItem} đến {endItem} của {filteredJobs.length} tin</span>
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="w-8 h-8 flex items-center justify-center rounded text-gray-400 bg-white border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
-              >
-                <span className="material-symbols-outlined text-sm">chevron_left</span>
-              </button>
-              {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => i + 1).map(page => (
-                <button
-                  key={page}
-                  onClick={() => handlePageChange(page)}
-                  className={`w-8 h-8 flex items-center justify-center rounded text-sm font-medium transition-colors ${
-                    currentPage === page
-                      ? 'bg-primary text-white'
-                      : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50'
-                  }`}
-                >
-                  {page}
-                </button>
-              ))}
-              {totalPages > 5 && (
-                <>
-                  <span className="w-8 h-8 flex items-center justify-center text-gray-500 text-sm">...</span>
-                  <button
-                    onClick={() => handlePageChange(totalPages)}
-                    className="w-8 h-8 flex items-center justify-center rounded text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors text-sm"
-                  >
-                    {totalPages}
-                  </button>
-                </>
-              )}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage >= totalPages}
-                className="w-8 h-8 flex items-center justify-center rounded text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
-              >
-                <span className="material-symbols-outlined text-sm">chevron_right</span>
-              </button>
-            </div>
-          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         )}
       </div>
     </div>
