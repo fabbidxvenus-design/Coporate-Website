@@ -73,6 +73,8 @@ TIP-004 + TIP-005 + TIP-006 + TIP-007 + TIP-008 + TIP-011 + TIP-012 + TIP-013 + 
                                                                                    +--> TIP-026 Job Detail QC Non-Color/Image/Mockdata Fixes
                                                                                    |
                                                                                    +--> TIP-027 Jobs QC Non-Color/Image/Mockdata Fixes
+                                                                                          |
+                                                                                          +--> TIP-028 Strapi CMS Migration
 ```
 
 ## TIP SUMMARY TABLE
@@ -106,6 +108,7 @@ TIP-004 + TIP-005 + TIP-006 + TIP-007 + TIP-008 + TIP-011 + TIP-012 + TIP-013 + 
 | TIP-025 | About QC non-color layout fixes | TIP-004, TIP-011, TIP-015, TIP-024 | P0 | 6 | 4 |
 | TIP-026 | Job Detail QC non-color/image/mockdata fixes | TIP-005, TIP-006, TIP-012, TIP-013, TIP-021, TIP-024 | P0 | 6 | 4 |
 | TIP-027 | Jobs QC non-color/image/mockdata fixes | TIP-005, TIP-012, TIP-013, TIP-021, TIP-024 | P0 | 6 | 4 |
+| TIP-028 | Strapi CMS migration ✅ | TIP-023, TIP-024, TIP-025, TIP-026, TIP-027 | P0 | 24 | 5 |
 
 ## PARALLELIZATION OPPORTUNITIES
 
@@ -127,6 +130,7 @@ TIP-004 + TIP-005 + TIP-006 + TIP-007 + TIP-008 + TIP-011 + TIP-012 + TIP-013 + 
 - TIP-025 should run after TIP-024 because it is a targeted About QC follow-up that must avoid color, image, and mock-data changes after the current data/content mapping is stable.
 - TIP-026 should run after TIP-024 because it is a targeted Job Detail QC follow-up that must avoid color, image, and mock-data changes while preserving current data/content boundaries.
 - TIP-027 should run after TIP-024 because it is a targeted Jobs listing QC follow-up that must avoid pink color, image, and mock-data changes while preserving current data/content boundaries.
+- TIP-028 should run after TIP-023 and TIP-024 because Strapi must replace the stabilized PostgreSQL/CMS data-source boundary, and after TIP-025/TIP-026/TIP-027 because it must not mix data migration with targeted visual QC fixes.
 - TIP-009 and TIP-010 should remain sequential because QA findings must be fixed before deployment verification.
 
 ## TEAM ALLOCATION
@@ -145,6 +149,7 @@ If multiple builders are available:
 - Builder A: TIP-025 About QC non-color layout fixes after data/content mapping is stable.
 - Builder A: TIP-026 Job Detail QC non-color/image/mockdata fixes after data/content mapping is stable.
 - Builder A: TIP-027 Jobs QC non-color/image/mockdata fixes after data/content mapping is stable.
+- Builder B or C: TIP-028 Strapi CMS migration after PostgreSQL/CMS data boundaries and targeted visual QC fixes are stable.
 - QA Builder: TIP-009 and TIP-010 final verification.
 
 ## MODULE BLUEPRINT SUMMARY
@@ -272,6 +277,11 @@ If multiple builders are available:
 - Target actual jobs route QC mapping, checkbox-style filters, reference-sized job cards, missing photo/location sections, floating bell, sidebar widget blocks, responsive no-overflow, and unnamed-link accessibility.
 - Acceptance: `/vi/jobs` passes non-excluded jobs QC checks at 1440 and a mobile breakpoint with COLOR PINK, IMAGE, and MOCKDATA findings documented as intentionally out of scope.
 
+### TIP-028 — Strapi CMS migration
+- Migrate production CMS content workflows for jobs, news, applications, settings, about content, and CMS media to a typed Strapi integration layer.
+- Preserve public/admin Next.js routes, mock-data isolation, existing CMS shell, and visual composition while replacing the non-mock CMS data source.
+- Acceptance: mock mode never calls Strapi, Strapi mode renders published localized content publicly, admin workflows delegate to Strapi safely, private CV handling remains protected, and build/type checks pass.
+
 ### TIP-009 — QA
 - Add unit/integration/E2E tests for validation, auth protection, public visibility, application submission, localization, contact submission, and shared public footer presence.
 - Run responsive and accessibility checks on public and CMS key screens.
@@ -284,7 +294,7 @@ If multiple builders are available:
 
 ## QUALITY GATE: SELF-REVIEW
 
-- Completeness: 27/27 task graph requirements covered.
-- Cross-reference: TIPs map to RRI P0/P1 requirements, Vision MVP scope, the promoted public Vietnamese/Japanese localization + contact requirement, the added public footer visual-parity requirement, the default mock-data all-button handling requirement, the official teal palette alignment requirement from `coding-packs/research/color-branch.md`, the About QC non-color layout fix requirement from `.qc/ui/about`, the Job Detail QC non-color/image/mockdata fix requirement, and the Jobs QC non-color/image/mockdata fix requirement from `.qc/ui/jobs`.
-- Gaps: Japanese marketing copy quality depends on owner-provided or reviewed translations. Real social media footer URLs are not specified yet. TIP-014 requires a live button inventory during implementation because button coverage depends on current code state. TIP-017 requires a live color inventory during implementation because color drift depends on current source state. TIP-025 intentionally excludes COLOR, IMAGE, and MOCKDATA mismatches by user request. TIP-027 intentionally excludes COLOR PINK, IMAGE, and MOCKDATA mismatches by user request. All 27 TIP files have been generated in `coding-packs/tips/`.
-- Action needed: Implement `coding-packs/tips/TIP-027-jobs-qc-non-color-image-mockdata-fixes.md`, then rerun the Jobs QC flow at 1440px and a mobile breakpoint.
+- Completeness: 28/28 task graph requirements covered.
+- Cross-reference: TIPs map to RRI P0/P1 requirements, Vision MVP scope, the promoted public Vietnamese/Japanese localization + contact requirement, the added public footer visual-parity requirement, the default mock-data all-button handling requirement, the official teal palette alignment requirement from `coding-packs/research/color-branch.md`, the About QC non-color layout fix requirement from `.qc/ui/about`, the Job Detail QC non-color/image/mockdata fix requirement, the Jobs QC non-color/image/mockdata fix requirement from `.qc/ui/jobs`, and the new Strapi CMS migration requirement.
+- Gaps: Japanese marketing copy quality depends on owner-provided or reviewed translations. Real social media footer URLs are not specified yet. TIP-014 requires a live button inventory during implementation because button coverage depends on current code state. TIP-017 requires a live color inventory during implementation because color drift depends on current source state. TIP-025 intentionally excludes COLOR, IMAGE, and MOCKDATA mismatches by user request. TIP-027 intentionally excludes COLOR PINK, IMAGE, and MOCKDATA mismatches by user request. TIP-028 requires a decision during implementation on whether this repo hosts the Strapi app or documents/connects to an external Strapi instance. All 28 TIP files have been generated in `coding-packs/tips/`.
+- Action needed: Implement `coding-packs/tips/TIP-028-strapi-cms-migration.md`, then run build/type checks plus mock-mode and Strapi-mode smoke tests.
