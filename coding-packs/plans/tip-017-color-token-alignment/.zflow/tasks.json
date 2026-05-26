@@ -1,0 +1,66 @@
+{
+  "task_type": "ui-token-alignment",
+  "sourceTip": "coding-packs/tips/TIP-017-color-token-alignment.md",
+  "tier": "STANDARD",
+  "parallel_capable": true,
+  "shared_files": {
+    "assigned_to": "tip-001-token-source-of-truth",
+    "files": ["tailwind.config.ts", "app/globals.css"]
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-001",
+          "title": "Token source of truth",
+          "agent": "lead TypeScript/frontend implementer",
+          "model": "sonnet",
+          "file_ownership": ["tailwind.config.ts", "app/globals.css", "tests/**/*color*", "tests/**/*token*"],
+          "blocked_by": [],
+          "acceptance_criteria": ["canonical tokens exposed", "semantic colors preserved", "token tests red then green"]
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "parallel": true,
+      "tasks": [
+        {
+          "id": "tip-002",
+          "title": "Public component color alignment",
+          "agent": "frontend implementer",
+          "model": "sonnet",
+          "file_ownership": ["components/public/**/*.tsx", "app/(public)/**/*.tsx", "app/[locale]/**/*.tsx"],
+          "blocked_by": ["tip-001"],
+          "acceptance_criteria": ["public links and CTAs tokenized", "public cards/forms tokenized", "no layout/content/behavior changes"]
+        },
+        {
+          "id": "tip-003",
+          "title": "CMS and admin color alignment",
+          "agent": "frontend implementer",
+          "model": "sonnet",
+          "file_ownership": ["components/cms/**/*.tsx", "components/admin/**/*.tsx", "app/admin/**/*.tsx"],
+          "blocked_by": ["tip-001"],
+          "acceptance_criteria": ["CMS active/hover/focus states tokenized", "admin forms tokenized", "status colors preserved"]
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-004",
+          "title": "Verification and visual evidence",
+          "agent": "verifier / QA",
+          "model": "sonnet",
+          "file_ownership": ["coding-packs/plans/tip-017-color-token-alignment/.zflow/*", "coding-packs/plans/tip-017-color-token-alignment/evidence/**/*"],
+          "blocked_by": ["tip-001", "tip-002", "tip-003"],
+          "acceptance_criteria": ["lint/type-check/test/build run", "desktop/mobile screenshots captured", "separate verifier review complete", "final report written"]
+        }
+      ]
+    }
+  ]
+}

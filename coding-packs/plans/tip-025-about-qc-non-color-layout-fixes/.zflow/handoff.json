@@ -1,0 +1,17 @@
+{
+  "plan": "tip-025-about-qc-non-color-layout-fixes",
+  "status": "complete",
+  "completed_at": "2026-05-26",
+  "completed_phases": [
+    "phase-01-intake-and-scope.md",
+    "phase-02-spec-red-gate.md",
+    "phase-03-decompose.md",
+    "phase-04-execute-green.md",
+    "phase-05-verify-fix.md",
+    "phase-06-regress-evolve-complete.md"
+  ],
+  "all_tests_passed": true,
+  "tip_count": 2,
+  "fix_iterations": 0,
+  "summary": "TIP-025 About QC non-color layout fixes completed. All 3 Playwright tests pass. Hero/Header/Stats/Activity/Why-choose sections updated to match HTML design without touching color/image/mockdata."
+}

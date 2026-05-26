@@ -1,0 +1,50 @@
+{
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "nodes": 9,
+      "targets": [
+        [
+          "a[aria-current=\"page\"]"
+        ],
+        [
+          ".py-1\\.5.rounded-md.text-pink"
+        ],
+        [
+          ".hover\\:bg-pink-700"
+        ],
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(1) > .top-6.right-6.lg\\:static > .lg\\:flex-none.px-8.py-3"
+        ],
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(2) > .top-6.right-6.lg\\:static > .lg\\:flex-none.px-8.py-3"
+        ]
+      ]
+    },
+    {
+      "id": "link-name",
+      "impact": "serious",
+      "description": "Ensure links have discernible text",
+      "nodes": 6,
+      "targets": [
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(1) > .md\\:flex-row.gap-6.flex-col > .w-16.h-16.flex-shrink-0 > .h-full.justify-center.w-full"
+        ],
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(2) > .md\\:flex-row.gap-6.flex-col > .w-16.h-16.flex-shrink-0 > .h-full.justify-center.w-full"
+        ],
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(3) > .md\\:flex-row.gap-6.flex-col > .w-16.h-16.flex-shrink-0 > .h-full.justify-center.w-full"
+        ],
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(4) > .md\\:flex-row.gap-6.flex-col > .w-16.h-16.flex-shrink-0 > .h-full.justify-center.w-full"
+        ],
+        [
+          ".lg\\:items-start.hover\\:shadow-lg.transition-all:nth-child(5) > .md\\:flex-row.gap-6.flex-col > .w-16.h-16.flex-shrink-0 > .h-full.justify-center.w-full"
+        ]
+      ]
+    }
+  ]
+}

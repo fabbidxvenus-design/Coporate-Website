@@ -1,0 +1,18 @@
+{
+  "phase": "intake",
+  "task": "Implement TIP-017 color token alignment",
+  "sourceTip": "coding-packs/tips/TIP-017-color-token-alignment.md",
+  "complexity": {
+    "score": 55,
+    "tier": "STANDARD",
+    "rationale": [
+      "Cross-file UI color system change touches Tailwind config, globals, public components, CMS components, and admin forms.",
+      "Visual output requires desktop/mobile screenshot verification.",
+      "Risk is moderate because scope is color-only and explicitly forbids layout, routing, data, and behavior changes."
+    ]
+  },
+  "focusLock": true,
+  "mode": "plan-supervised",
+  "stateRoot": "coding-packs/plans/tip-017-color-token-alignment/.zflow",
+  "createdAt": "2026-05-25"
+}

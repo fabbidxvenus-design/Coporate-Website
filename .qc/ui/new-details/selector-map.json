@@ -1,0 +1,56 @@
+{
+  "page.header": {
+    "designSelector": "header",
+    "implementationSelector": "header",
+    "confidence": "high",
+    "basis": "semantic header and first visible navigation region"
+  },
+  "article.breadcrumb": {
+    "designSelector": "main nav",
+    "implementationSelector": "main nav",
+    "confidence": "high",
+    "basis": "breadcrumb immediately above article title"
+  },
+  "article.title": {
+    "designSelector": "h1",
+    "implementationSelector": "h1",
+    "confidence": "high",
+    "basis": "first page heading"
+  },
+  "article.meta": {
+    "designSelector": "nav + h1 + div",
+    "implementationSelector": "nav + h1 + div",
+    "confidence": "high",
+    "basis": "author/date/read-time row below title"
+  },
+  "article.heroImage": {
+    "designSelector": "main > div:nth-of-type(2)",
+    "implementationSelector": "main div.max-w-\\[1200px\\] > div",
+    "confidence": "medium",
+    "basis": "large feature image between meta row and article body"
+  },
+  "article.body": {
+    "designSelector": "main > article",
+    "implementationSelector": "main article:first-of-type",
+    "confidence": "high",
+    "basis": "primary article content region"
+  },
+  "article.blockquote": {
+    "designSelector": "blockquote",
+    "implementationSelector": "article > p.border-l-4",
+    "confidence": "low",
+    "basis": "implementation has excerpt callout instead of design blockquote"
+  },
+  "article.viewCount": {
+    "designSelector": "article .border-t p",
+    "implementationSelector": "article .border-t p",
+    "confidence": "high",
+    "basis": "view count footer at end of article"
+  },
+  "page.footer": {
+    "designSelector": "footer",
+    "implementationSelector": "footer",
+    "confidence": "high",
+    "basis": "semantic footer"
+  }
+}

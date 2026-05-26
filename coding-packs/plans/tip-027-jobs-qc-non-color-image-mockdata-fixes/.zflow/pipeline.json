@@ -1,0 +1,29 @@
+{
+  "plan": "tip-027-jobs-qc-non-color-image-mockdata-fixes",
+  "mode": "plan-supervised",
+  "tier": "STANDARD",
+  "currentPhase": "phase-01-intake-and-baseline",
+  "focusLock": true,
+  "fixCount": 0,
+  "maxFixCount": 3,
+  "phases": [
+    { "id": "phase-01", "file": "phase-01-intake-and-baseline.md", "status": "planned" },
+    { "id": "phase-02", "file": "phase-02-spec-red-gate.md", "status": "planned" },
+    { "id": "phase-03", "file": "phase-03-jobs-layout-implementation.md", "status": "planned" },
+    { "id": "phase-04", "file": "phase-04-visual-accessibility-verification.md", "status": "planned" },
+    { "id": "phase-05", "file": "phase-05-fix-deslint-regress-evolve.md", "status": "planned" }
+  ],
+  "qualityGates": {
+    "redGate": "pending",
+    "greenGate": "pending",
+    "separateVerifier": "required",
+    "visualScreenshots": "required",
+    "evolve": "required-background"
+  },
+  "artifactPaths": {
+    "specs": "specs/",
+    "tips": "tips/",
+    "state": ".zflow/",
+    "handoff": ".zflow/handoff.json"
+  }
+}

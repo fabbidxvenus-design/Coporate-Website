@@ -1,0 +1,22 @@
+{
+  "plan": "tip-014-mockdata-button-handling",
+  "mode": "plan-supervised",
+  "phase": "phase-05-verification-deslop-regress.md",
+  "tier": "THOROUGH",
+  "focus_lock": false,
+  "phases": [
+    "phase-01-inventory-red-gate.md",
+    "phase-02-mock-mode-foundation.md",
+    "phase-03-public-button-handling.md",
+    "phase-04-admin-button-handling.md",
+    "phase-05-verification-deslop-regress.md"
+  ],
+  "quality_gates": {
+    "red_gate_required": true,
+    "green_gate_required": true,
+    "separate_verifier_required": true,
+    "visual_verification_required": true,
+    "evolve_required": true
+  },
+  "pipeline_status": "COMPLETE"
+}

@@ -1,0 +1,31 @@
+{
+  "plan": "tip-027-jobs-qc-non-color-image-mockdata-fixes",
+  "sourceTip": "coding-packs/tips/TIP-027-jobs-qc-non-color-image-mockdata-fixes.md",
+  "mode": "plan-supervised",
+  "score": 55,
+  "tier": "STANDARD",
+  "scoreBreakdown": {
+    "lexical": 15,
+    "structural": 25,
+    "impact": 15
+  },
+  "signals": [
+    "cross-file UI changes",
+    "visual output requires screenshot evidence",
+    "accessibility verification required",
+    "existing QC artifacts define acceptance criteria",
+    "no database or mock-data changes allowed"
+  ],
+  "phaseSkipRules": {
+    "rri": "skip - source TIP is approved requirements",
+    "sdd": "skip - source TIP and plan phases define design",
+    "proposal": "skip - user requested plan artifacts directly"
+  },
+  "constraints": [
+    "do not fix COLOR PINK findings",
+    "do not replace images or image mappings",
+    "do not edit mock data records",
+    "do not add dependencies",
+    "do not modify legacy ung_tuyen redirect for this TIP"
+  ]
+}

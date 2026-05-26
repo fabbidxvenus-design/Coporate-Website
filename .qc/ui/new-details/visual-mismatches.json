@@ -1,0 +1,32 @@
+[
+  {
+    "severity": "FAIL",
+    "section": "Global theme",
+    "description": "Implementation uses Manrope, off-white page background, and production shell tokens instead of Plus Jakarta Sans, white background, and teal design tokens."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Article width",
+    "description": "Design uses 928px content columns positioned by 256px side padding; implementation uses a centered 768px content column."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Feature image",
+    "description": "Design feature image is full viewport/container width at 1440x520 with square corners; implementation is constrained to 1200px, 16:9, and rounded."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Article body",
+    "description": "Design body begins with structured Introduction/Conclusion headings, paragraphs, inline image caption, and blockquote; implementation renders real sanitized CMS content plus an excerpt callout."
+  },
+  {
+    "severity": "WARN",
+    "section": "Extra related content",
+    "description": "Implementation adds a related-articles section that is not present in the HTML design reference."
+  },
+  {
+    "severity": "WARN",
+    "section": "Header/footer",
+    "description": "Header and footer exist, but production shell labels and typography differ from the static design reference."
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "plan": "TIP-026-job-detail-qc-non-color-image-mockdata-fixes",
+  "sourceTip": "coding-packs/tips/TIP-026-job-detail-qc-non-color-image-mockdata-fixes.md",
+  "mode": "plan-supervised",
+  "tier": "STANDARD",
+  "score": 55,
+  "scoreBreakdown": {
+    "lexical": 15,
+    "structural": 30,
+    "impact": 10
+  },
+  "rationale": [
+    "Multiple files and component boundaries are involved.",
+    "Visual output and accessibility verification are required.",
+    "No schema migration or security-sensitive backend change is in scope.",
+    "Plan-supervised mode has minimum STANDARD tier."
+  ],
+  "focusLock": true,
+  "excludedScopes": ["COLOR", "IMAGE", "MOCKDATA"],
+  "createdAt": "2026-05-25T23:43:00+07:00"
+}

@@ -1,0 +1,77 @@
+{
+  "taskId": "TIP-020",
+  "phase": "planned",
+  "tier": "STANDARD",
+  "fixCount": 0,
+  "maxFixCount": 3,
+  "focusLock": true,
+  "phases": [
+    {
+      "id": "phase-01",
+      "name": "SPEC / Red Gate",
+      "file": "phase-01-spec-red-gate.md",
+      "status": "pending",
+      "requiredEvidence": [
+        "specs/spec-import-crawled-data.md reviewed",
+        "tests/import-crawled-data.spec.ts added before implementation",
+        "targeted test command fails for expected Red Gate reason"
+      ]
+    },
+    {
+      "id": "phase-02",
+      "name": "Import Module Design",
+      "file": "phase-02-import-module-design.md",
+      "status": "pending",
+      "requiredEvidence": [
+        "pure parser helpers implemented",
+        "image mapping parser implemented",
+        "import plan builder implemented",
+        "parser tests pass"
+      ]
+    },
+    {
+      "id": "phase-03",
+      "name": "SQLite Upsert + Asset Copy",
+      "file": "phase-03-sqlite-upsert-assets.md",
+      "status": "pending",
+      "requiredEvidence": [
+        "migrations run before import",
+        "records upsert idempotently",
+        "images copied non-destructively to public/images",
+        "import summary reports inserted/updated/skipped/failed counts"
+      ]
+    },
+    {
+      "id": "phase-04",
+      "name": "Runtime Flag Alignment",
+      "file": "phase-04-runtime-flag-alignment.md",
+      "status": "pending",
+      "requiredEvidence": [
+        "USE_MOCK_DATA=true uses mock-only paths",
+        "USE_MOCK_DATA=false uses SQLite where implemented",
+        "no Supabase runtime dependency is reintroduced"
+      ]
+    },
+    {
+      "id": "phase-05",
+      "name": "Verification / DESLOP / REGRESS",
+      "file": "phase-05-verification-deslop-regress.md",
+      "status": "pending",
+      "requiredEvidence": [
+        "targeted tests pass",
+        "pnpm run type-check passes",
+        "pnpm run build passes",
+        "import is run twice and remains idempotent",
+        "separate code-reviewer verification completed",
+        "final-report.md filled"
+      ]
+    }
+  ],
+  "qualityGate": {
+    "redGate": "pending",
+    "greenGate": "pending",
+    "separateVerifier": "required",
+    "evolve": "required-after-regress"
+  },
+  "lastUpdated": "2026-05-25"
+}

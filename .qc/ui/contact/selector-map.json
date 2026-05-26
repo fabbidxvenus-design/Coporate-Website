@@ -1,0 +1,68 @@
+﻿{
+  "modal.container": {
+    "designSelector": "[data-purpose=\"modal-container\"]",
+    "implementationSelector": ".bg-white.rounded-2xl",
+    "confidence": "medium",
+    "basis": "white rounded form container, but implementation is a page card not a modal"
+  },
+  "modal.title": {
+    "designSelector": "h2",
+    "implementationSelector": "h1",
+    "confidence": "medium",
+    "basis": "primary page/form heading"
+  },
+  "form.position": {
+    "designSelector": "select#position",
+    "implementationSelector": null,
+    "confidence": "high",
+    "basis": "position select exists in design and is missing in implementation"
+  },
+  "form.name": {
+    "designSelector": "input#fullName",
+    "implementationSelector": "input#name",
+    "confidence": "high",
+    "basis": "name field semantic match"
+  },
+  "form.email": {
+    "designSelector": "input#email",
+    "implementationSelector": "input#email",
+    "confidence": "high",
+    "basis": "same id and type"
+  },
+  "form.phone": {
+    "designSelector": "input#phone",
+    "implementationSelector": "input#phone",
+    "confidence": "high",
+    "basis": "same id and type"
+  },
+  "form.company": {
+    "designSelector": null,
+    "implementationSelector": "input#company",
+    "confidence": "high",
+    "basis": "company field exists only in implementation"
+  },
+  "form.subject": {
+    "designSelector": null,
+    "implementationSelector": "input#subject",
+    "confidence": "high",
+    "basis": "subject field exists only in implementation"
+  },
+  "form.message": {
+    "designSelector": "textarea#message",
+    "implementationSelector": "textarea#message",
+    "confidence": "high",
+    "basis": "same id and role"
+  },
+  "form.upload": {
+    "designSelector": "input#file-upload",
+    "implementationSelector": null,
+    "confidence": "high",
+    "basis": "CV upload exists in design and is missing in implementation"
+  },
+  "form.submit": {
+    "designSelector": "button[type=submit]",
+    "implementationSelector": "button[type=submit]",
+    "confidence": "high",
+    "basis": "submit button role match"
+  }
+}

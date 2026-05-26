@@ -1,0 +1,52 @@
+{
+  "company": {
+    "name": {
+      "vi": "Fabbi Holdings",
+      "ja": "Fabbi Holdings"
+    },
+    "founded": "2018-03-18",
+    "representative": {
+      "name": "Vũ Văn Tư",
+      "title": "Chủ tịch kiêm Tổng giám đốc"
+    },
+    "headcount": "300+",
+    "offices": [
+      {
+        "id": "office-hn",
+        "name": "Trụ sở Hà Nội",
+        "address": "Tầng 11, Detech Tower II, 107 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội",
+        "phone": "+84 24 6259 3637"
+      },
+      {
+        "id": "office-tokyo",
+        "name": "Trụ sở Tokyo",
+        "address": "Tầng 11, Tòa nhà WTC Annex, 2-3-8 Hamamatsucho, Quận Minato, Tokyo, Nhật Bản",
+        "phone": "+81 03-6806-0790"
+      }
+    ]
+  },
+  "about": {
+    "title": "Lời chào từ Chủ tịch",
+    "description": "Fabbi khởi nguồn từ chỉ 4 thành viên – và một chữ “khát vọng”. Hôm nay, chúng tôi là một tổ chức hàng trăm nhân sự, trải dài từ Nhật Bản đến Việt Nam, và không ngừng mở rộng ra các quốc gia khác.",
+    "vision": "Trở thành tập đoàn công nghệ toàn cầu, nơi hội tụ khát vọng, sáng tạo và công nghệ để kiến tạo giá trị bền vững cho khách hàng, tổ chức và xã hội。",
+    "mission": "Fabbi tạo ra các giải pháp công nghệ sáng tạo để giúp khách hàng phát triển, đội ngũ trưởng thành, và xã hội tiến về phía trước.",
+    "values": [
+      { "key": "aspiration", "title": "Khát vọng", "description": "Dám mơ lớn, không chấp nhận giới hạn." },
+      { "key": "breakthrough", "title": "Đột phá", "description": "Sáng tạo không ngừng, khác biệt để tạo giá trị." },
+      { "key": "speed", "title": "Tốc độ", "description": "Quyết đoán, Kịp thời." },
+      { "key": "dedication", "title": "Tận tâm", "description": "Hết lòng với khách hàng và đồng đội." },
+      { "key": "sustainability", "title": "Bền vững", "description": "Xây giá trị lâu dài, phát triển có trách nhiệm." }
+    ]
+  },
+  "services": [
+    { "id": "app-dev", "title": "Phát triển ứng dụng & hệ thống", "slug": "business-application-development" },
+    { "id": "ai", "title": "Trí tuệ nhân tạo", "slug": "ai-system-development" },
+    { "id": "crm", "title": "Giải pháp CRM", "slug": "crm-solutions" },
+    { "id": "blockchain", "title": "Phát triển blockchain", "slug": "blockchain-development" }
+  ],
+  "leadership": [
+    { "id": "leader-tu-vu", "name": "VŨ VĂN TƯ", "title": "Chủ tịch kiêm CEO", "image": "Mr-LinhNV.png" },
+    { "id": "leader-tuan-tran", "name": "TRẦN ĐÌNH TUẤN", "title": "CPO", "image": "Mr.-Tuan-Anh.jpg" },
+    { "id": "leader-bach-le", "name": "LÊ ĐÌNH XUÂN BÁCH", "title": "CEO Fabbi AUS", "image": "Bach-Le.png" }
+  ]
+}

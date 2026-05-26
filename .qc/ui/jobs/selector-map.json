@@ -1,0 +1,74 @@
+{
+  "provided.jsx": {
+    "designSelector": "main",
+    "implementationSelector": "app/[locale]/ung_tuyen/page.tsx",
+    "confidence": "high",
+    "basis": "Provided JSX path exists but only redirects to /apply and does not implement /vi/jobs"
+  },
+  "actual.routePage": {
+    "designSelector": "main",
+    "implementationSelector": "app/[locale]/jobs/page.tsx -> app/(public)/jobs/page.tsx",
+    "confidence": "high",
+    "basis": "/vi/jobs route maps through localized jobs page to public jobs page"
+  },
+  "page.header": {
+    "designSelector": "header",
+    "implementationSelector": "components/public/PublicHeader.tsx header",
+    "confidence": "high",
+    "basis": "semantic sticky header"
+  },
+  "hero.section": {
+    "designSelector": "main section:first-of-type",
+    "implementationSelector": "app/(public)/jobs/page.tsx:104",
+    "confidence": "high",
+    "basis": "first route section under header with jobs count and search bar"
+  },
+  "hero.title": {
+    "designSelector": "h1",
+    "implementationSelector": "app/(public)/jobs/page.tsx:114",
+    "confidence": "high",
+    "basis": "first page heading"
+  },
+  "search.bar": {
+    "designSelector": "section:first-of-type .rounded-full",
+    "implementationSelector": "app/(public)/jobs/page.tsx:37",
+    "confidence": "high",
+    "basis": "rounded search container with location select, text input, and submit button"
+  },
+  "jobs.section": {
+    "designSelector": "main section:nth-of-type(2)",
+    "implementationSelector": "app/(public)/jobs/page.tsx:134",
+    "confidence": "high",
+    "basis": "jobs list and sidebar grid"
+  },
+  "jobs.firstCard": {
+    "designSelector": "section:nth-of-type(2) .space-y-4 > div:first-child",
+    "implementationSelector": "components/public/JobCard.tsx:61",
+    "confidence": "high",
+    "basis": "first job card in list"
+  },
+  "sidebar": {
+    "designSelector": "aside",
+    "implementationSelector": "app/(public)/jobs/page.tsx:254",
+    "confidence": "high",
+    "basis": "right column social/sidebar area"
+  },
+  "photo.section": {
+    "designSelector": "main section:nth-of-type(3)",
+    "implementationSelector": null,
+    "confidence": "high",
+    "basis": "photo carousel section exists in design but not in rendered /vi/jobs"
+  },
+  "location.section": {
+    "designSelector": "main section:nth-of-type(4)",
+    "implementationSelector": null,
+    "confidence": "high",
+    "basis": "location cards section exists in design but not in rendered /vi/jobs"
+  },
+  "floating.bell": {
+    "designSelector": "button.fixed",
+    "implementationSelector": null,
+    "confidence": "high",
+    "basis": "floating bell exists in design but not in rendered /vi/jobs"
+  }
+}

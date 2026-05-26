@@ -1,0 +1,26 @@
+{
+  "phase": "SPEC",
+  "mode": "plan-supervised",
+  "tier": "STANDARD",
+  "focus_lock": true,
+  "focus_lock_since": "2026-05-25T23:43:00+07:00",
+  "fixCount": 0,
+  "maxFixIterations": 3,
+  "sourceTip": "coding-packs/tips/TIP-026-job-detail-qc-non-color-image-mockdata-fixes.md",
+  "planDir": "coding-packs/plans/TIP-026-job-detail-qc-non-color-image-mockdata-fixes",
+  "phases": [
+    { "file": "phase-01-spec-red-gate.md", "status": "ready" },
+    { "file": "phase-02-implementation-green.md", "status": "pending" },
+    { "file": "phase-03-verify-fix-loop.md", "status": "pending" },
+    { "file": "phase-04-deslop-regress-evolve.md", "status": "pending" }
+  ],
+  "qualityGates": {
+    "redGate": "pending",
+    "greenGate": "pending",
+    "separateVerifier": "required",
+    "visualScreenshots": "required",
+    "evolveBackground": "required"
+  },
+  "excludedScopes": ["COLOR", "IMAGE", "MOCKDATA"],
+  "interrupt_queue": []
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "breakpoint": 1440,
+    "element": "body",
+    "property": "font-family",
+    "design": "\"Plus Jakarta Sans\", sans-serif",
+    "implementation": "Manrope, system-ui, sans-serif",
+    "severity": "FAIL",
+    "location": "app/(public)/news/page.tsx:234"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "body",
+    "property": "background-color",
+    "design": "rgb(255, 255, 255)",
+    "implementation": "rgb(251, 249, 248)",
+    "severity": "WARN",
+    "location": "global layout/theme"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "search button",
+    "property": "background-color",
+    "design": "rgb(0, 139, 156)",
+    "implementation": "rgb(233, 30, 99)",
+    "severity": "FAIL",
+    "location": "app/(public)/news/page.tsx:184"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "search form",
+    "property": "box-shadow",
+    "design": "input shadow-sm only",
+    "implementation": "large shadow-lg on form",
+    "severity": "WARN",
+    "location": "app/(public)/news/page.tsx:168"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "search button",
+    "property": "position",
+    "design": "absolute inside input wrapper",
+    "implementation": "static flex item inside form",
+    "severity": "FAIL",
+    "location": "app/(public)/news/page.tsx:168"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "active sidebar item",
+    "property": "background-color",
+    "design": "rgb(243, 244, 246)",
+    "implementation": "rgb(233, 30, 99)",
+    "severity": "FAIL",
+    "location": "app/(public)/news/page.tsx:259"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "active sidebar item",
+    "property": "font-size/font-weight",
+    "design": "16px / 600 for category link; title is h3 above list",
+    "implementation": "18px / 400 link used as active all-news item",
+    "severity": "WARN",
+    "location": "app/(public)/news/page.tsx:257"
+  }
+]

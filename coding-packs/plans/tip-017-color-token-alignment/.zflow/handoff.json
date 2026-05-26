@@ -1,0 +1,17 @@
+{
+  "resumeCommand": "/zflow --plan coding-packs/plans/tip-017-color-token-alignment --phase execute",
+  "currentPhase": "planned",
+  "nextAction": "Execute RED gate tests, implement token/component color alignment, then verify with separate reviewer and screenshots.",
+  "artifacts": [
+    "coding-packs/plans/tip-017-color-token-alignment/PLAN.md",
+    "coding-packs/plans/tip-017-color-token-alignment/specs/spec-color-token-alignment.md",
+    "coding-packs/plans/tip-017-color-token-alignment/.zflow/tasks.json",
+    "coding-packs/plans/tip-017-color-token-alignment/.zflow/coverage-matrix.md"
+  ],
+  "constraints": [
+    "Color-only implementation",
+    "No layout/content/routing/data behavior changes",
+    "Preserve semantic status colors",
+    "Visual verification is mandatory"
+  ]
+}

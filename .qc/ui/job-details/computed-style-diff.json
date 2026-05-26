@@ -1,0 +1,65 @@
+[
+  {
+    "breakpoint": 1440,
+    "element": "body",
+    "property": "font-family",
+    "design": "Plus Jakarta Sans, sans-serif",
+    "implementation": "Manrope, system-ui, sans-serif",
+    "severity": "WARN",
+    "location": "app/globals.css:1"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "body",
+    "property": "background-color",
+    "design": "rgb(249, 250, 251)",
+    "implementation": "rgb(251, 249, 248)",
+    "severity": "WARN",
+    "location": "app/globals.css:37"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "hero.banner",
+    "property": "content/model",
+    "design": "img object-cover with photographic banner",
+    "implementation": "empty gradient block",
+    "severity": "FAIL",
+    "location": "app/(public)/jobs/[slug]/page.tsx:49"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "job.applyButton",
+    "property": "background-color",
+    "design": "rgb(0, 139, 156)",
+    "implementation": "rgb(233, 30, 99)",
+    "severity": "FAIL",
+    "location": "app/(public)/jobs/[slug]/page.tsx:69"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "job.applyButton",
+    "property": "border-radius",
+    "design": "8px",
+    "implementation": "16px",
+    "severity": "WARN",
+    "location": "app/(public)/jobs/[slug]/page.tsx:69"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "job.applyButton",
+    "property": "color",
+    "design": "rgb(255, 255, 255)",
+    "implementation": "rgb(0, 102, 114)",
+    "severity": "FAIL",
+    "location": "app/(public)/jobs/[slug]/page.tsx:69"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "sidebar.card",
+    "property": "content",
+    "design": "includes deadline, salary, position, quantity, location map, phone, email, skills, employment type",
+    "implementation": "missing deadline when closed_at absent, uses department instead of position, no quantity row",
+    "severity": "WARN",
+    "location": "components/public/JobSidebar.tsx:18"
+  }
+]

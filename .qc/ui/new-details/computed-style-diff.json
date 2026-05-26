@@ -1,0 +1,83 @@
+[
+  {
+    "breakpoint": 1440,
+    "element": "body",
+    "property": "font-family",
+    "design": "\"Plus Jakarta Sans\", sans-serif",
+    "implementation": "Manrope, system-ui, sans-serif",
+    "severity": "FAIL",
+    "location": "app/(public)/news/[slug]/page.tsx:62"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "body",
+    "property": "background-color",
+    "design": "rgb(255, 255, 255)",
+    "implementation": "rgb(251, 249, 248)",
+    "severity": "WARN",
+    "location": "global layout/theme"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "breadcrumb/title/meta container",
+    "property": "width/left",
+    "design": "928px wide at left 256px via px-[256px]",
+    "implementation": "768px wide at left 336px via max-w-[800px] px-4",
+    "severity": "FAIL",
+    "location": "app/(public)/news/[slug]/page.tsx:63"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "h1",
+    "property": "height/line wrapping",
+    "design": "48px single line for reference title",
+    "implementation": "96px two lines for live title",
+    "severity": "WARN",
+    "location": "app/(public)/news/[slug]/page.tsx:72"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "feature image",
+    "property": "width/height/radius",
+    "design": "1440px x 520px, square corners",
+    "implementation": "1200px max-width aspect-video with rounded-2xl image",
+    "severity": "FAIL",
+    "location": "app/(public)/news/[slug]/page.tsx:89"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "article body",
+    "property": "width/padding",
+    "design": "1440px container with 256px side padding, 928px content",
+    "implementation": "800px max-width with 16px side padding, 768px content",
+    "severity": "FAIL",
+    "location": "app/(public)/news/[slug]/page.tsx:108"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "first body content",
+    "property": "typography/role",
+    "design": "H2 Introduction at 32px followed by 16px paragraphs",
+    "implementation": "20px italic excerpt callout before sanitized content",
+    "severity": "FAIL",
+    "location": "app/(public)/news/[slug]/page.tsx:109"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "blockquote/callout",
+    "property": "border/background/spacing",
+    "design": "blockquote with #fdfaf8 background and #fecaca left border",
+    "implementation": "excerpt callout with transparent background and #006672 left border",
+    "severity": "FAIL",
+    "location": "app/(public)/news/[slug]/page.tsx:110"
+  },
+  {
+    "breakpoint": 1440,
+    "element": "related section",
+    "property": "presence",
+    "design": "absent",
+    "implementation": "present with 3 related article cards",
+    "severity": "WARN",
+    "location": "app/(public)/news/[slug]/page.tsx:138"
+  }
+]

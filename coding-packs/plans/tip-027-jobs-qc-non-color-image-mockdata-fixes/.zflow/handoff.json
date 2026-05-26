@@ -1,0 +1,22 @@
+{
+  "plan": "tip-027-jobs-qc-non-color-image-mockdata-fixes",
+  "sourceTip": "coding-packs/tips/TIP-027-jobs-qc-non-color-image-mockdata-fixes.md",
+  "currentPhase": "ready-to-execute-phase-01",
+  "tier": "STANDARD",
+  "status": "plan-created",
+  "nextAction": "Run phase-01-intake-and-baseline.md, then create/execute Red Gate tests from phase-02 before implementation.",
+  "criticalConstraints": [
+    "Do not fix COLOR PINK findings",
+    "Do not replace images or image mappings",
+    "Do not edit mock data records or data-source behavior",
+    "Do not modify app/[locale]/ung_tuyen/page.tsx for this TIP"
+  ],
+  "filesToReadFirst": [
+    "app/[locale]/jobs/page.tsx",
+    "app/(public)/jobs/page.tsx",
+    "components/public/JobCard.tsx",
+    "components/public/JobsSearch.tsx",
+    ".qc/ui/jobs/qc-report.md",
+    ".design/recruitment_site/tim_kiem_cong_viec_fabbi_final_precision/code.html"
+  ]
+}

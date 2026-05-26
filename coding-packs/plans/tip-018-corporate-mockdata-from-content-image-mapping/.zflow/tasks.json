@@ -1,0 +1,43 @@
+{
+  "plan": "tip-018-corporate-mockdata-from-content-image-mapping",
+  "tasks": [
+    {
+      "id": "P18-001",
+      "title": "Source mapping and asset inventory",
+      "artifact": "tips/tip-001-source-mapping-and-assets.md",
+      "status": "planned",
+      "blocks": ["P18-002", "P18-003"]
+    },
+    {
+      "id": "P18-002",
+      "title": "Red gate validation",
+      "artifact": "tips/tip-002-red-gate-validation.md",
+      "status": "planned",
+      "blockedBy": ["P18-001"],
+      "blocks": ["P18-003", "P18-004"]
+    },
+    {
+      "id": "P18-003",
+      "title": "Runtime loaders and image helper",
+      "artifact": "tips/tip-003-runtime-loaders-and-image-helper.md",
+      "status": "planned",
+      "blockedBy": ["P18-001", "P18-002"],
+      "blocks": ["P18-004"]
+    },
+    {
+      "id": "P18-004",
+      "title": "Public renderer wiring",
+      "artifact": "tips/tip-004-public-renderer-wiring.md",
+      "status": "planned",
+      "blockedBy": ["P18-002", "P18-003"],
+      "blocks": ["P18-005"]
+    },
+    {
+      "id": "P18-005",
+      "title": "Green gate and visual verification",
+      "artifact": "tips/tip-005-green-gate-visual-verification.md",
+      "status": "planned",
+      "blockedBy": ["P18-004"]
+    }
+  ]
+}

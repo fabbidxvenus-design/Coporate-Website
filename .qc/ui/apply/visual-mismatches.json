@@ -1,0 +1,35 @@
+{
+  "verdict": "FAIL",
+  "weightedScore": 38,
+  "breakpointsChecked": [1440],
+  "items": [
+    {
+      "severity": "FAIL",
+      "section": "Route/render target",
+      "design": "HTML source is a standalone centered quick-application modal over a darkened image backdrop.",
+      "implementation": "Requested route renders a job detail page with header, job content, sidebar, related jobs, and footer; no modal/dialog is open.",
+      "location": "app/[locale]/ung_tuyen/page.tsx:9"
+    },
+    {
+      "severity": "FAIL",
+      "section": "Requested TSX implementation",
+      "design": "Modal markup includes close button, title, fields, upload area, submit, and contact link.",
+      "implementation": "The requested TSX file only redirects to /[locale]/apply and contains no visual implementation.",
+      "location": "app/[locale]/ung_tuyen/page.tsx:3"
+    },
+    {
+      "severity": "FAIL",
+      "section": "Form structure",
+      "design": "Fields are name, email, optional phone, message, CV upload, submit, contact link inside one modal card.",
+      "implementation": "/vi/apply adds a job select field, requires phone/CV, uses page/card layout instead of modal overlay, and uses different Vietnamese copy.",
+      "location": "components/public/ApplyForm.tsx:130"
+    },
+    {
+      "severity": "WARN",
+      "section": "Closest modal component",
+      "design": "Upload area includes a 24px upload icon above text and submit button is centered at 280px on sm+.",
+      "implementation": "ApplicationModal omits the upload icon, makes submit full width, and changes title to include the jobTitle.",
+      "location": "components/public/ApplicationModal.tsx:148"
+    }
+  ]
+}

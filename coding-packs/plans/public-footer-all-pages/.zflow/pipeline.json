@@ -1,0 +1,35 @@
+{
+  "pipeline": "zflow",
+  "mode": "plan-supervised",
+  "plan": "public-footer-all-pages",
+  "plan_dir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\plans\\public-footer-all-pages",
+  "version": "3",
+  "intake": {
+    "complexity_score": 75,
+    "tier": "THOROUGH",
+    "lexical_signals": "+20 multi-file, +15 visual, +5 test, +20 system-wide, +5 moderate-reversibility",
+    "auto_tier": "THOROUGH",
+    "user_override": "SONNET",
+    "final_tier": "THOROUGH"
+  },
+  "skipped": ["rri", "sdd", "proposal"],
+  "current_phase": "COMPLETE",
+  "phase_index": 9,
+  "total_phases": 9,
+  "fix_count": 1,
+  "fix_limit": 3,
+  "pipeline_phases": [
+    { "name": "SPEC", "status": "completed" },
+    { "name": "DECOMPOSE", "status": "completed" },
+    { "name": "EXECUTE", "status": "completed" },
+    { "name": "VERIFY", "status": "completed" },
+    { "name": "FIX", "status": "completed" },
+    { "name": "DESLOP", "status": "completed" },
+    { "name": "REGRESS", "status": "completed" },
+    { "name": "EVOLVE", "status": "completed" },
+    { "name": "COMPLETE", "status": "completed" }
+  ],
+  "started_at": "2026-05-23T12:51:00.000Z",
+  "completed_at": "2026-05-23T14:05:00.000Z",
+  "last_event": "COMPLETE. 6/6 ACs green. Final report generated."
+}

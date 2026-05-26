@@ -1,0 +1,30 @@
+{
+  "httpStatus": 200,
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "warning",
+      "text": "Detected `scroll-behavior: smooth` on the `<html>` element. In a future version, Next.js will no longer automatically disable smooth scrolling during route transitions. To prepare for this change, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    }
+  ],
+  "metrics": {
+    "url": "http://localhost:3000/vi?contact=1",
+    "httpStatusText": "Fabbi — Careers",
+    "hasDialog": true,
+    "dialogTitle": "Ứng tuyển ngay nào",
+    "hasHorizontalOverflow": false,
+    "activeElementLabel": "Close modal"
+  },
+  "redirectMetrics": {
+    "url": "http://localhost:3000/vi?contact=1",
+    "hasDialog": true,
+    "dialogTitle": "Ứng tuyển ngay nào"
+  }
+}

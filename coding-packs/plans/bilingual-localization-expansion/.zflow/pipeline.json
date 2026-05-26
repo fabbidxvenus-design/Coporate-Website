@@ -1,0 +1,34 @@
+{
+  "pipeline": "zflow",
+  "mode": "plan-supervised",
+  "plan": "bilingual-localization-expansion",
+  "plan_dir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\plans\\bilingual-localization-expansion",
+  "version": "3",
+  "intake": {
+    "complexity_score": 80,
+    "tier": "THOROUGH",
+    "lexical_signals": "+20 multi-file, +15 i18n, +15 test, +20 public-surface-wide, +10 visual/form coverage",
+    "auto_tier": "THOROUGH",
+    "user_override": null,
+    "final_tier": "THOROUGH"
+  },
+  "skipped": ["rri", "sdd", "proposal"],
+  "current_phase": "SPEC",
+  "phase_index": 0,
+  "total_phases": 9,
+  "fix_count": 0,
+  "fix_limit": 3,
+  "pipeline_phases": [
+    { "name": "SPEC", "status": "pending" },
+    { "name": "DECOMPOSE", "status": "completed" },
+    { "name": "EXECUTE", "status": "pending" },
+    { "name": "VERIFY", "status": "pending" },
+    { "name": "FIX", "status": "pending" },
+    { "name": "DESLOP", "status": "pending" },
+    { "name": "REGRESS", "status": "pending" },
+    { "name": "EVOLVE", "status": "pending" },
+    { "name": "COMPLETE", "status": "pending" }
+  ],
+  "started_at": "2026-05-23T00:00:00.000Z",
+  "last_event": "INTAKE complete. THOROUGH tier selected for public-wide i18n, forms, footer, tests, and visual verification. Plan artifacts generated; proceed to SPEC Red Gate."
+}

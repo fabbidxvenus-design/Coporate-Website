@@ -1,0 +1,22 @@
+{
+  "tipId": "TIP-023",
+  "task": "PostgreSQL schema migration and seed from mock data",
+  "mode": "plan-supervised",
+  "tier": "THOROUGH",
+  "complexityScore": 85,
+  "scoring": {
+    "lexical": 35,
+    "structural": 35,
+    "impact": 15,
+    "signals": [
+      "database migration",
+      "schema change",
+      "seed pipeline",
+      "cross-file repository integration",
+      "test requirements",
+      "difficult reversibility"
+    ]
+  },
+  "focusLock": true,
+  "createdAt": "2026-05-25T00:00:00.000Z"
+}

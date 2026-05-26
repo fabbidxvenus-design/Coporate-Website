@@ -1,0 +1,12 @@
+{
+  "sourceTip": "coding-packs/tips/TIP-021-separate-independent-data-flag.md",
+  "planDir": "coding-packs/plans/tip-021-separate-independent-data-flag",
+  "mode": "plan-supervised",
+  "tier": "THOROUGH",
+  "complexityScore": 85,
+  "focusLock": true,
+  "phase": "INTAKE",
+  "stateScope": "coding-packs/plans/tip-021-separate-independent-data-flag/.zflow",
+  "tipScope": "coding-packs/plans/tip-021-separate-independent-data-flag/tips",
+  "createdAt": "2026-05-25T00:00:00+07:00"
+}

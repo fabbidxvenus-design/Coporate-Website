@@ -1,0 +1,47 @@
+﻿[
+  {
+    "breakpoint": 1440,
+    "section": "Container",
+    "property": "layout",
+    "design": "centered modal max-width 672px, flex column, max-height 90vh, shadow-xl, close button",
+    "implementation": "full contact page card width 768px inside 1200px page, no modal behavior, no close button",
+    "severity": "FAIL",
+    "location": "app/(public)/contact/page.tsx:13"
+  },
+  {
+    "breakpoint": 1440,
+    "section": "Form fields",
+    "property": "field set",
+    "design": "position select, fullName, email, phone, message, CV upload",
+    "implementation": "name, email, phone, company, subject, message; no position select or CV upload",
+    "severity": "FAIL",
+    "location": "components/public/ContactForm.tsx:80"
+  },
+  {
+    "breakpoint": 1440,
+    "section": "Submit button",
+    "property": "background/radius/width",
+    "design": "teal #008b9c, 8px radius, centered 240px min-width, 54px height",
+    "implementation": "pink #E91E63, 16px radius, full width 670px, 48px height",
+    "severity": "FAIL",
+    "location": "components/public/ContactForm.tsx:169"
+  },
+  {
+    "breakpoint": 1440,
+    "section": "Inputs",
+    "property": "typography/radius/placeholder",
+    "design": "14px text, 8px radius, placeholders present, gray-300 border",
+    "implementation": "16px text, 16px radius, no placeholders, gray-200 border",
+    "severity": "FAIL",
+    "location": "components/public/ContactForm.tsx:89"
+  },
+  {
+    "breakpoint": 1440,
+    "section": "Accessibility",
+    "property": "axe color-contrast",
+    "design": "not evaluated as app target",
+    "implementation": "axe reports one serious color-contrast violation",
+    "severity": "FAIL",
+    "location": "http://localhost:3000/vi/contact"
+  }
+]

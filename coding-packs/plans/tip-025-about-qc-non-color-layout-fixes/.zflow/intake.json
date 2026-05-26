@@ -1,0 +1,20 @@
+{
+  "task": "Implement TIP-025 About QC non-color layout fixes",
+  "source_tip": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\tips\\TIP-025-about-qc-non-color-layout-fixes.md",
+  "plan_dir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\plans\\tip-025-about-qc-non-color-layout-fixes",
+  "mode": "plan-supervised",
+  "tier": "STANDARD",
+  "score": 70,
+  "score_breakdown": {
+    "lexical": 25,
+    "structural": 45,
+    "impact": "module/cross-file UI"
+  },
+  "phase_skip_rules": {
+    "rri": "skipped: plan mode",
+    "sdd": "skipped: plan mode",
+    "proposal": "skipped: plan mode"
+  },
+  "focus_lock": true,
+  "created_at": "2026-05-25"
+}

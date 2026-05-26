@@ -1,0 +1,42 @@
+[
+  {
+    "severity": "FAIL",
+    "section": "Hero banner",
+    "design": "Full-width photographic image with object-cover, 16px radius, 1168x400 at 1440px viewport.",
+    "implementation": "Empty decorative gradient placeholder at the same size; no image content.",
+    "location": "app/(public)/jobs/[slug]/page.tsx:49",
+    "suggestedFix": "Render a real banner image with object-cover and rounded-2xl, or wire the job/design image source if available."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Primary apply CTA",
+    "design": "Teal #008B9C button, white text, rounded-lg.",
+    "implementation": "Pink background with computed teal text and larger 16px radius.",
+    "location": "app/(public)/jobs/[slug]/page.tsx:69",
+    "suggestedFix": "Use bg-[#008B9C] hover:bg-[#00707e] text-white rounded-lg for parity."
+  },
+  {
+    "severity": "WARN",
+    "section": "Header navigation",
+    "design": "Teal active state and pill language switcher with VN selected in teal.",
+    "implementation": "Pink active state and square-ish white selected language button.",
+    "location": "components/public/PublicHeader.tsx:75",
+    "suggestedFix": "Switch active nav/language colors and rounded-full treatment to teal if strict design parity is required."
+  },
+  {
+    "severity": "WARN",
+    "section": "Related jobs",
+    "design": "Large white cards with icon tile, metadata rows, tags, and Xem chi tiết button.",
+    "implementation": "Compact link rows with briefcase icon and chevron.",
+    "location": "components/public/RelatedJobs.tsx:13",
+    "suggestedFix": "Expand related job cards to match the HTML card structure."
+  },
+  {
+    "severity": "WARN",
+    "section": "Typography",
+    "design": "Plus Jakarta Sans throughout.",
+    "implementation": "Manrope from global stylesheet.",
+    "location": "app/globals.css:1",
+    "suggestedFix": "Use Plus Jakarta Sans for this design family, or accept as a global brand deviation."
+  }
+]

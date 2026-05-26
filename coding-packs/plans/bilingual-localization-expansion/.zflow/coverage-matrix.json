@@ -1,0 +1,48 @@
+{
+  "plan": "bilingual-localization-expansion",
+  "source_tip": "TIP-013-bilingual-localization-expansion.md",
+  "requirements": [
+    {
+      "id": "REQ-I18N-01",
+      "description": "VI and JA dictionaries have matching key structure",
+      "covered_by": ["TIP-P1-001", "TIP-P1-002", "AC-01"]
+    },
+    {
+      "id": "REQ-I18N-02",
+      "description": "Home page body/footer/CTA locale coverage",
+      "covered_by": ["TIP-P1-001", "TIP-P1-003", "TIP-P1-004", "AC-02"]
+    },
+    {
+      "id": "REQ-I18N-03",
+      "description": "About page locale coverage",
+      "covered_by": ["TIP-P1-001", "TIP-P1-003", "AC-03"]
+    },
+    {
+      "id": "REQ-I18N-04",
+      "description": "Jobs page filters/cards/empty states locale coverage",
+      "covered_by": ["TIP-P1-001", "TIP-P1-003", "AC-04"]
+    },
+    {
+      "id": "REQ-I18N-05",
+      "description": "News page chrome and CTA locale coverage",
+      "covered_by": ["TIP-P1-001", "TIP-P1-003", "AC-05"]
+    },
+    {
+      "id": "REQ-I18N-06",
+      "description": "Apply/contact form labels and validation locale coverage",
+      "covered_by": ["TIP-P1-001", "TIP-P1-003", "AC-06"]
+    },
+    {
+      "id": "REQ-I18N-07",
+      "description": "Route-preserving language switch",
+      "covered_by": ["TIP-P1-001", "TIP-P1-004", "AC-07"]
+    },
+    {
+      "id": "REQ-I18N-08",
+      "description": "Footer localization without TIP-012 regression",
+      "covered_by": ["TIP-P1-001", "TIP-P1-004", "TIP-P1-005", "AC-08"]
+    }
+  ],
+  "orphan_requirements": [],
+  "decompose_score": 92
+}

@@ -1,0 +1,158 @@
+{
+  "status": 200,
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    }
+  ],
+  "metrics": {
+    "title": "Fabbi — Careers",
+    "url": "http://localhost:3000/vi/apply",
+    "viewport": {
+      "width": 1440,
+      "height": 1200
+    },
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "hasHorizontalOverflow": false,
+    "textStart": "Skip to main content\nFabbi\nTrang chủ\nTuyển dụng\nVề Fabbi\nTin tức\nLiên hệ\nVN\nJP\nỨng tuyển ngay nào\n\nHãy điền thông tin của bạn và gửi cho nhà tuyển dụng\n\nVị trí ứng tuyển\nChọn vị trí\nSenior Frontend Engineer (React/Next.js)\nBridge Software Engineer (BrSE) - N1/N2\nAI Engineer (Computer Vision)\nBlockchain Developer (Solidity/Rust)\nHR Recruitment Specialist\nBackend Developer (Node.js/AWS)\nexpand_more\nHọ và tên *\nEmail *\nSố điện thoại *\nLời nhắn (tùy chọn)\nTải lên CV *\nTải lên CV (pdf, docx, doc)\n\nPDF, DOC, DOCX - Tối đa 5MB\n\nGửi hồ sơ\n\nBạn cần hỗ trợ? Contact Us\n\nFabbi\n\nCÔNG TY CỔ PHẦN NGHIÊN CỨU VÀ PHÁT TRIỂN FABBI\n\nhome\nĐịa chỉ: 107 Nguyễn Phong Sắc - Hai Bà Trưng - Hà Nội\ncall\nĐiện thoại: 0123 456 789\nmail\nEmail: Hr@fabbi.com.vn\nFollow Us\nQuick link\nTuyển dụng\nVề Fabbi\nTin tức\nLiên hệ\n\n© 2026 Fabbi. All rights reserved.\n\narrow_upward\nBack to top",
+    "elements": {
+      "wrapper": {
+        "selector": "section[aria-label=\"Biểu mẫu ứng tuyển\"]",
+        "text": "Ứng tuyển ngay nàoHãy điền thông tin của bạn và gửi cho nhà tuyển dụngVị trí ứng tuyểnChọn vị tríSenior Frontend Enginee",
+        "tag": "SECTION",
+        "className": "max-w-2xl mx-auto",
+        "computed": {
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "color": "rgb(27, 28, 28)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopWidth": "0px",
+          "borderTopColor": "rgb(189, 201, 203)",
+          "borderRadius": "0px",
+          "boxShadow": "none",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "display": "block",
+          "width": "672px",
+          "maxWidth": "672px"
+        }
+      },
+      "title": {
+        "selector": "h1",
+        "text": "Ứng tuyển ngay nào",
+        "tag": "H1",
+        "className": "text-2xl font-bold text-gray-900",
+        "computed": {
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "24px",
+          "fontWeight": "700",
+          "lineHeight": "32px",
+          "color": "rgb(17, 24, 39)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopWidth": "0px",
+          "borderTopColor": "rgb(189, 201, 203)",
+          "borderRadius": "0px",
+          "boxShadow": "none",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "display": "block",
+          "width": "600px",
+          "maxWidth": "none"
+        }
+      },
+      "card": {
+        "selector": "form",
+        "text": "Vị trí ứng tuyểnChọn vị tríSenior Frontend Engineer (React/Next.js)Bridge Software Engineer (BrSE) - N1/N2AI Engineer (C",
+        "tag": "FORM",
+        "className": "space-y-6",
+        "computed": {
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "color": "rgb(27, 28, 28)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopWidth": "0px",
+          "borderTopColor": "rgb(189, 201, 203)",
+          "borderRadius": "0px",
+          "boxShadow": "none",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "display": "block",
+          "width": "534px",
+          "maxWidth": "none"
+        }
+      },
+      "submit": {
+        "selector": "button[type=\"submit\"]",
+        "text": "Gửi hồ sơ",
+        "tag": "BUTTON",
+        "className": "w-full sm:w-auto min-w-[240px] flex justify-center items-center gap-2 py-3.5 px-8 border border-transparent rounded-lg shadow-sm text-base font-semibold text-white bg-primary hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+        "computed": {
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "600",
+          "lineHeight": "24px",
+          "color": "rgb(255, 255, 255)",
+          "backgroundColor": "rgb(0, 139, 156)",
+          "borderTopWidth": "1px",
+          "borderTopColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "16px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+          "paddingTop": "14px",
+          "paddingRight": "32px",
+          "paddingBottom": "14px",
+          "paddingLeft": "32px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "display": "flex",
+          "width": "240px",
+          "maxWidth": "none"
+        }
+      },
+      "uploadLabel": {
+        "selector": "label[for=\"cv_file\"]",
+        "text": "Tải lên CV (pdf, docx, doc)",
+        "tag": "LABEL",
+        "className": "mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50 transition-colors group border-gray-300",
+        "computed": {
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "color": "rgb(27, 28, 28)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopWidth": "2px",
+          "borderTopColor": "rgb(209, 213, 219)",
+          "borderRadius": "8px",
+          "boxShadow": "none",
+          "paddingTop": "20px",
+          "paddingRight": "24px",
+          "paddingBottom": "24px",
+          "paddingLeft": "24px",
+          "marginTop": "4px",
+          "marginBottom": "0px",
+          "display": "flex",
+          "width": "534px",
+          "maxWidth": "none"
+        }
+      }
+    }
+  }
+}

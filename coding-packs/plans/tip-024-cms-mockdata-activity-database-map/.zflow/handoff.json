@@ -1,0 +1,26 @@
+{
+  "planId": "tip-024-cms-mockdata-activity-database-map",
+  "status": "planned",
+  "resumeCommand": "zflow: --plan coding-packs/plans/tip-024-cms-mockdata-activity-database-map --phase phase-01-intake-and-red-specs.md",
+  "currentPhase": "phase-01-intake-and-red-specs.md",
+  "completed": [
+    "plan artifacts generated",
+    "spec files generated",
+    "decomposed tips generated",
+    "zflow state initialized"
+  ],
+  "pending": [
+    "write failing tests",
+    "implement CMS data model and fixtures",
+    "wire admin pages through shared helpers",
+    "decide API boundary",
+    "verify with separate agent",
+    "regress and evolve"
+  ],
+  "qualityGates": {
+    "redGate": "pending",
+    "greenGate": "pending",
+    "separateVerifier": "pending",
+    "finalReport": "placeholder"
+  }
+}

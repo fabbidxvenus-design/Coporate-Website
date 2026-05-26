@@ -1,0 +1,38 @@
+{
+  "page.title": {
+    "designSelector": "h1",
+    "implementationSelector": "h1",
+    "confidence": "high",
+    "basis": "primary heading order"
+  },
+  "search.input": {
+    "designSelector": ".search-input-wrapper input",
+    "implementationSelector": "form input[name=\"q\"]",
+    "confidence": "high",
+    "basis": "search placeholder and location"
+  },
+  "search.button": {
+    "designSelector": ".search-input-wrapper button",
+    "implementationSelector": "form button[type=\"submit\"]",
+    "confidence": "high",
+    "basis": "search CTA text and location"
+  },
+  "sidebar.container": {
+    "designSelector": "aside > div",
+    "implementationSelector": "[aria-label=\"Sidebar\"] > div",
+    "confidence": "medium",
+    "basis": "same sidebar content but implementation uses div instead of aside"
+  },
+  "featured.title": {
+    "designSelector": "article h2",
+    "implementationSelector": "article h2",
+    "confidence": "high",
+    "basis": "featured article title position"
+  },
+  "grid.card.title": {
+    "designSelector": "article h3",
+    "implementationSelector": "article h3",
+    "confidence": "high",
+    "basis": "article card heading position"
+  }
+}

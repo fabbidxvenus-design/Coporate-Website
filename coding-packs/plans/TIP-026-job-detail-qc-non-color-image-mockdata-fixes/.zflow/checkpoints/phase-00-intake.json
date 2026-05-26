@@ -1,0 +1,21 @@
+{
+  "phase": "INTAKE",
+  "status": "completed",
+  "tier": "STANDARD",
+  "score": 55,
+  "nextPhase": "SPEC",
+  "artifactsCreated": [
+    "README.md",
+    "phase-01-spec-red-gate.md",
+    "phase-02-implementation-green.md",
+    "phase-03-verify-fix-loop.md",
+    "phase-04-deslop-regress-evolve.md",
+    "specs/job-detail-non-excluded-qc.md",
+    "specs/test-plan.md",
+    "tips/tip-P2-001-job-detail-accessibility-semantics.md",
+    "tips/tip-P2-002-related-jobs-card-structure.md",
+    "tips/tip-P2-003-sidebar-and-cta-shape.md",
+    ".zflow/intake.json",
+    ".zflow/pipeline.json"
+  ]
+}

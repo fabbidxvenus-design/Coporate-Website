@@ -1,0 +1,66 @@
+[
+  {
+    "severity": "FAIL",
+    "section": "Provided JSX target",
+    "design": "Jobs search/list page implementation should be compared.",
+    "implementation": "Provided path `app/[locale]/ung_tuyen/page.tsx` is a legacy redirect to `/${locale}/apply`, not the `/vi/jobs` page.",
+    "location": "app/[locale]/ung_tuyen/page.tsx:9",
+    "suggestedFix": "Use `app/[locale]/jobs/page.tsx` or `app/(public)/jobs/page.tsx` as the JSX target for this QC."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Hero",
+    "design": "Light teal illustrated background with dark heading and teal jobs count.",
+    "implementation": "Dark photographic hero with white heading and pink jobs count.",
+    "location": "app/(public)/jobs/page.tsx:104",
+    "suggestedFix": "Restore the light teal illustrated hero asset/colors if matching the HTML reference is required."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Primary search CTA",
+    "design": "Teal #008b9c rounded search button.",
+    "implementation": "Pink search button.",
+    "location": "app/(public)/jobs/page.tsx:68",
+    "suggestedFix": "Use `bg-[#008b9c] hover:bg-teal-600 text-white` for the search button."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Filter controls",
+    "design": "Checkbox filters for Freelancer, Internship, Full Time, Part Time with checked states.",
+    "implementation": "Navigation links including an extra `Tất cả lĩnh vực`; no checkbox visual state.",
+    "location": "app/(public)/jobs/page.tsx:141",
+    "suggestedFix": "Render checkbox-style filters or style links as checkbox controls to match the reference."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Job cards",
+    "design": "Large 243px-tall cards with image icon tiles, metadata rows, teal detail CTA, tag links, and 12px radius.",
+    "implementation": "Compact 146px-tall cards with material icon, chips, pink apply CTA, and 24px radius.",
+    "location": "components/public/JobCard.tsx:61",
+    "suggestedFix": "Use the list-card structure from the HTML reference for `/jobs` cards."
+  },
+  {
+    "severity": "FAIL",
+    "section": "Lower content sections",
+    "design": "Includes `Chuyên mục ảnh` carousel and `Tìm kiếm công việc theo Location` cards after listings.",
+    "implementation": "Rendered page ends after listings/sidebar before footer; both sections are absent.",
+    "location": "app/(public)/jobs/page.tsx:300",
+    "suggestedFix": "Add the photo carousel and location-card sections after the jobs/sidebar section."
+  },
+  {
+    "severity": "WARN",
+    "section": "Sidebar",
+    "design": "`Liên kết` sidebar with Facebook cover and social feed widget posts.",
+    "implementation": "Follow Us sidebar plus quick links; social feed posts are missing.",
+    "location": "app/(public)/jobs/page.tsx:254",
+    "suggestedFix": "Add the feed widget blocks or adjust the reference if the simplified sidebar is intentional."
+  },
+  {
+    "severity": "WARN",
+    "section": "Accessibility",
+    "design": "Static reference includes several icon-only controls.",
+    "implementation": "Axe found serious link-name and color-contrast violations in the rendered page.",
+    "location": "components/public/JobCard.tsx:64",
+    "suggestedFix": "Ensure icon links have accessible names and improve contrast for affected text."
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "activities": [
+    {
+      "id": "du-lich",
+      "title": "Du lịch",
+      "icon": "🌍",
+      "description": "Fabbi tổ chức các chuyến du lịch team building hàng năm, tạo cơ hội để mọi người kết nối và thư giãn ngoài công việc. Đây là dịp để chúng tôi cùng nhau tạo ra những kỷ niệm đáng nhớ.",
+      "image": "/images/Teambuilding-scaled.jpg"
+    },
+    {
+      "id": "womens-day",
+      "title": "Women's day",
+      "icon": "💖",
+      "description": "Ngày tôn vinh những người phụ nữ tuyệt vời tại Fabbi. Chúng tôi luôn dành tặng những món quà và lời chúc ý nghĩa nhất tới các chị em.",
+      "image": "/images/activity-womens-day.jpg"
+    },
+    {
+      "id": "mens-day",
+      "title": "Men's day",
+      "icon": "👔",
+      "description": "Không chỉ phái đẹp, các "cánh mày râu" tại Fabbi cũng được chăm sóc đặc biệt trong ngày của mình với những hoạt động gắn kết đầy bất ngờ.",
+      "image": "/images/activity-mens-day.jpg"
+    },
+    {
+      "id": "year-end-party",
+      "title": "Year end party",
+      "icon": "🎉",
+      "description": "Bữa tiệc cuối năm ấm cúng, nơi chúng tôi nhìn lại hành trình 1 năm đã qua, vinh danh những cá nhân xuất sắc và chào đón năm mới rực rỡ.",
+      "image": "/images/activity-year-end.jpg"
+    },
+    {
+      "id": "kham-suc-khoe",
+      "title": "Khám sức khỏe",
+      "icon": "🩺",
+      "description": "Sức khỏe nhân viên là tài sản quý giá nhất. Fabbi định kỳ tổ chức khám sức khỏe tổng quát để đảm bảo mọi người luôn có thể trạng tốt nhất.",
+      "image": "/images/activity-health.jpg"
+    },
+    {
+      "id": "radio-noi-bo",
+      "title": "Radio nội bộ",
+      "icon": "📻",
+      "description": "Kênh kết nối âm nhạc và tâm tình, nơi các thành viên Fabbi chia sẻ câu chuyện và sở thích cá nhân qua sóng radio nội bộ.",
+      "image": "/images/activity-radio.jpg"
+    },
+    {
+      "id": "the-thao",
+      "title": "Thể thao",
+      "icon": "⚽",
+      "description": "Giải bóng đá, cầu lông thường niên thúc đẩy tinh thần rèn luyện thể chất và gắn kết giữa các phòng ban.",
+      "image": "/images/activity-sports.jpg"
+    },
+    {
+      "id": "goc-mise",
+      "title": "Góc Mise",
+      "icon": "☕",
+      "description": "Không gian thư giãn nhẹ nhàng, nơi nhân viên có thể thưởng thức café, trò chuyện và trao đổi kiến thức.",
+      "image": "/images/activity-mise.jpg"
+    },
+    {
+      "id": "happy-hour",
+      "title": "Happy hour",
+      "icon": "🍻",
+      "description": "Những giờ phút giải lao cuối tuần đầy hứng khởi, giúp nhân viên giải tỏa căng thẳng sau những giờ làm việc tập trung.",
+      "image": "/images/activity-happy-hour.jpg"
+    }
+  ]
+}

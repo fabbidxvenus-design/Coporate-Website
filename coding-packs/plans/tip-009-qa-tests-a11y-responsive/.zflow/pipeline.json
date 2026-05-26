@@ -1,0 +1,21 @@
+{
+  "plan": "tip-009-qa-tests-a11y-responsive",
+  "mode": "plan-supervised",
+  "phase": "phase-01-unit-validation-tests.md",
+  "tier": "STANDARD",
+  "focus_lock": false,
+  "phases": [
+    "phase-01-unit-validation-tests.md",
+    "phase-02-e2e-core-flows.md",
+    "phase-03-accessibility-audit.md",
+    "phase-04-responsive-verification.md"
+  ],
+  "quality_gates": {
+    "red_gate_required": true,
+    "green_gate_required": true,
+    "separate_verifier_required": false,
+    "visual_verification_required": false,
+    "evolve_required": true
+  },
+  "pipeline_status": "IN_PROGRESS"
+}

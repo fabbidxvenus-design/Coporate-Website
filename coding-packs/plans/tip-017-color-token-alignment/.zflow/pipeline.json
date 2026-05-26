@@ -1,0 +1,19 @@
+{
+  "pipeline": "zflow",
+  "mode": "plan-supervised",
+  "phase": "planned",
+  "tier": "STANDARD",
+  "focus_lock": false,
+  "sourceTip": "coding-packs/tips/TIP-017-color-token-alignment.md",
+  "planDir": "coding-packs/plans/tip-017-color-token-alignment",
+  "completedPhases": ["intake", "spec", "decompose"],
+  "pendingPhases": ["execute", "verify", "fix-if-needed", "deslop", "regress", "evolve", "complete"],
+  "qualityGates": {
+    "complexityScored": true,
+    "redGatePlanned": true,
+    "separateVerifierRequired": true,
+    "visualVerificationRequired": true,
+    "evolveRequired": true
+  },
+  "fixCount": 0
+}

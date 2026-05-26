@@ -1,0 +1,304 @@
+{
+  "manifest_version": "1.0",
+  "generated_at": "2026-05-25",
+  "source": "coding-packs/crawlings/images/",
+  "assets": [
+    {
+      "id": "logo-fabbi",
+      "fileName": "img-sys-app.png",
+      "relativePath": "img-sys-app.png",
+      "type": "logo",
+      "alt": { "vi": "Biểu trưng Fabbi Holdings", "ja": "Fabbi Holdings ロゴ" },
+      "recommendedUsage": "Header logo, footer logo, favicon fallback",
+      "sourceEvidence": "crawled_raw_data.json: header navigation"
+    },
+    {
+      "id": "leader-tu-vu",
+      "fileName": "Mr-LinhNV.png",
+      "relativePath": "Mr-LinhNV.png",
+      "type": "leadership",
+      "alt": { "vi": "Vũ Văn Tư - Chủ tịch kiêm CEO Fabbi Holdings", "ja": "武 文思 - Fabbi Holdings 代表取締役会長兼CEO" },
+      "recommendedUsage": "Leadership / About page team section",
+      "sourceEvidence": "crawled_all_pages.md: Ban lãnh đạo section"
+    },
+    {
+      "id": "leader-tuan-tran",
+      "fileName": "Mr.-Tuan-Anh.jpg",
+      "relativePath": "Mr.-Tuan-Anh.jpg",
+      "type": "leadership",
+      "alt": { "vi": "Trần Đình Tuấn - Giám đốc phát triển sản phẩm", "ja": "陳 庭俊 - 最高製品責任者" },
+      "recommendedUsage": "Leadership / About page team section",
+      "sourceEvidence": "crawled_all_pages.md: Ban lãnh đạo section"
+    },
+    {
+      "id": "leader-bach-le",
+      "fileName": "Bach-Le.png",
+      "relativePath": "Bach-Le.png",
+      "type": "leadership",
+      "alt": { "vi": "Lê Đình Xuân Bách - CEO Fabbi AUS", "ja": "黎 庭春柏 - Fabbi AUS CEO" },
+      "recommendedUsage": "Leadership / About page team section",
+      "sourceEvidence": "crawled_all_pages.md: Ban lãnh đạo section"
+    },
+    {
+      "id": "team-hang",
+      "fileName": "Ms-Hang.png",
+      "relativePath": "Ms-Hang.png",
+      "type": "leadership",
+      "alt": { "vi": "Phạm Thị Hằng - Trưởng phòng Tuyển dụng", "ja": "ファム・ティ・ハン - 採用部長" },
+      "recommendedUsage": "About page - management team",
+      "sourceEvidence": "crawled_all_pages.md: Đội ngũ Quản lý"
+    },
+    {
+      "id": "team-van",
+      "fileName": "Ms-Van.png",
+      "relativePath": "Ms-Van.png",
+      "type": "leadership",
+      "alt": { "vi": "Trần Hồng Vân - Trưởng phòng Truyền thông", "ja": "チャン・ホン・バン - 広報部長" },
+      "recommendedUsage": "About page - management team",
+      "sourceEvidence": "crawled_all_pages.md: Đội ngũ Quản lý"
+    },
+    {
+      "id": "culture-teambuilding",
+      "fileName": "Teambuilding-scaled.jpg",
+      "relativePath": "Teambuilding-scaled.jpg",
+      "type": "culture",
+      "alt": { "vi": "Hoạt động teambuilding của Fabbi", "ja": "Fabbiのチームビルディング活動" },
+      "recommendedUsage": "Culture / About page, news teambuilding article",
+      "sourceEvidence": "crawled_all_pages.md: Văn hóa Fabbi"
+    },
+    {
+      "id": "culture-teambuilding-2",
+      "fileName": "Teambuilding1-scaled.jpg",
+      "relativePath": "Teambuilding1-scaled.jpg",
+      "type": "culture",
+      "alt": { "vi": "Hoạt động teambuilding của Fabbi", "ja": "Fabbiのチームビルディング活動" },
+      "recommendedUsage": "Culture section",
+      "sourceEvidence": "crawled_all_pages.md: Văn hóa Fabbi"
+    },
+    {
+      "id": "award-sao-khue-2024",
+      "fileName": "Sao-Khue-2024.jpg",
+      "relativePath": "Sao-Khue-2024.jpg",
+      "type": "culture",
+      "alt": { "vi": "Fabbi nhận giải thưởng Sao Khuê 2024", "ja": "Fabbiがサオクエ賞2024を受賞" },
+      "recommendedUsage": "News article cover, awards section",
+      "sourceEvidence": "crawled_raw_data.json: giải thưởng Sao Khuê 2024"
+    },
+    {
+      "id": "award-sao-khue-2022",
+      "fileName": "Sao-Khue-2022.jpg",
+      "relativePath": "Sao-Khue-2022.jpg",
+      "type": "culture",
+      "alt": { "vi": "Fabbi nhận giải thưởng Sao Khuê 2022", "ja": "Fabbiがサオクエ賞2022を受賞" },
+      "recommendedUsage": "Awards section, homepage achievements",
+      "sourceEvidence": "crawled_raw_data.json: giải thưởng Sao Khuê 2022"
+    },
+    {
+      "id": "award-ict-2021",
+      "fileName": "ICT-2021.jpg",
+      "relativePath": "ICT-2021.jpg",
+      "type": "culture",
+      "alt": { "vi": "Fabbi tại sự kiện ICT 2021", "ja": "FabbiのICT 2021イベント参加" },
+      "recommendedUsage": "Awards/news section",
+      "sourceEvidence": "crawled_raw_data.json: sự kiện ICT 2021"
+    },
+    {
+      "id": "event-yep",
+      "fileName": "YEP-2023-scaled.jpg",
+      "relativePath": "YEP-2023-scaled.jpg",
+      "type": "culture",
+      "alt": { "vi": "Sự kiện YEP 2023 của Fabbi", "ja": "FabbiのYEP 2023イベント" },
+      "recommendedUsage": "News/Events section",
+      "sourceEvidence": "crawled_raw_data.json: YEP 2023"
+    },
+    {
+      "id": "event-near-apac",
+      "fileName": "Near-Apac-2023.jpg",
+      "relativePath": "Near-Apac-2023.jpg",
+      "type": "culture",
+      "alt": { "vi": "Sự kiện NEAR APAC 2023", "ja": "NEAR APAC 2023イベント" },
+      "recommendedUsage": "News/Events section",
+      "sourceEvidence": "crawled_raw_data.json: NEAR APAC 2023"
+    },
+    {
+      "id": "portfolio-zenpost",
+      "fileName": "Zenpost-0-1-1024x532.png",
+      "relativePath": "Zenpost-0-1-1024x532.png",
+      "type": "portfolio",
+      "alt": { "vi": "Zenpost - E-commerce Platform", "ja": "Zenpost - Eコマースプラットフォーム" },
+      "recommendedUsage": "Portfolio detail page cover",
+      "sourceEvidence": "crawled_raw_data.json: Dự án Zenpost"
+    },
+    {
+      "id": "portfolio-bondbod",
+      "fileName": "Bondbod-2-1024x732.png",
+      "relativePath": "Bondbod-2-1024x732.png",
+      "type": "portfolio",
+      "alt": { "vi": "Bondbod - Social Commerce App", "ja": "Bondbod - ソーシャルコマースアプリ" },
+      "recommendedUsage": "Portfolio detail page cover",
+      "sourceEvidence": "crawled_raw_data.json: Dự án Bondbod"
+    },
+    {
+      "id": "portfolio-glams",
+      "fileName": "Glams-0-1.png",
+      "relativePath": "Glams-0-1.png",
+      "type": "portfolio",
+      "alt": { "vi": "Glams - Beauty Tech Platform", "ja": "Glams - ビューティーテックプラットフォーム" },
+      "recommendedUsage": "Portfolio detail page cover",
+      "sourceEvidence": "crawled_raw_data.json: Dự án Glams"
+    },
+    {
+      "id": "portfolio-tekko",
+      "fileName": "Tekko-0-1.png",
+      "relativePath": "Tekko-0-1.png",
+      "type": "portfolio",
+      "alt": { "vi": "Tekko - Manufacturing IoT Dashboard", "ja": "Tekko - 製造業IoTダッシュボード" },
+      "recommendedUsage": "Portfolio detail page cover",
+      "sourceEvidence": "crawled_raw_data.json: Dự án Tekko"
+    },
+    {
+      "id": "portfolio-lms",
+      "fileName": "LMS-2.webp",
+      "relativePath": "LMS-2.webp",
+      "type": "portfolio",
+      "alt": { "vi": "LMS - Education Platform", "ja": "LMS - 教育プラットフォーム" },
+      "recommendedUsage": "Portfolio detail page cover",
+      "sourceEvidence": "crawled_raw_data.json: Dự án LMS"
+    },
+    {
+      "id": "portfolio-dcarbon",
+      "fileName": "Dcarbon.png",
+      "relativePath": "Dcarbon.png",
+      "type": "portfolio",
+      "alt": { "vi": "Dcarbon - Carbon Credit Marketplace", "ja": "Dcarbon - カーボン信用市場" },
+      "recommendedUsage": "Portfolio detail page cover",
+      "sourceEvidence": "crawled_raw_data.json: Dự án Dcarbon"
+    },
+    {
+      "id": "tech-react",
+      "fileName": "react.png",
+      "relativePath": "react.png",
+      "type": "technology",
+      "alt": { "vi": "React - Frontend Framework", "ja": "React - フロントエンドフレームワーク" },
+      "recommendedUsage": "Technology stack display",
+      "sourceEvidence": "crawled_raw_data.json: công nghệ sử dụng"
+    },
+    {
+      "id": "tech-nodejs",
+      "fileName": "nodejs.png",
+      "relativePath": "nodejs.png",
+      "type": "technology",
+      "alt": { "vi": "Node.js - Backend Runtime", "ja": "Node.js - バックエンドランタイム" },
+      "recommendedUsage": "Technology stack display",
+      "sourceEvidence": "crawled_raw_data.json: công nghệ sử dụng"
+    },
+    {
+      "id": "tech-solidity",
+      "fileName": "solidity.png",
+      "relativePath": "solidity.png",
+      "type": "technology",
+      "alt": { "vi": "Solidity - Blockchain Smart Contract", "ja": "Solidity - ブロックチェーンスマートコントラクト" },
+      "recommendedUsage": "Technology stack display - blockchain projects",
+      "sourceEvidence": "crawled_raw_data.json: công nghệ blockchain"
+    },
+    {
+      "id": "tech-java",
+      "fileName": "java.png",
+      "relativePath": "java.png",
+      "type": "technology",
+      "alt": { "vi": "Java - Enterprise Backend", "ja": "Java - エンタープライズバックエンド" },
+      "recommendedUsage": "Technology stack display",
+      "sourceEvidence": "crawled_raw_data.json: công nghệ Java"
+    },
+    {
+      "id": "tech-vue",
+      "fileName": "vuejs.png",
+      "relativePath": "vuejs.png",
+      "type": "technology",
+      "alt": { "vi": "Vue.js - Progressive JavaScript Framework", "ja": "Vue.js - プログレッシブJavaScriptフレームワーク" },
+      "recommendedUsage": "Technology stack display",
+      "sourceEvidence": "crawled_raw_data.json: công nghệ Vue.js"
+    },
+    {
+      "id": "tech-go",
+      "fileName": "go.png",
+      "relativePath": "go.png",
+      "type": "technology",
+      "alt": { "vi": "Go - Google Programming Language", "ja": "Go - Googleプログラミング言語" },
+      "recommendedUsage": "Technology stack display",
+      "sourceEvidence": "crawled_raw_data.json: công nghệ Go"
+    },
+    {
+      "id": "tech-python",
+      "fileName": "ai_chatbot.png",
+      "relativePath": "ai_chatbot.png",
+      "type": "technology",
+      "alt": { "vi": "AI & Machine Learning", "ja": "AI・機械学習" },
+      "recommendedUsage": "AI services section",
+      "sourceEvidence": "crawled_raw_data.json: dịch vụ AI"
+    },
+    {
+      "id": "partner-vinuni",
+      "fileName": "vinuni.png",
+      "relativePath": "vinuni.png",
+      "type": "partner",
+      "alt": { "vi": "Đại học VinUni", "ja": "VinUni大学" },
+      "recommendedUsage": "Partners/associations section",
+      "sourceEvidence": "crawled_raw_data.json: đối tác VinUni"
+    },
+    {
+      "id": "partner-kia",
+      "fileName": "Kyupad.png",
+      "relativePath": "Kyupad.png",
+      "type": "partner",
+      "alt": { "vi": "KIA", "ja": "KIA" },
+      "recommendedUsage": "Partners section",
+      "sourceEvidence": "crawled_raw_data.json: đối tác KIA"
+    },
+    {
+      "id": "decorative-bg",
+      "fileName": "bg-01.png",
+      "relativePath": "bg-01.png",
+      "type": "decorative",
+      "alt": { "vi": "Hình nền trang trí", "ja": "装飾背景画像" },
+      "recommendedUsage": "Hero background, section decoration",
+      "sourceEvidence": "crawled_all_pages.md: decorative elements"
+    },
+    {
+      "id": "decorative-shape",
+      "fileName": "shape10.png",
+      "relativePath": "shape10.png",
+      "type": "decorative",
+      "alt": { "vi": "Hình dạng trang trí", "ja": "装飾shape" },
+      "recommendedUsage": "Section dividers, decorative elements",
+      "sourceEvidence": "crawled_all_pages.md: decorative elements"
+    },
+    {
+      "id": "flag-vi",
+      "fileName": "flag-vi.png",
+      "relativePath": "flag-vi.png",
+      "type": "decorative",
+      "alt": { "vi": "Cờ Việt Nam", "ja": "ベトナム国旗" },
+      "recommendedUsage": "Language switcher icon",
+      "sourceEvidence": "crawled_raw_data.json: ngôn ngữ Tiếng Việt"
+    },
+    {
+      "id": "flag-ja",
+      "fileName": "flag-ja.png",
+      "relativePath": "flag-ja.png",
+      "type": "decorative",
+      "alt": { "vi": "Cờ Nhật Bản", "ja": "日本国旗" },
+      "recommendedUsage": "Language switcher icon",
+      "sourceEvidence": "crawled_raw_data.json: ngôn ngữ 日本語"
+    },
+    {
+      "id": "avatar-generic",
+      "fileName": "avatar-05.jpg",
+      "relativePath": "avatar-05.jpg",
+      "type": "unknown",
+      "alt": { "vi": "Ảnh đại diện", "ja": "アバター画像" },
+      "recommendedUsage": "Fallback avatar, do not use as primary leadership photo",
+      "sourceEvidence": "downloaded but unnamed, ambiguous"
+    }
+  ]
+}

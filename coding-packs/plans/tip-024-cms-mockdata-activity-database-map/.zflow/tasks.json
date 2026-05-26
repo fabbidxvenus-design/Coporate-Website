@@ -1,0 +1,45 @@
+{
+  "planId": "tip-024-cms-mockdata-activity-database-map",
+  "tasks": [
+    {
+      "id": "tip-001-red-specs",
+      "title": "Red Specs for CMS Mock Activity",
+      "phase": "phase-01",
+      "status": "pending",
+      "blockedBy": [],
+      "owns": ["tests only", "specs/*"]
+    },
+    {
+      "id": "tip-002-cms-data-model",
+      "title": "CMS Activity Data Model and Fixtures",
+      "phase": "phase-02",
+      "status": "pending",
+      "blockedBy": ["tip-001-red-specs"],
+      "owns": ["lib/cms/**", "lib/mock-data.ts"]
+    },
+    {
+      "id": "tip-003-admin-wiring",
+      "title": "Admin Data Source Wiring",
+      "phase": "phase-03",
+      "status": "pending",
+      "blockedBy": ["tip-002-cms-data-model"],
+      "owns": ["lib/cms/**", "app/admin/**"]
+    },
+    {
+      "id": "tip-004-api-boundary",
+      "title": "Optional API Boundary Validation",
+      "phase": "phase-04",
+      "status": "pending",
+      "blockedBy": ["tip-003-admin-wiring"],
+      "owns": ["app/api/**", "lib/cms/**"]
+    },
+    {
+      "id": "tip-005-verify-regress-evolve",
+      "title": "Verify, Regress, and Evolve",
+      "phase": "phase-05",
+      "status": "pending",
+      "blockedBy": ["tip-004-api-boundary"],
+      "owns": [".zflow/**", "evidence/**"]
+    }
+  ]
+}

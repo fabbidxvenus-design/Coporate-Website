@@ -1,0 +1,32 @@
+{
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "nodes": 4,
+      "targets": [
+        [
+          "a[aria-current=\"page\"]"
+        ],
+        [
+          ".px-3.py-1\\.5.rounded-md:nth-child(1)"
+        ],
+        [
+          ".top-32"
+        ]
+      ]
+    },
+    {
+      "id": "heading-order",
+      "impact": "moderate",
+      "description": "Ensure the order of headings is semantically correct",
+      "nodes": 1,
+      "targets": [
+        [
+          ".border-r.w-1\\/2.md\\:w-1\\/4:nth-child(1) > .mb-2.cursor-default"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "phase": "01",
+  "status": "RED",
+  "unit_tests": "FAILED",
+  "e2e_tests": "FAILED",
+  "timestamp": "2026-05-25T09:12:00Z",
+  "notes": "Red Gate established. Tests fail because lib/api/about and /api/about route do not exist yet."
+}

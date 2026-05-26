@@ -1,0 +1,13 @@
+{
+  "phase": "plan",
+  "tier": "THOROUGH",
+  "complexityScore": 100,
+  "sourceTip": "coding-packs/tips/TIP-019-sqlite-migration.md",
+  "decision": "Plan only. Implementation should start with Red Gate specs/tests before SQLite code.",
+  "qualityGates": [
+    "Red Gate required before implementation",
+    "Separate verifier required after implementation",
+    "Build/type-check/tests required without Supabase runtime env",
+    "Visual screenshots required if UI output changes"
+  ]
+}

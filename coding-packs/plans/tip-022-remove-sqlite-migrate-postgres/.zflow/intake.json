@@ -1,0 +1,25 @@
+{
+  "tipId": "TIP-022",
+  "title": "Remove SQLite Runtime and Migrate to PostgreSQL",
+  "planDir": "coding-packs/plans/tip-022-remove-sqlite-migrate-postgres",
+  "sourceTip": "coding-packs/tips/TIP-022-remove-sqlite-migrate-postgres.md",
+  "mode": "plan-supervised",
+  "tier": "THOROUGH",
+  "complexity": {
+    "score": 75,
+    "scope": 25,
+    "coupling": 25,
+    "risk": 25,
+    "rationale": "System-wide database runtime migration touching repositories, route handlers, CMS/public rendering, scripts, dependency manifests, and auth/session-adjacent code."
+  },
+  "constraints": [
+    "Do not keep SQLite as an active runtime fallback.",
+    "Do not keep better-sqlite3 or @types/better-sqlite3 in app dependencies.",
+    "Do not change public/CMS UI design, layout, copy, colors, or route structure.",
+    "Do not remove mock mode.",
+    "Do not store absolute local filesystem paths in DB or browser-facing fields.",
+    "Do not delete crawled source files or public/images assets.",
+    "Use parameterized SQL only."
+  ],
+  "createdAt": "2026-05-25"
+}

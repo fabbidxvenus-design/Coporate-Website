@@ -1,0 +1,38 @@
+{
+  "planId": "tip-024-cms-mockdata-activity-database-map",
+  "mode": "plan-supervised",
+  "tier": "STANDARD",
+  "phase": "SPEC",
+  "focusLock": true,
+  "sourceTip": "../../tips/TIP-024-cms-mockdata-activity-database-map.md",
+  "phases": [
+    { "id": "phase-01", "file": "phase-01-intake-and-red-specs.md", "status": "planned", "zflowPhase": "SPEC" },
+    { "id": "phase-02", "file": "phase-02-cms-data-model-and-derived-fixtures.md", "status": "planned", "zflowPhase": "DECOMPOSE/EXECUTE" },
+    { "id": "phase-03", "file": "phase-03-data-source-boundary-and-admin-wiring.md", "status": "planned", "zflowPhase": "EXECUTE" },
+    { "id": "phase-04", "file": "phase-04-api-validation-and-error-boundaries.md", "status": "planned", "zflowPhase": "EXECUTE" },
+    { "id": "phase-05", "file": "phase-05-verify-regress-and-evolve.md", "status": "planned", "zflowPhase": "VERIFY/REGRESS/EVOLVE" }
+  ],
+  "gates": {
+    "red": "pending",
+    "green": "pending",
+    "coverage": "pending",
+    "separateVerifier": "pending",
+    "finalReport": "pending"
+  },
+  "fix": { "count": 0, "max": 3 },
+  "artifacts": {
+    "specs": [
+      "specs/spec-cms-mockdata-activity.md",
+      "specs/spec-database-usage-map.md"
+    ],
+    "tips": [
+      "tips/tip-001-red-specs.md",
+      "tips/tip-002-cms-data-model.md",
+      "tips/tip-003-admin-wiring.md",
+      "tips/tip-004-api-boundary.md",
+      "tips/tip-005-verify-regress-evolve.md"
+    ],
+    "coverageMatrix": ".zflow/coverage-matrix.md",
+    "handoff": ".zflow/handoff.json"
+  }
+}

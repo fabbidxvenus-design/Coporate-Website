@@ -1,0 +1,35 @@
+{
+  "taskId": "TIP-020",
+  "taskName": "Migrate Crawled Data to SQLite",
+  "sourceTip": "coding-packs/tips/TIP-020-migrate-crawled-data-to-sqlite.md",
+  "planDir": "coding-packs/plans/tip-020-migrate-crawled-data-to-sqlite",
+  "mode": "plan-supervised",
+  "tier": "STANDARD",
+  "complexityScore": 80,
+  "complexityFactors": [
+    "database migration",
+    "filesystem asset copy",
+    "runtime data-source switching",
+    "idempotent import requirement",
+    "build/type-check/test verification"
+  ],
+  "goal": "Import crawled Fabbi markdown and images into local SQLite .data while preserving strict mock-only behavior when USE_MOCK_DATA=true.",
+  "sourceInputs": [
+    "coding-packs/crawlings/crawled_all_pages.md",
+    "coding-packs/crawlings/crawled_with_images.md",
+    "coding-packs/crawlings/images/"
+  ],
+  "constraints": [
+    "Do not reintroduce Supabase runtime dependencies or Supabase environment variables.",
+    "Do not change admin auth/session behavior.",
+    "Do not delete existing files from public/images or .data without explicit approval.",
+    "Do not store absolute Windows paths in browser-facing SQLite fields.",
+    "Do not redesign public or CMS UI."
+  ],
+  "qualityGates": {
+    "redGate": "Targeted import tests exist and fail before implementation.",
+    "greenGate": "Targeted tests, type-check, build, idempotent import, and separate review pass.",
+    "visualGate": "Required only if public page rendering changes are made."
+  },
+  "createdAt": "2026-05-25"
+}

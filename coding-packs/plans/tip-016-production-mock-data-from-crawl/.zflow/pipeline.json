@@ -1,0 +1,20 @@
+{
+  "tipId": "TIP-016",
+  "phase": "COMPLETE",
+  "tier": "THOROUGH",
+  "complexityScore": 90,
+  "createdAt": "2026-05-25",
+  "completedAt": "2026-05-25",
+  "sourceTip": "coding-packs/tips/TIP-016-production-mock-data-from-crawl.md",
+  "plan": "coding-packs/plans/tip-016-production-mock-data-from-crawl/PLAN.md",
+  "spec": "coding-packs/plans/tip-016-production-mock-data-from-crawl/specs/spec-production-mock-data.md",
+  "nextPhase": "DONE",
+  "qualityGates": {
+    "complexityScored": true,
+    "specWritten": true,
+    "redGateTestFileWritten": true,
+    "greenGatePassed": true,
+    "separateVerifierRequired": false,
+    "buildPassed": true
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "page.header": {
+    "designSelector": "header",
+    "implementationSelector": "header",
+    "confidence": "high",
+    "basis": "semantic header and first visible navigation region"
+  },
+  "hero.banner": {
+    "designSelector": "main > div img",
+    "implementationSelector": "main > div > div",
+    "confidence": "high",
+    "basis": "first visual block under header at same page position"
+  },
+  "job.title": {
+    "designSelector": "h1",
+    "implementationSelector": "h1",
+    "confidence": "high",
+    "basis": "first page heading"
+  },
+  "job.applyButton": {
+    "designSelector": "main button",
+    "implementationSelector": "main a[href*=\"/apply\"]",
+    "confidence": "high",
+    "basis": "CTA label NỘP HỒ SƠ"
+  },
+  "content.grid": {
+    "designSelector": "main .grid",
+    "implementationSelector": "main .grid",
+    "confidence": "high",
+    "basis": "same grid container after job header"
+  },
+  "sidebar.card": {
+    "designSelector": "aside > div",
+    "implementationSelector": "aside > div",
+    "confidence": "high",
+    "basis": "semantic aside with sticky info card"
+  },
+  "page.footer": {
+    "designSelector": "footer",
+    "implementationSelector": "footer",
+    "confidence": "high",
+    "basis": "semantic footer"
+  }
+}

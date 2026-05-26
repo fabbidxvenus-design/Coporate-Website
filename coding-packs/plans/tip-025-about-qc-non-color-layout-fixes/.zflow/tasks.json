@@ -1,0 +1,58 @@
+{
+  "task_type": "ui-qc-fix",
+  "parallel_capable": false,
+  "reason": "About page and shared public layout/header files overlap; execute sequentially to avoid conflicts.",
+  "shared_files": {
+    "assigned_to": "frontend-lead",
+    "files": [
+      "app/(public)/about/page.tsx",
+      "app/[locale]/about/page.tsx",
+      "app/(public)/layout.tsx",
+      "app/[locale]/layout.tsx"
+    ]
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-001",
+          "title": "About hero, header, main offset, and stats",
+          "agent": "frontend implementer",
+          "model": "sonnet",
+          "file_ownership": [
+            "app/(public)/about/page.tsx",
+            "app/[locale]/about/page.tsx",
+            "components/public/PublicHeader.tsx",
+            "app/(public)/layout.tsx",
+            "app/[locale]/layout.tsx"
+          ],
+          "blocked_by": [],
+          "acceptance_criteria": ["AC-01", "AC-02", "AC-03", "AC-04", "AC-08"]
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "parallel": false,
+      "tasks": [
+        {
+          "id": "tip-002",
+          "title": "About activity, why-choose decoration, and a11y verification",
+          "agent": "frontend implementer",
+          "model": "sonnet",
+          "file_ownership": [
+            "components/about/ActivityTabs.tsx",
+            "components/about/WhyChooseAccordion.tsx",
+            "app/(public)/about/page.tsx",
+            "app/[locale]/about/page.tsx",
+            "tests/**/*about*"
+          ],
+          "blocked_by": ["tip-001"],
+          "acceptance_criteria": ["AC-05", "AC-06", "AC-07", "AC-08"]
+        }
+      ]
+    }
+  ]
+}

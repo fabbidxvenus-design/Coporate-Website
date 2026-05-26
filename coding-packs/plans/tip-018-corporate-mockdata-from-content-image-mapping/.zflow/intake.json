@@ -1,0 +1,10 @@
+{
+  "plan": "tip-018-corporate-mockdata-from-content-image-mapping",
+  "sourceTip": "coding-packs/tips/TIP-018-corporate-mockdata-from-content-image-mapping.md",
+  "phase": "intake",
+  "complexityScore": 72,
+  "tier": "STANDARD+",
+  "stateRoot": "coding-packs/plans/tip-018-corporate-mockdata-from-content-image-mapping/.zflow/",
+  "decision": "Create a plan-supervised zflow implementation that prioritizes runtime app-visible mock data and local image rendering verification over processed JSON generation alone.",
+  "createdAt": "2026-05-25"
+}

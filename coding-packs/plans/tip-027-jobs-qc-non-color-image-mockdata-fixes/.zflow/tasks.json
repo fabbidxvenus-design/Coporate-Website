@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "id": "tip-001",
+      "title": "Baseline and Test Harness",
+      "status": "planned",
+      "phase": "phase-01/phase-02",
+      "blocks": ["tip-002", "tip-003"],
+      "blockedBy": []
+    },
+    {
+      "id": "tip-002",
+      "title": "Filters and Job Cards",
+      "status": "planned",
+      "phase": "phase-03",
+      "blocks": ["tip-004"],
+      "blockedBy": ["tip-001"]
+    },
+    {
+      "id": "tip-003",
+      "title": "Lower Sections, Sidebar, and Floating Bell",
+      "status": "planned",
+      "phase": "phase-03",
+      "blocks": ["tip-004"],
+      "blockedBy": ["tip-001"]
+    },
+    {
+      "id": "tip-004",
+      "title": "Verification and Regression",
+      "status": "planned",
+      "phase": "phase-04/phase-05",
+      "blocks": [],
+      "blockedBy": ["tip-002", "tip-003"]
+    }
+  ],
+  "parallelizable": [
+    ["tip-002", "tip-003"]
+  ]
+}

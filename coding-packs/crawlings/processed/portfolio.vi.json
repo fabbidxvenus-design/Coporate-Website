@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "id": "port-1",
+      "slug": "zenpost-ecommerce-platform",
+      "title": "Zenpost - E-commerce Platform",
+      "client": "Zenpost Inc.",
+      "summary": "Nền tảng thương mại điện tử với hệ thống quản lý đơn hàng, kho vận và tích hợp thanh toán toàn cầu.",
+      "problem": "Khách hàng cần một nền tảng bán hàng online có khả năng mở rộng quy mô nhanh chóng, tích hợp với nhiều cổng thanh toán và hệ thống vận chuyển tại Nhật Bản.",
+      "solution": "Xây dựng nền tảng e-commerce cloud-native với kiến trúc microservices, hỗ trợ xử lý hàng triệu đơn hàng mỗi ngày, tích hợp Stripe, PayPay và các đơn vị vận chuyển Nhật Bản.",
+      "technologies": ["React", "Node.js", "PostgreSQL", "AWS"],
+      "cover_image": "Zenpost-0-1-1024x532.png",
+      "status": "completed",
+      "year": 2023,
+      "locale": "vi"
+    },
+    {
+      "id": "port-2",
+      "slug": "bondbod-social-commerce",
+      "title": "Bondbod - Social Commerce App",
+      "client": "Bondbod Vietnam",
+      "summary": "Ứng dụng thương mại xã hội kết nối người bán và người mua qua các tính năng livestream, chat và đánh giá thông minh.",
+      "problem": "Thị trường thương mại xã hội tại Việt Nam đang phát triển nhanh nhưng thiếu nền tảng đủ linh hoạt cho người bán hàng cá nhân.",
+      "solution": "Phát triển ứng dụng di động với tính năng livestream bán hàng tích hợp, hệ thống chatbot AI và cơ chế xếp hạng uy tín người bán.",
+      "technologies": ["React Native", "Go", "PostgreSQL", "Firebase"],
+      "cover_image": "Bondbod-2-1024x732.png",
+      "status": "completed",
+      "year": 2023,
+      "locale": "vi"
+    },
+    {
+      "id": "port-3",
+      "slug": "glams-beauty-tech",
+      "title": "Glams - Beauty Tech Platform",
+      "client": "Glams Inc.",
+      "summary": "Nền tảng công nghệ làm đẹp kết nối thẩm mỹ viên với khách hàng qua đặt lịch thông minh, tư vấn AI và quản lý tồn kho.",
+      "problem": "Các spa và clinic làm đẹp gặp khó khăn trong việc quản lý lịch hẹn, tồn kho sản phẩm và tiếp cận khách hàng mới.",
+      "solution": "Xây dựng nền tảng với app khách hàng và app quản lý cho chủ spa, tích hợp AI phân tích loại da và gợi ý dịch vụ phù hợp.",
+      "technologies": ["React", "Python", "TensorFlow", "PostgreSQL"],
+      "cover_image": "Glams-0-1.png",
+      "status": "completed",
+      "year": 2024,
+      "locale": "vi"
+    },
+    {
+      "id": "port-4",
+      "slug": "tekko-manufacturing-iot",
+      "title": "Tekko - Manufacturing IoT Dashboard",
+      "client": "Tekko Corporation",
+      "summary": "Dashboard IoT giám sát nhà máy theo thời gian thực với cảnh báo thông minh và tối ưu hóa năng lượng tiêu thụ.",
+      "problem": "Nhà máy sản xuất cần giám sát hàng trăm cảm biến IoT, phát hiện bất thường sớm và giảm thiểu thời gian dừng máy.",
+      "solution": "Phát triển hệ thống IoT gateway thu thập dữ liệu từ 500+ cảm biến, dashboard real-time với WebSocket và AI phát hiện bất thường với độ chính xác 95%.",
+      "technologies": ["Vue.js", "Python", "InfluxDB", " Grafana"],
+      "cover_image": "Tekko-0-1.png",
+      "status": "completed",
+      "year": 2023,
+      "locale": "vi"
+    },
+    {
+      "id": "port-5",
+      "slug": "lms-education-platform",
+      "title": "LMS - Education Platform",
+      "client": "Education Partner",
+      "summary": "Hệ thống quản lý học tập trực tuyến với khóa học tương tác, bài kiểm tra thích ứng và phân tích học tập AI.",
+      "problem": "Tổ chức giáo dục cần nền tảng LMS có khả năng cá nhân hóa lộ trình học tập cho từng học sinh.",
+      "solution": "Xây dựng hệ thống LMS với engine AI phân tích sở trường và điểm yếu của học sinh, tự động điều chỉnh độ khó bài tập và gợi ý tài liệu phù hợp.",
+      "technologies": ["React", "Node.js", "MongoDB", "TensorFlow"],
+      "cover_image": "LMS-2.webp",
+      "status": "completed",
+      "year": 2024,
+      "locale": "vi"
+    },
+    {
+      "id": "port-6",
+      "slug": "dcarbon-carbon-trading",
+      "title": "Dcarbon - Carbon Credit Marketplace",
+      "client": "Dcarbon Corp.",
+      "summary": "Sàn giao dịch tín chỉ carbon với hợp đồng thông minh blockchain, xác minh nguồn gốc và thanh toán tự động.",
+      "problem": "Doanh nghiệp cần mua bán tín chỉ carbon một cách minh bạch và hiệu quả, trong khi các dự án trồng rừng cần kênh bán tín chỉ đáng tin cậy.",
+      "solution": "Xây dựng marketplace blockchain với smart contract tự động hóa thanh toán khi xác minh dự án hoàn thành, tích hợp oracle xác minh CO2 bằng satellite imagery.",
+      "technologies": ["Solidity", "React", "Polygon", "Chainlink"],
+      "cover_image": "Dcarbon.png",
+      "status": "completed",
+      "year": 2024,
+      "locale": "vi"
+    }
+  ]
+}

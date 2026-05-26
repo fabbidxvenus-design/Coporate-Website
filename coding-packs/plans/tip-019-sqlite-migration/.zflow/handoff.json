@@ -1,0 +1,11 @@
+{
+  "status": "planned",
+  "nextAction": "Create failing tests for specs/sqlite-migration.md, then implement Phase 1 SQLite foundation.",
+  "planFile": "coding-packs/plans/tip-019-sqlite-migration/PLAN.md",
+  "specFile": "coding-packs/plans/tip-019-sqlite-migration/specs/sqlite-migration.md",
+  "notes": [
+    "TIP-019 intentionally supersedes Supabase runtime persistence/auth with SQLite.",
+    "Use repository layer to minimize UI churn.",
+    "Middleware Edge runtime vs SQLite Node driver is a key risk; server-side requireAdmin must remain authoritative."
+  ]
+}

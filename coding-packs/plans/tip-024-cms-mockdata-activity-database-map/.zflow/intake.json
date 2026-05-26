@@ -1,0 +1,27 @@
+{
+  "planId": "tip-024-cms-mockdata-activity-database-map",
+  "sourceTip": "coding-packs/tips/TIP-024-cms-mockdata-activity-database-map.md",
+  "mode": "plan-supervised",
+  "phase": "intake",
+  "complexity": {
+    "score": 60,
+    "tier": "STANDARD",
+    "signals": {
+      "hasRiskKeywords": true,
+      "hasDatabaseScope": true,
+      "crossFileDependencies": true,
+      "hasTestRequirements": true,
+      "impactScope": "module",
+      "reversibility": "moderate"
+    },
+    "rationale": "TIP-024 spans CMS mock data, data-source boundaries, admin pages, optional API validation, and verification. It is non-trivial but does not implement real schema/RLS migration, so STANDARD is sufficient."
+  },
+  "qualityGates": {
+    "redGateRequired": true,
+    "greenGateRequired": true,
+    "coverageTarget": 70,
+    "separateVerifierRequired": true,
+    "visualEvidenceRequiredIfAdminRenderingChanges": true
+  },
+  "createdAt": "2026-05-25T00:00:00.000Z"
+}

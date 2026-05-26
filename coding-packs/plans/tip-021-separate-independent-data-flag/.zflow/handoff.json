@@ -1,0 +1,12 @@
+{
+  "planDir": "coding-packs/plans/tip-021-separate-independent-data-flag",
+  "currentPhase": "PLAN_CREATED",
+  "nextPhase": "phase-01-spec-red-gate.md",
+  "focusLock": true,
+  "summary": "Plan artifacts for TIP-021 have been generated. Next step is Phase 01 SPEC / Red Gate: create failing tests before implementation.",
+  "criticalContext": [
+    "USE_MOCK_DATA=true must not open/init/migrate/seed/read/write SQLite.",
+    "USE_MOCK_DATA=false must use SQLite and must not silently fallback to mock.",
+    "State is scoped to coding-packs/plans/tip-021-separate-independent-data-flag/.zflow/."
+  ]
+}

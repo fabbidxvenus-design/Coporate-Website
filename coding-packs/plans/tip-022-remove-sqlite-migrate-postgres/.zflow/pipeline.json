@@ -1,0 +1,68 @@
+{
+  "pipeline": "zflow-plan-supervised",
+  "tipId": "TIP-022",
+  "tier": "THOROUGH",
+  "state": "planned",
+  "phases": [
+    {
+      "id": "phase-01",
+      "name": "Inventory + Red Gate",
+      "file": "phase-01-inventory-red-gate.md",
+      "gate": "red"
+    },
+    {
+      "id": "phase-02",
+      "name": "PostgreSQL Runtime + Migrations",
+      "file": "phase-02-postgres-runtime-migrations.md",
+      "gate": "green-partial"
+    },
+    {
+      "id": "phase-03",
+      "name": "Repository Migration + Mock Boundary",
+      "file": "phase-03-repositories-mock-boundary.md",
+      "gate": "green-partial"
+    },
+    {
+      "id": "phase-04",
+      "name": "Crawled Data Import to PostgreSQL",
+      "file": "phase-04-crawled-import-postgres.md",
+      "gate": "green-partial"
+    },
+    {
+      "id": "phase-05",
+      "name": "Dependency Cleanup + Verification",
+      "file": "phase-05-dependency-cleanup-verification.md",
+      "gate": "green"
+    },
+    {
+      "id": "phase-06",
+      "name": "Review / DESLOP / Regress",
+      "file": "phase-06-review-deslop-regress.md",
+      "gate": "complete"
+    }
+  ],
+  "requiredArtifacts": [
+    "README.md",
+    "PLAN.md",
+    "POSTGRES-MIGRATION-INVENTORY.md",
+    "specs/spec-postgres-runtime.md",
+    "specs/spec-mock-boundary.md",
+    "specs/spec-crawled-import-postgres.md",
+    "specs/spec-dependency-cleanup.md",
+    "tips/tip-P1-001-inventory-red-gate.md",
+    "tips/tip-P2-001-postgres-runtime-migrations.md",
+    "tips/tip-P3-001-repositories-mock-boundary.md",
+    "tips/tip-P4-001-crawled-import-postgres.md",
+    "tips/tip-P5-001-cleanup-verification.md",
+    "final-report.md"
+  ],
+  "verification": {
+    "commands": [
+      "pnpm exec vitest run tests/import-crawled-data.spec.ts",
+      "pnpm run type-check",
+      "pnpm run build"
+    ],
+    "separateVerifierRequired": true,
+    "securityReviewRequired": true
+  }
+}

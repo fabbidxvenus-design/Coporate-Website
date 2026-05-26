@@ -1,0 +1,18 @@
+{
+  "phase": "intake",
+  "task": "Implement TIP-014 mock data button handling across all screens",
+  "source_tip": "coding-packs/tips/TIP-014-mockdata-button-handling.md",
+  "score": 75,
+  "tier": "THOROUGH",
+  "rationale": {
+    "lexical": 25,
+    "structural": 30,
+    "risk": 20,
+    "notes": [
+      "System-wide button handling across public and CMS surfaces",
+      "Default mock mode affects Supabase fallback, APIs, forms, and admin auth-adjacent flows",
+      "Requires E2E/visual verification and separate review"
+    ]
+  },
+  "recommended_command": "/zflow --plan D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\plans\\tip-014-mockdata-button-handling --quality=high --effort=high"
+}

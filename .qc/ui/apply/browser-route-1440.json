@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    }
+  ],
+  "metrics": {
+    "title": "Senior Frontend Engineer (React/Next.js) | Fabbi Tuyển dụng | Fabbi",
+    "url": "http://localhost:3000/vi/jobs/senior-frontend-engineer-react",
+    "statusText": "Skip to main content\nFabbi\nTrang chủ\nTuyển dụng\nVề Fabbi\nTin tức\nLiên hệ\nVN\nJP\nSenior Frontend Engineer (React/Next.js)\nNgày đăng: 5 ngày trước\nNỘP HỒ SƠ\nMô tả công việc\nTham gia phát triển các dự án E-commerce và Fintech quy mô lớn cho thị trường Nhật Bản và Global.\nYêu cầu công việc\nTrên 3 năm kinh nghiệm với React, hiểu biết sâu về Next.js và Performance Optimization.\nQuyền lợi\nLương thưởng hấp dẫn, làm việc trong môi trường đa quốc gia, cơ hội onsite Nhật Bản.\nSave Job\nShare this job:\nVị trí tương tự\nAI Engineer (Computer Vision)\nThương lượng\nHà Nội, Việt Nam\nFull-time\nXem chi tiết\nHR Recruitment Specialist\nThương lượng\nHà Nội, Việt Nam\nFull-time\nXem chi tiết\nBackend Developer (Node.js/AWS)\nThương lượng\nHà Nội, Việt Nam\nFull-time\nXem chi tiết\nMỨC LƯƠNG:\nThương lượng\nPHÒNG BAN:\nEngineering\nNƠI LÀM VIỆC:\nHà Nội, Việt Nam\nBản đồ\nSỐ ĐIỆN THOẠI:\n0123 456 789\nEMAIL:\nhr@fabbi.com.vn\nSkills\nReact\nNext.js\nTypeScript\nTailwind CSS\nHình thức làm việc\nFull-time\nỨng tuyển ngay\nFabbi\n\nCÔNG TY CỔ ",
+    "viewport": {
+      "width": 1440,
+      "height": 1200
+    },
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "hasHorizontalOverflow": false,
+    "hasDialog": false,
+    "h1": {
+      "text": "Senior Frontend Engineer (React/Next.js)",
+      "className": "text-3xl font-bold text-gray-900 mb-3",
+      "computed": {
+        "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+        "fontSize": "30px",
+        "fontWeight": "700",
+        "lineHeight": "36px",
+        "color": "rgb(17, 24, 39)",
+        "marginTop": "0px",
+        "marginBottom": "12px"
+      }
+    },
+    "body": {
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "backgroundColor": "rgb(251, 249, 248)",
+      "color": "rgb(27, 28, 28)"
+    },
+    "applyButtonCandidates": [
+      {
+        "text": "Ứng tuyển ngay",
+        "tag": "A",
+        "cls": "w-full bg-[#008B9C] hover:bg-[#00707e] text-white font-medium py-3 px-6 rounded-[8px] flex items-center justify-center gap-2 transition-colors",
+        "aria": "Ứng tuyển Senior Frontend Engineer (React/Next.js)"
+      }
+    ]
+  }
+}

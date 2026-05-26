@@ -1,0 +1,179 @@
+{
+  "siteSettings": {
+    "companyName": { "vi": "Fabbi Holdings", "ja": "Fabbi Holdings" },
+    "slogan": { "vi": "Chạm đến tương lai bằng công nghệ", "ja": "テクノロジーで未来に触れる" },
+    "contactEmail": "sales@fabbi.com.vn",
+    "contactPhone": "+84 24 6259 3637",
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/fabbiholdings",
+      "twitter": "https://twitter.com/fabbiholdings",
+      "linkedin": "https://www.linkedin.com/company/fabbi-holdings-co-ltd/",
+      "tiktok": "https://www.tiktok.com/@fabbiholdings"
+    }
+  },
+  "aboutContent": {
+    "vi": {
+      "heroTitle": "Lời chào từ Chủ tịch",
+      "heroSubtitle": "Fabbi khởi nguồn từ chỉ 4 thành viên – và một chữ “khát vọng”.",
+      "vision": "Trở thành tập đoàn công nghệ toàn cầu, nơi hội tụ khát vọng, sáng tạo và công nghệ để kiến tạo giá trị bền vững.",
+      "mission": "Fabbi tạo ra các giải pháp công nghệ sáng tạo để giúp khách hàng phát triển, đội ngũ trưởng thành, và xã hội tiến về phía trước."
+    },
+    "ja": {
+      "heroTitle": "代表メッセージ",
+      "heroSubtitle": "Fabbiはわずか4人のメンバーと「志」から始まりました。",
+      "vision": "志、創造性、テクノロジーが集結し、持続可能な価値を創造するグローバル・テクノロジー・グループになる。",
+      "mission": "Fabbiは革新的なテクノロジーソリューションを創造し、顧客の成長、チームの成熟、そして社会の進歩を支援します。",
+      "translationStatus": "machine_draft_needs_review"
+    }
+  },
+  "jobs": [
+    {
+      "id": "job-1",
+      "slug": "senior-frontend-engineer-react",
+      "title": "Senior Frontend Engineer (React/Next.js)",
+      "department": "Engineering",
+      "location": "Hà Nội, Việt Nam",
+      "employment_type": "Full-time",
+      "salary_range": "2000$ - 3500$",
+      "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      "description": "Bạn sẽ tham gia phát triển các dự án E-commerce và Fintech quy mô lớn cho thị trường Nhật Bản và Global, làm việc trực tiếp với đội ngũ kỹ sư giàu kinh nghiệm từ Fabbi. Công việc bao gồm xây dựng và tối ưu các giao diện người dùng phức tạp, tích hợp API, quản lý state với Redux hoặc Zustand, và đảm bảo hiệu suất ứng dụng đạt trên 90 điểm Lighthouse. Bạn cũng sẽ phối hợp chặt chẽ với team Backend, Design và QA để đảm bảo chất lượng sản phẩm. Các công nghệ chính bao gồm React 18, Next.js 14 (App Router), TypeScript, Tailwind CSS, Storybook và Jest. Ngoài ra, bạn sẽ tham gia code review, viết technical documentation và mentorship cho các junior developer trong team. Môi trường làm việc chuyên nghiệp, sử dụng Agile/Scrum, có cơ hội trao đổi kỹ thuật trực tiếp với khách hàng Nhật Bản qua video call và on-site khi cần thiết.",
+      "requirements": "Trên 3 năm kinh nghiệm với React, hiểu biết sâu về Next.js và Performance Optimization. Thành thạo TypeScript, HTML5, CSS3 và các framework UI hiện đại. Có kinh nghiệm với RESTful API và GraphQL. Hiểu rõ về Web Performance, Core Web Vitals và cách tối ưu bundle size. Sử dụng được Git, CI/CD pipeline và Docker cơ bản. Tiếng Anh đọc hiểu tài liệu kỹ thuật tốt. Ưu tiên ứng viên có kinh nghiệm với Testing (Jest, Playwright), Design System, hoặc đã làm việc với khách hàng Nhật Bản trước đó.",
+      "benefits": "Lương thưởng hấp dẫn, review 2 lần/năm, thưởng dự án và thưởng Tết. Làm việc trong môi trường đa quốc gia, giao tiếp trực tiếp với khách hàng Nhật Bản. Cơ hội onsite Nhật Bản từ 1-3 tháng/năm. Đào tạo chuyên sâu về Frontend, React và Next.js. Hỗ trợ mua sách kỹ thuật, khóa học online (Udemy, Frontend Masters). Bảo hiểm sức khỏe cao cấp, annual health checkup. Du lịch team building hàng năm, WFH linh hoạt 2-3 ngày/tuần. MacBook Pro mới nhất.",
+      "image": "/images/Teambuilding-scaled.jpg",
+      "status": "published",
+      "published_at": "2026-05-20T08:00:00Z"
+    },
+    {
+      "id": "job-2",
+      "slug": "brse-bridge-software-engineer-ja",
+      "title": "Bridge Software Engineer (BrSE) - N1/N2",
+      "department": "Business",
+      "location": "Tokyo, Japan",
+      "employment_type": "Full-time",
+      "salary_range": "4M - 7M JPY / Year",
+      "skills": ["Japanese N1/N2", "Software Engineering", "Project Management"],
+      "description": "Là cầu nối liên lạc giữa team dev Việt Nam và khách hàng Nhật Bản, bạn sẽ chịu trách nhiệm quản lý tiến độ và chất lượng dự án, translate yêu cầu nghiệp vụ, và đảm bảo communication flow suôn sẻ giữa hai bên. Công việc bao gồm: soạn tài liệu kỹ thuật bằng tiếng Nhật, tổ chức và lead meeting với khách hàng (weekly status, sprint review, DEMO), viết SPEC và user story dựa trên yêu cầu Nhật Bản, theo dõi và báo cáo tiến độ dự án cho cả hai phía, xử lý và escalate issues khi cần thiết.",
+      "requirements": "Tiếng Nhật N2 trở lên (đọc hiểu tài liệu kỹ thuật, viết email business, present trong meeting). Có kinh nghiệm dev hoặc BrSE ít nhất 2 năm. Hiểu biết về quy trình phát triển phần mềm, các framework và ngôn ngữ lập trình phổ biến. Kỹ năng giao tiếp, thuyết trình và đàm phán tốt. Khả năng làm việc dưới áp lực deadline, quản lý nhiều dự án cùng lúc.",
+      "benefits": "Hỗ trợ visa, nhà ở, vé máy bay quốc tế khi cần onsite. Môi trường làm việc chuyên nghiệp tại trung tâm Tokyo hoặc Hà Nội. Đào tạo chuyên sâu về BrSE, kỹ năng giao tiếp và quản lý dự án (PMP, Scrum Master). Cơ hội thăng tiến nhanh lên Project Manager, Account Manager. Bảo hiểm sức khỏe quốc tế.",
+      "image": "/images/ICT-2021.jpg",
+      "status": "published",
+      "published_at": "2026-05-18T09:00:00Z"
+    },
+    {
+      "id": "job-3",
+      "slug": "ai-engineer-computer-vision",
+      "title": "AI Engineer (Computer Vision)",
+      "department": "AI R&D",
+      "location": "Hà Nội, Việt Nam",
+      "employment_type": "Full-time",
+      "salary_range": "Thỏa thuận",
+      "skills": ["Python", "PyTorch", "OpenCV", "Deep Learning"],
+      "description": "Nghiên cứu và triển khai các mô hình AI nhận diện khuôn mặt, phân tích hình ảnh trong y tế và sản xuất. Bạn sẽ làm việc với các dự án AI thực tế, bao gồm: phát triển mô hình Computer Vision cho bài toán Object Detection, Image Segmentation và Face Recognition; fine-tune các pre-trained model (ResNet, YOLO, EfficientNet) trên dataset riêng; xây dựng pipeline xử lý dữ liệu hình ảnh quy mô lớn (1M+ images); triển khai mô hình lên production sử dụng TensorFlow Serving, TorchServe hoặc Triton Inference Server; tối ưu hóa latency và throughput của model (quantization, pruning, distillation).",
+      "requirements": "Có kiến thức tốt về toán học và machine learning, thành thạo Python và các AI framework (PyTorch, TensorFlow). Hiểu biết sâu về Computer Vision: CNN, Object Detection, Image Segmentation, Face Recognition. Kinh nghiệm với Deep Learning frameworks ít nhất 2 năm. Biết sử dụng GPU/CUDA để train model, hiểu về model optimization. Đọc hiểu paper AI tiếng Anh tốt, khả năng implement từ paper.",
+      "benefits": "Được làm việc trực tiếp với các chuyên gia AI đầu ngành, cơ hội công bố nghiên cứu trên các tạp chí uy tín. Trang bị GPU RTX 4090 hoặc A100 cho local training. Hỗ trợ đăng ký Arxiv, mua sách NLP/CV chuyên ngành. Khóa học chuyên sâu: Deep Learning Specialization (Coursera), Fast.ai. Tham gia AI competition trong và ngoài nước. Môi trường research-driven, cho phép 20% thời gian cho pet project liên quan AI.",
+      "image": "/images/AI_Group.png",
+      "status": "published",
+      "published_at": "2026-05-22T10:00:00Z"
+    },
+    {
+      "id": "job-4",
+      "slug": "blockchain-developer-solidity",
+      "title": "Blockchain Developer (Solidity/Rust)",
+      "department": "Engineering",
+      "location": "Đà Nẵng, Việt Nam",
+      "employment_type": "Full-time",
+      "salary_range": "2500$ - 4500$",
+      "skills": ["Solidity", "Rust", "Web3.js", "Ethereum/Polygon"],
+      "description": "Phát triển smart contract cho sàn giao dịch NFT và nền tảng Carbon Credit Marketplace. Bạn sẽ tham gia vào các dự án Blockchain thực tế: viết smart contract bằng Solidity (ERC-20, ERC-721, ERC-1155), audit code và kiểm tra bảo mật smart contract (Sybil attack, reentrancy, front-running). Phát triển backend service với Node.js/Go để tương tác với blockchain. Tích hợp Web3.js, ethers.js với frontend React/Next.js. Xây dựng và deploy smart contract lên Ethereum, Polygon, BNB Chain. Viết automated test với Foundry, Hardhat, Waffle.",
+      "requirements": "Kinh nghiệm thực chiến với ít nhất 1 dự án blockchain public (Ethereum, Solana, Polygon), hiểu về bảo mật smart contract. Thành thạo Solidity, Web3.js/ethers.js. Biết sử dụng Hardhat, Foundry hoặc Truffle. Hiểu về consensus mechanism (PoS, PoW), EVM, gas optimization. Có portfolio trên GitHub với các dự án blockchain mã nguồn mở. Tư duy security-first, luôn cân nhắc attack vector khi viết code.",
+      "benefits": "Bonus dự án hấp dẫn (thưởng token/coin nếu dự án có ICO/IDO), làm việc remote linh hoạt hoặc hybrid tại Hà Nội/Đà Nẵng. Đào tạo chứng chỉ Blockchain (Certified Blockchain Developer - CBD). Cơ hội tham gia hackathon blockchain, Web3 conference (ETH Denver, Token2049, Vietnam Blockchain Week). Trang bị hardware wallet, testnet token cho development.",
+      "image": "/images/Crypto-Fantasy.png",
+      "status": "published",
+      "published_at": "2026-05-24T14:00:00Z"
+    },
+    {
+      "id": "job-5",
+      "slug": "hr-recruitment-specialist",
+      "title": "HR Recruitment Specialist",
+      "department": "Human Resources",
+      "location": "Hà Nội, Việt Nam",
+      "employment_type": "Full-time",
+      "salary_range": "15M - 25M VND",
+      "skills": ["Tech Recruitment", "Communication", "Sourcing"],
+      "description": "Tìm kiếm và tuyển dụng nhân tài IT cho các vị trí quan trọng tại Fabbi. Bạn sẽ chịu trách nhiệm toàn bộ pipeline tuyển dụng: từ sourcing ứng viên trên LinkedIn, GitHub, các forum công nghệ, đến sàng lọc CV, phỏng vấn technical và culture fit, deal salary và onboarding. Đặc biệt, bạn cần hiểu rõ các công nghệ như React, Node.js, Python, AI để đánh giá đúng năng lực kỹ thuật của ứng viên. Ngoài ra, bạn còn tham gia xây dựng thương hiệu tuyển dụng Fabbi thông qua các bài post trên LinkedIn, blog công nghệ và sự kiện tuyển dụng.",
+      "requirements": "Kinh nghiệm tuyển dụng IT ít nhất 1 năm, nhanh nhẹn, khéo léo trong giao tiếp. Hiểu biết cơ bản về các ngôn ngữ và framework phổ biến (React, Node.js, Python). Kỹ năng đàm phán, xây dựng quan hệ tốt. Tiếng Anh giao tiếp tốt là điểm cộng. Có kinh nghiệm tuyển dụng cho khách hàng Nhật Bản là lợi thế lớn.",
+      "benefits": "Môi trường trẻ trung, cơ hội thăng tiến lên Manager trong 18 tháng. Phụ cấp ăn trưa, đi lại, điện thoại. BHXH, BHYT đầy đủ. Team building hàng quý, annual trip. Được tham gia HR conference trong và ngoài nước. Cơ hội học hỏi từ các chuyên gia HR quốc tế.",
+      "image": "/images/Sao-Khue-2024.jpg",
+      "status": "published",
+      "published_at": "2026-05-15T08:30:00Z"
+    },
+    {
+      "id": "job-6",
+      "slug": "backend-developer-nodejs-aws",
+      "title": "Backend Developer (Node.js/AWS)",
+      "department": "Engineering",
+      "location": "Hà Nội, Việt Nam",
+      "employment_type": "Full-time",
+      "salary_range": "1800$ - 3000$",
+      "skills": ["Node.js", "TypeScript", "PostgreSQL", "AWS"],
+      "description": "Thiết kế và xây dựng hệ thống backend hiệu năng cao, tối ưu hóa database và hạ tầng cloud. Bạn sẽ phát triển các microservice bằng Node.js (Express/NestJS), tích hợp với PostgreSQL, Redis, RabbitMQ. Thiết kế và implement RESTful API và GraphQL cho ứng dụng web và mobile. Làm việc với AWS services: EC2, S3, Lambda, RDS, CloudFront, EKS. Viết automated test (Jest, Supertest) và thiết lập CI/CD pipeline với GitHub Actions. Phối hợp với team Frontend và DevOps để đảm bảo hệ thống hoạt động ổn định, scale được khi lượng user tăng đột biến.",
+      "requirements": "Thành thạo Node.js (Express/NestJS), kinh nghiệm làm việc với AWS (EC2, S3, Lambda). Hiểu biết về PostgreSQL, Redis, Docker và Kubernetes. Kinh nghiệm với API design (REST, GraphQL), authentication (JWT, OAuth2) và security best practices. Biết sử dụng Git, CI/CD pipeline. Có kinh nghiệm với message queue (RabbitMQ, Kafka) là điểm cộng. Kỹ năng debugging và performance optimization tốt.",
+      "benefits": "BHXH đầy đủ, cơm trưa miễn phí, party hàng tháng. Đào tạo chuyên sâu về AWS (AWS Certified Solutions Architect). Phụ cấp chứng chỉ, hỗ trợ thi AWS certification. Cơ hội tham gia các dự án lớn cho khách hàng Nhật Bản. MacBook Pro hoặc ThinkPad tùy chọn. Remote 2-3 ngày/tuần.",
+      "image": "/images/Sao-Khue-20231.jpg",
+      "status": "published",
+      "published_at": "2026-05-10T11:00:00Z"
+    }
+  ],
+  "newsArticles": [
+    {
+      "id": "news-1",
+      "slug": "fabbi-dat-giai-thuong-sao-khue-2024",
+      "title": "Fabbi Holdings lần thứ 4 liên tiếp nhận giải thưởng Sao Khuê 2024",
+      "excerpt": "Vượt qua hàng trăm doanh nghiệp CNTT, Fabbi tiếp tục khẳng định vị thế với giải thưởng Sao Khuê cho giải pháp chuyển đổi số xuất sắc.",
+      "body": "Năm 2024 đánh dấu cột mốc quan trọng khi Fabbi Holdings tiếp tục được vinh danh tại lễ trao giải Sao Khuê — giải thưởng uy tín nhất trong ngành CNTT Việt Nam. Đây là lần thứ 4 liên tiếp Fabbi nhận được giải thưởng này. Giải thưởng được tổ chức bởi VINASA với sự tham gia của hơn 500 doanh nghiệp CNTT. Fabbi được vinh danh ở hạng mục \"Giải pháp chuyển đổi số xuất sắc\" với Fabbi AI Platform — nền tảng AI tự phát triển đã triển khai cho hơn 50 doanh nghiệp, giúp tiết kiệm 40% chi phí vận hành. Bên cạnh đó, Fabbi gây ấn tượng với dự án Smart Factory tại Hải Phòng — hệ thống IoT giám sát nhà máy thông minh, tối ưu năng lượng giảm 22%.",
+      "cover_image": "Sao-Khue-2024.jpg",
+      "category": "Giải thưởng",
+      "tags": ["Sao Khuê", "Công nghệ", "AI"],
+      "status": "published",
+      "author": "Ban Truyền thông",
+      "published_at": "2024-04-15T09:00:00Z",
+      "locale": "vi"
+    },
+    {
+      "id": "news-2",
+      "slug": "teambuilding-2023-vung-chan-troi-moi",
+      "title": "Teambuilding 2023: Kết nối đam mê, chinh phục đỉnh cao",
+      "excerpt": "Hành trình Teambuilding đầy cảm xúc của gia đình Fabbi tại bãi biển xanh cát trắng, nơi những trái tim công nghệ cùng hòa chung nhịp đập.",
+      "body": "Chương trình Teambuilding 2023 đã diễn ra thành công với hơn 300 thành viên từ Hà Nội và Nhật Bản tại bãi biển Cửa Lò. Các hoạt động bao gồm trò chơi teambuilding \"Xây tháp cao nhất\", \"Cờ hó giải đố\", đêm Gala Dinner với chương trình \"Fabbi Got Talent\". Đêm Gala có rap, kịch ngắn và magic show. Một kỹ sư từ Tokyo chia sẻ: \"Tôi đã hiểu thêm về đồng nghiệp, học được cách phối hợp hiệu quả hơn.\" Fabbi dự kiến tổ chức Teambuilding 2024 tại Okinawa, Nhật Bản.",
+      "cover_image": "Teambuilding-scaled.jpg",
+      "category": "Văn hóa",
+      "tags": ["Teambuilding", "Văn hóa Fabbi"],
+      "status": "published",
+      "author": "Ban Văn hóa",
+      "published_at": "2023-08-20T14:30:00Z",
+      "locale": "vi"
+    }
+  ],
+  "portfolioItems": [
+    {
+      "id": "port-1",
+      "slug": "zenpost-ecommerce-platform",
+      "title": "Zenpost - E-commerce Platform",
+      "cover_image": "Zenpost-0-1-1024x532.png",
+      "year": 2023,
+      "technologies": ["React", "Node.js", "PostgreSQL", "AWS"]
+    },
+    {
+      "id": "port-2",
+      "slug": "bondbod-social-commerce",
+      "title": "Bondbod - Social Commerce App",
+      "cover_image": "Bondbod-2-1024x732.png",
+      "year": 2023,
+      "technologies": ["React Native", "Go", "PostgreSQL", "Firebase"]
+    }
+  ],
+  "mediaAssets": [
+    { "id": "logo-fabbi", "path": "img-sys-app.png", "type": "logo" },
+    { "id": "award-sao-khue-2024", "path": "Sao-Khue-2024.jpg", "type": "culture" }
+  ]
+}

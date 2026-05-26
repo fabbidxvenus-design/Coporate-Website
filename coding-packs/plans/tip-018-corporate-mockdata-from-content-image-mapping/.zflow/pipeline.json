@@ -1,0 +1,27 @@
+{
+  "plan": "tip-018-corporate-mockdata-from-content-image-mapping",
+  "mode": "plan-supervised",
+  "tier": "STANDARD+",
+  "currentPhase": "planned",
+  "flow": [
+    "intake",
+    "SPEC[RED]",
+    "decompose",
+    "execute[GREEN]",
+    "verify[GREEN GATE]",
+    "fix",
+    "deslop",
+    "regress",
+    "evolve",
+    "complete"
+  ],
+  "qualityGates": {
+    "complexityScored": true,
+    "specWritten": true,
+    "redGateRequired": true,
+    "greenGateRequired": true,
+    "separateVerifierRequired": true,
+    "visualEvidenceRequired": true,
+    "evolveRequired": true
+  }
+}

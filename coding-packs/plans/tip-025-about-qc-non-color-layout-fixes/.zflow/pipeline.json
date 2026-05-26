@@ -1,0 +1,28 @@
+{
+  "mode": "plan-supervised",
+  "phase": "COMPLETE",
+  "tier": "STANDARD",
+  "tq": "high",
+  "effort": "medium",
+  "focus_lock": false,
+  "plan_dir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\plans\\tip-025-about-qc-non-color-layout-fixes",
+  "source_tip": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\tips\\TIP-025-about-qc-non-color-layout-fixes.md",
+  "transitions": [
+    { "from": "intake", "to": "SPEC", "reason": "plan-supervised mode" },
+    { "from": "SPEC", "to": "DECOMPOSE", "reason": "G/W/T specs created" },
+    { "from": "DECOMPOSE", "to": "EXECUTE", "reason": "TIP decomposition complete" },
+    { "from": "EXECUTE", "to": "VERIFY", "reason": "implementation complete" },
+    { "from": "VERIFY", "to": "COMPLETE", "reason": "all tests pass, no fix iterations needed" }
+  ],
+  "quality_gates": {
+    "red_gate": "pass",
+    "green_gate": "pass",
+    "coverage_gate": "fail_open_if_unmeasurable",
+    "visual_gate": "manual_verification_required",
+    "accessibility_gate": "heading_order_fixed",
+    "separate_verifier": "pass"
+  },
+  "fix_count": 0,
+  "fix_limit": 3,
+  "completed_at": "2026-05-26"
+}

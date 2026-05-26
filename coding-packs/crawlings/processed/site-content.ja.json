@@ -1,0 +1,54 @@
+{
+  "company": {
+    "name": {
+      "vi": "Fabbi Holdings",
+      "ja": "Fabbi Holdings"
+    },
+    "founded": "2018-03-18",
+    "representative": {
+      "name": "武 文思",
+      "title": "代表取締役会長兼社長"
+    },
+    "headcount": "300+",
+    "offices": [
+      {
+        "id": "office-tokyo",
+        "name": "東京本社",
+        "address": "〒105-0013 東京都港区海岸1-2-3 汐留芝離宮ビルディング 21階",
+        "phone": "+81 03-6806-0790"
+      },
+      {
+        "id": "office-hn",
+        "name": "ハノイ本社",
+        "address": "Tầng 11, Detech Tower II, 107 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội",
+        "phone": "+84 24 6259 3637"
+      }
+    ]
+  },
+  "about": {
+    "title": "代表メッセージ",
+    "description": "Fabbiはわずか4人のメンバーと「志」から始まりました。今日、私たちは日本からベトナムまで数百人のスタッフを擁する組織となり、他の国々へも絶えず拡大を続けています。",
+    "vision": "志、創造性、テクノロジーが集結し、顧客、組織、社会に持続可能な価値を創造するグローバル・テクノロジー・グループになる。",
+    "mission": "Fabbiは革新的なテクノロジーソリューションを創造し、顧客の成長、チームの成熟、そして社会の進歩を支援します。",
+    "values": [
+      { "key": "aspiration", "title": "志", "description": "大きな夢を持ち、限界を認めない。" },
+      { "key": "breakthrough", "title": "突破", "description": "絶えず創造し、価値を生み出すために差別化を図る。" },
+      { "key": "speed", "title": "スピード", "description": "決断力と適時性。" },
+      { "key": "dedication", "title": "献身", "description": "顧客とチームメイトに対して誠心誠意尽くす。" },
+      { "key": "sustainability", "title": "持続可能性", "description": "長期的な価値を構築し、責任を持って発展する。" }
+    ],
+    "translationStatus": "machine_draft_needs_review"
+  },
+  "services": [
+    { "id": "app-dev", "title": "業務システム・アプリ開発", "slug": "business-application-development" },
+    { "id": "ai", "title": "人工知能アプリケーション開発 (AI)", "slug": "ai-system-development" },
+    { "id": "crm", "title": "CRMソリューション", "slug": "crm-solutions" },
+    { "id": "blockchain", "title": "ブロックチェーン開発", "slug": "blockchain-development" }
+  ],
+  "leadership": [
+    { "id": "leader-tu-vu", "name": "武 文思 (SABI VU)", "title": "代表取締役会長兼CEO", "image": "Mr-LinhNV.png" },
+    { "id": "leader-tuan-tran", "name": "陳 庭俊", "title": "CPO", "image": "Mr.-Tuan-Anh.jpg" },
+    { "id": "leader-bach-le", "name": "黎 庭春柏", "title": "CEO Fabbi AUS", "image": "Bach-Le.png" }
+  ],
+  "translationStatus": "machine_draft_needs_review"
+}

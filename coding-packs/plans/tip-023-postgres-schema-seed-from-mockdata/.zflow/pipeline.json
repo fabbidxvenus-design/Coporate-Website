@@ -1,0 +1,20 @@
+{
+  "pipeline": "zflow",
+  "version": "v3-plan-supervised",
+  "planDir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\plans\\tip-023-postgres-schema-seed-from-mockdata",
+  "sourceTip": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\tips\\TIP-023-postgres-schema-seed-from-mockdata.md",
+  "phase": "planned",
+  "tier": "THOROUGH",
+  "fixCount": 0,
+  "focusLock": true,
+  "redGate": "pending",
+  "greenGate": "pending",
+  "separateVerifierRequired": true,
+  "phases": [
+    { "id": "phase-01", "file": "phase-01-discovery-and-schema-contract.md", "status": "pending" },
+    { "id": "phase-02", "file": "phase-02-migration-runner-and-ddl.md", "status": "pending" },
+    { "id": "phase-03", "file": "phase-03-seed-transformers-and-seed-command.md", "status": "pending" },
+    { "id": "phase-04", "file": "phase-04-repository-db-mode-integration.md", "status": "pending" },
+    { "id": "phase-05", "file": "phase-05-verification-regression-and-handoff.md", "status": "pending" }
+  ]
+}
