@@ -16,7 +16,7 @@ export function PublicHeader() {
     { href: '/jobs', label: dict?.nav?.jobs || 'Tuyển dụng' },
     { href: '/about', label: dict?.nav?.about || 'Về Fabbi' },
     { href: '/news', label: dict?.nav?.news || 'Tin tức' },
-    { href: '/apply', label: dict?.apply?.title || (locale === 'vi' ? 'Ứng tuyển' : '応募') },
+    { href: '/jobs?apply=true', label: dict?.nav?.apply || (locale === 'vi' ? 'Ứng tuyển' : '応募') },
   ]
 
   const switchLocale = (newLocale: Locale) => {

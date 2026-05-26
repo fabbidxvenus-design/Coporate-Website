@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
       content: articleBody,
       excerpt: excerpt || '',
       thumbnail_url: cover_image_url,
+      content_images: [],
       author_name: 'Admin',
       author_role: null,
       tags: tags || [],

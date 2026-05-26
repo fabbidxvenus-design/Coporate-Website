@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef, type KeyboardEvent } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 interface ApplicationModalProps {
   isOpen: boolean
@@ -26,9 +27,15 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
 export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModalProps) {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [fileName, setFileName] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const previouslyFocused = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Return focus on close
   useEffect(() => {
@@ -98,15 +105,22 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
     setLoading(false)
   }
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setFileName(file.name)
+    }
+  }
+
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose()
   }
 
-  if (!isOpen) return null
+  if (!mounted || !isOpen) return null
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40"
       aria-hidden="false"
       onClick={handleBackdropClick}
     >
@@ -197,13 +211,14 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
                     <svg className="h-6 w-6 text-gray-400 mb-2 group-hover:text-primary" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                     </svg>
-                    <span className="text-sm text-gray-500">Upload CV (pdf, docx, doc)</span>
+                    <span className="text-sm text-gray-500">{fileName || 'Upload CV (pdf, docx, doc)'}</span>
                     <input
                       accept=".pdf,.doc,.docx"
                       className="sr-only"
                       id="modal-cv"
                       name="cv_file"
                       type="file"
+                      onChange={handleFileChange}
                     />
                   </label>
                 </div>
@@ -226,6 +241,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

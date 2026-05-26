@@ -1,34 +1,15 @@
 import { NewsArticle } from '../types';
-import { parseJson, stringifyJson } from '../json';
+import { parseJson } from '../json';
 import { isMockDataMode } from '../../config/data-source';
-import newsVi from '../../../coding-packs/crawlings/processed/news.vi.json';
-import newsJa from '../../../coding-packs/crawlings/processed/news.ja.json';
+import { newsArticles, adapters } from '../../mock-data';
 import { sql } from '../connection';
 
 export const newsRepository = {
-  findAllPublished: async (): Promise<NewsArticle[]> => {
+  findAllPublished: async (locale: string = 'vi'): Promise<NewsArticle[]> => {
     if (isMockDataMode()) {
-      const articles = [
-        ...newsVi.articles.map((a: any) => ({ ...a, id: `vi-${a.id}` })),
-        ...newsJa.articles.map((a: any) => ({ ...a, id: `ja-${a.id}` }))
-      ];
-      return articles.map(a => ({
-        id: a.id,
-        title: a.title,
-        slug: a.slug,
-        content: a.body,
-        excerpt: a.excerpt,
-        thumbnail_url: a.cover_image,
-        author_name: a.author,
-        author_role: null,
-        tags: a.tags,
-        category: a.category,
-        status: 'published' as const,
-        views: 0,
-        created_at: a.published_at,
-        updated_at: a.published_at,
-        published_at: a.published_at
-      }));
+      return newsArticles
+        .filter(a => a.status === 'published')
+        .map(a => adapters.toDbNewsArticle(a, locale)) as NewsArticle[];
     }
 
     const rows = await sql`
@@ -39,34 +20,18 @@ export const newsRepository = {
 
     return rows.map(row => ({
       ...(row as any),
-      tags: parseJson<string[]>(row.tags as string, [])
+      tags: parseJson<string[]>(row.tags as string, []),
+      content_images: parseJson<string[]>(row.content_images as string, [])
     } as NewsArticle));
   },
 
-  findBySlug: async (slug: string): Promise<NewsArticle | null> => {
+  findBySlug: async (slug: string, locale: string = 'vi'): Promise<NewsArticle | null> => {
     if (isMockDataMode()) {
-      const article = [
-        ...(newsVi.articles as any[]).map((a) => ({ ...a, id: `vi-${a.id}` })),
-        ...(newsJa.articles as any[]).map((a) => ({ ...a, id: `ja-${a.id}` })),
-      ].find(a => a.slug === slug);
+      // Find the canonical article
+      const article = newsArticles.find(a => a.slug === slug);
       if (!article) return null;
-      return {
-        id: article.id,
-        title: article.title,
-        slug: article.slug,
-        content: article.body,
-        excerpt: article.excerpt,
-        thumbnail_url: article.cover_image,
-        author_name: article.author,
-        author_role: null,
-        tags: article.tags,
-        category: article.category,
-        status: 'published' as const,
-        views: 0,
-        created_at: article.published_at,
-        updated_at: article.published_at,
-        published_at: article.published_at
-      };
+
+      return adapters.toDbNewsArticle(article, locale) as NewsArticle;
     }
 
     const [row] = await sql`
@@ -78,41 +43,26 @@ export const newsRepository = {
     if (!row) return null;
     return {
       ...(row as any),
-      tags: parseJson<string[]>(row.tags as string, [])
+      tags: parseJson<string[]>(row.tags as string, []),
+      content_images: parseJson<string[]>(row.content_images as string, [])
     } as NewsArticle;
   },
 
   findById: async (id: string): Promise<NewsArticle | null> => {
     if (isMockDataMode()) {
+       const locale = id.startsWith('ja-') ? 'ja' : 'vi';
        const sourceId = id.replace(/^(vi|ja)-/, '');
-       const article = [...(newsVi.articles as any[]), ...(newsJa.articles as any[])]
-         .find(a => a.id === sourceId);
+       const article = newsArticles.find(a => a.id === sourceId);
        if (!article) return null;
-       const prefix = id.startsWith('ja-') ? 'ja-' : 'vi-';
-       return {
-         id: `${prefix}${article.id}`,
-         title: article.title,
-         slug: article.slug,
-         content: article.body,
-         excerpt: article.excerpt,
-         thumbnail_url: article.cover_image,
-         author_name: article.author,
-         author_role: null,
-         tags: article.tags,
-         category: article.category,
-         status: 'published' as const,
-         views: 0,
-         created_at: article.published_at,
-         updated_at: article.published_at,
-         published_at: article.published_at
-       };
+       return adapters.toDbNewsArticle(article, locale) as NewsArticle;
     }
 
     const [row] = await sql`SELECT * FROM news_articles WHERE id = ${id}`;
     if (!row) return null;
     return {
       ...(row as any),
-      tags: parseJson<string[]>(row.tags as string, [])
+      tags: parseJson<string[]>(row.tags as string, []),
+      content_images: parseJson<string[]>(row.content_images as string, [])
     } as NewsArticle;
   },
 
@@ -122,10 +72,10 @@ export const newsRepository = {
     const publishedAt = data.status === 'published' ? now : null;
 
     await sql`
-      INSERT INTO news_articles (id, title, slug, content, excerpt, thumbnail_url, author_name, author_role, tags, status, views, published_at, created_at, updated_at)
+      INSERT INTO news_articles (id, title, slug, content, excerpt, thumbnail_url, content_images, author_name, author_role, tags, status, views, published_at, created_at, updated_at)
       VALUES (
         ${id}, ${data.title}, ${data.slug}, ${data.content}, ${data.excerpt},
-        ${data.thumbnail_url ?? null}, ${data.author_name ?? ''}, ${data.author_role ?? null},
+        ${data.thumbnail_url ?? null}, ${stringifyJson(data.content_images || [])}, ${data.author_name ?? ''}, ${data.author_role ?? null},
         ${stringifyJson(data.tags)}, ${data.status}, ${data.views || 0}, ${publishedAt}, ${now}, ${now}
       )
     `;
@@ -143,6 +93,7 @@ export const newsRepository = {
     if (data.content !== undefined) { updates.push('content'); values.push(data.content); }
     if (data.excerpt !== undefined) { updates.push('excerpt'); values.push(data.excerpt); }
     if (data.thumbnail_url !== undefined) { updates.push('thumbnail_url'); values.push(data.thumbnail_url); }
+    if (data.content_images !== undefined) { updates.push('content_images'); values.push(stringifyJson(data.content_images)); }
     if (data.author_name !== undefined) { updates.push('author_name'); values.push(data.author_name); }
     if (data.author_role !== undefined) { updates.push('author_role'); values.push(data.author_role); }
     if (data.tags !== undefined) { updates.push('tags'); values.push(stringifyJson(data.tags)); }
@@ -176,3 +127,7 @@ export const newsRepository = {
     await sql`UPDATE news_articles SET views = views + 1 WHERE id = ${id}`;
   }
 };
+
+function stringifyJson(data: any): string {
+  return JSON.stringify(data);
+}

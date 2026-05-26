@@ -5,7 +5,7 @@ import { sql } from '../connection';
 
 const mockAdminUser: AdminUser = {
   id: 'mock-admin-user',
-  email: 'admin@example.com',
+  email: 'admin@fabbi.vn',
   name: 'Mock Admin',
   password_hash: 'mock-password',
   role: 'admin',
@@ -55,7 +55,7 @@ export const authRepository = {
 
   validateCredentials: async (email: string, password: string): Promise<AdminUser | null> => {
     if (isMockDataMode()) {
-      if (email === mockAdminUser.email && password === 'mock-admin-local-only') return mockAdminUser;
+      if (email === mockAdminUser.email && password === 'admin123') return mockAdminUser;
       return null;
     }
 

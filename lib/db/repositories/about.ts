@@ -1,28 +1,30 @@
 import { AboutContent } from '../types';
 import { parseJson } from '../json';
 import { isMockDataMode } from '../../config/data-source';
-import mockData from '../../../coding-packs/crawlings/processed/mock-seed.json';
+import { aboutContent } from '../../mock-data';
 import { sql } from '../connection';
 
 export const aboutRepository = {
   findByLocale: async (locale: string): Promise<AboutContent | null> => {
     if (isMockDataMode()) {
-      const localeData = (mockData.aboutContent as any)[locale];
-      if (!localeData) return null;
-
       return {
         id: `about-${locale}`,
         locale,
-        hero_title: localeData.heroTitle,
-        hero_subtitle: localeData.heroSubtitle,
+        hero_title: aboutContent.heroTitle[locale as keyof typeof aboutContent.heroTitle] || aboutContent.heroTitle.vi,
+        hero_subtitle: aboutContent.heroSubtitle[locale as keyof typeof aboutContent.heroSubtitle] || aboutContent.heroSubtitle.vi,
         hero_image_url: null,
-        vision_title: 'Tầm nhìn',
-        vision_content: localeData.vision,
-        mission_title: 'Sứ mệnh',
-        mission_content: localeData.mission,
-        values_title: 'Giá trị cốt lõi',
-        values: [],
-        team_title: 'Đội ngũ',
+        vision_title: locale === 'vi' ? 'Tầm nhìn' : 'ビジョン',
+        vision_content: aboutContent.vision[locale as keyof typeof aboutContent.vision] || aboutContent.vision.vi,
+        mission_title: locale === 'vi' ? 'Sứ mệnh' : 'ミッション',
+        mission_content: aboutContent.mission[locale as keyof typeof aboutContent.mission] || aboutContent.mission.vi,
+        values_title: locale === 'vi' ? 'Giá trị cốt lõi' : 'コアバリュー',
+        values: aboutContent.values.map(v => ({
+          key: v.key,
+          icon: '', // Icons can be added to mock-data if needed
+          title: v.title[locale as keyof typeof v.title] || v.title.vi,
+          description: v.description[locale as keyof typeof v.description] || v.description.vi
+        })),
+        team_title: locale === 'vi' ? 'Đội ngũ' : 'チーム',
         team_members: [],
         stats: [],
         updated_at: new Date().toISOString()

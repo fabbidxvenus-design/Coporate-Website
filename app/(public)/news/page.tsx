@@ -176,7 +176,7 @@ function NewsSearchForm({ params, locale, dict }: { params: { q?: string; catego
         {params.category && <input type="hidden" name="category" value={params.category} />}
         <button
           type="submit"
-          className="h-full bg-[#008B9C] hover:bg-[#00707D] text-white rounded-full px-6 text-sm font-semibold transition-colors flex items-center gap-2"
+          className="h-full bg-[#008B9C] hover:bg-[#00707D] text-white rounded-full px-6 text-base font-medium transition-colors flex items-center gap-2"
         >
           <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Tìm kiếm
         </button>
@@ -191,29 +191,23 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
   const dict = getDictionary(locale as Locale)
 
   // Use repository
-  const allArticles = await newsRepository.findAllPublished()
-  const localizedArticles = allArticles.filter((article) => article.id.startsWith(`${locale}-`))
-
-  // Apply filtering
-  let filteredArticles = localizedArticles
-  if (sParams.q) {
-    filteredArticles = filteredArticles.filter(a =>
-      a.title.toLowerCase().includes(sParams.q!.toLowerCase())
-    )
-  }
-  if (sParams.category) {
-    filteredArticles = filteredArticles.filter(a => a.category === sParams.category)
-  }
+  const paginatedArticles = await newsRepository.findAllPublished(locale)
+  // Filtering logic if needed, but repository already handles locale
+  const filteredArticles = paginatedArticles.filter(a => {
+    if (sParams.q && !a.title.toLowerCase().includes(sParams.q.toLowerCase())) return false
+    if (sParams.category && a.category !== sParams.category) return false
+    return true
+  })
 
   const total = filteredArticles.length
   const limit = 8
   const page = parseInt(sParams.page || '1')
   const totalPages = Math.ceil(total / limit)
-  const paginatedArticles = filteredArticles.slice((page - 1) * limit, page * limit)
+  const displayArticles = filteredArticles.slice((page - 1) * limit, page * limit)
 
-  const featuredArticle = paginatedArticles[0]
-  const gridArticles = paginatedArticles.slice(1, 5)
-  const horizontalArticles = paginatedArticles.slice(5)
+  const featuredArticle = displayArticles[0]
+  const gridArticles = displayArticles.slice(1, 5)
+  const notableArticles = displayArticles.slice(5).length > 0 ? displayArticles.slice(5) : displayArticles.slice(1, 5)
 
   const categories = [
     { key: 'nguoi_fabbi', label: locale === 'vi' ? 'Người Fabbi' : 'Fabbiの人々' },
@@ -250,16 +244,27 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
           {/* Sidebar */}
           <aside className="w-full lg:w-64 flex-shrink-0">
             <div className="bg-gray-50 rounded-2xl p-4 sticky top-28">
-              <h3 className="text-lg font-bold text-gray-800 px-4 py-3 mb-2">{sidebarTitle}</h3>
               <ul className="space-y-1">
-                {[{ key: undefined, label: sidebarTitle }, ...categories].map((cat) => (
-                  <li key={cat.key || 'all'}>
+                <li>
+                  <Link
+                    href={`/${locale}/news`}
+                    className={`block px-4 py-3 rounded-xl transition-colors duration-200 ${
+                      !sParams.category
+                        ? 'bg-gray-100 text-gray-900 font-semibold'
+                        : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800 font-medium'
+                    }`}
+                  >
+                    {sidebarTitle}
+                  </Link>
+                </li>
+                {categories.map((cat) => (
+                  <li key={cat.key}>
                     <Link
                       href={`/${locale}/news${cat.key ? '?' + buildSearchParams(sParams, { category: cat.key, page: undefined }) : ''}`}
-                      className={`block px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
+                      className={`block px-4 py-3 rounded-xl transition-colors duration-200 ${
                         sParams.category === cat.key
-                          ? 'bg-gray-200 text-gray-800'
-                          : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
+                          ? 'bg-gray-100 text-gray-900 font-semibold'
+                          : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800 font-medium'
                       }`}
                     >
                       {cat.label}
@@ -272,7 +277,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
 
           {/* Content Area */}
           <div className="flex-1">
-            {paginatedArticles.length === 0 ? (
+            {displayArticles.length === 0 ? (
               <div className="text-center py-16 text-gray-500">
                 <i className="fa-solid fa-newspaper text-5xl mb-4 text-gray-300"></i>
                 <p className="text-lg">{dict.news.emptyState}</p>
@@ -348,7 +353,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
       </section>
 
       {/* Notable News Section */}
-      {horizontalArticles.length > 0 && (
+      {notableArticles.length > 0 && (
         <section className="border-t border-gray-100 py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-end mb-10">
@@ -360,11 +365,25 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                   {notableSectionDesc}
                 </p>
               </div>
+              <Link
+                href={`/${locale}/news`}
+                className="hidden sm:inline-flex items-center justify-center px-6 py-2 border border-gray-300 rounded-full text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors duration-200"
+              >
+                View all
+              </Link>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10">
-              {horizontalArticles.map((article) => (
+              {notableArticles.map((article) => (
                 <HorizontalArticleCard key={article.id} article={article} locale={locale} readMore={readMore} />
               ))}
+            </div>
+            <div className="mt-8 text-center sm:hidden">
+              <Link
+                href={`/${locale}/news`}
+                className="w-full inline-flex items-center justify-center px-6 py-3 border border-gray-300 rounded-full text-base font-semibold text-gray-800 hover:bg-gray-50 transition-colors duration-200"
+              >
+                View all
+              </Link>
             </div>
           </div>
         </section>

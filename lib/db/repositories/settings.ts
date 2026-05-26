@@ -1,17 +1,16 @@
 import { SiteSetting } from '../types';
 import { isMockDataMode } from '../../config/data-source';
-import mockData from '../../../coding-packs/crawlings/processed/mock-seed.json';
+import { siteSettings } from '../../mock-data';
 import { sql } from '../connection';
 
 export const settingsRepository = {
   get: async (key: string): Promise<string | null> => {
     if (isMockDataMode()) {
-      const settings = mockData.siteSettings as any;
       const keyMap: Record<string, any> = {
-        companyName: settings.companyName?.vi || '',
-        slogan: settings.slogan?.vi || '',
-        contactEmail: settings.contactEmail || '',
-        contactPhone: settings.contactPhone || '',
+        companyName: siteSettings.companyName.vi,
+        slogan: siteSettings.slogan.vi,
+        contactEmail: siteSettings.contactEmail,
+        contactPhone: siteSettings.contactPhone,
       };
       return keyMap[key] || null;
     }
@@ -21,16 +20,15 @@ export const settingsRepository = {
 
   getAll: async (): Promise<Record<string, string>> => {
     if (isMockDataMode()) {
-      const s = mockData.siteSettings as any;
       return {
-        companyName: s.companyName?.vi || '',
-        slogan: s.slogan?.vi || '',
-        contactEmail: s.contactEmail || '',
-        contactPhone: s.contactPhone || '',
-        facebook: s.socialLinks?.facebook || '',
-        twitter: s.socialLinks?.twitter || '',
-        linkedin: s.socialLinks?.linkedin || '',
-        tiktok: s.socialLinks?.tiktok || '',
+        companyName: siteSettings.companyName.vi,
+        slogan: siteSettings.slogan.vi,
+        contactEmail: siteSettings.contactEmail,
+        contactPhone: siteSettings.contactPhone,
+        facebook: siteSettings.socialLinks.facebook,
+        twitter: siteSettings.socialLinks.twitter,
+        linkedin: siteSettings.socialLinks.linkedin,
+        tiktok: siteSettings.socialLinks.tiktok,
       };
     }
     const rows = await sql`SELECT key, value FROM site_settings`;

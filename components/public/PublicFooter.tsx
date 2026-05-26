@@ -14,7 +14,7 @@ export function PublicFooter() {
     { href: `/${locale}/jobs`, label: dict.nav.jobs },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/news`, label: dict.nav.news },
-    { href: `/${locale}/apply`, label: dict.apply.title },
+    { href: `/${locale}/jobs?apply=true`, label: dict.apply.title },
   ];
 
   const socialLinks = [

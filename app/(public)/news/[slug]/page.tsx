@@ -16,7 +16,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug, locale } = await params
-  const article = await newsRepository.findBySlug(slug)
+  const article = await newsRepository.findBySlug(slug, locale)
 
   if (!article) return { title: locale === 'vi' ? 'Không tìm thấy' : '見つかりませんでした' }
   return {
@@ -44,15 +44,14 @@ const categoryLabels: Record<string, string> = {
 export default async function NewsDetailPage({ params }: PageProps) {
   const { slug, locale } = await params
   const dict = getDictionary(locale as Locale)
-  const article = await newsRepository.findBySlug(slug)
+  const article = await newsRepository.findBySlug(slug, locale)
 
-  if (!article || !article.id.startsWith(`${locale}-`)) {
+  if (!article) {
     notFound()
   }
 
-  const allArticles = await newsRepository.findAllPublished()
-  const localizedArticles = allArticles.filter((item) => item.id.startsWith(`${locale}-`))
-  const relatedArticles = localizedArticles
+  const allArticles = await newsRepository.findAllPublished(locale)
+  const relatedArticles = allArticles
     .filter(a => a.id !== article.id)
     .slice(0, 3)
 
@@ -89,18 +88,18 @@ export default async function NewsDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="w-full h-[520px] mb-12">
+        <div className="w-full h-[400px] mb-12 max-w-[1000px] mx-auto px-4 relative">
           {imageUrl ? (
             <Image
               alt={article.title}
               fill
               priority
-              className="object-cover"
+              className="object-cover rounded-2xl"
               src={imageUrl}
-              sizes="1440px"
+              sizes="1000px"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-[#006672]/10 to-gray-100 flex items-center justify-center rounded-2xl">
               <span className="material-symbols-outlined text-8xl text-[#008B9C]/30">newspaper</span>
             </div>
           )}
@@ -125,6 +124,26 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   #{tag}
                 </span>
               ))}
+            </div>
+          )}
+
+          {article.content_images && article.content_images.length > 0 && (
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {article.content_images.map((img: string, idx: number) => {
+                const normalizedImg = normalizeLocalImage(img)
+                return normalizedImg ? (
+                  <div key={idx} className="relative h-64 overflow-hidden rounded-xl bg-gray-50 border border-gray-100 group">
+                    <Image
+                      alt={`${article.title} content ${idx + 1}`}
+                      fill
+                      loading="lazy"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      src={normalizedImg}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : null
+              })}
             </div>
           )}
 

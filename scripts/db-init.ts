@@ -1,14 +1,10 @@
 import { getDb, closeDb } from '../lib/db/connection';
 import { runMigrations } from '../lib/db/migrate';
 import { seed } from '../lib/db/seed';
-import fs from 'fs';
-import path from 'path';
-
-const mockSeedPath = path.join(__dirname, '../coding-packs/crawlings/processed/mock-seed.json');
-const mockSeed = JSON.parse(fs.readFileSync(mockSeedPath, 'utf-8'));
+import { jobs, newsArticles, siteSettings, adapters } from '../lib/mock-data';
 
 async function initDb() {
-  console.log('Initializing SQLite database...');
+  console.log('Initializing database...');
 
   try {
     getDb();
@@ -16,31 +12,41 @@ async function initDb() {
     console.log('Migrations applied successfully');
 
     const data = {
-      jobs: mockSeed.jobs.map((job: any) => ({
-        title: job.title,
-        slug: job.slug,
-        description: job.description,
-        requirements: job.requirements,
-        benefits: job.benefits,
-        salary_min: typeof job.salary_range === 'string' ? parseInt(job.salary_range.split('-')[0]) || 0 : 0,
-        salary_max: typeof job.salary_range === 'string' ? parseInt(job.salary_range.split('-')[1]) || 0 : 0,
-        location: job.location,
-        employment_type: job.employment_type,
-        skills: job.skills || [],
-        tags: job.tags || [],
-        status: job.status || 'draft'
-      })),
-      news: mockSeed.newsArticles.map((article: any) => ({
-        title: article.title,
-        slug: article.slug,
-        content: article.body,
-        excerpt: article.excerpt,
-        author_name: article.author,
-        tags: article.tags || [],
-        status: article.status || 'draft'
-      })),
+      jobs: jobs.map(job => {
+        const dbJob = adapters.toDbJob(job, 'vi');
+        return {
+          title: dbJob.title,
+          slug: dbJob.slug,
+          description: dbJob.description,
+          requirements: dbJob.requirements,
+          benefits: dbJob.benefits,
+          salary_min: typeof job.salary_range.vi === 'string' ? parseInt(job.salary_range.vi.split('-')[0]) || 0 : 0,
+          salary_max: typeof job.salary_range.vi === 'string' ? parseInt(job.salary_range.vi.split('-')[1]) || 0 : 0,
+          location: dbJob.location,
+          employment_type: dbJob.employment_type,
+          skills: dbJob.skills,
+          tags: dbJob.tags || [],
+          status: job.status
+        };
+      }),
+      news: newsArticles.map(article => {
+        const dbNews = adapters.toDbNewsArticle(article, 'vi');
+        return {
+          title: dbNews.title,
+          slug: dbNews.slug,
+          content: dbNews.content,
+          excerpt: dbNews.excerpt,
+          thumbnail_url: dbNews.thumbnail_url,
+          author_name: dbNews.author_name,
+          tags: dbNews.tags,
+          status: 'published'
+        };
+      }),
       settings: [
-        { key: 'site_name', value: 'Fabbi Corporate Website', type: 'string' }
+        { key: 'site_name', value: siteSettings.companyName.vi, type: 'string' },
+        { key: 'companyName', value: siteSettings.companyName.vi, type: 'string' },
+        { key: 'contactEmail', value: siteSettings.contactEmail, type: 'string' },
+        { key: 'contactPhone', value: siteSettings.contactPhone, type: 'string' }
       ],
       adminUser: {
         email: 'admin@fabbi.com',
@@ -50,7 +56,7 @@ async function initDb() {
       }
     };
 
-    seed(data);
+    seed(data as any);
     console.log('Database seeded successfully');
 
     closeDb();

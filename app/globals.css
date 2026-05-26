@@ -140,4 +140,22 @@
   .input-base {
     @apply w-full px-4 py-3 bg-white border border-outline-variant rounded text-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all;
   }
+
+  .hero-bg {
+    background-color: #e6f7fa;
+    background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7wQy0pvL3l450Ue5ausCEMcD9ObKYu-XuoyY4ODl7m0WNoZipT9yOwLSNGjJSzpojo6R1JA0KJxDmSxrGIwxlY4dUVLj8r6fQrSlvPowxP8jvNKDdh_dRMTnuo7_j8e41BtwxUfej0mUJCzRS4ys7Xk6Skwv1RV_bs_eebktDwID3C9IPeHYEabba6Z-LwFoWgjB1l95UoNan-w2n0iPL9Rwk3rKhIOMLJoQbo6zDVs4YxJhTabqXpfVM8p7Y09zQYxixAzNmkuwl");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
 }

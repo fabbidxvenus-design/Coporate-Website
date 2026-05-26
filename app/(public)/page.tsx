@@ -14,13 +14,11 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
   const dict = getDictionary(locale === undefined ? 'vi' : locale)
 
   // Get dynamic jobs and news
-  const allJobs = await jobsRepository.findAllPublished()
+  const allJobs = await jobsRepository.findAllPublished(locale)
   const featuredJobs = allJobs.slice(0, 3)
 
-  const allNews = await newsRepository.findAllPublished()
-  const latestNews = allNews
-    .filter(n => n.id.startsWith(locale === 'ja' ? 'ja-' : 'vi-'))
-    .slice(0, 3)
+  const allNews = await newsRepository.findAllPublished(locale)
+  const latestNews = allNews.slice(0, 3)
 
   const heroTitle = dict?.home?.heroTitle || 'Fabbi - Công nghệ cho tương lai'
   const heroParts = heroTitle.includes(' - ') ? heroTitle.split(' - ') : [heroTitle, '']
@@ -114,7 +112,7 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
               {dict?.home?.exploreJobs || (locale === 'vi' ? 'Khám phá việc làm' : '求人を見る')}
             </Link>
             <Link
-              href={`/${locale}/apply`}
+              href={`/${locale}/jobs?apply=true`}
               className="bg-transparent border border-teal-text text-teal-text px-6 py-3 rounded-lg text-sm font-semibold hover:border-[#008B9C] hover:bg-[#008B9C] hover:!text-white transition-colors"
             >
               {dict?.apply?.title || (locale === 'vi' ? 'Ứng tuyển' : '応募')}

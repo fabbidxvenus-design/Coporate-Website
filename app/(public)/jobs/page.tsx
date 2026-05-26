@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 import { getDictionary, Locale } from '@/lib/i18n'
 import { JobCard } from '@/components/public/JobCard'
 import { JobsFilter } from '@/components/public/JobsFilter'
+import { JobsModalWrapper } from '@/components/public/JobsModalWrapper'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -80,7 +81,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
   const dict = getDictionary(locale as Locale)
 
   // Directly use repository
-  const jobs = await jobsRepository.findAllPublished()
+  const jobs = await jobsRepository.findAllPublished(locale)
   // Basic filtering for this migration stage
   let filteredJobs = jobs
   if (sParams.q) {
@@ -104,21 +105,32 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
       {/* Hero Section with Search */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div
-          className="rounded-3xl overflow-hidden relative flex flex-col items-center py-20 px-4 md:px-8"
-          style={{
-            backgroundImage: 'url("/images/412191366_846458190817751_1761241903598864399_n.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="hero-bg rounded-3xl overflow-hidden relative flex flex-col items-center py-16 px-4 md:px-8"
         >
+          {/* Background illustrations */}
+          <div className="absolute left-8 bottom-0 hidden lg:block opacity-80">
+            <img
+              alt="Illustration"
+              className="h-48 object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqgJKnNaeEIbfGcg5OpUhbbaUSXLMsLvtrNlM0NxdP0quYSKhjPZnyeLyjqS8PQ-TIp3WVUyzjxlWwdWD8B_MnLjBh0P65uWIhftciv3v-VPOCCEw51lBHZ0vdqGTaDDI5FWeefXmC5qyNzHR4GEazHUdVeyElEj-x-VkrvGTfwgjLvePyBclOLg3tfx4F0XpUsWjzDU3e3H6XuSxrjH62JVSLeZhO6NI2NGIaz6eeu4U1pGHp-HFWLTGzswvsaLg3Of95Xf_D4qAQ"
+            />
+          </div>
+          <div className="absolute right-8 bottom-0 hidden lg:block opacity-80">
+            <img
+              alt="Illustration"
+              className="h-40 object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdWVmr_UKPdaGMaw0-AOXy8-JQekQKEI6VRQMJsGilafe_yJTok1BCljKowz1ywmrgM4mXQAZJhKDOJkPe5YRpAgD-94EjD39oeYQWRp_UUDGYQNq0Pz2Be56F9x2Kl5LowQM-8AcNE8Et5pzxW8Kej9VaWvtC4mn_UZ6S9PZK-hoJeUf4FMKYwgbewd9X-YjmLCk4UzgSjB9N4-Y8X5gI5cwumJ0EZ0TsxCZXE7wp1-jGXZItbFVEDVoW7BqQLAy_utd_G-VWPgnd"
+            />
+          </div>
+
           <div className="text-center max-w-2xl relative z-10 mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              <span className="text-[#008B9C]">{total} Jobs</span> {locale === 'vi' ? 'đang open' : '募集中'}
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              <span className="text-[#008B9C] font-bold">{total} Jobs</span> {locale === 'vi' ? 'đang open' : '募集中'}
             </h1>
-            <p className="text-white text-sm md:text-base opacity-90">
+            <p className="text-gray-600 text-sm md:text-base">
               {locale === 'vi'
-                ? 'Khám phá cơ hội nghề nghiệp tại Fabbi - Nơi công nghệ gặp gỡ đổi mới'
-                : 'Fabbiでのキャリア機会を探る - テクノロジーがイノベーションと出会う場所'}
+                ? 'Mô tả chính xác những gì công ty làm và những gì khách hàng có thể mong đợi khi làm việc với công ty.'
+                : '会社が何をしているのか、そして会社と協力するときに顧客が何を期待できるのかを正確に説明します。'}
             </p>
           </div>
           <Suspense fallback={
@@ -158,7 +170,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                     title={job.title}
                     company="Fabbi"
                     location={job.location || 'HN'}
-                    salary={job.salary_min && job.salary_max ? `${job.salary_min.toLocaleString()} - ${job.salary_max.toLocaleString()} ${job.currency || '$'}` : undefined}
+                    salary={job.salary_min && job.salary_max ? `${job.salary_min.toLocaleString()} - ${job.salary_max.toLocaleString()} ${job.currency || '$'}` : (locale === 'vi' ? 'Thương lượng' : '応相談')}
                     employmentType={job.employment_type || ''}
                     skills={job.skills || []}
                     postedDays={Math.floor((Date.now() - new Date(job.published_at || job.created_at).getTime()) / (1000 * 60 * 60 * 24))}
@@ -174,38 +186,57 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 {page > 1 ? (
                   <Link
                     href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(page - 1) })}`}
-                    className="text-gray-600 hover:text-[#00707e] text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-[#008B9C] text-sm font-medium px-2 transition-colors"
                   >
                     Prev
                   </Link>
                 ) : (
                   <span className="text-gray-400 text-sm font-medium px-2 cursor-not-allowed">Prev</span>
                 )}
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                  const p = i + 1
-                  return (
-                    <Link
-                      key={p}
-                      href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(p) })}`}
-                      className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
-                        p === page
-                          ? 'bg-[#008B9C] text-white'
-                          : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
-                      }`}
-                    >
-                      {p}
-                    </Link>
-                  )
-                })}
-                {totalPages > 5 && <span className="text-gray-400">...</span>}
-                {totalPages > 5 && (
-                  <Link
-                    href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(totalPages) })}`}
-                    className="w-8 h-8 rounded bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-medium flex items-center justify-center transition-colors"
-                  >
-                    {totalPages}
-                  </Link>
-                )}
+
+                {(() => {
+                  const pages: number[] = []
+                  const range = 1 // Number of pages to show around current page
+
+                  for (let i = 1; i <= totalPages; i++) {
+                    if (
+                      i === 1 ||
+                      i === totalPages ||
+                      (i >= page - range && i <= page + range)
+                    ) {
+                      pages.push(i)
+                    } else if (
+                      (i === 2 && page - range > 2) ||
+                      (i === totalPages - 1 && page + range < totalPages - 1)
+                    ) {
+                      pages.push(-1) // Represents ellipsis
+                    }
+                  }
+
+                  // Filter out consecutive ellipses
+                  const uniquePages = pages.filter((p, i) => p !== -1 || pages[i - 1] !== -1)
+
+                  return uniquePages.map((p, index) => {
+                    if (p === -1) {
+                      return <span key={`ellipsis-${index}`} className="text-gray-400">...</span>
+                    }
+
+                    return (
+                      <Link
+                        key={p}
+                        href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(p) })}`}
+                        className={`w-8 h-8 rounded text-sm font-medium flex items-center justify-center transition-colors ${
+                          p === page
+                            ? 'bg-[#008B9C] text-white'
+                            : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
+                        }`}
+                      >
+                        {p}
+                      </Link>
+                    )
+                  })
+                })()}
+
                 {page < totalPages ? (
                   <Link
                     href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(page + 1) })}`}
@@ -221,13 +252,11 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
           </div>
 
           {/* Right Column: Sidebar */}
-          <div className="space-y-8" aria-label="Sidebar">
+          <aside className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">{dict.footer.followUs}</h2>
               <p className="text-gray-500 text-sm mb-4">
-                {locale === 'vi'
-                  ? 'Theo dõi Fabbi trên các nền tảng mạng xã hội để cập nhật tin tuyển dụng mới nhất.'
-                  : 'Fabbiをソーシャルメディアプラットフォームでフォローして、最新の採用情報を入手してください。'}
+                Lorem ipsum dolor sit amet consectetur. Sed duis elit dictumst convallis elit. Risus consequat dolor...
               </p>
               {/* Facebook Widget */}
               <div className="bg-gray-900 rounded-xl overflow-hidden relative shadow-md mb-6">
@@ -238,8 +267,13 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                  <img
+                    alt="Fabbi Logo"
+                    className="w-12 h-12 rounded bg-white p-1"
+                    src="/images/Logo-Fabbi.svg"
+                  />
                   <div>
-                    <img src="/images/Logo-Fabbi-White.svg" alt="Fabbi JSC" className="h-10 w-auto" />
+                    <h3 className="text-white font-bold">Fabbi JSC</h3>
                     <div className="flex items-center gap-2 mt-1">
                       <button className="bg-blue-600 text-white text-xs px-2 py-1 rounded flex items-center gap-1 hover:bg-blue-700">
                         <i className="fa-brands fa-facebook"></i> Like Page
@@ -250,13 +284,67 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 </div>
               </div>
 
-              {/* Facebook Feed Posts */}
+              {/* Social Feed Widget */}
               <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                {/* Feed Post 1 */}
                 <div className="p-4 border-b border-gray-100">
-                  <h3 className="font-bold text-gray-800 text-sm">Fabbi Universe</h3>
-                  <p className="text-xs text-gray-500 mb-2">8 tháng 3 lúc 20:00</p>
-                  <p className="text-sm text-gray-700 line-clamp-3">LOVELY MOMENT | FABBI GIRLS, YOU ARE MY SWEET HEART...</p>
-                  <a href="#" className="text-primary text-sm hover:underline">Xem thêm</a>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="/images/Logo-Fabbi.svg" alt="Fabbi Universe" className="w-8 h-8 object-contain" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-800 text-sm leading-tight">Fabbi Universe</h4>
+                        <span className="text-xs text-gray-500">8 tháng 3 lúc 20:00</span>
+                      </div>
+                    </div>
+                    <i className="fa-brands fa-facebook text-blue-600 text-xl"></i>
+                  </div>
+                  <p className="text-sm text-gray-700 mb-3 line-clamp-3">
+                    LOVELY MOMENT | FABBI GIRLS, YOU ARE MY SWEET HEART... <br /><br />
+                    &quot;Mùng 8 tháng 3<br />
+                    Đi ra thăm vườn<br />
+                    Chọn một bông hoa...
+                  </p>
+                  <a className="text-[#008B9C] text-sm hover:underline mb-3 block" href="#">Xem thêm</a>
+                  <div className="grid grid-cols-2 gap-1 rounded-lg overflow-hidden relative">
+                    <img alt="Post Image 1" className="w-full h-32 object-cover" src="/images/409187962_843743124422591_5358432708356068022_n.jpg" />
+                    <img alt="Post Image 2" className="w-full h-32 object-cover" src="/images/409394328_843742617755975_2920894524434245918_n.jpg" />
+                    <img alt="Post Image 3" className="w-full h-32 object-cover" src="/images/409845294_843742774422626_8818933704017811449_n.jpg" />
+                    <div className="relative w-full h-32">
+                      <img alt="Post Image 4" className="w-full h-32 object-cover" src="/images/411652522_846458160817754_3403469319257241473_n.jpg" />
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-bold text-xl">+5</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gray-50 text-gray-500 text-xs">
+                    <button className="flex items-center gap-1 hover:text-blue-600"><i className="fa-solid fa-thumbs-up"></i> 200</button>
+                    <button className="flex items-center gap-1 hover:text-gray-800"><i className="fa-solid fa-comment"></i> 12</button>
+                    <button className="flex items-center gap-1 hover:text-gray-800"><i className="fa-solid fa-share"></i> 10</button>
+                  </div>
+                </div>
+
+                {/* Feed Post 2 */}
+                <div className="p-4 bg-gray-50/50">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center overflow-hidden">
+                         <img src="/images/Logo-Fabbi.svg" alt="Fabbi Universe" className="w-8 h-8 object-contain" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-800 text-sm leading-tight">Fabbi Universe</h4>
+                        <span className="text-xs text-gray-500">8 tháng 3 lúc 20:00</span>
+                      </div>
+                    </div>
+                    <i className="fa-brands fa-facebook text-blue-600 text-xl"></i>
+                  </div>
+                  <p className="text-sm text-gray-700 mb-3 line-clamp-2">
+                    LOVELY MOMENT | FABBI GIRLS, YOU ARE MY SWEET HEART... <br />
+                    &quot;Mùng 8 tháng 3...
+                  </p>
+                  <div className="grid grid-cols-2 gap-1 rounded-lg overflow-hidden h-24">
+                    <img alt="Post Image 1" className="w-full h-full object-cover" src="/images/409187962_843743124422591_5358432708356068022_n.jpg" />
+                    <img alt="Post Image 2" className="w-full h-full object-cover" src="/images/409394328_843742617755975_2920894524434245918_n.jpg" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -265,33 +353,68 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
             <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
               <h3 className="font-bold text-gray-800 mb-4">{dict.footer.quickLinks}</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href={`/${locale}`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.nav.home}</Link></li>
-                <li><Link href={`/${locale}/about`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.nav.about}</Link></li>
-                <li><Link href={`/${locale}/news`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.nav.news}</Link></li>
-                <li><Link href={`/${locale}/apply`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.apply.title}</Link></li>
+                <li><Link href={`/${locale}`} className="text-gray-600 hover:text-[#008B9C] transition-colors">{dict.nav.home}</Link></li>
+                <li><Link href={`/${locale}/about`} className="text-gray-600 hover:text-[#008B9C] transition-colors">{dict.nav.about}</Link></li>
+                <li><Link href={`/${locale}/news`} className="text-gray-600 hover:text-[#008B9C] transition-colors">{dict.nav.news}</Link></li>
+                <li><Link href={`/${locale}/jobs?apply=true`} className="text-gray-600 hover:text-[#008B9C] transition-colors">{dict.apply.title}</Link></li>
               </ul>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
       {/* Photo Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-100">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">{locale === 'vi' ? 'Chuyên mục ảnh' : 'フォトセクション'}</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            {locale === 'vi' ? 'Chuyên mục ảnh' : 'フォトセクション'}
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto">
+            Lorem ipsum dolor sit amet consectetur. Morbi sed faucibus at egestas. Cras.
+          </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="/images/409187962_843743124422591_5358432708356068022_n.jpg" alt="Work culture" className="w-full h-full object-cover" />
+        <div className="relative overflow-hidden rounded-2xl group">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory custom-scrollbar pb-4">
+            <div className="snap-center shrink-0 w-[85%] md:w-[70%]">
+              <img
+                alt="Happy New Year 2023"
+                className="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-md"
+                src="/images/409187962_843743124422591_5358432708356068022_n.jpg"
+              />
+            </div>
+            <div className="snap-center shrink-0 w-[85%] md:w-[70%] opacity-50 transition-opacity hover:opacity-100">
+              <img
+                alt="Company Event"
+                className="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-md"
+                src="/images/409394328_843742617755975_2920894524434245918_n.jpg"
+              />
+            </div>
+            <div className="snap-center shrink-0 w-[85%] md:w-[70%] opacity-50 transition-opacity hover:opacity-100">
+              <img
+                alt="Office space"
+                className="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-md"
+                src="/images/409845294_843742774422626_8818933704017811449_n.jpg"
+              />
+            </div>
           </div>
-          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="/images/409394328_843742617755975_2920894524434245918_n.jpg" alt="Team meeting" className="w-full h-full object-cover" />
-          </div>
-          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="/images/409845294_843742774422626_8818933704017811449_n.jpg" alt="Office space" className="w-full h-full object-cover" />
-          </div>
-          <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="/images/411652522_846458160817754_3403469319257241473_n.jpg" alt="Team activity" className="w-full h-full object-cover" />
+          {/* Navigation Buttons */}
+          <div className="flex justify-between items-center mt-6 max-w-[70%] mx-auto">
+            {/* Dots */}
+            <div className="flex space-x-2">
+              <button className="w-8 h-2 rounded-full bg-[#008B9C]"></button>
+              <button className="w-2 h-2 rounded-full bg-gray-300"></button>
+              <button className="w-2 h-2 rounded-full bg-gray-300"></button>
+              <button className="w-2 h-2 rounded-full bg-gray-300"></button>
+            </div>
+            {/* Arrows */}
+            <div className="flex space-x-3">
+              <button className="w-10 h-10 rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-[#008B9C] flex items-center justify-center transition-colors">
+                <i className="fa-solid fa-chevron-left"></i>
+              </button>
+              <button className="w-10 h-10 rounded-full bg-blue-50 text-[#008B9C] hover:bg-blue-100 flex items-center justify-center transition-colors">
+                <i className="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -302,17 +425,33 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
           <h2 className="text-3xl font-bold text-gray-800 mb-2">{locale === 'vi' ? 'Tìm kiếm công việc theo Location' : 'ロケーションで仕事を探す'}</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-             <div className="h-64 rounded-xl overflow-hidden mb-4">
-               <img src="/images/Vietnam-Summit.jpg" alt="Hà Nội" className="w-full h-full object-cover" />
-             </div>
-             <h3 className="text-xl font-bold text-gray-800">Hà Nội</h3>
+          {/* Hanoi Location Card */}
+          <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-lg transition-shadow duration-300 p-3">
+            <div className="rounded-xl overflow-hidden relative mb-4">
+              <img
+                alt="Hà Nội"
+                className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                src="/images/Vietnam-Summit.jpg"
+              />
+            </div>
+            <div className="px-2 pb-2">
+              <h3 className="text-xl font-bold text-gray-800">Hà Nội</h3>
+              <p className="text-gray-500">30 công việc open</p>
+            </div>
           </div>
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-             <div className="h-64 rounded-xl overflow-hidden mb-4">
-               <img src="/images/SEMINAR-JP-LOGO-26.jpg" alt="Japan" className="w-full h-full object-cover" />
-             </div>
-             <h3 className="text-xl font-bold text-gray-800">Japan</h3>
+          {/* Japan Location Card */}
+          <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-lg transition-shadow duration-300 p-3">
+            <div className="rounded-xl overflow-hidden relative mb-4">
+              <img
+                alt="Japan"
+                className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                src="/images/SEMINAR-JP-LOGO-26.jpg"
+              />
+            </div>
+            <div className="px-2 pb-2">
+              <h3 className="text-xl font-bold text-gray-800">Japan</h3>
+              <p className="text-gray-500">12 công việc open</p>
+            </div>
           </div>
         </div>
       </section>
@@ -324,6 +463,10 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
       >
         <i className="fa-solid fa-bell"></i>
       </button>
+
+      <Suspense fallback={null}>
+        <JobsModalWrapper />
+      </Suspense>
     </>
   )
 }

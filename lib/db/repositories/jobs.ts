@@ -1,26 +1,15 @@
 import { Job } from '../types';
 import { parseJson } from '../json';
 import { isMockDataMode } from '../../config/data-source';
-import mockData from '../../../coding-packs/crawlings/processed/mock-seed.json';
+import { jobs, adapters } from '../../mock-data';
 import { sql } from '../connection';
 
 export const jobsRepository = {
-  findAllPublished: async (): Promise<Job[]> => {
+  findAllPublished: async (locale: string = 'vi'): Promise<Job[]> => {
     if (isMockDataMode()) {
-      return (mockData.jobs as any[]).filter((j: any) => j.status === 'published').map((j: any) => ({
-        ...j,
-        image: j.image || null,
-        department: j.department || null,
-        skills: j.skills || [],
-        tags: j.tags || [],
-        currency: 'VND',
-        summary: j.description,
-        closed_at: null,
-        created_by: null,
-        updated_by: null,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      }));
+      return (jobs || [])
+        .filter(j => j.status === 'published')
+        .map(j => adapters.toDbJob(j, locale)) as Job[];
     }
 
     const rows = await sql`
@@ -33,12 +22,13 @@ export const jobsRepository = {
       ...row,
       skills: parseJson<string[]>(row.skills as string, []),
       tags: parseJson<string[]>(row.tags as string, []),
-      department: null,
-      currency: 'VND',
-      summary: row.description,
-      closed_at: null,
-      created_by: null,
-      updated_by: null
+      department: row.department || null,
+      currency: row.currency || 'VND',
+      summary: row.summary || row.description,
+      closed_at: row.closed_at || null,
+      created_by: row.created_by || null,
+      updated_by: row.updated_by || null,
+      image: row.image || null
     })) as Job[];
   }
 };

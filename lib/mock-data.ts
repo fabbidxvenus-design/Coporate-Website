@@ -1,6 +1,6 @@
 /**
  * Comprehensive Mock Data for Fabbi Corporate Website
- * Based on crawled content from Fabbi Holdings
+ * Consolidated from crawl artifacts in coding-packs/crawlings/processed/
  */
 
 export interface Translation {
@@ -22,6 +22,7 @@ export interface Job {
   benefits: Translation;
   status: 'published' | 'closed';
   published_at: string;
+  image?: string;
 }
 
 export interface NewsArticle {
@@ -31,7 +32,8 @@ export interface NewsArticle {
   excerpt: Translation;
   body: Translation;
   cover_image: string;
-  category: Translation;
+  content_images?: string[];
+  category: string; // Changed to string for easier mapping to categoryLabels
   tags: string[];
   status: 'published' | 'draft';
   author: Translation;
@@ -52,10 +54,62 @@ export interface PortfolioItem {
   year: number;
 }
 
-export const siteSettings = {
+export interface Activity {
+  id: string;
+  title: Translation;
+  icon: string;
+  description: Translation;
+  image: string;
+}
+
+export interface ServiceItem {
+  id: string;
+  title: Translation;
+  slug: string;
+}
+
+export interface LeaderItem {
+  id: string;
+  name: Translation;
+  title: Translation;
+  image: string;
+}
+
+export interface Office {
+  id: string;
+  name: Translation;
+  address: Translation;
+  phone: string;
+}
+
+export interface SiteSettings {
+  companyName: Translation;
+  slogan: Translation;
+  founded: string;
+  representative: {
+    name: Translation;
+    title: Translation;
+  };
+  headcount: string;
+  contactEmail: string;
+  contactPhone: string;
+  socialLinks: {
+    facebook: string;
+    twitter: string;
+    linkedin: string;
+    tiktok: string;
+  };
+  offices: Office[];
+}
+
+export const siteSettings: SiteSettings = {
   companyName: { vi: "Fabbi Holdings", ja: "Fabbi Holdings" },
   slogan: { vi: "Chạm đến tương lai bằng công nghệ", ja: "テクノロジーで未来に触れる" },
   founded: "2018-03-18",
+  representative: {
+    name: { vi: "Vũ Văn Tư", ja: "武 文思 (SABI VU)" },
+    title: { vi: "Chủ tịch kiêm Tổng giám đốc", ja: "代表取締役会長兼CEO" }
+  },
   headcount: "300+",
   contactEmail: "sales@fabbi.com.vn",
   contactPhone: "+84 24 6259 3637",
@@ -71,7 +125,7 @@ export const siteSettings = {
       name: { vi: "Trụ sở Hà Nội", ja: "ハノイ本社" },
       address: {
         vi: "Tầng 11, Detech Tower II, 107 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội",
-        ja: "ハノイ、カウザイ区、グエン・フォン・サック 107、デテック・タワー II、11階"
+        ja: "Tầng 11, Detech Tower II, 107 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội"
       },
       phone: "+84 24 6259 3637"
     },
@@ -80,154 +134,12 @@ export const siteSettings = {
       name: { vi: "Trụ sở Tokyo", ja: "東京本社" },
       address: {
         vi: "Tầng 11, Tòa nhà WTC Annex, 2-3-8 Hamamatsucho, Quận Minato, Tokyo, Nhật Bản",
-        ja: "東京都港区浜松町2-3-8、WTC Annexビル、11階"
+        ja: "〒105-0013 東京都港区海岸1-2-3 汐留芝離宮ビルディング 21階"
       },
       phone: "+81 03-6806-0790"
     }
   ]
 };
-
-export const aboutContent = {
-  heroTitle: { vi: "Lời chào từ Chủ tịch", ja: "代表メッセージ" },
-  heroSubtitle: {
-    vi: "Fabbi khởi nguồn từ chỉ 4 thành viên – và một chữ “khát vọng”.",
-    ja: "Fabbiはわずか4人のメンバーと「志」から始まりました。"
-  },
-  vision: {
-    vi: "Trở thành tập đoàn công nghệ toàn cầu, nơi hội tụ khát vọng, sáng tạo và công nghệ để kiến tạo giá trị bền vững.",
-    ja: "志、創造性、テクノロジーが集結し、持続可能な価値を創造するグローバル・テクノロジー・グループになる。"
-  },
-  mission: {
-    vi: "Fabbi tạo ra các giải pháp công nghệ sáng tạo để giúp khách hàng phát triển, đội ngũ trưởng thành, và xã hội tiến về phía trước.",
-    ja: "Fabbiは革新的なテクノロジーソリューションを創造し、顧客の成長、チームの成熟、そして社会の進歩を支援します。"
-  },
-  values: [
-    {
-      key: "aspiration",
-      title: { vi: "Khát vọng", ja: "志" },
-      description: { vi: "Dám mơ lớn, không chấp nhận giới hạn.", ja: "大きな夢を持ち、限界を受け入れない。" }
-    },
-    {
-      key: "breakthrough",
-      title: { vi: "Đột phá", ja: "突破口" },
-      description: { vi: "Sáng tạo không ngừng, khác biệt để tạo giá trị.", ja: "常に革新し、価値を生み出すために差別化する。" }
-    },
-    {
-      key: "speed",
-      title: { vi: "Tốc độ", ja: "スピード" },
-      description: { vi: "Quyết đoán, Kịp thời.", ja: "決断力があり、タイムリーである。" }
-    },
-    {
-      key: "dedication",
-      title: { vi: "Tận tâm", ja: "献身" },
-      description: { vi: "Hết lòng với khách hàng và đồng đội.", ja: "顧客とチームメイトに全力を尽くす。" }
-    },
-    {
-      key: "sustainability",
-      title: { vi: "Bền vững", ja: "持続可能性" },
-      description: { vi: "Xây giá trị lâu dài, phát triển có trách nhiệm.", ja: "長期的な価値を築き、責任を持って発展する。" }
-    }
-  ]
-};
-
-export const jobs: Job[] = [
-  {
-    id: "job-1",
-    slug: "senior-frontend-engineer-react",
-    title: { vi: "Senior Frontend Engineer (React/Next.js)", ja: "シニアフロントエンドエンジニア (React/Next.js)" },
-    department: { vi: "Engineering", ja: "エンジニアリング" },
-    location: { vi: "Hà Nội, Việt Nam", ja: "ベトナム、ハノイ" },
-    employment_type: { vi: "Full-time", ja: "正社員" },
-    salary_range: { vi: "2000$ - 3500$", ja: "2000$ - 3500$" },
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    description: {
-      vi: "Bạn sẽ tham gia phát triển các dự án E-commerce và Fintech quy mô lớn cho thị trường Nhật Bản và Global, làm việc trực tiếp với đội ngũ kỹ sư giàu kinh nghiệm từ Fabbi. Công việc bao gồm xây dựng và tối ưu các giao diện người dùng phức tạp, tích hợp API, quản lý state với Redux hoặc Zustand, và đảm bảo hiệu suất ứng dụng đạt trên 90 điểm Lighthouse. Bạn cũng sẽ phối hợp chặt chẽ với team Backend, Design và QA để đảm bảo chất lượng sản phẩm. Các công nghệ chính bao gồm React 18, Next.js 14 (App Router), TypeScript, Tailwind CSS, Storybook và Jest. Ngoài ra, bạn sẽ tham gia code review, viết technical documentation và mentorship cho các junior developer trong team. Môi trường làm việc chuyên nghiệp, sử dụng Agile/Scrum, có cơ hội trao đổi kỹ thuật trực tiếp với khách hàng Nhật Bản qua video call và on-site khi cần thiết.",
-      ja: "日本およびグローバル市場向けの、大規模なEコマースおよびフィンテックプロジェクト的开发に参加いただきます。Fabbiのベテランエンジニアチームと直接連携し、複雑なUIの構築と最適化、API統合、Redux/Zustandでの状態管理、アプリケーションのパフォーマンス改善（ Lighthouseスコア90点以上）を担当いただきます。React 18、Next.js 14（App Router）、TypeScript、Tailwind CSS、Storybook、Jestなどの主要テクノロジーを使用します。さらに、コードレビュー、技術ドキュメントの作成、チーム内のジュニア開発者へのメンタリングにも参加いただきます。プロフェッショナルな環境でAgile/Scrumを導入し、必要に応じてビデオ通話およびオンサイトで日本の顧客と直接技術的なやり取りを行う機会もございます。"
-    },
-    requirements: {
-      vi: "Trên 3 năm kinh nghiệm với React, hiểu biết sâu về Next.js và Performance Optimization. Thành thạo TypeScript, HTML5, CSS3 và các framework UI hiện đại. Có kinh nghiệm với RESTful API và GraphQL. Hiểu rõ về Web Performance, Core Web Vitals và cách tối ưu bundle size. Sử dụng được Git, CI/CD pipeline và Docker cơ bản. Tiếng Anh đọc hiểu tài liệu kỹ thuật tốt. Ưu tiên ứng viên có kinh nghiệm với Testing (Jest, Playwright), Design System, hoặc đã làm việc với khách hàng Nhật Bản trước đó.",
-      ja: "Reactでの3年以上の経験があり、Next.jsとパフォーマンス最適化について深い理解があること。TypeScript、HTML5、CSS3、最新UIフレームワークの熟练。RESTful APIおよびGraphQLの経験があること。Webパフォーマンス、Core Web Vitals、バンドルサイズの最適化方法への深い理解。Git、CI/CDパイプライン基本的、Dockerの使用経験。技術文書を読み取る十分な英語力。Testing（Jest、Playwright）、Design Systemの経験、または日本顧客との業務経験がある方を優遇いたします。"
-    },
-    benefits: {
-      vi: "Lương thưởng hấp dẫn, review 2 lần/năm, thưởng dự án và thưởng Tết. Làm việc trong môi trường đa quốc gia, giao tiếp trực tiếp với khách hàng Nhật Bản. Cơ hội onsite Nhật Bản từ 1-3 tháng/năm để trao đổi trực tiếp với team khách hàng. Đào tạo chuyên sâu về Frontend, React và Next.js. Hỗ trợ mua sách kỹ thuật, khóa học online (Udemy, Frontend Masters). Bảo hiểm sức khỏe cao cấp, annual health checkup. Du lịch team building hàng năm, monthly birthday party. WFH linh hoạt 2-3 ngày/tuần. Trang thiết bị máy tính MacBook Pro mới nhất.",
-      ja: "魅力的な給与とボーナス、年2回のレビュー、システムボーナスと年末ボーナス。多国籍環境での勤務、日本の顧客と直接コミュニケーション。 日本へのオンサイト（年1〜3回、1〜3ヶ月）を活用し、顧客チームと直接交流する機会がございます。Frontend、React、Next.jsの専門研修を提供。技術書やオンラインコース（Udemy、Frontend Masters）の費用を補助。高端医療費保险、年度の人間ドック。年間のチームビルディング旅行、月次の誕生日会。週2〜3日のリモートワーク可能。最 новый MacBook Proを配付。"
-    },
-    status: "published",
-    published_at: "2026-05-20T08:00:00Z"
-  },
-  {
-    id: "job-2",
-    slug: "brse-bridge-software-engineer-ja",
-    title: { vi: "Bridge Software Engineer (BrSE) - N1/N2", ja: "ブリッジSE (BrSE) - N1/N2" },
-    department: { vi: "Business", ja: "ビジネス" },
-    location: { vi: "Tokyo, Japan", ja: "日本、東京" },
-    employment_type: { vi: "Full-time", ja: "正社員" },
-    salary_range: { vi: "4M - 7M JPY / Year", ja: "年収 400万 - 700万円" },
-    skills: ["Japanese N1/N2", "Software Engineering", "Project Management"],
-    description: {
-      vi: "Là cầu nối liên lạc giữa team dev Việt Nam và khách hàng Nhật Bản, bạn sẽ chịu trách nhiệm quản lý tiến độ và chất lượng dự án, translate yêu cầu nghiệp vụ, và đảm bảo communication flow suôn sẻ giữa hai bên. Công việc bao gồm: soạn tài liệu kỹ thuật bằng tiếng Nhật, tổ chức và lead meeting với khách hàng (weekly status, sprint review, DEMO), viết SPEC và user story dựa trên yêu cầu Nhật Bản, theo dõi và báo cáo tiến độ dự án cho cả hai phía, xử lý và escalate issues khi cần thiết. Bạn cần hiểu biết về quy trình phát triển phần mềm (Waterfall, Agile) và các công nghệ web cơ bản để giao tiếp hiệu quả với dev team. Kinh nghiệm với JIRA, Redmine, Confluence là điểm cộng.",
-      ja: "ベトナムの開発チームと日本の顧客との間のコミュニケーションの架け橋となり、プロジェクトの進捗と品質を管理いただきます。主な業務は、日本語の技術文書作成、顧客とのミーティングの主催（週次ステータス、スプリントレビュー、デモ）、日本の要件に基づくSPECとユーザーストーリーの作成、両측への進捗報告、問題発生時のエスカレーションです。ソフトウェア開発プロセス（ウォーターフォール、アジャイル）と基本的なWebテクノロジーの知識を持ち、開発チームと効果的にコミュニケーション取れる方が必要です。JIRA、Redmine、Confluenceの経験がある方優遇いたします。"
-    },
-    requirements: {
-      vi: "Tiếng Nhật N2 trở lên (đọc hiểu tài liệu kỹ thuật, viết email business, present trong meeting). Có kinh nghiệm dev hoặc BrSE ít nhất 2 năm. Hiểu biết về quy trình phát triển phần mềm, các framework và ngôn ngữ lập trình phổ biến. Kỹ năng giao tiếp, thuyết trình và đàm phán tốt. Khả năng làm việc dưới áp lực deadline, quản lý nhiều dự án cùng lúc. Ưu tiên có kinh nghiệm onsite tại Nhật Bản hoặc đã làm việc với khách hàng Nhật trực tiếp.",
-      ja: "日本語N2以上（技術文書の読解、ビジネスメールの執筆、ミーティングでのプレゼン可能的）。開発またはBrSEとして少なくとも2年の経験。ソフトウェア開発プロセス、一般的なフレームワークとプログラミング言語への理解。コミュニケーション、プレゼン、ネゴシエーションスキル豊か。締め切り前後の压力下で、複数プロジェクト同時進行的管理能力ある方。 日本へのオンサイト経験または日本の顧客との直接業務経験がある方を優遇いたします。"
-    },
-    benefits: {
-      vi: "Hỗ trợ visa, nhà ở, vé máy bay quốc tế khi cần onsite. Môi trường làm việc chuyên nghiệp tại trung tâm Tokyo hoặc Hà Nội. Đào tạo chuyên sâu về BrSE, kỹ năng giao tiếp và quản lý dự án (PMP, Scrum Master). Cơ hội thăng tiến nhanh lên vị trí Project Manager, Account Manager. Phụ cấp ăn trưa, đi lại, điện thoại. Bảo hiểm sức khỏe quốc tế. Du lịch workcation tại Nhật Bản 1-2 lần/năm. Tham gia các seminar và conference về công nghệ, business Nhật-Việt.",
-      ja: "ビザ、住宅、国際線の飛行機券のサポート（オンサイト必要時）。東京またはハノイの中心部でのプロフェッショナルな作業環境。BrSE、コミニケーションスキル、プロジェクト管理（PMP、Scrum Master）の専門研修を提供。プロジェクトマネージャー、アカウントマネージャーへの早期昇進の機会がございます。 lunch、通勤、电话の手当、国際的な医療費保险を提供。日本のワークケーション旅行（年1〜2回）、日越技術・ビジネスに関するセミナーやカンファレンスへの参加も可能です。"
-    },
-    status: "published",
-    published_at: "2026-05-18T09:00:00Z"
-  },
-  {
-    id: "job-3",
-    slug: "ai-engineer-computer-vision",
-    title: { vi: "AI Engineer (Computer Vision)", ja: "AIエンジニア (コンピュータビジョン)" },
-    department: { vi: "AI R&D", ja: "AI研究開発" },
-    location: { vi: "Hà Nội, Việt Nam", ja: "ベトナム、ハノイ" },
-    employment_type: { vi: "Full-time", ja: "正社員" },
-    salary_range: { vi: "Thỏa thuận", ja: "応相談" },
-    skills: ["Python", "PyTorch", "OpenCV", "Deep Learning"],
-    description: {
-      vi: "Nghiên cứu và triển khai các mô hình AI nhận diện khuôn mặt, phân tích hình ảnh trong y tế và sản xuất. Bạn sẽ làm việc với các dự án AI thực tế, bao gồm: phát triển mô hình Computer Vision cho bài toán Object Detection, Image Segmentation và Face Recognition; fine-tune các pre-trained model (ResNet, YOLO, EfficientNet) trên dataset riêng; xây dựng pipeline xử lý dữ liệu hình ảnh quy mô lớn (1M+ images); triển khai mô hình lên production sử dụng TensorFlow Serving, TorchServe hoặc Triton Inference Server; tối ưu hóa latency và throughput của model (quantization, pruning, distillation). Bạn cũng sẽ nghiên cứu các paper mới nhất về Vision Transformer, CLIP, SAM và đề xuất ứng dụng vào sản phẩm.",
-      ja: "医療や製造における顔認識、画像分析のAIモデルを研究、実装いただきます。実際のAIプロジェクトに対応いただきます：Object Detection、Image Segmentation、Face Recognition向けのComputer Visionモデルの開発；ResNet、YOLO、EfficientNetなどの事前学習済みモデルのファインチューニング（独自データセット）；大規模画像データパイプライン（100万枚以上）の構築；TensorFlow Serving、TorchServe、Triton Inference Serverを使用した本番環境へのモデル デプロイ；量子化、プルーニング蒸留によるモデルのレイテンシとスループットの最適化。さらに、最新のVision Transformer、CLIP、SAMなどの論文を研究し、製品への応用を提案いただきます。"
-    },
-    requirements: {
-      vi: "Có kiến thức tốt về toán học và machine learning, thành thạo Python và các AI framework (PyTorch, TensorFlow). Hiểu biết sâu về Computer Vision: CNN, Object Detection, Image Segmentation, Face Recognition. Kinh nghiệm với Deep Learning frameworks (PyTorch/TensorFlow) ít nhất 2 năm. Biết sử dụng GPU/CUDA để train model, hiểu về model optimization. Có kinh nghiệm deploy model lên cloud (AWS, GCP, Azure). Đọc hiểu paper AI tiếng Anh tốt, khả năng implement từ paper. Ưu tiên có portfolio trên Kaggle, GitHub với các project Computer Vision.",
-      ja: " 数学と機械学習の優れた知識、PythonとAIフレームワーク（PyTorch、TensorFlow）の熟疇。Computer Visionの奥深い理解：CNN、Object Detection、Image Segmentation、Face Recognition。Deep Learningフレームワーク（PyTorch/TensorFlow）での2年以上の経験。GPU/CUDAを使用したモデル訓練、モデル最適化への理解。クラウド（AWS、GCP、Azure）へのモデル デプロイの経験。英語のAI論文の読解力、論文からの実装能力ある方。Kaggle、GitHubでのComputer Visionプロジェクトのポートフォリオがある方を優遇いたします。"
-    },
-    benefits: {
-      vi: "Được làm việc trực tiếp với các chuyên gia AI đầu ngành, cơ hội công bố nghiên cứu trên các tạp chí uy tín. Trang bị GPU RTX 4090 hoặc A100 cho local training. Hỗ trợ đăng ký Arxiv, mua sách NLP/CV chuyên ngành. Khóa học chuyên sâu: Deep Learning Specialization (Coursera), Fast.ai. Tham gia AI competition trong và ngoài nước. Phụ cấp nghiên cứu, hỗ trợ chi phí conference (NeurIPS, CVPR, ICCV). Môi trường research-driven, cho phép 20% thời gian cho pet project liên quan AI.",
-      ja: "業界をリードするAI専門家と直接協力し、权威ある学術誌への研究発表の機会がございます。ローカル訓練用にGPU RTX 4090またはA100を配备。Arxiv登録费用、 NLP/CV専門書の購入補助。Deep Learning Specialization（ coursera）、Fast.aiなどの専門研修を提供。国内外のAIコンテストへの参加可能。研究手当、学会出席費用（NeurIPS、CVPR、ICCV）の補助。研究主導の環境で、AI関連のペットプロジェクトに劳动時間の20%を充てることも可能でございます。"
-    },
-    status: "published",
-    published_at: "2026-05-22T10:00:00Z"
-  },
-  {
-    id: "job-4",
-    slug: "blockchain-developer-solidity",
-    title: { vi: "Blockchain Developer (Solidity/Rust)", ja: "ブロックチェーン開発者 (Solidity/Rust)" },
-    department: { vi: "Engineering", ja: "エンジニアリング" },
-    location: { vi: "Đà Nẵng, Việt Nam", ja: "ベトナム、ダナン" },
-    employment_type: { vi: "Full-time", ja: "正社員" },
-    salary_range: { vi: "2500$ - 4500$", ja: "2500$ - 4500$" },
-    skills: ["Solidity", "Rust", "Web3.js", "Ethereum/Polygon"],
-    description: {
-      vi: "Phát triển smart contract cho sàn giao dịch NFT và nền tảng Carbon Credit Marketplace. Bạn sẽ tham gia vào các dự án Blockchain thực tế: viết smart contract bằng Solidity (ERC-20, ERC-721, ERC-1155), audit code và kiểm tra bảo mật smart contract (Sybil attack, reentrancy, front-running). Phát triển backend service với Node.js/Go để tương tác với blockchain. Tích hợp Web3.js, ethers.js với frontend React/Next.js. Xây dựng và deploy smart contract lên Ethereum, Polygon, BNB Chain. Viết automated test với Foundry, Hardhat, Waffle. Tham gia thiết kế kiến trúc hệ thống blockchain từ đầu, từ whitepaper đến production deployment. Cập nhật xu hướng DeFi, DAO, GameFi và đề xuất tính năng mới cho sản phẩm.",
-      ja: "NFT取引所やカーボンクレジットマーケットプレイスプラットフォーム向けのスマートコントラクトを開発いただきます。実際のBlockchainプロジェクトに参加：Solidity（ERC-20、ERC-721、ERC-1155）でのスマートコントラクト開発、コード監査とセキュリティチェック（Sybil攻撃、再入可能性、フロントランニング）。Node.js/Goでのブロックチェーン相互作用するバックエンドサービス開発。Web3.js、ethers.jsとReact/Next.jsフロントエンドの統合。Ethereum、Polygon、BNB Chainへのスマートコントラクトの構築とデプロイ。Foundry、Hardhat、Waffleでの自動化テスト。产品のホワイトペーパーから本番デプロイメントまでのブロックチェーンシステム設計への参加。DeFi、DAO、GameFiのトレンドを更新し、新機能の提案。"
-    },
-    requirements: {
-      vi: "Kinh nghiệm thực chiến với ít nhất 1 dự án blockchain public (Ethereum, Solana, Polygon), hiểu về bảo mật smart contract. Thành thạo Solidity, Web3.js/ethers.js. Biết sử dụng Hardhat, Foundry hoặc Truffle. Hiểu về consensus mechanism (PoS, PoW), EVM, gas optimization. Kinh nghiệm với Rust (Substrate/Anchor) là điểm cộng lớn. Có portfolio trên GitHub với các dự án blockchain mã nguồn mở. Đọc hiểu EIP, BIP, understand DeFi protocols (Uniswap, Aave, OpenSea). Tư duy security-first, luôn cân nhắc attack vector khi viết code.",
-      ja: "少なくとも1つのパブリックブロック체인プロジェクト（Ethereum、Solana、Polygon）の实务経験があり、スマートコントラクトのセキュリティについて理解していること。Solidity、Web3.js/ethers.jsの熟疇。Hardhat、Foundry、またはTruffle使用経験。コンセンサスメカニズム（PoS、PoW）、EVM、ガス最適化への理解。Rust（Substrate/Anchor）の経験が大きく加点されます。GitHubでのオープンソースブロックチェー проектовポートフォリオある方。EIP、BIP理解、DeFiプロトコル（Uniswap、Aave、OpenSea）読み解き可能。セキュリティファースト思考で、コード 작성時に常に攻撃ベクトルを考慮できる方。"
-    },
-    benefits: {
-      vi: "Bonus dự án hấp dẫn (thưởng token/coin nếu dự án có ICO/IDO), làm việc remote linh hoạt hoặc hybrid tại Hà Nội/Đà Nẵng. Đào tạo chứng chỉ Blockchain (Certified Blockchain Developer - CBD). Cơ hội tham gia hackathon blockchain, Web3 conference (ETH Denver, Token2049, Vietnam Blockchain Week). Trang bị hardware wallet, testnet token cho development. Hỗ trợ phí Gas khi test dApp trên testnet. Tham gia cộng đồng developer Blockchain Việt Nam và quốc tế. Lộ trình thăng tiến: Junior → Senior → Tech Lead → Architect.",
-      ja: "プロジェクトボーナス（ICO/IDO付きプロジェクトはトークン/コインボーナス）、ハノイまたはダナンでのリモートまたはハイブリッド勤務可能。Certified Blockchain Developer - CBD資格研修を提供。ETH Denver、Token2049、Vietnam Blockchain Weekなどのハッカソン、Web3カンファレンス参加の機会がございます。開発用ハードウェアウォレット、テストネットトークン配备。テストネットでのdAppテスト時のガス代補助。ベトナムおよび国際的なBlockchain開発者コミュニティへの参加。キャリアパス：Junior → Senior → Tech Lead → Architect。"
-    },
-    status: "published",
-    published_at: "2026-05-24T14:00:00Z"
-  }
-];
 
 export const newsArticles: NewsArticle[] = [
   {
@@ -239,64 +151,197 @@ export const newsArticles: NewsArticle[] = [
     },
     excerpt: {
       vi: "Vượt qua hàng trăm doanh nghiệp CNTT, Fabbi tiếp tục khẳng định vị thế với giải thưởng Sao Khuê cho giải pháp chuyển đổi số xuất sắc.",
-      ja: "何百ものIT企業を抑え、Fabbiは優れたデジタルトランスフォーメーションソリューションでサオクエ賞を受賞し、その地位を確立し続けています。"
+      ja: "数百のIT企業の中から、Fabbiは優れたデジタルトランスフォーメーションソリューションでサオクエ賞を受賞し、その地位を改めて証明しました。"
     },
     body: {
-      vi: "Năm 2024 đánh dấu cột mốc quan trọng khi Fabbi Holdings tiếp tục được vinh danh tại lễ trao giải Sao Khuê — giải thưởng uy tín nhất trong ngành CNTT Việt Nam. Đây là lần thứ 4 liên tiếp Fabbi nhận được giải thưởng này, một minh chứng cho sự nỗ lực không ngừng của đội ngũ nhân sự trong việc nghiên cứu và phát triển các giải pháp công nghệ cao, đặc biệt là trong lĩnh vực AI và chuyển đổi số.\n\nGiải thưởng Sao Khuê 2024 được tổ chức bởi VINASA với sự tham gia của hơn 500 doanh nghiệp CNTT trên cả nước. Fabbi Holdings đã vượt qua nhiều vòng đánh giá khắt khe về năng lực công nghệ, số lượng và chất lượng dự án đã hoàn thành, cũng như đóng góp cho cộng đồng CNTT Việt Nam.\n\nÔng Nguyễn Văn Minh — Chủ tịch HĐQT Fabbi Holdings — chia sẻ: \"Chúng tôi rất tự hào khi nhận giải thưởng Sao Khuê lần thứ 4 liên tiếp. Thành công này đến từ sự đồng lòng của toàn thể gia đình Fabbi và niềm tin của khách hàng trong suốt thời gian qua. Chúng tôi cam kết sẽ tiếp tục đổi mới, sáng tạo và mang đến những giải pháp công nghệ tốt nhất cho doanh nghiệp Việt Nam và quốc tế.\"\n\nFabbi Holdings được vinh danh ở hạng mục \"Giải pháp chuyển đổi số xuất sắc\" với sản phẩm Fabbi AI Platform — nền tảng AI tự phát triển giúp doanh nghiệp tự động hóa quy trình nghiệp vụ, phân tích dữ liệu và tối ưu hóa vận hành. Nền tảng này đã được triển khai thành công cho hơn 50 doanh nghiệp lớn tại Việt Nam và Nhật Bản, giúp tiết kiệm trung bình 40% chi phí vận hành và tăng 35% hiệu suất lao động.\n\nBên cạnh đó, Fabbi còn gây ấn tượng với dự án Smart Factory cho một tập đoàn sản xuất lớn tại Hải Phòng — hệ thống IoT giám sát nhà máy thông minh với dashboard real-time, cảnh báo tự động và tối ưu năng lượng tiêu thụ giảm 22%. Dự án này đã được đánh giá là một trong những giải pháp Smart Manufacturing tiên tiến nhất Đông Nam Á năm 2024.\n\nLễ trao giải Sao Khuê 2024 có sự tham dự của Bộ trưởng Bộ Thông tin và Truyền thông, lãnh đạo các tỉnh thành và đông đảo đại diện doanh nghiệp CNTT. Fabbi Holdings cũng vinh dự được mời tham gia diễn đàn \"Công nghệ số cho doanh nghiệp Việt\" với bài tham luận về ứng dụng AI trong chuyển đổi số doanh nghiệp vừa và nhỏ.",
-      ja: "2024年は、Fabbi HoldingsがベトナムIT業界でもっとも権威のあるサオクエ賞授賞式で4年連続で表彰された重要な年となりました。これは、当社がAIとデジタルトランスフォーメーションの分野での研究開発にまい進してきたスタッフの絶え間ない努力の証です。\n\nサオクエ賞2024はVINASAが主催し、全国から500社以上のIT企業が出席しました。Fabbi Holdingsは、技術力、完成したプロジェクトの 量と品質、ベトナムのITコミュニティへの貢献について、数多くの厳格な評価を乗り越えて選出されました。\n\nFabbi Holdingsのグエン・バン・ミン取締役会議長しみ：「4年連続でサオクエ賞を 受章でき大変光栄に存じます。この成功はFabbiファミリー全員の團結と、これまでお客様からのご信頼の成果です。新規事業、创新を続け、ベトナムと国際社会のために最良の技術ソリューションを提供することを約束いたします。」\n\nFabbi Holdingsは「優秀デジタルトランスフォーメーションソリューション」部門で表彰され、自家開発のFabbi AI Platformで受賞しました。このプラットフォームは、企業の業務自動化、データ分析、運用最適化を支援するAIプラットフォームで、ベトナムと日本で50社以上に導入され、運用コスト平均40%削減、労働生産性35%向上を達成しています。\n\nさらにFabbiは、ハイフォンにある大手製造グループ向けのSmart Factoryプロジェクトでも印象づけました——リアルタイムダッシュボード、自動アラート、能源消費22%削減を実現するスマート工場IoT監視システムです。このプロジェクトは2024年东南亚最具先进技术のSmart Manufacturingソリューションの1つとして評価されました。\n\nサオクエ賞2024授賞式には情報通信大臣、各省・市の指導者、および多くのIT企業代表が出席しました。Fabbi Holdingsはまた、中小企業のAIデジタルトランスフォーメーション適用に関する提言を行い、「ベトナム企業のためのデジタル技術」フォーラムに招待されました。"
+      vi: "Fabbi Holdings vinh dự đón nhận giải thưởng Sao Khuê 2024, khẳng định vị thế tiên phong trong lĩnh vực chuyển đổi số và AI tại Việt Nam. Đây là kết quả của nỗ lực không ngừng nghỉ trong việc nghiên cứu và phát triển giải pháp công nghệ.\n\nGiải thưởng Sao Khuê là sự ghi nhận xứng đáng cho sự tận tâm của đội ngũ Fabbi trong việc mang đến giá trị thực tiễn cho khách hàng. Chúng tôi cam kết sẽ tiếp tục sáng tạo, đồng hành cùng doanh nghiệp trong hành trình số hóa.\n\nTrong tương lai, Fabbi sẽ tiếp tục tập trung vào các giải pháp AI tự động hóa và Smart Manufacturing, hướng tới mục tiêu trở thành tập đoàn công nghệ toàn cầu.",
+      ja: "Fabbi Holdingsはサオクエ賞2024を受賞し、ベトナムにおけるデジタルトランスフォーメーションとAI分野でのパイオニアとしての地位を確固たるものにしました。これは、テクノロジーソリューションの研究開発における絶え間ない努力の結果です。\n\nサオクエ賞は、お客様に実践的な価値を提供するためのFabbiチームの献身に対する当然の評価です。私たちは引き続き革新を続け、企業のデジタル化の旅に寄り添うことを約束します。\n\n将来的には、FabbiはAI自動化ソリューションとスマートマニュファクチャリングに引き続き注力し、グローバルテクノロジーグループを目指します。"
     },
     cover_image: "/images/Sao-Khue-2024.jpg",
-    category: { vi: "Giải thưởng", ja: "アワード" },
-    tags: ["Sao Khuê", "Công nghệ", "AI"],
+    category: "giai_thuong",
+    tags: ["Sao Khuê", "Công nghệ"],
     status: "published",
     author: { vi: "Ban Truyền thông", ja: "広報部" },
     published_at: "2024-04-15T09:00:00Z"
   },
   {
     id: "news-2",
-    slug: "teambuilding-2023-vung-chan-troi-moi",
+    slug: "nguoi-fabbi-tieu-bieu-q1",
     title: {
-      vi: "Teambuilding 2023: Kết nối đam mê, chinh phục đỉnh cao",
-      ja: "チームビルディング2023：情熱を繋ぎ、頂点を極める"
+      vi: "Người Fabbi tiêu biểu Quý 1",
+      ja: "第1四半期のFabbiの人々"
     },
     excerpt: {
-      vi: "Hành trình Teambuilding đầy cảm xúc của gia đình Fabbi tại bãi biển xanh cát trắng, nơi những trái tim công nghệ cùng hòa chung nhịp đập.",
-      ja: "青い海と白い砂浜でのFabbiファミリーの感動的なチームビルディングの旅。そこではテクノロジーの心が一つになります。"
+      vi: "Vinh danh những gương mặt xuất sắc.",
+      ja: "優秀なFabbiのメンバーを表彰。"
     },
     body: {
-      vi: "Chương trình Teambuilding 2023 đã diễn ra thành công tốt đẹp với sự tham gia của hơn 300 thành viên từ các văn phòng Hà Nội và Nhật Bản. Đây không chỉ là dịp để nghỉ ngơi mà còn là cơ hội để thắt chặt tình đoàn kết, xây dựng văn hóa doanh nghiệp vững mạnh.\n\nTháng 8 năm 2023, đại gia đình Fabbi đã có mặt tại bãi biển Cửa Lò — một trong những bãi biển đẹp nhất miền Trung Việt Nam — để cùng nhau trải nghiệm 3 ngày 2 đêm đầy ý nghĩa. Chương trình được thiết kế với nhiều hoạt động đa dạng, phù hợp với mọi thành viên từ kỹ sư, designer đến quản lý.\n\nNgày đầu tiên, các thành viên được chia thành 8 đội và tham gia các trò chơi teambuilding như \"Xây tháp cao nhất\", \"Cờ hó giải đố\" và \"Thuyền nano vượt sóng\". Những trò chơi này không chỉ mang tính giải trí mà còn rèn luyện kỹ năng phối hợp, giao tiếp và ra quyết định dưới áp lực — những kỹ năng quan trọng trong môi trường làm việc thực tế.\n\nĐêm Gala Dinner là khoảnh khắc đáng nhớ nhất khi toàn bộ Fabbi family cùng nhau nhảy flashmob, hát karaoke và chia sẻ những câu chuyện cảm động. Đặc biệt, chương trình \"Fabbi Got Talent\" đã để các thành viên phô diễn tài năng từ rap, kịch ngắn đến魔术表演, tạo nên tiếng cười và tiếng vỗ tay không ngớt.\n\nNgày cuối cùng, các đội tham gia leo núi Nghĩa trang và tham quan thắng cảnh địa phương. Buổi tối, tất cả cùng tham gia lễ tạ ơn và kết thúc chuyến đi với lời hứa sẽ tiếp tục đồng hành, cùng nhau xây dựng một Fabbi ngày càng mạnh mẽ hơn.\n\n\"Teambuilding năm nay là một trải nghiệm tuyệt vời. Tôi đã hiểu thêm về đồng nghiệp, học được cách lắng nghe và phối hợp với nhau hiệu quả hơn,\" — chia sẻ của một kỹ sư từ văn phòng Tokyo. Nhiều thành viên cũng cho biết sự kiện này đã giúp họ cảm thấy gắn kết hơn với công ty và đồng nghiệp dù làm việc ở các quốc gia khác nhau.\n\nNăm nay, Fabbi dự kiến tổ chức Teambuilding 2024 tại Okinawa, Nhật Bản — kết hợp giữa hoạt động team building và khám phá văn hóa Nhật Bản, tạo cơ hội cho các thành viên Việt Nam và Nhật Bản gắn kết sâu hơn.",
-      ja: "チームビルディング2023プログラムは、ハノイと日本のオフィスから300人以上のメンバーが参加し、大成功を収めました。これは単なる休息の機会ではなく、団結を強め、強力な企業文化を築く機会でもありました。\n\n2023年8月、ベトナム中部の最も美しいビーチの1つであるキャNossa Lò海滩にFabbiファミリーが集結し、意義深い3日間の体験を共有しました。エンジニア、デザイナー、マネージャーまで、あらゆるメンバーに適した多様なアクティビティが用意されていました。\n\n初日は8チームに別れ、「一番高い塔を作ろう」「旗爭い 解謎」「波浪突破舟Nano」などのチームビルディングゲームに参加しました。これらのゲームは単にエンターテインメント目的ではなく、協調、コミュニケーション、压力下での意思決定のスキルを向上させる设计的で、実際の職場環境でも重要なスキルです。\n\nガラディナーは、全Fabbiファミリーがフラッシュモブを踊ったり、カラオケで歌ったり、感動的なストーリーを共有した忘れられない瞬間でした。特に「Fabbi Got Talent」プログラムでは、ラップ、短劇、マジックショーなどの才能披露が行われ笑いと拍手が絶えませんでした。\n\n最終日には各チームが山岳地帯を登山し、現地の景勝地を観光しました。夕方には感謝の儀式を行い、共に更强いFabbiを築いていくという誓いを持って旅を閉じました。\n\n「今年のチームビルディングはとても素晴らしい体験でした。同僚のことをもっと理解し、より効果的に耳を傾け、協力する方法を学びました」と東京のオフィスから参加したエンジニアが共有してくれました。多くのメンバーも、このイベントがどんなに異なる国で働いていても会社と同事への帰属意識を高めてくれたと述べてくれました。\n\n今年はinawa、日本でのチームビルディング2024の開催を予定しています——チームビルディング活動と日本文化の発見を組み合わせ、ベトナムと日本のメンバーがより深く結びつく機会を作りたいと考えています。"
+      vi: "Vinh danh những gương mặt xuất sắc đã có đóng góp to lớn cho Fabbi trong Quý 1. Họ không chỉ là những nhân viên giỏi mà còn là những tấm gương về sự nhiệt huyết và tinh thần học hỏi không ngừng.\n\nĐại diện Ban Nhân sự cho biết: 'Chúng tôi rất tự hào về sự phát triển của các bạn. Sự đóng góp của các bạn chính là động lực để Fabbi vươn xa hơn trên bản đồ công nghệ khu vực.'\n\nBuổi vinh danh không chỉ trao thưởng mà còn là dịp để chia sẻ về những dự án đầy thách thức đã vượt qua. Fabbi luôn tạo môi trường để nhân viên tỏa sáng và phát huy tài năng.",
+      ja: "第1四半期にFabbiに多大な貢献をした優秀なメンバーを表彰します。彼らは優れた従業員であるだけでなく、熱意と絶え間ない学習精神の模範でもあります。\n\n人事部は次のように述べています。「私たちは皆さんの成長を非常に誇りに思います。皆さんの貢献こそが、Fabbiが地域のテクノロジーマップ上でさらに飛躍するための原動力です。」\n\n表彰式は単なる授与だけでなく、困難なプロジェクトを乗り越えた経験を共有する機会でもあります。Fabbiは常に、従業員が輝き、才能を発揮できる環境を作り続けています。"
     },
-    cover_image: "/images/Teambuilding-scaled.jpg",
-    category: { vi: "Văn hóa", ja: "カルチャー" },
-    tags: ["Teambuilding", "Văn hóa Fabbi"],
+    cover_image: "/images/Mr-LinhNV.png",
+    category: "nguoi_fabbi",
+    tags: ["Người Fabbi"],
     status: "published",
-    author: { vi: "Ban Văn hóa", ja: "文化部" },
-    published_at: "2023-08-20T14:30:00Z"
+    author: { vi: "Ban Nhân sự", ja: "人事部" },
+    published_at: "2024-05-20T09:00:00Z"
   },
   {
     id: "news-3",
-    slug: "hop-tac-chien-luoc-vn-jp-2024",
+    slug: "hoat-dong-teambuilding-he-2024",
     title: {
-      vi: "Fabbi Holdings tăng cường hợp tác chiến lược công nghệ Việt - Nhật 2024",
-      ja: "Fabbi Holdingsが2024年ベトナム・日本技術戦略的パートナーシップを強化"
+      vi: "Teambuilding hè 2024 tại Đà Nẵng",
+      ja: "ダナンでのサマーチームビルディング2024"
     },
     excerpt: {
-      vi: "Sự kiện kết nối doanh nghiệp Việt Nam - Nhật Bản với sự tham gia của nhiều tập đoàn lớn.",
-      ja: "多くの大企業が参加したベトナム・日本企業マッチングイベント。"
+      vi: "Kết nối sức mạnh tại bãi biển Đà Nẵng.",
+      ja: "ダナンのビーチで結束を深める。"
     },
     body: {
-      vi: "Fabbi Holdings tự hào là đơn vị tiên phong trong việc thúc đẩy quan hệ hợp tác kinh tế, đặc biệt trong lĩnh vực ICT giữa hai quốc gia Việt Nam và Nhật Bản. Năm 2024, Fabbi đã tích cực mở rộng và củng cố mạng lưới đối tác chiến lược với nhiều tập đoàn lớn tại cả hai quốc gia.\n\nTháng 3/2024, Fabbi ký kết Biên bản ghi nhớ (MoU) hợp tác chiến lược với Công ty TNHH System Intelligence (Tokyo) — đối tác chuyên về giải pháp AI và tự động hóa doanh nghiệp. Theo thỏa thuận, hai bên sẽ cùng phát triển nền tảng Fabbi AI Platform phiên bản Nhật Bản, tích hợp các giải pháp AI của System Intelligence và mở rộng thị trường sang khu vực Đông Nam Á.\n\nCũng trong quý I/2024, Fabbi hợp tác với Đại học Waseda (Tokyo) trong dự án nghiên cứu ứng dụng Computer Vision trong lĩnh vực y tế. Dự án có tổng giá trị 2 tỷ JPY, thời gian thực hiện 24 tháng, với mục tiêu phát triển hệ thống chẩn đoán hình ảnh y tế hỗ trợ bác sĩ trong việc phát hiện sớm bệnh lý từ ảnh X-quang và MRI.\n\nBên cạnh đó, Fabbi đã tham gia Hội nghị kinh tế Việt - Nhật 2024 tại Hà Nội với vai trò diễn giả chính về chủ đề \"Ứng dụng AI trong doanh nghiệp vừa và nhỏ\". Hội nghị thu hút hơn 300 doanh nghiệp từ hai nước, trong đó 50 doanh nghiệp đã đăng ký tìm hiểu về giải pháp của Fabbi sau khi nghe bài tham luận.\n\nĐặc biệt, tháng 6/2024, Fabbi Holdings chính thức trở thành thành viên của JISA (Japan Information Technology Services Industry Association) — hiệp hội ngành công nghiệp IT hàng đầu Nhật Bản. Việc gia nhập JISA mở ra cơ hội lớn cho Fabbi tiếp cận các dự án CNTT quy mô lớn tại Nhật Bản, đồng thời là cơ sở để Fabbi xây dựng uy tín và thương hiệu tại thị trường này.\n\n\"Việc hợp tác với các đối tác Nhật Bản không chỉ giúp Fabbi mở rộng thị trường mà còn nâng cao năng lực công nghệ thông qua việc học hỏi các phương pháp làm việc chuyên nghiệp và tiêu chuẩn chất lượng cao của Nhật Bản,\" — ông Trần Đình Phong, Tổng Giám đốc Fabbi Holdings chia sẻ tại Hội nghị.\n\nNăm 2024, Fabbi dự kiến tăng trưởng 60% doanh thu từ thị trường Nhật Bản, với danh mục dự án bao gồm E-commerce, Fintech, Smart Factory và AI Solutions cho các doanh nghiệp Nhật Bản.",
-      ja: "Fabbi Holdingsは、特にベトナムと日本の両国間のICT分野における経済協力関係を促進する先駆者であることを誇りに思っています。2024年、Fabbiは両国の大手企业集团との戦略的パートナーシップネットワークを積極的に拡大・強化してきました。\n\n2024年3月、Fabbiは東京のSystem Intelligence株式会社（AI・企業自動化ソリューション専門）と戦略的協力協定（MoU）に署名しました。協定に基づき、両社は日本市場向けFabbi AI Platformの共同開発、System IntelligenceのAIソリューション統合、東南アジア市場への展開を行います。\n\n2024年第1四半期には також、Fabbiiは東京农业大学と医療分野へのComputer Vision応用に関する研究プロジェクトで協力しました。プロジェクト総額20億円、実施期間24ヶ月、AI支援画像診断システム（X線・MRI画像からの疾患早期発見支援）の開発を目指します。\n\nさらにFabbiは、ハノイで開催された2024年ベトナム・日本経済会議に「中小企業のAI応用」をテーマに基調講演者として参加しました。会议には両国から300社以上が出席し、Fabbiのソリューションについて听完基調演讲後50社が информацииを求めました。\n\n特に2024年6月、Fabbi Holdingsは日本のトップITサービス産業団体であるJISA（Japan Information Technology Services Industry Association）の正会員に正式加入しました。JISA加入により、日本での大規模ICTプロジェクトへのアクセスが開かれ、日本市場での信頼性とブランド構築の基盤になります。\n\n「日本のパートナーとの協力は、日本から学ぶ専門的な勤務 方法や高品質基準を通じて技術を向上させるだけでなく、Fabbiの市場を拡大するのに役立ちます」とFabbii Holdingsのチャン・ディン・フォン最高経営責任者が会議で共有してくれました。\n\n2024年、Fabbiは日本の市場からの売上を60%増加预计しており、Eコマース、Fintech、Smart Factory、日本企業向けAIソリューションを含むプロジェクトポートフォリオを持つています。"
+      vi: "Chuyến đi Teambuilding tại Đà Nẵng đã để lại nhiều kỷ niệm khó quên. Với các hoạt động team building đầy năng lượng trên bãi biển Mỹ Khê, chúng tôi đã cùng nhau vượt qua những thử thách cam go.\n\nKhông chỉ là những trò chơi vận động, chương trình còn là dịp để các bộ phận giao lưu, thấu hiểu nhau hơn. Từ những cuộc thi nhỏ đến đêm Gala Dinner ấm cúng, tinh thần đồng đội đã được đẩy lên cao trào.\n\n'Đà Nẵng không chỉ đẹp bởi cảnh sắc mà còn đẹp bởi sự gắn kết mà chúng tôi tạo ra ở đây,' một thành viên chia sẻ. Chuyến đi này chắc chắn sẽ là nguồn năng lượng mới để tất cả chúng tôi bắt đầu những dự án lớn sắp tới.",
+      ja: "ダナンでのチームビルディング旅行は、忘れられない思い出をたくさん残しました。ミーケビーチでのエネルギッシュなチームビルディング活動を通じて、私たちは困難な課題を一緒に乗り越えました。\n\n単なる運動ゲームだけでなく、各部署が交流し、お互いをより深く理解する機会にもなりました。小さな競技から温かいガラディナーまで、チームスピリットは最高潮に達しました。\n\n「ダナンはその景色だけでなく、私たちがここで築いた絆によっても美しいです」とメンバーの一人が語りました。この旅行は、私たちが今後の大きなプロジェクトを開始するための新しいエネルギー源になることは間違いありません。"
+    },
+    cover_image: "/images/Teambuilding-scaled.jpg",
+    category: "cac_hoat_dong",
+    tags: ["Teambuilding"],
+    status: "published",
+    author: { vi: "Ban Văn hóa", ja: "文化部" },
+    published_at: "2024-05-25T09:00:00Z"
+  },
+  {
+    id: "news-4",
+    slug: "chuyen-nguoi-fabbi-dev-vuon-minh",
+    title: {
+      vi: "Chuyện Người Fabbi: Hành trình từ Fresher đến Senior",
+      ja: "Fabbiの人々の物語：フレッシャーからシニアへの道のり"
+    },
+    excerpt: {
+      vi: "Lắng nghe chia sẻ từ các bạn lập trình viên đã gắn bó và trưởng thành cùng Fabbi.",
+      ja: "Fabbiと共に歩み、成長してきたプログラマーたちの声をお聞きください。"
+    },
+    body: {
+      vi: "Hành trình phát triển tại Fabbi không bao giờ là một đường thẳng đơn giản. Đó là sự kết hợp giữa đào tạo bài bản, mentorship từ những anh chị đi trước và cơ hội được thử sức thực tế ngay từ những ngày đầu.\n\nTừ những dòng code đầu tiên còn nhiều bỡ ngỡ, các bạn Fresher đã nhanh chóng trở thành những nhân tố chủ chốt. Tại Fabbi, chúng tôi không chỉ làm việc, chúng tôi cùng nhau lớn lên. Mỗi thử thách trong dự án là một bài học đắt giá, và mỗi thành công là niềm tự hào chung của cả đội ngũ.\n\nChúng tôi tiếp tục tìm kiếm những tài năng mới, những con người khao khát được chinh phục công nghệ. Nếu bạn đang tìm kiếm một nơi không chỉ để 'làm việc' mà là để 'phát triển', Fabbi chính là nhà.",
+      ja: "Fabbiでの成長の旅は、決して単純な一直線ではありません。体系的なトレーニング、先輩からのメンターシップ、そして入社当初からの実践的な機会の組み合わせです。\n\n初めてのコードに戸惑っていたフレッシャーたちは、すぐに重要な戦力へと成長しました。Fabbiでは、私たちは単に仕事をするだけでなく、共に成長していきます。プロジェクトにおけるすべての課題は価値ある教訓であり、すべての成功はチーム全体の誇りです。\n\n私たちは、テクノロジーを征服しようと意欲を持つ新しい才能を常に探し求めています。単に「仕事」をするだけでなく、「成長」できる場所を探しているなら、Fabbiこそがその場所です。"
     },
     cover_image: "/images/Hop-tac-CN-VN-HK-2024.jpg",
-    category: { vi: "Sự kiện", ja: "イベント" },
-    tags: ["Hợp tác", "ICT", "Nhật Bản"],
+    category: "nguoi_fabbi",
+    tags: ["Người Fabbi", "Career"],
     status: "published",
-    author: { vi: "Ban Truyền thông", ja: "広報部" },
+    author: { vi: "Ban Nhân sự", ja: "人事部" },
     published_at: "2024-05-10T09:00:00Z"
   }
 ];
+
+export const jobs: Job[] = [
+  {
+    id: "job-1",
+    slug: "senior-fullstack-developer",
+    title: { vi: "Senior Fullstack Developer", ja: "シニアフルスタック開発者" },
+    department: { vi: "Engineering", ja: "エンジニアリング" },
+    location: { vi: "Hà Nội / Hybrid", ja: "ハノイ / ハイブリッド" },
+    employment_type: { vi: "Toàn thời gian", ja: "正社員" },
+    salary_range: { vi: "35.000.000 - 55.000.000 VND", ja: "35,000,000 - 55,000,000 VND" },
+    skills: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "AWS"],
+    description: {
+      vi: "Fabbi đang tìm kiếm Senior Fullstack Developer tham gia xây dựng các nền tảng web quy mô lớn cho khách hàng Nhật Bản và Việt Nam. Bạn sẽ làm việc trực tiếp với BA, PM, designer và đội backend/frontend để biến yêu cầu nghiệp vụ thành sản phẩm ổn định, dễ mở rộng và có trải nghiệm người dùng tốt.\n\nVai trò này phù hợp với ứng viên đã từng dẫn dắt module hoặc team nhỏ, có khả năng nhìn vấn đề từ cả góc độ kỹ thuật lẫn sản phẩm. Bạn không chỉ viết code mà còn tham gia review kiến trúc, tối ưu hiệu năng, chuẩn hóa luồng phát triển và hỗ trợ các thành viên junior phát triển kỹ năng.\n\nTrong các dự án thực tế, bạn sẽ được tham gia từ giai đoạn phân tích yêu cầu, thiết kế API, xây dựng UI, tích hợp hệ thống, triển khai CI/CD đến vận hành sau release. Fabbi ưu tiên cách làm rõ ràng, minh bạch, có trách nhiệm với chất lượng sản phẩm và tác động thực tế đến khách hàng.",
+      ja: "Fabbiでは、日本およびベトナムのお客様向けに大規模なWebプラットフォームを構築するシニアフルスタック開発者を募集しています。BA、PM、デザイナー、バックエンド・フロントエンドチームと連携し、業務要件を安定性と拡張性の高いプロダクトへ落とし込んでいただきます。\n\nこのポジションは、モジュールや小規模チームのリード経験があり、技術とプロダクトの両面から課題を捉えられる方に適しています。実装だけでなく、アーキテクチャレビュー、パフォーマンス改善、開発フローの標準化、ジュニアメンバーの育成にも関わります。\n\n要件分析、API設計、UI構築、システム連携、CI/CD、リリース後の運用まで、実プロジェクトの幅広い工程に参加できます。"
+    },
+    requirements: {
+      vi: "Tối thiểu 4 năm kinh nghiệm phát triển web application với JavaScript/TypeScript. Thành thạo React hoặc Next.js, có kinh nghiệm xây dựng component có khả năng tái sử dụng và tối ưu hiệu năng render.\n\nCó kinh nghiệm thiết kế REST API hoặc GraphQL, làm việc với cơ sở dữ liệu quan hệ như PostgreSQL/MySQL và hiểu các nguyên tắc transaction, indexing, migration. Biết cách debug vấn đề production, đọc log, phân tích nguyên nhân gốc và đưa ra phương án khắc phục bền vững.\n\nƯu tiên ứng viên từng làm việc với khách hàng Nhật, có khả năng đọc hiểu tài liệu tiếng Anh hoặc tiếng Nhật, quen với Agile/Scrum, code review và quy trình release có kiểm soát. Tư duy ownership, giao tiếp rõ ràng và chủ động làm rõ yêu cầu là bắt buộc.",
+      ja: "JavaScript/TypeScriptを用いたWebアプリケーション開発経験4年以上。ReactまたはNext.jsに精通し、再利用可能なコンポーネント設計とレンダリングパフォーマンス改善の経験があること。\n\nREST APIまたはGraphQLの設計経験、PostgreSQL/MySQLなどのリレーショナルデータベースの利用経験、transaction・indexing・migrationへの理解が必要です。\n\n日本のお客様との開発経験、英語または日本語ドキュメントの読解力、Agile/Scrum、コードレビュー、管理されたリリースプロセスの経験がある方を歓迎します。"
+    },
+    benefits: {
+      vi: "Mức lương cạnh tranh theo năng lực, review định kỳ và thưởng theo hiệu quả dự án. Môi trường làm việc hybrid linh hoạt, thiết bị làm việc đầy đủ, cơ hội tham gia dự án lớn với khách hàng Nhật Bản.\n\nĐược đào tạo kỹ thuật, ngoại ngữ, kỹ năng quản lý dự án; có lộ trình phát triển lên Tech Lead, Solution Architect hoặc Engineering Manager. Bảo hiểm, khám sức khỏe, du lịch, teambuilding và các hoạt động nội bộ được tổ chức thường xuyên.",
+      ja: "能力に応じた競争力のある給与、定期評価、プロジェクト成果に応じた報酬があります。柔軟なハイブリッド勤務、十分な作業環境、日本のお客様との大規模プロジェクトに参加する機会があります。\n\n技術、語学、プロジェクト管理の研修を受けられ、Tech Lead、Solution Architect、Engineering Managerへのキャリアパスがあります。"
+    },
+    status: "published",
+    published_at: "2024-06-01T09:00:00Z",
+    image: "/images/Hop-tac-CN-VN-HK-2024.jpg"
+  },
+  {
+    id: "job-2",
+    slug: "business-analyst-japanese-market",
+    title: { vi: "Business Analyst - Japanese Market", ja: "ビジネスアナリスト（日本市場）" },
+    department: { vi: "Business Analysis", ja: "ビジネス分析" },
+    location: { vi: "Hà Nội", ja: "ハノイ" },
+    employment_type: { vi: "Toàn thời gian", ja: "正社員" },
+    salary_range: { vi: "25.000.000 - 45.000.000 VND", ja: "25,000,000 - 45,000,000 VND" },
+    skills: ["Business Analysis", "Japanese N2", "Agile", "Figma", "SQL", "Documentation"],
+    description: {
+      vi: "Business Analyst tại Fabbi đóng vai trò cầu nối giữa khách hàng Nhật Bản và đội phát triển tại Việt Nam. Bạn sẽ tiếp nhận nhu cầu kinh doanh, phân tích quy trình hiện tại, đề xuất luồng nghiệp vụ tối ưu và chuyển hóa thành tài liệu rõ ràng để đội kỹ thuật triển khai chính xác.\n\nCông việc bao gồm tổ chức workshop với khách hàng, viết requirement, user story, acceptance criteria, wireframe, hỗ trợ QA xây dựng test case và đồng hành cùng PM trong quá trình quản lý thay đổi. Đây là vị trí có ảnh hưởng trực tiếp đến chất lượng sản phẩm vì mọi quyết định phân tích đều tác động đến trải nghiệm cuối cùng của người dùng.\n\nBạn sẽ được làm việc trong môi trường đa văn hóa, tiếp xúc thường xuyên với khách hàng Nhật, học cách vận hành dự án chuẩn offshore và phát triển năng lực tư vấn giải pháp.",
+      ja: "Fabbiのビジネスアナリストは、日本のお客様とベトナム開発チームをつなぐ重要な役割を担います。ビジネス要件を把握し、現行業務を分析し、最適な業務フローを提案し、開発チームが正確に実装できる明確なドキュメントへ落とし込みます。\n\nお客様とのワークショップ、要件定義、ユーザーストーリー、受入条件、ワイヤーフレーム作成、QAのテストケース作成支援、変更管理などを担当します。\n\n多文化環境で日本のお客様と日常的に連携し、オフショア開発とソリューション提案力を伸ばせるポジションです。"
+    },
+    requirements: {
+      vi: "Có ít nhất 2 năm kinh nghiệm Business Analyst trong dự án phần mềm. Giao tiếp tiếng Nhật tương đương N2 trở lên, có khả năng làm việc trực tiếp với khách hàng qua meeting, chat và tài liệu.\n\nThành thạo viết tài liệu yêu cầu, user story, flow diagram, wireframe và acceptance criteria. Hiểu vòng đời phát triển phần mềm, biết cách phối hợp với developer, tester, designer và PM để xử lý thay đổi yêu cầu.\n\nƯu tiên ứng viên có nền tảng kỹ thuật, từng làm dự án web/mobile, hiểu SQL cơ bản, biết đọc API spec và có tư duy phân tích hệ thống. Cần cẩn thận, logic, chủ động hỏi rõ vấn đề và có khả năng diễn đạt mạch lạc.",
+      ja: "ソフトウェア開発プロジェクトでのBA経験2年以上。N2相当以上の日本語力を持ち、会議、チャット、ドキュメントを通じてお客様と直接コミュニケーションできること。\n\n要件定義書、ユーザーストーリー、フロー図、ワイヤーフレーム、受入条件の作成に慣れていること。ソフトウェア開発ライフサイクルを理解し、開発者、テスター、デザイナー、PMと連携できること。\n\n技術バックグラウンド、Web/モバイル案件経験、基本的なSQL、API仕様理解がある方を歓迎します。"
+    },
+    benefits: {
+      vi: "Cơ hội làm việc trực tiếp với khách hàng Nhật Bản, phát triển tiếng Nhật chuyên ngành và kỹ năng tư vấn nghiệp vụ. Lộ trình phát triển lên Senior BA, Product Owner hoặc Project Manager.\n\nThu nhập cạnh tranh, thưởng dự án, hỗ trợ chứng chỉ, lớp học nội bộ, bảo hiểm đầy đủ, nghỉ phép năm, du lịch công ty và môi trường trẻ trung, hỗ trợ nhau trong công việc.",
+      ja: "日本のお客様と直接働き、専門的な日本語力と業務コンサルティング力を高める機会があります。Senior BA、Product Owner、Project Managerへのキャリアパスがあります。\n\n競争力のある給与、プロジェクトボーナス、資格支援、社内研修、保険、年次休暇、社員旅行などがあります。"
+    },
+    status: "published",
+    published_at: "2024-06-05T09:00:00Z",
+    image: "/images/Fabbi-x-CMC-1.jpg"
+  },
+  {
+    id: "job-3",
+    slug: "ai-engineer-computer-vision",
+    title: { vi: "AI Engineer - Computer Vision", ja: "AIエンジニア - コンピュータビジョン" },
+    department: { vi: "AI Lab", ja: "AIラボ" },
+    location: { vi: "Hà Nội / Remote", ja: "ハノイ / リモート" },
+    employment_type: { vi: "Toàn thời gian", ja: "正社員" },
+    salary_range: { vi: "40.000.000 - 70.000.000 VND", ja: "40,000,000 - 70,000,000 VND" },
+    skills: ["Python", "PyTorch", "OpenCV", "MLOps", "Computer Vision", "Docker"],
+    description: {
+      vi: "AI Engineer tại Fabbi tham gia nghiên cứu và triển khai các giải pháp Computer Vision cho nhà máy, bán lẻ, logistics và kiểm định chất lượng. Bạn sẽ xây dựng pipeline từ thu thập dữ liệu, gán nhãn, huấn luyện mô hình, đánh giá, tối ưu inference đến triển khai thực tế trên cloud hoặc edge device.\n\nCác bài toán có thể bao gồm phát hiện lỗi sản phẩm, nhận diện đối tượng, OCR, tracking, phân tích hành vi hoặc tự động hóa kiểm tra hình ảnh. Bạn sẽ phối hợp với khách hàng để hiểu bối cảnh vận hành, chuyển mục tiêu kinh doanh thành metric kỹ thuật và đảm bảo mô hình hoạt động ổn định trong môi trường thực tế.\n\nFabbi khuyến khích cách làm thực dụng: mô hình tốt không chỉ nằm ở accuracy mà còn ở tốc độ, chi phí, khả năng vận hành và khả năng giải thích cho khách hàng.",
+      ja: "FabbiのAIエンジニアは、製造、小売、物流、品質検査向けのComputer Visionソリューションの研究・実装に携わります。データ収集、アノテーション、モデル学習、評価、推論最適化、クラウドまたはエッジデバイスへの導入まで担当します。\n\n不良検知、物体認識、OCR、トラッキング、行動分析、画像検査自動化などの課題に取り組みます。\n\nFabbiでは、accuracyだけでなく、速度、コスト、運用性、説明可能性を重視した実用的なAI開発を大切にしています。"
+    },
+    requirements: {
+      vi: "Có ít nhất 2 năm kinh nghiệm với Python và một framework ML như PyTorch hoặc TensorFlow. Hiểu các kiến trúc phổ biến trong Computer Vision như CNN, YOLO, segmentation, OCR hoặc transformer-based vision models.\n\nCó kinh nghiệm xử lý dữ liệu ảnh, augmentation, đánh giá mô hình, tối ưu inference và đóng gói mô hình bằng Docker/API. Biết sử dụng Git, Linux, notebook, logging thí nghiệm và có thói quen ghi lại kết quả để so sánh có hệ thống.\n\nƯu tiên ứng viên từng triển khai mô hình lên production, có kinh nghiệm MLOps, ONNX/TensorRT, cloud GPU hoặc edge device. Khả năng đọc paper, thử nghiệm nhanh và giải thích trade-off rõ ràng là lợi thế lớn.",
+      ja: "PythonおよびPyTorchまたはTensorFlowなどのMLフレームワーク経験2年以上。CNN、YOLO、segmentation、OCR、TransformerベースのVision Modelなどへの理解が必要です。\n\n画像データ処理、augmentation、モデル評価、推論最適化、Docker/APIによるモデル提供の経験があること。Git、Linux、notebook、実験ログを扱えること。\n\nProduction導入、MLOps、ONNX/TensorRT、クラウドGPU、エッジデバイス経験がある方を歓迎します。"
+    },
+    benefits: {
+      vi: "Được làm các bài toán AI có dữ liệu và ngữ cảnh thực tế, có cơ hội thử nghiệm công nghệ mới và tham gia xây dựng năng lực AI Lab của Fabbi. Ngân sách học tập, chia sẻ kỹ thuật nội bộ và hỗ trợ tham gia hội thảo/chứng chỉ phù hợp.\n\nChế độ lương thưởng cạnh tranh, làm việc linh hoạt, bảo hiểm đầy đủ, review năng lực định kỳ và cơ hội phát triển thành AI Lead hoặc Solution Consultant.",
+      ja: "実データと実業務に基づくAI課題に取り組み、新技術を試しながらFabbi AI Labの能力構築に参加できます。学習予算、社内技術共有、カンファレンス・資格支援があります。\n\n競争力のある給与、柔軟な勤務、保険、定期評価、AI LeadまたはSolution Consultantへの成長機会があります。"
+    },
+    status: "published",
+    published_at: "2024-06-10T09:00:00Z",
+    image: "/images/Zenpost-0-1-1024x532.png"
+  }
+];
+
+export const aboutContent = {
+  heroTitle: { vi: "Về Fabbi", ja: "Fabbiについて" },
+  heroSubtitle: {
+    vi: "Đồng hành cùng doanh nghiệp trong hành trình chuyển đổi số bằng công nghệ, con người và tinh thần trách nhiệm.",
+    ja: "テクノロジー、人材、責任感を通じて企業のDXを支援します。"
+  },
+  vision: {
+    vi: "Trở thành tập đoàn công nghệ toàn cầu, tạo ra các sản phẩm và dịch vụ có giá trị bền vững cho khách hàng, nhân viên và cộng đồng.",
+    ja: "お客様、社員、社会に持続的な価値を提供するグローバルテクノロジーグループを目指します。"
+  },
+  mission: {
+    vi: "Kết nối năng lực kỹ thuật Việt Nam với tiêu chuẩn vận hành quốc tế, giúp khách hàng giải quyết bài toán kinh doanh bằng giải pháp phần mềm thực tiễn.",
+    ja: "ベトナムの技術力と国際的な運用基準を結びつけ、実用的なソフトウェアソリューションでお客様の課題解決を支援します。"
+  },
+  values: [
+    {
+      key: "customer-success",
+      title: { vi: "Thành công của khách hàng", ja: "顧客の成功" },
+      description: { vi: "Chúng tôi đo chất lượng bằng tác động thực tế mà sản phẩm tạo ra cho khách hàng.", ja: "私たちはプロダクトがお客様にもたらす実際の価値で品質を測ります。" }
+    },
+    {
+      key: "continuous-growth",
+      title: { vi: "Không ngừng phát triển", ja: "継続的な成長" },
+      description: { vi: "Fabbi khuyến khích học hỏi, chia sẻ và cải tiến từng ngày trong mọi dự án.", ja: "Fabbiはすべてのプロジェクトで学習、共有、改善を大切にします。" }
+    },
+    {
+      key: "ownership",
+      title: { vi: "Tinh thần làm chủ", ja: "オーナーシップ" },
+      description: { vi: "Mỗi thành viên chủ động chịu trách nhiệm với cam kết, chất lượng và kết quả cuối cùng.", ja: "各メンバーが約束、品質、最終成果に責任を持ちます。" }
+    }
+  ]
+};
 
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -306,70 +351,82 @@ export const portfolioItems: PortfolioItem[] = [
     client: { vi: "Zenpost Inc.", ja: "Zenpost株式会社" },
     summary: {
       vi: "Nền tảng thương mại điện tử với hệ thống quản lý đơn hàng, kho vận và tích hợp thanh toán toàn cầu.",
-      ja: "受注管理、物流、グローバル決済統合を備えたEコマースプラットフォーム。"
-    },
-    problem: {
-      vi: "Khách hàng cần một nền tảng bán hàng online có khả năng mở rộng quy mô nhanh chóng, tích hợp với nhiều cổng thanh toán và hệ thống vận chuyển tại Nhật Bản.",
-      ja: "顧客は、迅速に拡張可能で、日本国内の複数の決済ゲートウェイや配送システムと統合できるオンライン販売プラットフォームを必要としていました。"
-    },
-    solution: {
-      vi: "Xây dựng nền tảng e-commerce cloud-native với kiến trúc microservices, hỗ trợ xử lý hàng triệu đơn hàng mỗi ngày, tích hợp Stripe, PayPay và các đơn vị vận chuyển Nhật Bản.",
-      ja: "マイクロサービスアーキテクチャを備えたクラウドネイティブのEコマースプラットフォームを構築し、1日あたり数百万件の注文の処理をサポートし、Stripe、PayPay、および日本の配送業者を統合しました。"
+      ja: "注文管理、物流システム、グローバル決済連携を備えたクラウドネイティブ型Eコマースプラットフォーム。"
     },
     technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
     cover_image: "/images/Zenpost-0-1-1024x532.png",
     status: "completed",
     year: 2023
-  },
-  {
-    id: "port-2",
-    slug: "bondbod-social-commerce",
-    title: { vi: "Bondbod - Social Commerce App", ja: "Bondbod - ソーシャルコマースアプリ" },
-    client: { vi: "Bondbod Vietnam", ja: "Bondbodベトナム" },
-    summary: {
-      vi: "Ứng dụng thương mại xã hội kết nối người bán và người mua qua các tính năng livestream, chat và đánh giá thông minh.",
-      ja: "ライブストリーム、チャット、スマートレビュー機能を通じて売り手と買い手を繋ぐソーシャルコマースアプリ。"
-    },
-    problem: {
-      vi: "Thị trường thương mại xã hội tại Việt Nam đang phát triển nhanh nhưng thiếu nền tảng đủ linh hoạt cho người bán hàng cá nhân.",
-      ja: "ベトナムのソーシャルコマース市場は急速に成長していますが、個人の売り手にとって十分に柔軟なプラットフォームが不足しています。"
-    },
-    solution: {
-      vi: "Phát triển ứng dụng di động với tính năng livestream bán hàng tích hợp, hệ thống chatbot AI và cơ chế xếp hạng uy tín người bán.",
-      ja: "統合されたライブストリーム販売機能、AIチャットボットシステム、および売り手の評判評価メカニズムを備えたモバイルアプリケーションの開発。"
-    },
-    technologies: ["React Native", "Go", "PostgreSQL", "Firebase"],
-    cover_image: "/images/Bondbod-2-1024x732.png",
-    status: "completed",
-    year: 2023
-  },
-  {
-    id: "port-3",
-    slug: "glams-beauty-tech",
-    title: { vi: "Glams - Beauty Tech Platform", ja: "Glams - ビューティーテックプラットフォーム" },
-    client: { vi: "Glams Inc.", ja: "Glams株式会社" },
-    summary: {
-      vi: "Nền tảng công nghệ làm đẹp kết nối thẩm mỹ viên với khách hàng qua đặt lịch thông minh, tư vấn AI và quản lý tồn kho.",
-      ja: "スマートな予約、AIコンサルティング、在庫管理を通じて美容師と顧客を繋ぐビューティーテクノロジープラットフォーム。"
-    },
-    technologies: ["React", "Python", "TensorFlow", "PostgreSQL"],
-    cover_image: "/images/Glams-0-1.png",
-    status: "completed",
-    year: 2024
-  },
-  {
-    id: "port-4",
-    slug: "tekko-manufacturing-iot",
-    title: { vi: "Tekko - Manufacturing IoT Dashboard", ja: "Tekko - 製造業IoTダッシュボード" },
-    client: { vi: "Tekko Corporation", ja: "Tekko株式会社" },
-    summary: {
-      vi: "Dashboard IoT giám sát nhà máy theo thời gian thực với cảnh báo thông minh và tối ưu hóa năng lượng tiêu thụ.",
-      ja: "スマートアラートとエネルギー消費の最適化を備えた、工場監視用リアルタイムIoTダッシュボード。"
-    },
-    technologies: ["Vue.js", "Python", "InfluxDB", "Grafana"],
-    cover_image: "/images/Tekko-0-1.png",
-    status: "completed",
-    year: 2023
   }
 ];
 
+export const activities: Activity[] = [
+  {
+    id: "du-lich",
+    title: { vi: "Du lịch", ja: "旅行" },
+    icon: "🌍",
+    description: {
+      vi: "Fabbi tổ chức các chuyến du lịch team building hàng năm.",
+      ja: "Fabbiは毎年チームビルディング旅行を開催しています。"
+    },
+    image: "/images/Teambuilding-scaled.jpg"
+  }
+];
+
+export const services: ServiceItem[] = [
+  { id: "app-dev", title: { vi: "Phát triển ứng dụng & hệ thống", ja: "業務システム・アプリ開発" }, slug: "business-application-development" },
+  { id: "ai", title: { vi: "Trí tuệ nhân tạo", ja: "人工知能アプリケーション開発 (AI)" }, slug: "ai-system-development" }
+];
+
+export const leadership: LeaderItem[] = [
+  { id: "leader-tu-vu", name: { vi: "VŨ VĂN TƯ", ja: "武 文思 (SABI VU)" }, title: { vi: "Chủ tịch kiêm CEO", ja: "代表取締役会長兼CEO" }, image: "/images/Mr-LinhNV.png" }
+];
+
+export function getTranslation(item: Translation | undefined | null, locale: string): string {
+  if (!item) return '';
+  return item[locale as keyof Translation] || item.vi || '';
+}
+
+export const adapters = {
+  toDbJob: (job: Job, locale: string): import('./db/types').Job => {
+    const salaryMatch = getTranslation(job.salary_range, locale).match(/([\d.]+).*?([\d.]+)/);
+    const salaryMin = salaryMatch ? Number(salaryMatch[1].replace(/\./g, '')) : null;
+    const salaryMax = salaryMatch ? Number(salaryMatch[2].replace(/\./g, '')) : null;
+
+    return {
+      ...job,
+      title: getTranslation(job.title, locale),
+      description: getTranslation(job.description, locale),
+      requirements: getTranslation(job.requirements, locale),
+      benefits: getTranslation(job.benefits, locale),
+      location: getTranslation(job.location, locale),
+      employment_type: 'full-time',
+      department: getTranslation(job.department, locale),
+      salary_min: salaryMin,
+      salary_max: salaryMax,
+      currency: 'VND',
+      tags: job.skills,
+      summary: getTranslation(job.description, locale).split('\n\n')[0],
+      views: 0,
+      created_at: job.published_at,
+      updated_at: job.published_at,
+      closed_at: null,
+      created_by: null,
+      updated_by: null,
+    };
+  },
+  toDbNewsArticle: (article: NewsArticle, locale: string): import('./db/types').NewsArticle => ({
+    ...article,
+    title: getTranslation(article.title, locale),
+    content: getTranslation(article.body, locale),
+    excerpt: getTranslation(article.excerpt, locale),
+    author_name: getTranslation(article.author, locale),
+    author_role: null,
+    category: article.category,
+    thumbnail_url: article.cover_image,
+    content_images: article.content_images || null,
+    views: 0,
+    created_at: article.published_at,
+    updated_at: article.published_at,
+  })
+};

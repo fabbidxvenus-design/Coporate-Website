@@ -28,6 +28,7 @@ export interface Job {
   closed_at: string | null;
   created_by: string | null;
   updated_by: string | null;
+  image?: string | null;
 }
 
 export interface NewsArticle {
@@ -37,6 +38,7 @@ export interface NewsArticle {
   content: string;
   excerpt: string;
   thumbnail_url: string | null;
+  content_images: string[] | null;
   cover_image_url?: string | null; // Compatibility
   author_name: string;
   author_role: string | null;
@@ -47,6 +49,20 @@ export interface NewsArticle {
   created_at: string;
   updated_at: string;
   published_at: string | null;
+}
+
+export interface PortfolioItem {
+  id: string;
+  slug: string;
+  title: string;
+  client: string;
+  summary: string;
+  problem: string | null;
+  solution: string | null;
+  technologies: string[];
+  cover_image: string;
+  status: 'completed' | 'in-progress';
+  year: number;
 }
 
 export interface Application {

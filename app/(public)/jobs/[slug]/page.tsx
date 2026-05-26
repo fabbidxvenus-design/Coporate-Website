@@ -16,7 +16,7 @@ export const revalidate = 300
 export async function generateMetadata({ params }: PageProps) {
   const { slug, locale } = await params
   // Use repository instead of Supabase client
-  const jobs = await jobsRepository.findAllPublished()
+  const jobs = await jobsRepository.findAllPublished(locale)
   const job = jobs.find(j => j.slug === slug)
 
   if (!job) return { title: locale === 'vi' ? 'Không tìm thấy' : '見つかりませんでした' }
