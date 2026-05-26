@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 function LoginForm() {
   const router = useRouter()
@@ -54,35 +55,24 @@ function LoginForm() {
     <div className="min-h-screen bg-[#fbf9f8] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-4" aria-label="Fabbi home">
-            <svg
-              aria-hidden="true"
-              focusable="false"
-              fill="none"
-              height="48"
-              viewBox="0 0 32 32"
-              width="48"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z"
-                fill="#006672"
-              />
-              <path
-                d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z"
-                fill="#F47F35"
-              />
-              <path
-                d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z"
-                fill="#F47F35"
-              />
-            </svg>
+          <Link href="/" className="inline-flex items-center mb-4" aria-label="Fabbi home">
+            <Image
+              src="/images/Logo-Fabbi.svg"
+              alt="Fabbi Logo"
+              width={200}
+              height={70}
+              className="h-16 w-auto object-contain"
+              priority
+            />
           </Link>
-          <h1 className="text-3xl font-bold text-teal-text mb-2">Fabbi CMS</h1>
           <p className="text-gray-600">Đăng nhập để quản lý nội dung</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <div className="mb-4 p-3 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-700 font-mono">
+            <span className="font-semibold">Dev credentials:</span> admin@fabbi.vn / admin123
+          </div>
+
           {error && (
             <div role="alert" className="mb-6 p-4 bg-red-50 border border-red-100 rounded-lg text-sm text-red-600">
               <span>{error}</span>
