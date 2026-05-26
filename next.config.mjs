@@ -5,9 +5,15 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
     ],
-    // Cho phép load ảnh local
     dangerouslyAllowSVG: true,
     unoptimized: true,
+  },
+  // Payload CMS is optional — skip bundling if not installed
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = [...(config.externals || []), 'payload'];
+    }
+    return config;
   },
 };
 

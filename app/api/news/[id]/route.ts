@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { newsRepository } from '@/lib/db/repositories/news'
+import { newsRepository } from '@/lib/repositories'
 import { requireAdmin } from '@/lib/auth'
 import type { NewsArticle } from '@/lib/db/types'
 

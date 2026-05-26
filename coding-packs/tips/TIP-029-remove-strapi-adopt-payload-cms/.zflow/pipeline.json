@@ -1,0 +1,13 @@
+{
+  "planMode": true,
+  "planDir": "D:\\WORKSPACE\\CODE\\Coporate_Website\\coding-packs\\tips\\TIP-029-remove-strapi-adopt-payload-cms",
+  "phase": "SPEC",
+  "tier": "THOROUGH",
+  "complexityScore": 100,
+  "focusLock": true,
+  "focusLockSince": "2026-05-26T14:35:00Z",
+  "createdAt": "2026-05-26T14:35:00Z",
+  "lastEvent": "INTAKE complete, tier=THOROUGH, moved to SPEC",
+  "fixCount": 0,
+  "elapsed": 0
+}

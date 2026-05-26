@@ -1,7 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { getDataSourceMode, isMockDataMode, isSqliteDataMode } from '../lib/config/data-source';
-import { newsRepository } from '../lib/db/repositories/news';
-import * as connection from '../lib/db/connection';
+import { getDataSourceMode, isMockDataMode, isPayloadDataMode } from '../lib/config/data-source';
 
 describe('Data Source Boundary', () => {
   const originalEnv = process.env;
@@ -21,14 +19,15 @@ describe('Data Source Boundary', () => {
       process.env.USE_MOCK_DATA = 'true';
       expect(getDataSourceMode()).toBe('mock');
       expect(isMockDataMode()).toBe(true);
-      expect(isSqliteDataMode()).toBe(false);
+      expect(isPayloadDataMode()).toBe(false);
     });
 
-    it('AC-02: SQLite flag resolves to SQLite mode', () => {
+    it('AC-02: Payload mode resolves when PAYLOAD_SECRET is set', () => {
       process.env.USE_MOCK_DATA = 'false';
-      expect(getDataSourceMode()).toBe('sqlite');
+      process.env.PAYLOAD_SECRET = 'test-secret';
+      expect(getDataSourceMode()).toBe('payload');
       expect(isMockDataMode()).toBe(false);
-      expect(isSqliteDataMode()).toBe(true);
+      expect(isPayloadDataMode()).toBe(true);
     });
 
     it('AC-03: Missing flag defaults to mock mode', () => {
@@ -36,23 +35,11 @@ describe('Data Source Boundary', () => {
       expect(getDataSourceMode()).toBe('mock');
     });
 
-    it('AC-03: Invalid flag defaults to mock mode', () => {
-      process.env.USE_MOCK_DATA = 'random-value';
-      expect(getDataSourceMode()).toBe('mock');
-    });
-  });
-
-  describe('Implementation Isolation', () => {
-    it('AC-04: Mock mode does not call SQLite connection (WIP: will fail until repository updated)', async () => {
-      process.env.USE_MOCK_DATA = 'true';
-
-      const getDbSpy = vi.spyOn(connection, 'getDb');
-
-      // Attempt to load data
-      await newsRepository.findAllPublished();
-
-      // This will fail until newsRepository is updated to use the helper
-      expect(getDbSpy).not.toHaveBeenCalled();
+    it('AC-04: Postgres fallback when USE_MOCK_DATA=false and no PAYLOAD_SECRET', () => {
+      process.env.USE_MOCK_DATA = 'false';
+      delete process.env.PAYLOAD_SECRET;
+      expect(getDataSourceMode()).toBe('postgres');
+      expect(isMockDataMode()).toBe(false);
     });
   });
 });

@@ -1,39 +1,45 @@
 /**
  * Centralized data source configuration helper.
  *
- * USE_MOCK_DATA=true: Use ONLY local mock data/JSON fixtures. No SQLite connection.
- * USE_STRAPI=true: Use Strapi CMS as backend.
- * USE_MOCK_DATA=false: Use ONLY SQLite database content.
+ * USE_MOCK_DATA=true: Use ONLY local mock data/JSON fixtures. No network, no DB.
+ * USE_MOCK_DATA=false + PAYLOAD_SECRET set: Use Payload CMS as backend.
+ * USE_MOCK_DATA=false + no PAYLOAD_SECRET: Use Supabase/Postgres as backend (fallback).
  * Default: true (local development friendly)
  */
 
-export type DataSourceMode = 'mock' | 'sqlite' | 'strapi';
+export type DataSourceMode = 'mock' | 'payload' | 'postgres';
 
 export function getDataSourceMode(): DataSourceMode {
-  const value = process.env.USE_MOCK_DATA;
+  const useMockData = process.env.USE_MOCK_DATA;
+  const payloadSecret = process.env.PAYLOAD_SECRET;
 
-  // Strapi takes priority over SQLite
-  if (process.env.USE_STRAPI === 'true') {
-    return 'strapi';
+  // Mock mode: no external dependencies
+  if (useMockData === 'true' || useMockData === undefined) {
+    return 'mock';
   }
 
-  // Explicit SQLite mode
-  if (value === 'false') {
-    return 'sqlite';
+  // Non-mock: prefer Payload if secret is configured
+  if (payloadSecret) {
+    return 'payload';
   }
 
-  // Default to mock mode for safety and local development
-  return 'mock';
+  // Fallback to Supabase/Postgres
+  return 'postgres';
 }
 
 export function isMockDataMode(): boolean {
   return getDataSourceMode() === 'mock';
 }
 
-export function isSqliteDataMode(): boolean {
-  return getDataSourceMode() === 'sqlite';
+export function isPayloadDataMode(): boolean {
+  return getDataSourceMode() === 'payload';
 }
 
+export function isPostgresDataMode(): boolean {
+  return getDataSourceMode() === 'postgres';
+}
+
+/** @deprecated Use isPayloadDataMode() — Strapi is no longer supported */
 export function isStrapiDataMode(): boolean {
-  return getDataSourceMode() === 'strapi';
+  return false;
 }

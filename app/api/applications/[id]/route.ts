@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
-import { applicationsRepository } from '@/lib/db/repositories/applications'
-import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { applicationsRepository } from '@/lib/repositories'
+import { jobsRepository } from '@/lib/repositories'
 import path from 'path'
 import fs from 'fs'
 

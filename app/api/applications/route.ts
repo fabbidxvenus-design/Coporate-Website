@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { applicationsRepository } from '@/lib/db/repositories/applications'
-import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { applicationsRepository } from '@/lib/repositories'
+import { jobsRepository } from '@/lib/repositories'
 import { rateLimitResponse, RATE_LIMITS } from '@/lib/rate-limit'
 import path from 'path'
 import fs from 'fs'

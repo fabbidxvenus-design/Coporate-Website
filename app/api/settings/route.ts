@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
-import { settingsRepository } from '@/lib/db/repositories/settings'
+import { settingsRepository } from '@/lib/repositories'
 
 const ALLOWED_KEYS = [
   'company_name',

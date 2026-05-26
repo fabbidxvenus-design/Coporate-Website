@@ -1,4 +1,4 @@
-import { jobsRepository } from '@/lib/db/repositories/jobs'
+import { jobsRepository } from '@/lib/repositories'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {

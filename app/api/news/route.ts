@@ -51,42 +51,17 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    await requireAdmin()
+
     const searchParams = request.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')
-    const status = searchParams.get('status')
 
-    const { isSqliteDataMode } = await import('@/lib/config/data-source')
-    if (!isSqliteDataMode()) {
-      return NextResponse.json(
-        { error: 'Admin listing requires USE_MOCK_DATA=false (SQLite mode)' },
-        { status: 403 }
-      )
-    }
-    const { getDb } = await import('@/lib/db/connection')
-    const db = getDb()
+    const articles = await newsRepository.findAll()
     const offset = (page - 1) * limit
 
-    let sql = 'SELECT * FROM news_articles'
-    const values: any[] = []
-
-    if (status) {
-      sql += ' WHERE status = ?'
-      values.push(status)
-    }
-
-    sql += ' ORDER BY created_at DESC LIMIT ? OFFSET ?'
-    values.push(limit, offset)
-
-    const rows = db.prepare(sql).all(...values) as any[]
-
-    // Get total count
-    let countSql = 'SELECT COUNT(*) as count FROM news_articles'
-    if (status) {
-      countSql += ' WHERE status = ?'
-    }
-    const countResult = db.prepare(countSql).get(...(status ? [status] : [])) as any
-    const total = countResult?.count || 0
+    const rows = articles.slice(offset, offset + limit)
+    const total = articles.length
 
     return NextResponse.json({
       data: rows,

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
-import { applicationsRepository } from '@/lib/db/repositories/applications'
+import { applicationsRepository } from '@/lib/repositories'
 import fs from 'fs'
 
 interface RouteParams {
