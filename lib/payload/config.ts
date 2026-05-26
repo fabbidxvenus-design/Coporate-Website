@@ -1,5 +1,5 @@
 /**
- * Payload CMS configuration.
+ * Payload CMS configuration helpers.
  * Only loaded when isPayloadDataMode() is true.
  */
 
@@ -20,9 +20,9 @@ export function getPayloadConfig(): PayloadConfig {
   const secret = process.env.PAYLOAD_SECRET;
   if (!secret) {
     throw new Error(
-      'PAYLOAD_SECRET is not configured. ' +
+      '[Payload] PAYLOAD_SECRET is not configured. ' +
       'Set PAYLOAD_SECRET in .env.local to enable Payload CMS mode. ' +
-      'Alternatively, set USE_MOCK_DATA=true for local development without CMS.'
+      'See coding-packs/payload/setup.md for full setup instructions.'
     );
   }
 
@@ -47,3 +47,7 @@ export function isPayloadDataMode(): boolean {
   const payloadSecret = process.env.PAYLOAD_SECRET;
   return useMockData !== 'true' && !!payloadSecret;
 }
+
+// Payload v3 auto-detects DATABASE_URL from process.env.DATABASE_URL
+// for its PostgreSQL database adapter. No manual config needed here.
+// Dev example: postgres://user:password@localhost:5432/dbname

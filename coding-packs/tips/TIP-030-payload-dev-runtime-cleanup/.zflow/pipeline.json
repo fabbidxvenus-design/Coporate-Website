@@ -1,0 +1,9 @@
+{
+  "phase": "execute",
+  "tier": "thorough",
+  "tip": "TIP-030",
+  "startedAt": "2026-05-27T00:00:00Z",
+  "fixCount": 0,
+  "lastEvent": "RED gate passed: 18 tests fail on current state",
+  "runDir": "coding-packs/tips/TIP-030-payload-dev-runtime-cleanup"
+}
