@@ -78,14 +78,14 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
       <ContactModalController
         locale={locale}
         dict={{
-          title: dict.contact.title,
-          name: dict.contact.name,
-          email: dict.contact.email,
-          phone: dict.contact.phone,
-          company: dict.contact.company,
-          subject: dict.contact.subject,
-          message: dict.contact.message,
-          send: dict.cta.send,
+          title: dict?.contact?.title || 'Contact',
+          name: dict?.contact?.name || 'Name',
+          email: dict?.contact?.email || 'Email',
+          phone: dict?.contact?.phone || 'Phone',
+          company: dict?.contact?.company || 'Company',
+          subject: dict?.contact?.subject || 'Subject',
+          message: dict?.contact?.message || 'Message',
+          send: dict?.cta?.send || 'Send',
         }}
       />
       {/* Hero Section */}
@@ -101,7 +101,7 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
         <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 flex flex-col items-start justify-center">
             <h1 id="hero-heading" className="text-5xl font-bold text-white max-w-3xl leading-tight mb-6">
             {heroParts[0]} -{' '}
-            <span className="text-teal-text hover:text-pink transition-colors cursor-default">{heroParts[1]}</span>
+            <span className="text-[#008B9C] hover:text-[#00707e] transition-colors cursor-default">{heroParts[1]}</span>
           </h1>
           <p className="text-lg text-white max-w-2xl mb-8">
             {dict?.home?.heroSubtitle || ''}
@@ -109,15 +109,15 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
           <div className="flex gap-4">
             <Link
               href={`/${locale}/jobs`}
-              className="bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-pink-700 transition-colors shadow-sm"
+              className="bg-[#008B9C] hover:bg-[#00707e] !text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
               {dict?.home?.exploreJobs || (locale === 'vi' ? 'Khám phá việc làm' : '求人を見る')}
             </Link>
             <Link
-              href={`/${locale}?contact=1`}
-              className="bg-transparent border border-teal-text text-teal-text px-6 py-3 rounded-lg text-sm font-semibold hover:border-pink hover:text-pink hover:bg-pink-50 transition-colors"
+              href={`/${locale}/apply`}
+              className="bg-transparent border border-teal-text text-teal-text px-6 py-3 rounded-lg text-sm font-semibold hover:border-[#008B9C] hover:bg-[#008B9C] hover:!text-white transition-colors"
             >
-              {dict?.nav?.contact || 'Liên hệ'}
+              {dict?.apply?.title || (locale === 'vi' ? 'Ứng tuyển' : '応募')}
             </Link>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
             <Link
               href={`/${locale}/jobs`}
               aria-label="Xem tất cả việc làm nổi bật"
-              className="text-teal-text hover:text-pink text-sm font-semibold hidden md:flex items-center gap-1 hover:underline transition-colors"
+              className="text-teal-text hover:text-[#00707e] text-sm font-semibold hidden md:flex items-center gap-1 hover:underline transition-colors"
             >
               {dict?.home?.viewAllJobs || (locale === 'vi' ? 'Xem tất cả' : 'すべて見る')}{' '}
               <span className="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
@@ -213,7 +213,7 @@ export default async function HomePage({ params }: { params?: Promise<{ locale?:
             <Link
               href={`/${locale}/news`}
               aria-label="Xem tất cả tin tức"
-              className="text-teal-text hover:text-pink text-sm font-semibold hidden md:flex items-center gap-1 hover:underline transition-colors"
+              className="text-teal-text hover:text-[#00707e] text-sm font-semibold hidden md:flex items-center gap-1 hover:underline transition-colors"
             >
               {dict?.home?.viewAllNews || (locale === 'vi' ? 'Xem tất cả' : 'すべて見る')}{' '}
               <span className="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>

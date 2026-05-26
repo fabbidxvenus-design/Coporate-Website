@@ -63,7 +63,7 @@ function JobsSearch({ initialJobs, location: initialLocation, query: initialQuer
       </div>
       <button
         type="submit"
-        className="bg-pink-600 hover:bg-pink-700 rounded-full px-8 py-3 text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink"
+        className="bg-[#008B9C] hover:bg-[#00707e] !text-white rounded-full px-8 py-3 text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap w-full md:w-auto justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#008B9C]"
       >
         <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Tìm kiếm
       </button>
@@ -84,7 +84,7 @@ function JobListCard({ job }: JobCardProps) {
             <i className="fa-solid fa-briefcase text-3xl text-blue-500" aria-hidden="true"></i>
           </div>
           <div>
-            <h3 className="text-lg font-bold text-gray-900 hover:text-pink transition-colors cursor-pointer">
+            <h3 className="text-lg font-bold text-gray-900 hover:text-[#00707e] transition-colors cursor-pointer">
               <Link href={`/jobs/${job.slug}`}>{job.title}</Link>
             </h3>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-gray-500">
@@ -108,12 +108,12 @@ function JobListCard({ job }: JobCardProps) {
           </div>
         </div>
         <div className="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
-          <button className="text-gray-400 hover:text-pink p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink rounded" aria-label={`Lưu việc ${job.title}`}>
+          <button className="text-gray-400 hover:text-[#00707e] p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#008B9C] rounded" aria-label={`Lưu việc ${job.title}`}>
             <i className="fa-solid fa-bookmark text-xl" aria-hidden="true"></i>
           </button>
           <Link
             href={`/jobs/${job.slug}`}
-            className="bg-pink-600 hover:bg-pink-700 hover:text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto text-center"
+            className="bg-[#008B9C] hover:bg-[#00707e] !text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto text-center"
           >
             Xem chi tiết
           </Link>
@@ -136,7 +136,7 @@ function JobListCard({ job }: JobCardProps) {
         <div className="pt-4 border-t border-gray-100 flex items-center gap-2 text-sm text-gray-500 flex-wrap">
           <i className="fa-solid fa-tag" aria-hidden="true"></i> Tag:
           {job.skills.map((tag) => (
-            <span key={tag} className="hover:text-pink cursor-pointer">{tag}</span>
+            <span key={tag} className="hover:text-[#00707e] cursor-pointer">{tag}</span>
           ))}
         </div>
       )}
@@ -177,7 +177,7 @@ export default function JobsSearchSection({ initialJobs, location, query }: Jobs
       >
         <div className="text-center max-w-2xl relative z-10 mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            <span className="text-pink">{initialJobs.length} Jobs</span> đang open
+            <span className="text-[#008B9C]">{initialJobs.length} Jobs</span> đang open
           </h1>
           <p className="text-gray-600 text-sm md:text-base">
             Khám phá cơ hội nghề nghiệp tại Fabbi - Nơi công nghệ gặp gỡ đổi mới

@@ -36,7 +36,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 idx < content.stats.length - 1 ? 'border-r border-gray-100' : ''
               }`}
             >
-              <span className="text-4xl font-bold text-teal-text hover:text-pink transition-colors cursor-default mb-2 block">
+              <span className="text-4xl font-bold text-teal-text hover:text-[#00707e] transition-colors cursor-default mb-2 block">
                 {stat.value}
               </span>
               <p className="text-gray-500 font-medium">{stat.label}</p>
@@ -71,7 +71,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </div>
               <Link
                 href={`/${locale}/jobs`}
-                className="mt-8 border border-teal-text text-teal-text font-medium py-2 px-8 rounded-full hover:border-pink hover:bg-pink hover:text-white transition-colors inline-block"
+                className="mt-8 border border-teal-text text-teal-text font-medium py-2 px-8 rounded-full hover:border-[#008B9C] hover:bg-[#008B9C] hover:!text-white transition-colors inline-block"
               >
                 {content.cta.buttonLabel}
               </Link>
@@ -111,7 +111,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <div className="absolute top-10 right-0 bg-white p-4 rounded-xl shadow-md text-sm text-gray-600 max-w-[200px] z-20">
               {content.whyChoose.bubbleSender}
             </div>
-            <div className="absolute top-32 right-10 bg-pink p-4 rounded-xl shadow-md text-sm text-white max-w-[180px] z-20">
+            <div className="absolute top-32 right-10 bg-[#008B9C] p-4 rounded-xl shadow-md text-sm text-white max-w-[180px] z-20">
               {content.whyChoose.bubbleReceiver}
             </div>
           </div>

@@ -31,8 +31,8 @@ export function ActivityTabs({ activities }: { activities: Activity[] }) {
               onClick={() => setActiveId(activity.id)}
               className={`flex items-center space-x-3 w-full p-4 rounded-lg text-left transition ${
                 activeId === activity.id
-                  ? 'bg-white text-teal-text hover:text-pink font-medium shadow-sm'
-                  : 'text-gray-600 hover:bg-white/50 hover:text-pink'
+                  ? 'bg-white text-teal-text hover:text-[#00707e] font-medium shadow-sm'
+                  : 'text-gray-600 hover:bg-white/50 hover:text-[#00707e]'
               }`}
             >
               <span className="w-6 h-6 flex items-center justify-center bg-teal-text text-white rounded-none text-xs">{activity.icon}</span>
@@ -42,7 +42,7 @@ export function ActivityTabs({ activities }: { activities: Activity[] }) {
         </div>
         {/* Content Area */}
         <div className="w-full lg:w-3/4 bg-white rounded-xl border border-gray-100 p-8 shadow-sm">
-          <h3 className="text-2xl font-bold text-teal-text hover:text-pink transition-colors cursor-default mb-4">
+          <h3 className="text-2xl font-bold text-teal-text hover:text-[#00707e] transition-colors cursor-default mb-4">
             {activeActivity.label}
           </h3>
           <p className="text-gray-600 mb-6 text-sm leading-relaxed">

@@ -81,7 +81,7 @@ export function JobCard({
           </button>
           <Link
             href={`/${locale}/jobs/${slug}`}
-            className="bg-[#008B9C] hover:bg-[#00707e] text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto text-center"
+            className="bg-[#008B9C] hover:bg-[#00707e] !text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors w-full md:w-auto text-center"
           >
             {locale === 'vi' ? 'Xem chi tiết' : '詳細を見る'}
           </Link>

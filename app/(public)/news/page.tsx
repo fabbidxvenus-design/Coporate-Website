@@ -192,9 +192,10 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
 
   // Use repository
   const allArticles = await newsRepository.findAllPublished()
+  const localizedArticles = allArticles.filter((article) => article.id.startsWith(`${locale}-`))
 
   // Apply filtering
-  let filteredArticles = allArticles
+  let filteredArticles = localizedArticles
   if (sParams.q) {
     filteredArticles = filteredArticles.filter(a =>
       a.title.toLowerCase().includes(sParams.q!.toLowerCase())
@@ -298,7 +299,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 {page > 1 ? (
                   <Link
                     href={`/${locale}/news?${buildSearchParams(sParams, { page: String(page - 1) })}`}
-                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-[#00707e] text-sm font-medium px-2 transition-colors"
                   >
                     Prev
                   </Link>
@@ -333,7 +334,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 {page < totalPages ? (
                   <Link
                     href={`/${locale}/news?${buildSearchParams(sParams, { page: String(page + 1) })}`}
-                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-[#00707e] text-sm font-medium px-2 transition-colors"
                   >
                     Next
                   </Link>

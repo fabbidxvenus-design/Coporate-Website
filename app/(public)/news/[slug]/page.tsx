@@ -46,12 +46,13 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const dict = getDictionary(locale as Locale)
   const article = await newsRepository.findBySlug(slug)
 
-  if (!article) {
+  if (!article || !article.id.startsWith(`${locale}-`)) {
     notFound()
   }
 
   const allArticles = await newsRepository.findAllPublished()
-  const relatedArticles = allArticles
+  const localizedArticles = allArticles.filter((item) => item.id.startsWith(`${locale}-`))
+  const relatedArticles = localizedArticles
     .filter(a => a.id !== article.id)
     .slice(0, 3)
 
@@ -165,7 +166,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                     <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded-full mb-2">
                       {categoryLabels[related.category || ''] || related.category || 'News'}
                     </span>
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-pink transition-colors line-clamp-2">
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#00707e] transition-colors line-clamp-2">
                       {related.title}
                     </h3>
                   </Link>

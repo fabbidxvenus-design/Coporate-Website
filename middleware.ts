@@ -3,7 +3,7 @@ import { locales, defaultLocale } from './lib/i18n'
 
 const adminPaths = ['/admin']
 const authPaths = ['/login']
-const publicPaths = ['/', '/jobs', '/news', '/about', '/apply', '/contact']
+const publicPaths = ['/', '/jobs', '/news', '/about', '/apply']
 
 function getLocale(request: NextRequest): string {
   const pathname = request.nextUrl.pathname

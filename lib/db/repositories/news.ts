@@ -45,8 +45,10 @@ export const newsRepository = {
 
   findBySlug: async (slug: string): Promise<NewsArticle | null> => {
     if (isMockDataMode()) {
-      const article = [...(newsVi.articles as any[]), ...(newsJa.articles as any[])]
-        .find(a => a.slug === slug);
+      const article = [
+        ...(newsVi.articles as any[]).map((a) => ({ ...a, id: `vi-${a.id}` })),
+        ...(newsJa.articles as any[]).map((a) => ({ ...a, id: `ja-${a.id}` })),
+      ].find(a => a.slug === slug);
       if (!article) return null;
       return {
         id: article.id,

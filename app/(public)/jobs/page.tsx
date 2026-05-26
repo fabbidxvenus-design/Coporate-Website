@@ -174,7 +174,7 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 {page > 1 ? (
                   <Link
                     href={`/${locale}/jobs?${buildSearchParams(sParams, { page: String(page - 1) })}`}
-                    className="text-gray-600 hover:text-pink text-sm font-medium px-2 transition-colors"
+                    className="text-gray-600 hover:text-[#00707e] text-sm font-medium px-2 transition-colors"
                   >
                     Prev
                   </Link>
@@ -238,11 +238,8 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                  <div className="w-12 h-12 rounded bg-white p-1 flex items-center justify-center">
-                    <img src="/images/fabbi-light-v2.svg" alt="Fabbi Logo" className="w-8 h-8 object-contain" />
-                  </div>
                   <div>
-                    <h3 className="text-white font-bold">Fabbi JSC</h3>
+                    <img src="/images/Logo-Fabbi-White.svg" alt="Fabbi JSC" className="h-10 w-auto" />
                     <div className="flex items-center gap-2 mt-1">
                       <button className="bg-blue-600 text-white text-xs px-2 py-1 rounded flex items-center gap-1 hover:bg-blue-700">
                         <i className="fa-brands fa-facebook"></i> Like Page
@@ -268,10 +265,10 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
             <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
               <h3 className="font-bold text-gray-800 mb-4">{dict.footer.quickLinks}</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href={`/${locale}`} className="text-gray-600 hover:text-pink transition-colors">{dict.nav.home}</Link></li>
-                <li><Link href={`/${locale}/about`} className="text-gray-600 hover:text-pink transition-colors">{dict.nav.about}</Link></li>
-                <li><Link href={`/${locale}/news`} className="text-gray-600 hover:text-pink transition-colors">{dict.nav.news}</Link></li>
-                <li><Link href={`/${locale}/apply`} className="text-gray-600 hover:text-pink transition-colors">{dict.apply.title}</Link></li>
+                <li><Link href={`/${locale}`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.nav.home}</Link></li>
+                <li><Link href={`/${locale}/about`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.nav.about}</Link></li>
+                <li><Link href={`/${locale}/news`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.nav.news}</Link></li>
+                <li><Link href={`/${locale}/apply`} className="text-gray-600 hover:text-[#00707e] transition-colors">{dict.apply.title}</Link></li>
               </ul>
             </div>
           </div>
@@ -285,16 +282,16 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Work culture" className="w-full h-full object-cover" />
+            <img src="/images/409187962_843743124422591_5358432708356068022_n.jpg" alt="Work culture" className="w-full h-full object-cover" />
           </div>
           <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team meeting" className="w-full h-full object-cover" />
+            <img src="/images/409394328_843742617755975_2920894524434245918_n.jpg" alt="Team meeting" className="w-full h-full object-cover" />
           </div>
           <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Office space" className="w-full h-full object-cover" />
+            <img src="/images/409845294_843742774422626_8818933704017811449_n.jpg" alt="Office space" className="w-full h-full object-cover" />
           </div>
           <div className="h-64 rounded-xl overflow-hidden shadow-sm">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team activity" className="w-full h-full object-cover" />
+            <img src="/images/411652522_846458160817754_3403469319257241473_n.jpg" alt="Team activity" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
@@ -306,11 +303,15 @@ export default async function JobsPage({ params, searchParams }: PageProps) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-             <div className="h-64 bg-gray-100 rounded-xl mb-4"></div>
+             <div className="h-64 rounded-xl overflow-hidden mb-4">
+               <img src="/images/Vietnam-Summit.jpg" alt="Hà Nội" className="w-full h-full object-cover" />
+             </div>
              <h3 className="text-xl font-bold text-gray-800">Hà Nội</h3>
           </div>
           <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-             <div className="h-64 bg-gray-100 rounded-xl mb-4"></div>
+             <div className="h-64 rounded-xl overflow-hidden mb-4">
+               <img src="/images/SEMINAR-JP-LOGO-26.jpg" alt="Japan" className="w-full h-full object-cover" />
+             </div>
              <h3 className="text-xl font-bold text-gray-800">Japan</h3>
           </div>
         </div>

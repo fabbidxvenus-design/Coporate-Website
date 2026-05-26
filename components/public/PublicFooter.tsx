@@ -14,7 +14,7 @@ export function PublicFooter() {
     { href: `/${locale}/jobs`, label: dict.nav.jobs },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/news`, label: dict.nav.news },
-    { href: `/${locale}/contact`, label: dict.nav.contact },
+    { href: `/${locale}/apply`, label: dict.apply.title },
   ];
 
   const socialLinks = [
@@ -31,30 +31,8 @@ export function PublicFooter() {
         <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
           {/* Left Col: Branding & Info */}
           <div className="md:w-1/2">
-            <div className="flex items-center gap-2 font-bold text-4xl mb-4">
-              <svg
-                aria-hidden="true"
-                fill="none"
-                focusable="false"
-                height="40"
-                viewBox="0 0 32 32"
-                width="40"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.9803 30.6865C18.6657 32.5594 24.7865 29.4624 26.6593 23.777C28.5322 18.0916 25.4352 11.9708 19.7498 10.098C14.0644 8.22513 7.94357 11.3221 6.07073 17.0075C4.19789 22.6929 7.2949 28.8137 12.9803 30.6865Z"
-                  fill="white"
-                />
-                <path
-                  d="M10.7486 9.87329C13.2052 10.6823 15.8492 9.34444 16.6582 6.88785C17.4673 4.43126 16.1294 1.78726 13.6728 0.978233C11.2162 0.169207 8.5722 1.50707 7.76317 3.96366C6.95415 6.42025 8.292 9.06426 10.7486 9.87329Z"
-                  fill="#F47F35"
-                />
-                <path
-                  d="M2.37895 19.9888C3.89675 20.4886 5.5303 19.662 6.03009 18.1442C6.52989 16.6264 5.70327 14.9929 4.18546 14.4931C2.66766 13.9933 1.03411 14.8199 0.534313 16.3377C0.0345163 17.8555 0.861139 19.489 2.37895 19.9888Z"
-                  fill="#F47F35"
-                />
-              </svg>
-              Fabbi
+            <div className="mb-4">
+              <img src="/images/Logo-Fabbi-White.svg" alt="Fabbi" className="h-12 w-auto" />
             </div>
             <p className="text-sm font-medium mb-8 text-white">
               {dict.footer.companyName}

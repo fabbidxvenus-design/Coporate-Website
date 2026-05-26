@@ -41,13 +41,13 @@ export function NewsCard({
       </div>
       <div className="p-6 flex flex-col flex-1">
         <span className="text-body-sm font-body-sm text-gray-500 mb-2">{date}</span>
-        <h3 className="text-headline-sm font-headline-sm text-on-background mb-3 group-hover:text-pink transition-colors line-clamp-2">
+        <h3 className="text-headline-sm font-headline-sm text-on-background mb-3 group-hover:text-[#00707e] transition-colors line-clamp-2">
           {title}
         </h3>
         <p className="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-3 flex-1">
           {excerpt}
         </p>
-        <span className="text-teal-text group-hover:text-pink transition-colors text-label-sm font-label-sm flex items-center gap-1 mt-auto">
+        <span className="text-teal-text group-hover:text-[#00707e] transition-colors text-label-sm font-label-sm flex items-center gap-1 mt-auto">
           {readMore}{' '}
           <span className="material-symbols-outlined text-sm" aria-hidden="true">arrow_right_alt</span>
         </span>
