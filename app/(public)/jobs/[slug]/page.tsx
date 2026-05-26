@@ -38,9 +38,14 @@ export default async function JobDetailPage({ params }: PageProps) {
     notFound()
   }
 
-  // Filter related jobs based on simple matching
+  // Filter related jobs based on priority matching
   const relatedJobs = jobs
-    .filter(j => j.id !== job.id && (job.location ? j.location === job.location : true))
+    .filter(j => j.id !== job.id)
+    .sort((a, b) => {
+      const aMatch = a.location === job.location ? 1 : 0
+      const bMatch = b.location === job.location ? 1 : 0
+      return bMatch - aMatch
+    })
     .slice(0, 4)
 
   return (
