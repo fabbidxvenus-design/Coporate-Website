@@ -104,9 +104,6 @@ export function JobSidebar({ job, locale, dict }: JobSidebarProps) {
           </div>
         )}
 
-        <div className="pt-8">
-          <JobApplyButton jobTitle={job.title} locale={locale} variant="sidebar" />
-        </div>
       </div>
     </aside>
   )
