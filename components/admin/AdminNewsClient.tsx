@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
-import { Pagination } from './ui/Pagination'
+import { Pagination } from '@/components/admin/ui/Pagination'
 import { formatDateLocal, NEWS_STATUS_LABELS } from '@/lib/utils'
 import { NewsArticle } from '@/lib/db/types'
 
