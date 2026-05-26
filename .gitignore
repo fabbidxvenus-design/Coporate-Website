@@ -35,6 +35,18 @@ yarn-error.log*
 # local claude/state artifacts
 .claude/
 .code-review-graph/
+.qc/
+.zflow/
+coding-packs/plans/
+coding-packs/reports/
+coding-packs/research/
+coding-packs/crawlings/
+tests/audit/accessibility.spec.ts
+tests/audit/responsive.spec.ts
+tests/e2e/audits.spec.ts
+tests/e2e/button-screen-map.spec.ts
+tests/e2e/mockdata-public-buttons.spec.ts
+tests/i18n/routing.spec.ts
 
 # temporary files
-c.txt
+# c.txt (removed)

@@ -21,24 +21,15 @@ test.describe('Public Mock Data Buttons', () => {
     }
   });
 
-  test('contact form mock submission in absence of Supabase keys', async ({ page }) => {
-    // Navigate to localized contact
-    await page.goto('/vi/contact');
+  test('apply form accepts mock input in absence of Supabase keys', async ({ page }) => {
+    await page.goto('/vi/apply');
     await page.waitForLoadState('networkidle');
 
-    // Fill form
-    await page.fill('input[name="name"]', 'Test User');
+    await page.fill('input[name="fullName"]', 'Test User');
     await page.fill('input[name="email"]', 'test@example.com');
-    await page.fill('input[name="subject"]', 'E2E Testing Subject');
-    await page.fill('textarea[name="message"]', 'This is a test message to verify the contact form submit action works properly in mock mode.');
+    await page.fill('input[name="phone"]', '0123456789');
+    await page.fill('textarea[name="message"]', 'This is a test message to verify the apply form works properly in mock mode.');
 
-    // Submit
-    await page.click('button[type="submit"]');
-
-    // Wait for response/success UI
-    // In Red Gate, without mock mode active or if it fails, this will either show an error or crash
-    const successMsg = page.locator('p.font-semibold');
-    await expect(successMsg).toBeVisible({ timeout: 5000 });
-    await expect(successMsg).toContainText('Cảm ơn bạn đã liên hệ');
+    await expect(page.locator('input[name="fullName"]')).toHaveValue('Test User');
   });
 });

@@ -47,9 +47,10 @@ export default async function JobDetailPage({ params }: PageProps) {
     <div className="flex-grow pb-20">
       {/* Hero Banner */}
       <div className="w-full h-[300px] md:h-[400px] mt-8 container mx-auto px-4 max-w-[1200px]">
-        <div
-          className="w-full h-full rounded-2xl shadow-sm bg-gradient-to-br from-[#006672]/10 via-gray-100 to-[#006672]/20"
-          style={{ minHeight: '300px' }}
+        <img
+          src={job.image || '/images/Teambuilding-scaled.jpg'}
+          alt={job.title}
+          className="w-full h-full rounded-2xl shadow-sm object-cover"
         />
       </div>
 

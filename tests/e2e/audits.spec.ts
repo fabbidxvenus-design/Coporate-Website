@@ -7,7 +7,6 @@ const KEY_PAGES = [
   { url: '/vi/jobs', label: 'Jobs listing' },
   { url: '/vi/news', label: 'News listing' },
   { url: '/vi/apply', label: 'Apply form' },
-  { url: '/vi/contact', label: 'Contact' },
 ]
 
 const RESPONSIVE_BREAKPOINTS = [

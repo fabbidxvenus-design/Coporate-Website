@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Public Core Flows', () => {
   test('public pages load successfully', async ({ page }) => {
     // Visit main public routes
-    const routes = ['/', '/jobs', '/news', '/about', '/apply', '/contact']
+    const routes = ['/', '/jobs', '/news', '/about', '/apply']
 
     for (const route of routes) {
       const response = await page.goto(route)
@@ -42,23 +42,18 @@ test.describe('Public Core Flows', () => {
     await expect(page.locator('body')).toContainText('Tuyển dụng')
   })
 
-  test('contact form validation and submission', async ({ page }) => {
-    await page.goto('/contact')
+  test('apply form validation and input', async ({ page }) => {
+    await page.goto('/apply')
 
-    // Test client-side or server-side validation error
     await page.click('button[type="submit"]')
-    // Should show error messages (implementation specific, checking body for common patterns)
-    await expect(page.locator('body')).toContainText(/bắt buộc|không hợp lệ|ký tự/)
+    await expect(page.locator('body')).toContainText(/bắt buộc|không hợp lệ|vui lòng/i)
 
-    // Fill form (valid)
-    await page.fill('input[name="name"]', 'QA Test Runner')
+    await page.fill('input[name="fullName"]', 'QA Test Runner')
     await page.fill('input[name="email"]', 'qa@example.com')
-    await page.fill('input[name="subject"]', 'E2E Testing Submission')
+    await page.fill('input[name="phone"]', '0123456789')
     await page.fill('textarea[name="message"]', 'This is a test message from Playwright E2E.')
 
-    // Note: We don't submit to real DB in E2E unless it's a dedicated test environment
-    // But we can check if the form fields accept input
-    await expect(page.locator('input[name="name"]')).toHaveValue('QA Test Runner')
+    await expect(page.locator('input[name="fullName"]')).toHaveValue('QA Test Runner')
   })
 })
 

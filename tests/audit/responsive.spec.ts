@@ -13,7 +13,6 @@ const PAGES = [
   { name: 'jobs', path: '/jobs' },
   { name: 'news', path: '/news' },
   { name: 'apply', path: '/apply' },
-  { name: 'contact', path: '/contact' },
 ];
 
 const VIEWPORTS = [
