@@ -79,6 +79,10 @@ TIP-004 + TIP-005 + TIP-006 + TIP-007 + TIP-008 + TIP-011 + TIP-012 + TIP-013 + 
                                                                                                  +--> TIP-029 Remove Strapi and Adopt Payload CMS
                                                                                                         |
                                                                                                         +--> TIP-030 Payload Dev Runtime Cleanup
+                                                                                                               |
+                                                                                                               +--> TIP-031 Payload + PostgreSQL Bootstrap and Seed
+                                                                                                                      |
+                                                                                                                      +--> TIP-032 Smooth Page Transition Animation
 ```
 
 ## TIP SUMMARY TABLE
@@ -115,6 +119,8 @@ TIP-004 + TIP-005 + TIP-006 + TIP-007 + TIP-008 + TIP-011 + TIP-012 + TIP-013 + 
 | TIP-028 | Strapi CMS migration (superseded by TIP-029) | TIP-023, TIP-024, TIP-025, TIP-026, TIP-027 | SUPERSEDED | 24 | 5 |
 | TIP-029 | Remove Strapi and adopt Payload CMS | TIP-023, TIP-024, TIP-025, TIP-026, TIP-027, TIP-028 | P0 | 24 | 5 |
 | TIP-030 | Payload dev runtime cleanup | TIP-029 | P0 | 18 | 5 |
+| TIP-031 | Payload + PostgreSQL bootstrap and seed | TIP-030 | P0 | 12 | 5 |
+| TIP-032 | Smooth page transition animation without item layout drift | TIP-031 | P0 | 6 | 5 |
 
 ## PARALLELIZATION OPPORTUNITIES
 
@@ -139,6 +145,8 @@ TIP-004 + TIP-005 + TIP-006 + TIP-007 + TIP-008 + TIP-011 + TIP-012 + TIP-013 + 
 - TIP-028 is superseded by TIP-029 because Strapi is no longer the desired CMS direction.
 - TIP-029 should run after TIP-023/TIP-024 and targeted QC TIPs because Payload must replace the stabilized PostgreSQL/CMS data-source boundary without mixing backend migration with visual fixes.
 - TIP-030 should run after TIP-029 because it turns the Payload integration layer into the active dev CMS runtime, removes old custom CMS UI/API duplication, and disables mock-data-by-default behavior for PostgreSQL-backed Payload development.
+- TIP-031 should run after TIP-030 because the old CMS UI/API is gone and the remaining blocker is a repeatable local operational path: PostgreSQL bootstrap, Payload schema initialization, seed/import, and public-route smoke tests.
+- TIP-032 should run after TIP-031 because smooth public route transitions should be applied after public routes can be smoke-tested against stable seeded content, and it must not mix animation polish with data/runtime setup.
 - TIP-009 and TIP-010 should remain sequential because QA findings must be fixed before deployment verification.
 
 ## TEAM ALLOCATION
@@ -159,6 +167,8 @@ If multiple builders are available:
 - Builder A: TIP-027 Jobs QC non-color/image/mockdata fixes after data/content mapping is stable.
 - Builder B or C: TIP-029 Payload CMS migration after PostgreSQL/CMS data boundaries and targeted visual QC fixes are stable; TIP-028 Strapi direction is superseded.
 - Builder B or C: TIP-030 Payload dev runtime cleanup after Payload integration exists, to make Payload + PostgreSQL 5432 the active dev CMS and remove old CMS UI/API duplication.
+- Builder B or C: TIP-031 Payload + PostgreSQL bootstrap and seed after TIP-030, to make public site + Payload CMS + Postgres testable from a fresh local environment.
+- Builder A: TIP-032 smooth public transition animation after TIP-031, to polish route/modal motion without changing item CSS, layout, or visual design.
 - QA Builder: TIP-009 and TIP-010 final verification.
 
 ## MODULE BLUEPRINT SUMMARY
@@ -300,6 +310,16 @@ If multiple builders are available:
 - Remove old custom CMS UI/API duplication while preserving current public site UI and routing public content through repository boundaries.
 - Acceptance: dev mode no longer defaults to mock data, Payload admin owns CMS management, public routes render published Payload content, stale CMS references are removed, and type/build/tests pass.
 
+### TIP-031 — Payload + PostgreSQL bootstrap and seed
+- Provide a repeatable local setup path for PostgreSQL 5432, Payload initialization, environment variables, and seed/import data.
+- Connect public site reads, Payload CMS writes, and Postgres storage through existing repository boundaries without restoring custom CMS UI.
+- Acceptance: fresh local setup can start Payload admin at `/admin`, seed published jobs/news/settings/about content idempotently, public routes render seeded published content, and mock mode remains DB-independent.
+
+### TIP-032 — Smooth page transition animation
+- Add smooth public page and modal transition polish using wrapper-level opacity/transform animation.
+- Preserve existing item CSS/layout exactly: job cards, news cards, chips, buttons, spacing, dimensions, colors, and responsive stacking must not change.
+- Acceptance: localized public route navigation and modal open/close feel smooth, reduced-motion is respected, desktop/mobile screenshots show no item layout drift, and type/tests/browser smoke checks pass.
+
 ### TIP-009 — QA
 - Add unit/integration/E2E tests for validation, auth protection, public visibility, application submission, localization, contact submission, and shared public footer presence.
 - Run responsive and accessibility checks on public and CMS key screens.
@@ -312,7 +332,7 @@ If multiple builders are available:
 
 ## QUALITY GATE: SELF-REVIEW
 
-- Completeness: 29/29 task graph requirements covered.
-- Cross-reference: TIPs map to RRI P0/P1 requirements, Vision MVP scope, the promoted public Vietnamese/Japanese localization + contact requirement, the added public footer visual-parity requirement, the prior mock-data all-button handling requirement, the official teal palette alignment requirement from `coding-packs/research/color-branch.md`, the About QC non-color layout fix requirement from `.qc/ui/about`, the Job Detail QC non-color/image/mockdata fix requirement, the Jobs QC non-color/image/mockdata fix requirement from `.qc/ui/jobs`, the Payload CMS migration requirement that supersedes the prior Strapi direction, and the new Payload dev runtime requirement to use Payload + PostgreSQL 5432 without mock-data-by-default.
-- Gaps: Japanese marketing copy quality depends on owner-provided or reviewed translations. Real social media footer URLs are not specified yet. TIP-014 requires a live button inventory during implementation because button coverage depends on current code state. TIP-017 requires a live color inventory during implementation because color drift depends on current source state. TIP-025 intentionally excludes COLOR, IMAGE, and MOCKDATA mismatches by user request. TIP-027 intentionally excludes COLOR PINK, IMAGE, and MOCKDATA mismatches by user request. TIP-030 requires implementation-time confirmation of exact Payload v3 packages/admin route mounting against installed dependency versions. All 30 TIP files have been generated in `coding-packs/tips/`.
-- Action needed: Implement `coding-packs/tips/TIP-030-payload-dev-runtime-cleanup.md`, then run build/type checks plus Payload/PostgreSQL dev smoke tests.
+- Completeness: 31/31 task graph requirements covered.
+- Cross-reference: TIPs map to RRI P0/P1 requirements, Vision MVP scope, the promoted public Vietnamese/Japanese localization + contact requirement, the added public footer visual-parity requirement, the prior mock-data all-button handling requirement, the official teal palette alignment requirement from `coding-packs/research/color-branch.md`, the About QC non-color layout fix requirement from `.qc/ui/about`, the Job Detail QC non-color/image/mockdata fix requirement, the Jobs QC non-color/image/mockdata fix requirement from `.qc/ui/jobs`, the Payload CMS migration requirement that supersedes the prior Strapi direction, the Payload dev runtime requirement to use Payload + PostgreSQL 5432 without mock-data-by-default, the local bootstrap/seed requirement to make public site + Payload CMS + Postgres testable from a fresh environment, and the new smooth transition animation requirement that must not change item CSS/layout.
+- Gaps: Japanese marketing copy quality depends on owner-provided or reviewed translations. Real social media footer URLs are not specified yet. TIP-014 requires a live button inventory during implementation because button coverage depends on current code state. TIP-017 requires a live color inventory during implementation because color drift depends on current source state. TIP-025 intentionally excludes COLOR, IMAGE, and MOCKDATA mismatches by user request. TIP-027 intentionally excludes COLOR PINK, IMAGE, and MOCKDATA mismatches by user request. TIP-031 requires implementation-time verification of exact Payload v3 PostgreSQL adapter package/API and local Postgres availability. TIP-032 requires implementation-time browser verification to prove smooth animation does not cause item layout drift. All 32 TIP files have been generated in `coding-packs/tips/`.
+- Action needed: Implement `coding-packs/tips/TIP-032-smooth-page-transition-animation.md`, then run type checks, unit tests, browser smoke navigation, responsive checks, and reduced-motion checks.
