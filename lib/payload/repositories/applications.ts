@@ -127,6 +127,6 @@ export const payloadApplicationsRepository = {
       pagination: false,
     });
 
-    return result.totalDocs;
+    return result.totalDocs ?? 0;
   },
 };

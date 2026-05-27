@@ -14,7 +14,9 @@
  *   1 — fatal error (missing env, connection failure)
  */
 
-import { initPayloadClient } from '../lib/payload/client';
+import { resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { initPayloadClient, type PayloadClient } from '../lib/payload/client';
 import {
   jobs,
   newsArticles,
@@ -22,7 +24,7 @@ import {
   aboutContent,
 } from '../lib/mock-data';
 
-async function seedJobs(payload: ReturnType<typeof initPayloadClient extends Promise<infer T> ? T : never>) {
+async function seedJobs(payload: PayloadClient) {
   let seeded = 0;
   for (const job of jobs) {
     const existing = await payload.find({
@@ -89,7 +91,7 @@ async function seedJobs(payload: ReturnType<typeof initPayloadClient extends Pro
 }
 
 async function seedArticles(
-  payload: ReturnType<typeof initPayloadClient extends Promise<infer T> ? T : never>,
+  payload: PayloadClient,
 ) {
   let seeded = 0;
   for (const article of newsArticles) {
@@ -151,7 +153,7 @@ async function seedArticles(
 }
 
 async function seedSiteSettings(
-  payload: ReturnType<typeof initPayloadClient extends Promise<infer T> ? T : never>,
+  payload: PayloadClient,
 ) {
   const existing = await payload.find({
     collection: 'site-settings',
@@ -179,7 +181,7 @@ async function seedSiteSettings(
 }
 
 async function seedAboutContent(
-  payload: ReturnType<typeof initPayloadClient extends Promise<infer T> ? T : never>,
+  payload: PayloadClient,
 ) {
   const existing = await payload.find({
     collection: 'about-pages',
@@ -222,15 +224,11 @@ export async function seed() {
   }
 
   // Verify seed source module exists
-  try {
-    await import('../lib/mock-data.ts');
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error(`[Seed] ERROR: Cannot load seed source module lib/mock-data.ts: ${msg}`);
-    throw err;
+  if (!existsSync(resolve(process.cwd(), 'lib/mock-data.ts'))) {
+    throw new Error('lib/mock-data.ts not found — run this script from the project root');
   }
 
-  let payloadClient: Awaited<ReturnType<typeof initPayloadClient>>;
+  let payloadClient: PayloadClient;
   try {
     payloadClient = await initPayloadClient();
   } catch (err) {
