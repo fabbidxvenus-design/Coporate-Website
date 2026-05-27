@@ -120,7 +120,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40 modal-overlay-enter"
       aria-hidden="false"
       onClick={handleBackdropClick}
     >
@@ -129,7 +129,7 @@ export function ApplicationModal({ isOpen, onClose, jobTitle }: ApplicationModal
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="bg-white rounded-2xl shadow-xl w-full max-w-[600px] overflow-hidden relative m-4 z-10"
+        className="bg-white rounded-2xl shadow-xl w-full max-w-[600px] overflow-hidden relative m-4 z-10 modal-content-enter"
       >
         <div className="absolute top-4 right-4">
           <button

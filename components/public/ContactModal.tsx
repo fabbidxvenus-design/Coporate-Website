@@ -92,7 +92,7 @@ export function ContactModal({ isOpen, onClose, locale, dict }: ContactModalProp
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4 modal-overlay-enter"
       onClick={handleBackdropClick}
     >
       <div
@@ -100,7 +100,7 @@ export function ContactModal({ isOpen, onClose, locale, dict }: ContactModalProp
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
-        className="relative flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
+        className="relative flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl modal-content-enter"
       >
         <button
           ref={closeButtonRef}
